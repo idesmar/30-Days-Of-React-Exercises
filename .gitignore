@@ -1,3 +1,6 @@
 # progress not needed
 boilerplate/
 unexpected-error/
+
+# Workspace Settings
+.vscode
