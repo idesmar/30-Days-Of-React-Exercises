@@ -1,0 +1,159 @@
+:root {
+  --primary-background: #c2e6f4;
+  --primary-color: #1e4566;
+  --placeholder: #cab1b0;
+  --btn-background: #f37474;
+  --link-btn: #2acfcf;
+  --max-width: 50rem;
+}
+
+.logos + .logos {
+  margin-left: 2rem;
+}
+
+main {
+  text-align: center;
+}
+
+main {
+  background-color: var(--primary-background);
+  color: var(--primary-color);
+  border-radius: 0.8rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1.5rem 2rem;
+}
+
+.inputs {
+  display: flex;
+
+}
+input {
+  width: 100%;
+  background-color: white;
+  border-radius: 0.3em;
+  padding: 0.5em 1em;
+  text-align: start;
+  font-size: 0.8rem;
+}
+input + input {
+  margin-left: 1rem;
+}
+
+/* in a production setting, em unit should be used */
+@media (max-width: 550px) {
+  .inputs {
+    flex-direction: column;
+  }
+  input + input {
+    margin: revert;
+    margin-top: 0.8rem;
+  }
+}
+
+h1:not(.level-heading), main > p, .h1-exercise {
+  margin-bottom: 1.7rem;
+}
+
+.h1-exercise {
+  font-size: 1.5rem;
+}
+
+.level {
+  padding-top: 1rem;
+}
+
+.level > ol > li + li {
+  margin-top: 1rem;
+}
+
+.level-heading {
+  text-align: center;
+  font-weight: 500;
+  font-size: 1.2rem;
+  padding-bottom: 0.5rem;
+}
+
+h2, h3 {
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+h3 {
+  margin-bottom: 0.8rem;
+}
+
+button {
+  margin-top: 1rem;
+  background-color: var(--btn-background);
+  padding: 0.4em 1em;
+  border-radius: 0.5em;
+}
+button:hover {
+  opacity: 0.8;
+}
+
+section:not(.level) {
+  padding: 1rem;
+  margin: 0 auto;
+  border-radius: 0.8rem;
+  max-width: var(--max-width);
+  background-color: var(--primary-background);
+  /* border: 1rem solid var(--primary-background); */
+}
+
+.card {
+  border-radius: 0.3rem;
+  padding: 1rem;
+  background-color: white;
+}
+.card-photo {
+  --square: 10rem;
+  width: var(--square);
+  height: var(--square);
+  border-radius: 100%;
+  margin-bottom: 1rem;
+}
+
+/* :root {
+  --skills-gap: 0.5rem;
+} */
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  /* margin-left: calc( -1 * var(--skills-gap));
+  margin-top: calc( -1 * var(--skills-gap)); */
+}
+/* .skills > * {
+  margin-left: var(--skills-gap);
+  margin-top: var(--skills-gap);
+} */
+.skill {
+  background-color: var(--link-btn);
+  display: inline-block; /* used inline-block to to allow padding top and bottom */
+  font-size: 0.8rem;
+  padding: 0.2em 0.5em;
+  border-radius: 0.3em;
+  color: #fff;
+}
+.skill:hover {
+  background-color: lightgreen;
+}
+
+.small-detail {
+  font-size: 0.7rem;
+}
+
+.small-detail {
+  margin-top: 1.4rem;
+}
+.small-detail:nth-of-type(1) {
+  margin: 1.4rem 0;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
