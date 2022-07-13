@@ -12,6 +12,6 @@ day***DD***lev***LL***...
 ## Start
 Each sub repository contains a single page application (SPA). To view desired exercise solution:
 ```bash
-$ cd sub-repo-name
-$ npm start
+cd sub-repo-name
+npm start
 ```
