@@ -1,0 +1,17 @@
+@use '../sass' as *;
+
+.numbers,
+.colors {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: rem(5);
+  width: fit-content;
+  margin: 0 auto;
+
+  li {
+    text-align: center;
+    padding: 1rem;
+    border-radius: rem(6);
+    color: #ffffff;
+  }
+}

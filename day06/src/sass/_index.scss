@@ -1,0 +1,15 @@
+@forward 'utilities';
+@forward 'functions';
+@forward 'breakpoints';
+@forward 'colors';
+
+// * uncomment if needed in this file
+// @use 'functions' as *;
+// @use 'breakpoints' as *;
+// @use 'colors' as *;
+
+
+/*
+	this file is only used to forward consolidated
+	sass modules inside utilities directory
+*/

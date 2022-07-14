@@ -1,0 +1,32 @@
+@use 'sass:map';
+
+
+// displaying color as var(--color)
+@function color($color) {
+	@return var(--#{$color});
+}
+
+/*
+  * COLORS MAP
+  - enclosing color code in '' will prevent conversion
+    to hex code when interpolated
+  - may prevent color manipulation by custom function?
+*/
+// ! BETTER && CONSISTENT NAMING FORMAT
+$colors: (
+	'default': #1a1a1a,
+	'white': #ffffff,
+);
+
+
+// mixin to @include inside of :root { }
+@mixin colors {
+	@each $key, $color in $colors {
+		--#{$key}: #{$color};
+	}
+}
+
+// finished root pseudo element containing colors
+:root {
+	@include colors();
+}
