@@ -1,0 +1,31 @@
+@use '../sass' as *;
+@use '../vars' as *;
+
+.qna {
+  width: calc($side * 8 + $gap * 7);
+  max-width: 100%;
+  margin: 0 auto;
+
+  details {
+    font-size: em(14);
+    text-align: justify;
+
+    summary {
+      font-size: 1rem;
+      background-color: #481a44;
+      color: #fff;
+      padding: rem(10);
+      border-radius: em(8);
+      list-style-type: none;
+      cursor: pointer;
+    }
+  }
+
+  li:not(:last-of-type) {
+    margin-bottom: rem(4);
+  }
+
+  p {
+    padding-inline: rem(12);
+  }
+}

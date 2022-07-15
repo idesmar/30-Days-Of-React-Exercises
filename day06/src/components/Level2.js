@@ -13,11 +13,13 @@ const Cell = ({ num }) => {
 
   const CellStyle = {
     backgroundColor: bgColor,
-    fontSize: rem(31)
+    fontSize: rem(26)
   }
 
   return (
-    <li style={CellStyle}>{num}</li>
+    <li style={CellStyle}>
+      {num}
+    </li>
   )
 }
 
@@ -38,7 +40,7 @@ const Color = ({ color }) => {
   const ColorStyle = {
     backgroundColor: color,
     color: fColor,
-    fontSize: rem(9)
+    fontSize: rem(12)
   }
 
   return (

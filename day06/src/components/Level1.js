@@ -1,8 +1,7 @@
 import qna from '../data/lev1qna'
-
+import './Level1.scss'
 
 const QNA = ({q: {ques, ans}}) => {
-
   return (
     <li>
       <details>
@@ -15,7 +14,7 @@ const QNA = ({q: {ques, ans}}) => {
 
 const QNAs = () => {
   return (
-    <ol>
+    <ol className='qna'>
       {qna.map((el) => <QNA key={el._id} q={el} />)}
     </ol>
   )

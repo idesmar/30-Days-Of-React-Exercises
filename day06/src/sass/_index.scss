@@ -8,8 +8,19 @@
 // @use 'breakpoints' as *;
 // @use 'colors' as *;
 
+@mixin google-font($family) {
+  @import url("http://fonts.googleapis.com/css?family=#{$family}&display=swap");
+}
 
 /*
-	this file is only used to forward consolidated
-	sass modules inside utilities directory
+@font-face {
+  font-family: 'Open Sans';
+  src: url(path/to/file)
+			 format(Example: 'truetype' or 'opentype');
+			 * depending on the file extension of your font
+}
+*/
+
+/*
+	this file is used for forwarding sass modules
 */

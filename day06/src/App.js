@@ -4,8 +4,17 @@ import Level2 from './components/Level2'
 
 const Header = () => {
 
+  const smallStyle = {
+    display: 'block',
+    fontStyle: 'italic',
+    fontSize: '0.8em',
+    textAlign: 'center'
+  }
   return (
-    <h1 className='header'>30 Days Of React: Day 6 | Mapping Arrays</h1>
+    <header>
+      <h1 className='header'>30 Days Of React: Day 6 | Mapping Arrays</h1>
+      <small style={smallStyle}>* * * Styled with SCSS * * *</small>
+    </header>
   )
 }
 
