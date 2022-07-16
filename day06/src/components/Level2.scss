@@ -8,20 +8,13 @@ section > div:first-of-type {
 
 .numbers,
 .colors {
-  // display: grid;
-  // grid-template-columns: repeat(8, 1fr);
-  // width: fit-content;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: $gap;
-  width: calc($side * 8 + $gap * 7);
+  width: $ideal-width;
   max-width: 100%;
   margin: 0 auto;
-
-  // @media (max-width: em(600)) {
-  //   grid-template-columns: repeat(6, 1fr);
-  // }
 
   li {
     border-radius: rem(6);

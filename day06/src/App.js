@@ -1,6 +1,7 @@
 import './App.scss'
 import Level1 from './components/Level1'
 import Level2 from './components/Level2'
+import Level3 from './components/Level3'
 
 const Header = () => {
 
@@ -19,11 +20,13 @@ const Header = () => {
 }
 
 function App() {
+
   return (
     <>
       <Header />
       <Level1 />
       <Level2 />
+      <Level3 />
     </>
   )
 }

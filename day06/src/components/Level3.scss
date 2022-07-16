@@ -1,0 +1,11 @@
+@use '../sass' as *;
+@use '../vars' as *;
+
+.bar-wrapper {
+  width: $ideal-width;
+  max-width: 100%;
+}
+
+table {
+  margin: 0 auto;
+}
