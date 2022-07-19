@@ -1,4 +1,5 @@
 @use './sass' as *;
+@use './vars' as *;
 
 @include google-font('Play');
 
@@ -16,4 +17,10 @@ h2 {
 }
 h3 {
   padding-bottom: rem(10);
+}
+
+section {
+  width: calc($ideal-width + rem(200));
+  max-width: 100%;
+  margin: 0 auto;
 }
