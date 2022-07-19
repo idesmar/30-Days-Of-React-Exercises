@@ -36,7 +36,6 @@ const isPrime0 = (num) => {
   return true
 }
 
-
 const isEven = (num) => num % 2 === 0
 const isOdd = (num) => num % 2 === 1
 
@@ -53,12 +52,14 @@ const hexColor = () => {
 }
 
 // * modified version of https://awik.io/determine-color-bright-dark-using-javascript/
-const isDark = (clr) => {
+const isDark = (clr, percentCloseToBlack = 50) => {
   /* hex to RGB Conversion http://gist.github.com/983661 */
   const comp = +("0x" + clr.slice(1).replace(clr.length < 5 && /./g, '$&$&'))
 
-  /* // [Read more] Right shift (>>), Bitwise AND (&)
+  /* // [Read more]
+    > [ >> ] Right Shift
     https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Right_shift
+    > [ & ] Bitwise AND
     https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_AND */
   const r = comp >> 16
   const g = (comp >> 8) & 255
@@ -74,16 +75,85 @@ const isDark = (clr) => {
 
   /*    [DARK]     black     =  0
                  * middle    =  127.5
-                 > personal  =  150
+                 > personal  =  150 // previous setting; func now accepts argument: percentCloseToBlack
        [LIGHT]     white     =  255        */
   /* modify to preferred threshold */
-  return hsp < 150
+  /* new version  */
+  return hsp < (percentCloseToBlack / 100 * 255)
 }
 
 
-const rem = (int) => {
-  if (isNaN(int)) return int
-  return +int / 16 + 'rem'
+// source: modified from https://dev.to/alvaromontoro/building-your-own-color-contrast-checker-4j7o
+const isContrastPassing = (fColor, bgColor, AAA_Level = false, Large_18ptAbove = false) => {
+  // this is similar to conversion in isDark() --- // TODO: refactor to keep it DRY
+  const hexToRGB = (clr) => {
+    const comp = +( '0x' + clr.slice(1).replace(clr.length < 5 && /./g, '$&$&'))
+    const r = comp >> 16,
+          g = (comp >> 8) & 255,
+          b = comp & 255
+    return { r, g, b }
+  }
+
+  const luminance = ({ r, g, b }) => {
+    const a = [r, g, b].map(v => {
+      v /= 255
+
+      return (
+        v <= 0.03928
+          ? v / 12.92
+          : ((v + 0.055) / 1.055)**2.4
+      )
+    })
+    // returns value 0-1 inclusive
+    return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
+  }
+
+  /*
+  =================================================
+                              CONTRAST LEVEL
+  Component	                AA-level	AAA-level
+  -------------------------------------------------
+  Small text
+  (<18pt or >=14pt bold)	  4.5:1     7:1
+  -------------------------------------------------
+  Large text
+  (>=18pt)	                3:1     	4.5:1
+  -------------------------------------------------
+  */
+
+  const ratioRef = [
+    [4.5, 7],
+    [3, 4.5]
+  ]
+
+  const minRatio = ratioRef[+AAA_Level][+Large_18ptAbove]
+  const fLum = luminance(hexToRGB(fColor)),
+        bgLum = luminance(hexToRGB(bgColor))
+
+  const compRatio = (
+    fLum < bgLum
+      ? (bgLum + 0.05) / (fLum + 0.05)
+      : (fLum + 0.05) / (bgLum + 0.05)
+  )
+
+  return compRatio >= minRatio
 }
 
-export { isPrime, isPrime0, isEven, isOdd, seqNumsArr, hexColor, isDark, rem }
+
+const rem = (px) => {
+  if (isNaN(px)) return px
+  return +px / 16 + 'rem'
+}
+
+const deRem = (rem) => {
+  const lastDigit = rem.length - 3
+  return +rem.slice(0, lastDigit) * 16
+}
+
+
+export {
+  seqNumsArr,
+  isPrime, isPrime0, isEven, isOdd,
+  hexColor, isDark, isContrastPassing,
+  rem, deRem
+}

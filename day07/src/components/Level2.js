@@ -1,83 +1,7 @@
 import { Component } from 'react'
 import makeID from '../lib/makeID'
-// include rem if needed
-import { isEven, isPrime0, seqNumsArr, hexColor, isDark } from "../lib/utils"
-
-
-/*
-
-const Cell = ({ num }) => {
-  const red = '#fd5e53',
-    yellow = '#fddb3a',
-    green = '#21bf73',
-    bgColor = isPrime0(num) ? red
-      : isEven(num) ? green : yellow
-  // let bgColor = 'yellow'
-  // if (isEven(num)) bgColor = 'green'
-  // if (isPrime(num)) bgColor = 'red'
-
-  const CellStyle = {
-    backgroundColor: bgColor,
-    fontSize: rem(26)
-  }
-
-  return (
-    <li style={CellStyle}>
-      {num}
-    </li>
-  )
-}
-
-const Level2a = ({len}) => {
-  return (
-    <div>
-      <h3>Number Generator</h3>
-      <ul className="numbers">
-        {seqNumsArr(len).map((num) => <Cell num={num} key={'num' + num} />)}
-      </ul>
-    </div>
-  )
-}
-
-
-const Color = ({ color }) => {
-  const fColor = isDark(color) ? '#fff' : '#000'
-  const ColorStyle = {
-    backgroundColor: color,
-    color: fColor,
-    fontSize: rem(12)
-  }
-
-  return (
-    <li style={ColorStyle}>
-      {color}
-    </li>
-  )
-}
-
-const Level2b = ({len}) => {
-  return (
-    <div>
-      <h3>Hexadecimal Colors</h3>
-      <ul className='colors'>
-        {seqNumsArr(len).map(num => <Color color={hexColor()} key={hexColor()} />)}
-      </ul>
-    </div>
-  )
-}
-
-const Level2 = () => {
-  const numLength = 32
-  return (
-    <section>
-      <h2>Exercise level 2</h2>
-      <Level2a len={numLength} />
-      <Level2b len={numLength} />
-    </section>
-  )
-}
-
-*/
+import { isEven, isPrime0, seqNumsArr, hexColor, isContrastPassing, rem } from "../lib/utils"
+import * as glob from './globalVars' // ! look into optimizing
 
 
 class CellComp extends Component {
@@ -91,25 +15,27 @@ class CellComp extends Component {
       if (isEven(num)) return green
       return yellow
     }
+    this.tabStyle = glob.tab
   }
   render() {
+    // > num passed from Level2aComp
     const { num } = this.props
-    /*// > below is equivalent to method in the constructor
-      const getBgColor = (num) => {
-        const red = '#fd5e53',
-              yellow = '#fddb3a',
-              green = '#21bf73'
-        if (isPrime0(num)) return red
-        if (isEven(num)) return green
-        return yellow
-      } */
+    // > below is equivalent to method in constructor. Opted to use constructor so it can be used by child class (ColorComp)
+    /*  const getBgColor = (num) => {
+          const red = '#fd5e53',
+                yellow = '#fddb3a',
+                green = '#21bf73'
+          if (isPrime0(num)) return red
+          if (isEven(num)) return green
+          return yellow
+        } */
     const bgColor = this.getBgColor(num)
 
-    const CellStyle = {
+    const cellStyle = {
       backgroundColor: bgColor,
       color: '#ffffff',
     }
-
+    const CellStyle = Object.assign({}, cellStyle, this.tabStyle, {fontSize: rem(26)})
     return (
       <li style={CellStyle}>{ num }</li>
     )
@@ -118,14 +44,29 @@ class CellComp extends Component {
 
 
 class Level2aComp extends Component {
-  /*// note: constructor not needed if there are no additional methods / properties to be  added */
+
+  // > constructor created to be accessed by child class (Level2bComp)
+  constructor(props) {
+    super(props)
+    this.ulStyle = {
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: glob.gap,
+      maxWidth: '100%',
+      width: glob.idealWidth,
+      margin: '0 auto',
+    }
+  }
 
   render() {
+    // > passed from Level2Comp
     const { len } = this.props
+    // > from constructor
+    const ulStyle = this.ulStyle
     return (
       <div>
-        <h3>Number Generator</h3>
-        <ul>
+        <h3 style={glob.header3}>Number Generator</h3>
+        <ul style={ulStyle}>
           {seqNumsArr(len).map(cell => <CellComp key={'num' + makeID()} num={cell} />)}
         </ul>
       </div>
@@ -134,41 +75,61 @@ class Level2aComp extends Component {
 }
 
 
-class ColorComp extends Component {
+class ColorComp extends CellComp {
+  // note: constructor not needed if there are no methods / properties that can be inherited by a child class
 
   render() {
-    const { clr } = this.props
-    const fColor = isDark(clr) ? '#ffffff' : '#000000'
+    // > this is a child class of CellComp, therefore it has access to this.tabStyle
+    const tabStyle = this.tabStyle
 
-    const ColorStyle = {
-      backgroundColor: clr,
-      color: fColor,
-      display: 'flex',
+    // > this.props is passed from Level2aComp
+    const { fColor } = this.props
+
+    const bgColors = []
+    /*  RECURSIVE FUNCTION
+        note: recursion returns output from last to first result/computed
+        hence result is stored to bgColors array
+        and extracted //> bgColors[0]
+    */
+    const getDarkBgColor = (fColor) => {
+      const bgColor = hexColor()
+      if (!isContrastPassing(fColor, bgColor)) getDarkBgColor(fColor)
+      bgColors.push(bgColor)
     }
+
+    getDarkBgColor(fColor)
+    const bgColor = bgColors[0]
+
+    const clrStyle = {
+      backgroundColor: bgColor,
+      color: fColor,
+    }
+    const ColorStyle = Object.assign({}, clrStyle, tabStyle)
+
     return (
-      <li style={ColorStyle}>{clr}</li>
+      <li style={ColorStyle}>{bgColor}</li>
     )
   }
 }
 
 class Level2bComp extends Level2aComp {
-  /*
-    constructor(props) {
-      super(props)
-      this.getColors = (len) => [...Array(len).keys()].map(el => hexColor())
-    }
-  */
 
   render() {
+    // > len passed from Level2Comp
     const { len } = this.props
 
-    /* const colors = this.getColors(len) */
-    const colors = Array(len).fill().map(el => hexColor())
+    // > ulStyle comes from parent class Level2aComp
+    const ulStyle = this.ulStyle
+
+    const fColorRefs = ['#ffffff', '#000000']
+    const getFColor = () => fColorRefs[Math.floor(Math.random() * 2)]
+
+    const fColors = Array(len).fill().map(el => getFColor())
     return (
       <div>
-        <h3>Hexadecimal Color</h3>
-        <ul>
-          {colors.map(color => <ColorComp key={color} clr={color} />)}
+        <h3 style={glob.header3}>Hexadecimal Color</h3>
+        <ul style={ulStyle} >
+          {fColors.map(fColor => <ColorComp key={'color' + makeID()} fColor={fColor} />)}
         </ul>
       </div>
     )
@@ -177,14 +138,16 @@ class Level2bComp extends Level2aComp {
 
 
 class Level2Comp extends Component {
-  // maxLength = 32 /* private variable (property) */
+  // NOTE: private variable --- THEORY: Could be optimized if there are other class methods other than render
+  maxLength = 32 // * using private class variables
 
   render() {
-    // const maxLength = this.maxLength
-    const maxLength = 32
+    const maxLength = this.maxLength // * using private class variables
+    // const maxLength = 32
     return (
-      <section>
-        <h2>Exercise Level 2</h2>
+      <section style={glob.section}>
+        <h2 style={glob.header2}>Exercise Level 2</h2>
+        <p style={glob.centerText}>Recreated Level 2 from Day06 using <em>class components</em></p>
         <Level2aComp len={maxLength} />
         <Level2bComp len={maxLength} />
       </section>

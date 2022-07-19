@@ -1,21 +1,25 @@
 import { Component } from 'react'
-import './Level1.css'
 import makeID from '../lib/makeID'
-import { rem, isDark, hexColor } from '../lib/utils'
+import { rem, isContrastPassing, hexColor } from '../lib/utils'
+import * as glob from './globalVars' // ! look into optimizing
 import qna from '../data/level1qna'
 
 
-const QNA = ({ q: { question, answer, code }, bgColor }) => {
+// > This is the only functional based component in day07
+const QNA = ({ q: { question, answer, code }, fColor, bgColor, idxFromLast }) => {
 
   const summaryStyle = {
     cursor: 'pointer',
     backgroundColor: bgColor,
-    color: '#fff',
+    color: fColor,
     borderRadius: '0.4em',
     padding: rem(8),
   }
+  const liStyle = {
+    marginBottom: !idxFromLast ? '0' : glob.gap,
+  }
   return (
-    <li>
+    <li style={liStyle}>
       <details>
         <summary style={summaryStyle}>{question}</summary>
         {
@@ -33,36 +37,60 @@ const QNA = ({ q: { question, answer, code }, bgColor }) => {
   )
 }
 
+// NOTE: this class uses private variables (_qna, olStyle)
 class Level1 extends Component {
-  // NOTE: this class uses private variables (_qna, olStyle)
 
   _qna = [...qna].map(q => Object.assign({}, q, { _id: makeID() }))
 
   olStyle = {
     margin: '0 auto',
-    width: '40rem',
+    width: glob.idealWidth,
     maxWidth: '100%',
   }
 
   render() {
-    const getDarkBgColor = () => {
+
+    const bgColors = []
+    /*  RECURSIVE FUNCTION
+        note: recursion returns output from last to first result/computed
+        hence result is stored to bgColors array
+        and extracted //> bgColors[0]
+    */
+    const getDarkBgColor = (fColor) => {
       const bgColor = hexColor()
-      /*  recursive until a dark color is generated
-        ! recursion NOT WORKING if the code below is used
-          it's returning undefined
-            if (isDark(bgColor)) return bgColor
-            getDarkBgColor()
-      */
-      if (!isDark(bgColor)) getDarkBgColor()
-      return bgColor
+      if (!isContrastPassing(fColor, bgColor)) getDarkBgColor(fColor)
+      bgColors.push(bgColor)
     }
-    const darkBgColor = getDarkBgColor()
-    console.log(darkBgColor, 'final')
+
+    const fColor = '#ffffff'
+
+    getDarkBgColor(fColor)
+    const bgColor = bgColors[0]
+
+    const aStyle = {
+      backgroundColor: bgColor,
+      color: fColor,
+      paddingInline: '0.7em',
+      borderRadius: '100vw',
+    }
+
     return (
-      <section>
-        <h2>Exercise Level 1</h2>
+      <section style={glob.section}>
+        <h2 style={glob.header2}>Exercise Level 1</h2>
+
+        <small style={{...glob.centerText, display: 'block', marginBottom: '0.5rem'}}><em style={{ fontWeight: '500' }}>NOTE:</em> All answers are based on the author's understanding. It is greatly appreciated if any needed corrections or clarifications is brought to the attention of the author. Fastest way to connect is twitter <a style={aStyle} href="https://twitter.com/idesmar">@idesmar</a>. Thank you!</small>
+
         <ol style={this.olStyle} className='qna' >
-          {this._qna.map(q => <QNA key={q._id} q={q} bgColor={darkBgColor} />)}
+          {this._qna.map((q, qIdx) => (
+            <QNA
+              key={q._id}
+              q={q}
+              idxFromLast={this._qna.length - 1 - qIdx}
+              bgColor={bgColor}
+              fColor={fColor}
+            />
+            )
+          )}
         </ol>
       </section>
     )
