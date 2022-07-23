@@ -1,0 +1,57 @@
+@import url(http://fonts.googleapis.com/css?family=Play&display=swap);
+
+body {
+  font-family: 'Play', sans-serif;
+}
+
+:root {
+  --dark-bgColor: #0f172a;
+  --dark-fColor: #60dbfc;
+  --light-bgColor: #0f172a;
+  --light-fColor: #0f172a;
+}
+
+
+summary {
+  cursor: pointer;
+  background-color: var(--dark-bgColor);
+  color: var(--dark-fColor);
+  padding: 0.5rem 1rem;
+  border-radius: 0.3em;
+}
+
+section {
+  width: 50rem;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+section + section {
+  margin-top: 1rem;
+}
+
+.QNA {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.QNA p {
+  padding-inline: 1rem;
+  text-align: justify;
+}
+
+code {
+  background-color: darkslategray;
+  color: #fff;
+  padding-inline: 0.5rem;
+  border-radius: 0.2rem;
+  white-space: nowrap;
+}
+
+
+h1, h2, h3 {
+  text-align: center;
+  font-size: revert;
+  font-weight: revert;
+}
