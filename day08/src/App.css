@@ -7,10 +7,9 @@ body {
 :root {
   --dark-bgColor: #0f172a;
   --dark-fColor: #60dbfc;
-  --light-bgColor: #0f172a;
+  --light-bgColor: #60dbfc;
   --light-fColor: #0f172a;
 }
-
 
 summary {
   cursor: pointer;
@@ -18,12 +17,6 @@ summary {
   color: var(--dark-fColor);
   padding: 0.5rem 1rem;
   border-radius: 0.3em;
-}
-
-section {
-  width: 50rem;
-  max-width: 100%;
-  margin: 0 auto;
 }
 
 section + section {
@@ -49,9 +42,23 @@ code {
   white-space: nowrap;
 }
 
-
-h1, h2, h3, h4 {
+h1, h2, h3 {
   text-align: center;
   font-size: revert;
   font-weight: revert;
+}
+
+.container {
+  /* outline: 1px solid red; */
+  width: 40rem;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+footer {
+  text-align: center;
+  background-color: var(--light-bgColor);
+  padding: 0.5rem 1rem;
+  font-size: 0.6rem;
 }

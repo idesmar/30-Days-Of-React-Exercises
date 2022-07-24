@@ -22,8 +22,8 @@ const glob = {
 //////////////////////////////////////////////////////// */
 
 
-const Banner = ({ headers, theme }) => {
-  const defaultBannerStyle = {
+const Header = ({ headers, theme }) => {
+  const defaultHeaderStyle = {
     backgroundColor: glob.light.bgColor,
     color: glob.light.fColor,
   }
@@ -31,11 +31,16 @@ const Banner = ({ headers, theme }) => {
   const themeName = theme === undefined ? '' : theme.name
 
   return (
-    // theme.name used to identify if defaultBannerStyle will be used or follow the [dark] theme colors
-    <header style={themeName !== 'dark' ? defaultBannerStyle : theme} >
-      {
-        headers.map(header => <p key={'header'+ makeID()} >{header}</p>)
-      }
+    // theme.name used to identify if defaultHeaderStyle will be used or follow the [dark] theme colors
+    <header style={themeName !== 'dark' ? defaultHeaderStyle : theme}>
+      <div className="container">
+        {
+          headers.map((header, headerIdx) => {
+            if (headerIdx) return <p key={'header' + makeID()} >{header}</p>
+            return <p key={'header' + makeID()} style={{ fontSize: '2.5rem', }} >{header}</p>
+          })
+        }
+      </div>
     </header>
   )
 }
@@ -116,7 +121,6 @@ const Level2a = ({
     setTheme(newTheme)
   }
 
-
   const [time, setTime] = useState('')
   const showTime = () => {
     const timeNow = !time ? (new Date()).toLocaleTimeString() : ''
@@ -141,18 +145,23 @@ const Level2a = ({
   return (
     <div style={theme}>
       <h3>Level2a</h3>
-      <Banner headers={headers} theme={theme} />
-      <img style={imgStyle} width={120} src={img} alt="" />
-      <h4>{fullName}</h4>
-      {
-        // empty element as placeholder --- not really advisable for accessibility reasons
-        time ? <p>{time}</p> : <p style={{ height: '1.2em' }}></p>
-      }
-      <div style={{ display: 'flex', gap: rem(6) }} >
-        {buttons.map(button => {
-          const { text, onClick } = button
-          return <Button key={'btn' + makeID()} text={text} onClick={onClick} />
-        })}
+      <Header headers={headers} theme={theme} />
+      <div className="container">
+
+        <img style={imgStyle} width={120} src={img} alt="" />
+        <h4>{fullName}</h4>
+        {
+          // empty element as placeholder --- not really advisable for accessibility reasons
+          time ? <p>{time}</p> : <p style={{ height: '1.2em' }}></p>
+        }
+
+        <div style={{ display: 'flex', gap: rem(6) }} >
+          {buttons.map(button => {
+            const { text, onClick } = button
+            return <Button key={'btn' + makeID()} text={text} onClick={onClick} />
+          })}
+        </div>
+
       </div>
     </div>
   )
@@ -162,8 +171,6 @@ const Level2a = ({
 /* ////////////////////////////////////////////////////////
   > Level2b
 //////////////////////////////////////////////////////// */
-
-
 
 
 const CountryDetails = ({ title, desc }) => {
@@ -176,7 +183,7 @@ const CountryDetails = ({ title, desc }) => {
   }
   return (
     <p style={pStyle}>
-      <span style={titleStyle}>{title}</span>
+      <span style={titleStyle}>{title}: </span>
       {desc}
     </p>
   )
@@ -210,12 +217,12 @@ const CountryCard = ({ country: { name, capital, languages, population, currency
     alignItems: 'center',
   }
   const cardStyle = {
-    margin: '0 auto',
+    margin: '0 auto 1rem',
     borderRadius: '0.5em',
     boxShadow,
-    width: rem(360),
+    width: rem(420),
     maxWidth: '100%',
-    height: rem(360),
+    height: rem(300),
     display: 'flex',
     flexDirection: 'column',
     padding: rem(20),
@@ -249,7 +256,7 @@ const CountryCard = ({ country: { name, capital, languages, population, currency
       <div style={ imgContainer }>
         <img style={imgStyle} src={flag} alt="" />
       </div>
-      <h4 style={{ padding: '1rem' }}>{name.toUpperCase()}</h4>
+      <h4 style={{ padding: '1rem', textAlign: 'center', fontWeight: 'bold',  }}>{name.toUpperCase()}</h4>
       {
         countryDetails.map(({ title, desc }) => (
           <CountryDetails
@@ -290,13 +297,13 @@ const Level2bFunc = ({
   return (
     <div>
       <h3>Level2b</h3>
-      <Banner headers={headers}/>
-      <div>
+      <Header headers={headers}/>
+      <div className='container'>
         <CountryCard country={countries[countryIdx]} />
         <Button
           text={'Select country'}
           onClick={changeCountry}
-          addStyle={{ display: 'block', margin: '2rem auto 0 auto' }}
+          addStyle={{ display: 'block', margin: '0 auto' }}
         />
       </div>
     </div>
@@ -329,7 +336,8 @@ const Level2Func = () => {
   user.fullName = fullName
 
   return (
-    <section >
+
+    <section>
       <h2>Exercise Level 2</h2>
       <Level2a
         user={user}
