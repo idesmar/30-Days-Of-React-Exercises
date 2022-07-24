@@ -1,8 +1,9 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import makeID from "../lib/makeID"
 import idesmar from './assets/idesmar.jpg'
 import { rem } from '../lib/utils'
 import { countriesData } from "../data/countries"
+
 
 const glob = {
   light: {
@@ -40,14 +41,18 @@ const Banner = ({ headers, theme }) => {
 }
 
 
-const Button = ({ text, onClick }) => {
-  const buttonStyle = {
+const Button = ({ text, onClick, addStyle }) => {
+  const defaultButtonStyle = {
     padding: rem(3) + ' ' + rem(8), // TODO: integrate created sass function rem4 to javascript
     borderRadius: '0.3em',
     backgroundColor: glob.light.bgColor,
     color: glob.dark.fColor,
     fontSize: rem(12),
   }
+
+  // const buttonStyle = Object.assign({}, defaultButtonStyle, addStyle)
+  const buttonStyle = {...defaultButtonStyle, ...addStyle}
+
   return (
     <button style={buttonStyle} onClick={onClick}>{text}</button>
   )
@@ -64,6 +69,14 @@ const Level2a = ({
   dateToday,
 }) => {
 
+  const headers = [...defaultHeaders, fullName, dateToday]
+
+  const imgStyle = {
+    width: rem(200),
+    aspectRatio: '1/1',
+    borderRadius: '100%',
+  }
+
   const light = {
     backgroundColor: '#ffffff',
     color: '#000000',
@@ -75,18 +88,25 @@ const Level2a = ({
     name: 'dark', // > used only for determining the theme name. will NOT show on style as no such style attribute exist
   }
 
-  const [theme, setTheme] = useState(light)
 
+  /*
+    > JSON.stringify() allows the comparison of POJOs
+    caveat: JSON.stringify() cannot convert circular reference
+      eg: const circularReference = {otherData: 123};
+          circularReference.myself = circularReference;
+          JSON.stringify(circularReference);
+          // TypeError: cyclic object value
+    source: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Cyclic_object_value
+  */
+  /*  Changing theme solution:
+    * changing style object (ie. as used here with light and dark style object)
+    * using className or data then styling in css
+       className={'styleName-' + theme} || data-theme={'dark'})
+       .styleName-theme || [data-theme='dark']
+  */
+
+  const [theme, setTheme] = useState(light)
   const changeTheme = () => {
-    /*
-      > JSON.stringify() allows the comparison of POJOs
-      caveat: JSON.stringify() cannot convert circular reference
-        eg: const circularReference = {otherData: 123};
-            circularReference.myself = circularReference;
-            JSON.stringify(circularReference);
-            // TypeError: cyclic object value
-      source: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Cyclic_object_value
-    */
     const newTheme = (
       // compare current theme to light (theme)
       JSON.stringify(theme) === JSON.stringify(light)
@@ -96,23 +116,8 @@ const Level2a = ({
     setTheme(newTheme)
   }
 
-  /*  Changing theme solution:
-    * changing style object (ie. as used here with light and dark style object)
-    * using className or data then styling in css
-       className={'styleName-' + theme} || data-theme={'dark'})
-       .styleName-theme || [data-theme='dark']
-  */
-
-  const headers = [...defaultHeaders, fullName, dateToday]
-
-  const imgStyle = {
-    width: rem(200),
-    aspectRatio: '1/1',
-    borderRadius: '100%',
-  }
 
   const [time, setTime] = useState('')
-
   const showTime = () => {
     const timeNow = !time ? (new Date()).toLocaleTimeString() : ''
     setTime(timeNow)
@@ -140,12 +145,13 @@ const Level2a = ({
       <img style={imgStyle} width={120} src={img} alt="" />
       <h4>{fullName}</h4>
       {
-        time ? <p>{time}</p> : ''
+        // empty element as placeholder --- not really advisable for accessibility reasons
+        time ? <p>{time}</p> : <p style={{ height: '1.2em' }}></p>
       }
       <div style={{ display: 'flex', gap: rem(6) }} >
         {buttons.map(button => {
-          const {text, onClick} = button
-          return <Button key={'btn' + makeID()} text={text} handleClick={onClick} />
+          const { text, onClick } = button
+          return <Button key={'btn' + makeID()} text={text} onClick={onClick} />
         })}
       </div>
     </div>
@@ -158,15 +164,105 @@ const Level2a = ({
 //////////////////////////////////////////////////////// */
 
 
-const CountryCard = ({ country: { name, capital, languages, population, flag, currency } }) => {
+
+
+const CountryDetails = ({ title, desc }) => {
+
+  const pStyle = {
+    marginBottom: rem(6),
+  }
+  const titleStyle = {
+    fontWeight: '700',
+  }
   return (
-    <div>
-      <img src={flag} alt="" />
-      <h4>{name.toUpperCase()}</h4>
-      <p>Capital: {capital}</p>
-      <p>Language: {languages.join(', ')}</p>
-      <p>Population: {population.toLocaleString()}</p>
-      <p>Currency: {currency}</p>
+    <p style={pStyle}>
+      <span style={titleStyle}>{title}</span>
+      {desc}
+    </p>
+  )
+}
+
+
+const CountryCard = ({ country: { name, capital, languages, population, currency } }) => {
+
+  const [flag, setFlag] = useState(null)
+
+  const fetchFlag = async (url) => {
+    const res = await fetch(url)
+    const [ data ] = await res.json()
+    const flagUrl = data.flags.svg
+    setFlag(flagUrl)
+  }
+
+  useEffect(() => {
+    const url = `https://restcountries.com/v3.1/name/${name.toLowerCase()}`
+    fetchFlag(url)
+      .catch(() => console.log(`Error fetching from ${url}`)) // catch error
+  }, [name]) // dependency array: runs useEffect if dependency value changes
+
+  const boxShadow = 'rgb(136 136 136 / 32%) 0px 0px 5px 3px'
+  const imgContainer = {
+    width: rem(190),
+    height: rem(100),
+    margin: '0 auto',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
+  const cardStyle = {
+    margin: '0 auto',
+    borderRadius: '0.5em',
+    boxShadow,
+    width: rem(360),
+    maxWidth: '100%',
+    height: rem(360),
+    display: 'flex',
+    flexDirection: 'column',
+    padding: rem(20),
+  }
+  const imgStyle = {
+    boxShadow,
+    height: '100%',
+  }
+
+  const countryDetails = [
+    {
+      title: 'Capital',
+      desc: capital,
+    },
+    {
+      title: 'Language',
+      desc: languages.join(', '),
+    },
+    {
+      title: 'Population',
+      desc: population.toLocaleString(),
+    },
+    {
+      title: 'Currency',
+      desc: currency,
+    },
+  ]
+
+  return (
+    <div style={cardStyle}>
+      <div style={ imgContainer }>
+        <img style={imgStyle} src={flag} alt="" />
+      </div>
+      <h4 style={{ padding: '1rem' }}>{name.toUpperCase()}</h4>
+      {
+        countryDetails.map(({ title, desc }) => (
+          <CountryDetails
+            key={'countryDetails' + makeID()}
+            title={title}
+            desc={desc}
+          />
+        ))
+      }
+      {/* <p><span style={spanStyle}>Capital:</span> {capital}</p>
+      <p><span style={spanStyle}>Language:</span> {languages.join(', ')}</p>
+      <p><span style={spanStyle}>Population:</span> {population.toLocaleString()}</p>
+      <p><span style={spanStyle}>Currency:</span> {currency}</p> */}
     </div>
   )
 }
@@ -195,8 +291,14 @@ const Level2bFunc = ({
     <div>
       <h3>Level2b</h3>
       <Banner headers={headers}/>
-      <CountryCard country={countries[countryIdx]} />
-      <Button text={'Select country'} onClick={changeCountry} />
+      <div>
+        <CountryCard country={countries[countryIdx]} />
+        <Button
+          text={'Select country'}
+          onClick={changeCountry}
+          addStyle={{ display: 'block', margin: '2rem auto 0 auto' }}
+        />
+      </div>
     </div>
   )
 }
