@@ -140,12 +140,12 @@ const isContrastPassing = (fColor, bgColor, AAA_Level = false, Large_18ptAbove =
 }
 
 
-const rem = (px) => {
+const rem = (px = 0) => {
   if (isNaN(px)) return px
   return +px / 16 + 'rem'
 }
 
-const deRem = (rem) => {
+const deRem = (rem = '') => {
   const lastDigit = rem.length - 3
   return +rem.slice(0, lastDigit) * 16
 }
