@@ -68,7 +68,7 @@ const Button = ({ text, onClick, addStyle }) => {
   > Level2a
 //////////////////////////////////////////////////////// */
 
-const Level2a = ({
+const Level2aFunc = ({
   defaultHeaders,
   user: { img, fullName },
   dateToday,
@@ -190,22 +190,7 @@ const CountryDetails = ({ title, desc }) => {
 }
 
 
-const CountryCard = ({ country: { name, capital, languages, population, currency } }) => {
-
-  const [flag, setFlag] = useState(null)
-
-  const fetchFlag = async (url) => {
-    const res = await fetch(url)
-    const [ data ] = await res.json()
-    const flagUrl = data.flags.svg
-    setFlag(flagUrl)
-  }
-
-  useEffect(() => {
-    const url = `https://restcountries.com/v3.1/name/${name.toLowerCase()}`
-    fetchFlag(url)
-      .catch(() => console.log(`Error fetching from ${url}`)) // catch error
-  }, [name]) // dependency array: runs useEffect if dependency value changes
+const CountryCard = ({ country: { name, capital, languages, population, currency }, flag }) => {
 
   const boxShadow = 'rgb(136 136 136 / 32%) 0px 0px 5px 3px'
   const imgContainer = {
@@ -293,13 +278,29 @@ const Level2bFunc = ({
   const generateIdx = () => Math.floor(Math.random() * countries.length)
   const [countryIdx, setCountryIdx] = useState(generateIdx)
   const changeCountry = () => setCountryIdx(generateIdx)
+  const country = countries[countryIdx]
+
+  const [flag, setFlag] = useState(null)
+  const fetchFlag = async (url) => {
+    const res = await fetch(url)
+    const [ data ] = await res.json()
+    const flagUrl = data.flags.svg
+    setFlag(flagUrl)
+  }
+
+  useEffect(() => {
+    const name = country.name
+    const url = `https://restcountries.com/v3.1/name/${name.toLowerCase()}`
+    fetchFlag(url)
+      .catch(() => console.log(`Error fetching from ${url}`)) // catch error
+  }, [country]) // dependency array: runs useEffect if dependency value changes
 
   return (
     <div>
       <h3>Level2b</h3>
       <Header headers={headers}/>
       <div className='container'>
-        <CountryCard country={countries[countryIdx]} />
+        <CountryCard country={country} flag={flag} />
         <Button
           text={'Select country'}
           onClick={changeCountry}
@@ -338,8 +339,8 @@ const Level2Func = () => {
   return (
 
     <section>
-      <h2>Exercise Level 2</h2>
-      <Level2a
+      <h2>Exercise Level 2 using Functional Components</h2>
+      <Level2aFunc
         user={user}
         defaultHeaders={defaultHeaders}
         dateToday={dateToday}
