@@ -292,7 +292,10 @@ const Level2bFunc = ({
     const name = country.name
     const url = `https://restcountries.com/v3.1/name/${name.toLowerCase()}`
     fetchFlag(url)
-      .catch(() => console.log(`Error fetching from ${url}`)) // catch error
+      .catch(() => {
+        this.setState({ flag: idesmar })
+        console.log(`Error fetching data from ${url}`)
+      })
   }, [country]) // dependency array: runs useEffect if dependency value changes
 
   return (
