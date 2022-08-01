@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import { Component } from 'react'
+import Level1 from './components/Level1'
+import level1qna from './data/level1qna'
+import './App.css'
+import { rem } from './lib/utils'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+const headingStyle = {
+  font: 'revert',
+  textAlign: 'center',
 }
 
-export default App;
+const sectionLimit = {
+  width: rem(600),
+}
+
+const Header = () => (
+  <header>
+    <h1 style={headingStyle}>30 days of React: Day 09 | Conditional Rendering</h1>
+  </header>
+)
+
+class App extends Component {
+
+  render() {
+    const qna = [...level1qna]
+
+    return (
+      <div >
+        <Header />
+        <Level1 style={sectionLimit} qna={qna} />
+      </div>
+    )
+  }
+}
+
+
+export default App
