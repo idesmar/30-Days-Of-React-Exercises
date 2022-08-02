@@ -1,17 +1,14 @@
 import { Component } from 'react'
+import { headingStyle } from './globalStyle'
 import makeID from '../lib/makeID'
-import { colorMe, rem } from '../lib/utils'
-
-// * revert to counter reset.css
-const headingStyle = {
-  font: 'revert',
-  textAlign: 'center',
-}
+import { colorMe, rem, em } from '../lib/utils'
 
 const summaryStyle = {
   cursor: 'pointer',
+  color: '#ffffff',
   padding: rem(10),
-  backgroundColor: colorMe(),
+  backgroundColor: colorMe('dark'),
+  borderRadius: em(8),
 }
 
 const olStyle = {
@@ -43,7 +40,7 @@ const qnaStyle = {
   gap: '0.3rem',
 }
 
-class Level1 extends Component {
+class Level1Class extends Component {
 
   render() {
     const { qna, style } = this.props
@@ -61,4 +58,4 @@ class Level1 extends Component {
   }
 }
 
-export default Level1
+export default Level1Class
