@@ -1,7 +1,7 @@
-import { Component } from 'react'
-import { headingStyle } from './globalStyle'
+import { Component,  } from 'react'
+import { headingStyle } from './__globalStyle'
 import makeID from '../lib/makeID'
-import { colorMe, rem, em } from '../lib/utils'
+import { colorMe, rem, rem4, em } from '../lib/utils'
 
 const summaryStyle = {
   cursor: 'pointer',
@@ -16,22 +16,42 @@ const olStyle = {
   paddingLeft: '2em'
 }
 
+/* https://caniuse.com/css-backdrop-filter
+   better accessibility but only at 88.21% globally as of 3/24/22
+   backgroundColor: '#ffffff80' used as fallback */
+const detailsContentStyle = {
+  backgroundColor: '#ffffff80',
+  backdropFilter: `blur(${rem(22)})`,
+  padding: rem4(8, 16, 16),
+  marginInline: em(8),
+  borderRadius: rem4(0, 0, 12, 12),
+  border: '1px solid #ffffff80',
+}
+
 const QNA = ({ q }) => {
   const { question, answer, list } = q
-
+  // const [ open, setFold ] = useState(false)
   const List = list && <ol style={olStyle}>{list.map(el => <li key={el}>{el}</li>)}</ol>
 
   return (
     <li>
-      <details>
-        <summary style={summaryStyle}>{question}</summary>
-        <p>{answer}</p>
-        {List}
+      <details
+        // open={open}
+      >
+        <summary
+          style={summaryStyle}
+          // onClick={() => setFold(!open)}
+        >
+          {question}
+        </summary>
+        <div style={detailsContentStyle}>
+          <p>{answer}</p>
+          {List}
+        </div>
       </details>
     </li>
   )
 }
-
 
 
 const qnaStyle = {
