@@ -1,4 +1,4 @@
-import { Component,  } from 'react'
+import { Component, } from 'react'
 import { headingStyle } from './__globalStyle'
 import makeID from '../lib/makeID'
 import { colorMe, rem, rem4, em } from '../lib/utils'
@@ -26,33 +26,44 @@ const detailsContentStyle = {
   marginInline: em(8),
   borderRadius: rem4(0, 0, 12, 12),
   border: '1px solid #ffffff80',
+  color: '#000000',
 }
 
-const QNA = ({ q }) => {
-  const { question, answer, list } = q
-  // const [ open, setFold ] = useState(false)
-  const List = list && <ol style={olStyle}>{list.map(el => <li key={el}>{el}</li>)}</ol>
+class Qna extends Component {
 
-  return (
-    <li>
-      <details
-        // open={open}
-      >
-        <summary
-          style={summaryStyle}
-          // onClick={() => setFold(!open)}
-        >
-          {question}
-        </summary>
-        <div style={detailsContentStyle}>
-          <p>{answer}</p>
-          {List}
-        </div>
-      </details>
-    </li>
-  )
+  // q={q}
+  // qnaOpen={qnaOpenArr[idx]}
+  // qnaIdx={idx}
+  // onClick = { handleQnaOpenChange }
+
+  render() {
+    const {
+      q: { question, answer, list },
+      qnaOpen, qnaIdx, onClick
+    } = this.props
+    const List = list && <ol style={olStyle}>{list.map(el => <li key={el}>{el}</li>)}</ol>
+
+    return (
+      <li>
+        <details
+          open={qnaOpen}
+          >
+          <summary
+            style={summaryStyle}
+            onClick={onClick}
+            data-idx={qnaIdx}
+          >
+            {question}
+          </summary>
+          <div style={detailsContentStyle}>
+            <p>{answer}</p>
+            {List}
+          </div>
+        </details>
+      </li>
+    )
+  }
 }
-
 
 const qnaStyle = {
   display: 'flex',
@@ -63,14 +74,26 @@ const qnaStyle = {
 class Level1Class extends Component {
 
   render() {
-    const { qna, style } = this.props
+    const {
+      qna, style,
+      qnaOpenArr,
+      handleQnaOpenChange
+    } = this.props
 
     return (
       <section style={style} >
         <h2 style={headingStyle}>Level 1</h2>
         <ul style={qnaStyle}>
         {
-          qna.map(q => <QNA key={'q' + makeID()} q={q} />)
+          qna.map((q, idx) => (
+            <Qna
+              key={'q' + makeID()}
+              q={q}
+              qnaOpen={qnaOpenArr[idx]}
+              qnaIdx={idx}
+              onClick={handleQnaOpenChange}
+            />
+          ))
         }
         </ul>
       </section>

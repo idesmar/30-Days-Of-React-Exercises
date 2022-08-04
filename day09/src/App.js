@@ -71,13 +71,14 @@ class App extends Component {
     },
   ]
 
+  qna = level1qna.map(el => ({...el, open: false })) // > added an open property for state management
+
   getCurrentSeason = () => {
     const month = new Date().getMonth() + 1
     const seasonIdx = this.seasons.findIndex(season => season.months.includes(month))
     return this.seasons[seasonIdx].name
   }
   currentSeason = this.getCurrentSeason()
-
 
   getCurrentTimeOfDay = () => {
     const hour = new Date().getHours()
@@ -91,11 +92,23 @@ class App extends Component {
   currentTimeOfDay = this.getCurrentTimeOfDay()
 
   state = {
+    qnaOpen: this.qna.map(q=> q.open), // > array of boolean data
+
     userInputSeason: false,
     season: this.currentSeason,
 
     userInputTimeOfDay: false,
     timeOfDay: this.currentTimeOfDay,
+  }
+
+  changeQnaOpen = (e) => {
+
+    console.dir(e.target)
+    // const current = [...this.state.qnaOpen]
+    // const newEl = !current[idx]
+    // const newState = current.slice(0,idx).concat(newEl).concat(current.slice(idx+1))
+
+    // this.setState({ qnaOpen: newState })
   }
 
   changeUserInputSeason = () => {
@@ -115,8 +128,10 @@ class App extends Component {
   }
 
   render() {
-    const qna = [...level1qna]
+    const qna = this.qna
+
     const {
+      qnaOpen,
       userInputSeason, season,
       userInputTimeOfDay, timeOfDay
     } = this.state
@@ -129,8 +144,9 @@ class App extends Component {
     const todIdx = timeOfDays.findIndex(tod => tod.name === this.state.timeOfDay)
     const backgroundClr = timeOfDays[todIdx].backgroundClr
 
-    const fColor = (timeOfDay === 'night' || timeOfDay === 'evening')
-                    ? '#ffffff' : '#000000'
+    const theme = (timeOfDay === 'night' || timeOfDay === 'evening') ? 'dark' : 'light'
+
+    const fColor = theme === 'dark' ? '#ffffff' : '#000000'
 
     const appStyle = {
       backgroundImage: `url(${backgroundImg})`,
@@ -154,11 +170,13 @@ class App extends Component {
         <Level1Class
           style={sectionLimit}
           qna={qna}
+          qnaOpenArr={qnaOpen}
+          handleQnaOpenChange={this.changeQnaOpen}
         />
-
 
         <Level2Class
           style={sectionLimit}
+          theme={theme}
 
           seasons={seasonNames}
           currentSeason={currentSeason}

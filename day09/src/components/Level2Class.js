@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import { rem, rem4, em, toTitleCase } from '../lib/utils'
-import { headingStyle } from './__globalStyle'
+import { headingStyle, colors } from './__globalStyle'
 
 /*
   Make a single page application which changes the body of the background based on the season of the year(Autumn, Winter, Spring, Summer)
@@ -9,7 +9,7 @@ import { headingStyle } from './__globalStyle'
 */
 
 /* ////////////////////////////////////////////////////////
-  REUSABLE COMPONENT
+  REUSABLE COMPONENTS
 //////////////////////////////////////////////////////// */
 
 const defaultButtonStyle = {
@@ -68,6 +68,7 @@ const Input = ({
 }
 
 const Fieldset = ({
+  theme,
   content,
   inputs,
   groupName,
@@ -76,12 +77,24 @@ const Fieldset = ({
   style,
 }) => {
 
-  const defaultFieldsetStyle = { all: 'revert' }
+  const defaultFieldsetStyle = {
+    padding: 'revert',
+    borderRadius: rem(8),
+    marginTop: rem(12),
+    opacity: '0.9',
+    backdropFilter: 'blur(1.375rem)',
+    backgroundColor: theme === 'dark' ? colors.darkBlue : colors.lightBlue,
+  }
   const fieldsetStyle = { ...defaultFieldsetStyle, ...style }
+  const legendStyle = {
+    backgroundColor: theme === 'dark' ? colors.darkBlue : colors.lightBlue,
+    padding: rem4(0, 10),
+    borderRadius: rem(8),
+  }
 
   return (
     <fieldset style={fieldsetStyle}>
-      <legend>
+      <legend style={legendStyle}>
         {content}
       </legend>
       {
@@ -101,64 +114,6 @@ const Fieldset = ({
 
 
 /* ////////////////////////////////////////////////////////
-  FUNCTIONAL COMPONENT
-//////////////////////////////////////////////////////// */
-
-// const Season = ({ season, existingSeason, onChange }) => {
-
-//   const radioStyle = {
-//     all: 'revert',
-//   }
-
-//   const labelStyle = {
-//     cursor: 'pointer',
-//   }
-
-//   return (
-//     <>
-//       <input
-//         style={radioStyle}
-//         type="radio"
-//         name='season'
-//         value={season}
-//         id={season}
-//         onChange={onChange}
-//         checked={existingSeason === season}
-//       />
-//       <label
-//         style={labelStyle}
-//         htmlFor={season}
-//       >
-//         {toTitleCase(season)}
-//       </label>
-//     </>
-//   )
-// }
-
-
-// class SeasonsClass extends Component {
-
-//   render() {
-//     const { seasons, onChange, existingSeason } = this.props
-
-//     return (
-//       <fieldset style={{all: 'revert'}}>
-//         <legend>Choose the season</legend>
-//         {seasons.map(season => (
-//           <Season
-//             key={season}
-//             season={season}
-//             existingSeason={existingSeason}
-//             onChange={onChange}
-//           />
-//         ))}
-//       </fieldset>
-//     )
-//   }
-// }
-
-
-/* ////////////////////////////////////////////////////////
   CLASS COMPONENTS
 //////////////////////////////////////////////////////// */
 
@@ -166,7 +121,7 @@ class Level2Class extends Component {
 
   render() {
     const {
-      style,
+      style, theme,
       // * Level2.1 Seasons
       seasons, currentSeason, existingSeason,
       userInputSeason, handleSeasonInput,
@@ -194,6 +149,7 @@ class Level2Class extends Component {
     // style,
     const seasonFieldset = userInputSeason && (
       <Fieldset
+        theme={theme}
         inputs={seasons}
         content={textSeason}
         existing={existingSeason}
@@ -204,6 +160,7 @@ class Level2Class extends Component {
 
     const timeOfDayInput = userInputTimeOfDay && (
       <Fieldset
+        theme={theme}
         inputs={timeOfDays}
         content={textTimeOfDay}
         existing={existingTimeOfDay}
@@ -222,11 +179,11 @@ class Level2Class extends Component {
 
     const buttonSeasonStyle = {
       ...defaultButtonStyle,
-      backgroundColor: userInputSeason ? 'red' : 'green',
+      backgroundColor: userInputSeason ? colors.red : colors.green,
     }
     const buttonTimeOfDayStyle = {
       ...defaultButtonStyle,
-      backgroundColor: userInputTimeOfDay ? 'red' : 'green',
+      backgroundColor: userInputTimeOfDay ? colors.red : colors.green,
     }
 
     return (
@@ -248,7 +205,7 @@ class Level2Class extends Component {
           <Button
             text={textTimeOfDay}
             onClick={handleTimeOfDayInput}
-            style={buttonTimeOfDayStyle} // TODO: change later ?
+            style={buttonTimeOfDayStyle}
           />
           {timeOfDayInput}
         </div>
