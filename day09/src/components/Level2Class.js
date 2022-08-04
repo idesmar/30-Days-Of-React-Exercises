@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import { rem, rem4, em, toTitleCase } from '../lib/utils'
-import { headingStyle, colors } from './__globalStyle'
+import { colors } from './__globalStyle'
 
 /*
   Make a single page application which changes the body of the background based on the season of the year(Autumn, Winter, Spring, Summer)
@@ -25,10 +25,21 @@ const Button = ({ text, onClick, style }) => {
   const buttonStyle = {
     ...defaultButtonStyle, ...style
   }
+
+  // > emulating hover effect
+  const mouseEnter = (e) => {
+    e.target.style.transform = 'scale(1.08)'
+  }
+  const mouseLeave = (e) => {
+    e.target.style.transform = 'scale(1)'
+  }
+
   return (
     <button
       style={buttonStyle}
       onClick={onClick}
+      onMouseEnter={mouseEnter}
+      onMouseLeave={mouseLeave}
     >
       {text}
     </button>
@@ -121,7 +132,7 @@ class Level2Class extends Component {
 
   render() {
     const {
-      style, theme,
+      style, theme, headingStyle,
       // * Level2.1 Seasons
       seasons, currentSeason, existingSeason,
       userInputSeason, handleSeasonInput,
@@ -141,12 +152,6 @@ class Level2Class extends Component {
       ? `Current time of day: ${toTitleCase(currentTimeOfDay)}`
       : 'Choose a time of day?'
 
-    // content,
-    // inputs,
-    // groupName,
-    // existing,
-    // onChange,
-    // style,
     const seasonFieldset = userInputSeason && (
       <Fieldset
         theme={theme}

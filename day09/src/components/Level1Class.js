@@ -1,5 +1,4 @@
 import { Component, } from 'react'
-import { headingStyle } from './__globalStyle'
 import makeID from '../lib/makeID'
 import { colorMe, rem, rem4, em } from '../lib/utils'
 
@@ -30,11 +29,6 @@ const detailsContentStyle = {
 }
 
 class Qna extends Component {
-
-  // q={q}
-  // qnaOpen={qnaOpenArr[idx]}
-  // qnaIdx={idx}
-  // onClick = { handleQnaOpenChange }
 
   render() {
     const {
@@ -76,6 +70,7 @@ class Level1Class extends Component {
   render() {
     const {
       qna, style,
+      headingStyle,
       qnaOpenArr,
       handleQnaOpenChange
     } = this.props

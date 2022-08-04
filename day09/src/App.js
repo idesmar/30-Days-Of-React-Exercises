@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { headingStyle } from './components/__globalStyle'
+import { defaultHeadingStyle } from './components/__globalStyle'
 import Level1Class from './components/Level1Class'
 import Level2Class from './components/Level2Class'
 import Level3Class from './components/Level3Class'
@@ -17,11 +17,14 @@ const sectionLimit = {
   marginInline: 'auto',
 }
 
-const Header = () => (
-  <header>
-    <h1 style={headingStyle}>30 days of React: Day 09 | Conditional Rendering</h1>
-  </header>
-)
+const Header = ({ theme, headingStyle }) => {
+
+  return (
+    <header>
+      <h1 style={headingStyle}>30 days of React: Day 09 | Conditional Rendering</h1>
+    </header>
+  )
+}
 
 class App extends Component {
 
@@ -71,7 +74,8 @@ class App extends Component {
     },
   ]
 
-  qna = level1qna.map(el => ({...el, open: false })) // > added an open property for state management
+  // > hard copy combined with an open property to use for state management of details attr "open"
+  qna = level1qna.map(el => ({ ...el, open: false }))
 
   getCurrentSeason = () => {
     const month = new Date().getMonth() + 1
@@ -92,7 +96,7 @@ class App extends Component {
   currentTimeOfDay = this.getCurrentTimeOfDay()
 
   state = {
-    qnaOpen: this.qna.map(q=> q.open), // > array of boolean data
+    qnaOpen: this.qna.map(q=> q.open), // > array of boolean data for details attr
 
     userInputSeason: false,
     season: this.currentSeason,
@@ -102,13 +106,24 @@ class App extends Component {
   }
 
   changeQnaOpen = (e) => {
+    // note: data-idx="" stores the data as string hence unary plus is used
+    const idx = +e.target.dataset.idx
 
-    console.dir(e.target)
-    // const current = [...this.state.qnaOpen]
-    // const newEl = !current[idx]
-    // const newState = current.slice(0,idx).concat(newEl).concat(current.slice(idx+1))
+    // hard copy of current state
+    const newState = [...this.state.qnaOpen]
+    // mutation on the hard copy reflecting change in state cause by onClick
+    newState[idx] = !newState[idx]
 
-    // this.setState({ qnaOpen: newState })
+    /* // * alternative using a bit more conventional approach (for loop can also be used)
+      const current = [...this.state.qnaOpen]
+      const newState = current.map((el, currIdx) => {
+        if (currIdx !== idx) return el
+        return !el
+      })
+    */
+
+
+    this.setState({ qnaOpen: newState })
   }
 
   changeUserInputSeason = () => {
@@ -149,14 +164,22 @@ class App extends Component {
     const fColor = theme === 'dark' ? '#ffffff' : '#000000'
 
     const appStyle = {
-      backgroundImage: `url(${backgroundImg})`,
       backgroundColor: backgroundClr,
-      backgroundRepeat: 'no-repeat',
-      // backgroundSize: 'contain',
-      backgroundPosition: 'center',
       color: fColor,
       minHeight: '100vh',
       padding: '1rem',
+    }
+
+    const bgStyle = {
+      backgroundImage: `url(${backgroundImg})`,
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'center',
+      backgroundSize: 'contain',
+      position: 'fixed',
+      top: '0',
+      left: '0',
+      width: '100vw',
+      height: '100vh',
     }
 
     const seasonNames = seasons.map(season => season.name)
@@ -164,39 +187,63 @@ class App extends Component {
     const timeOfDayNames = timeOfDays.map(tod => tod.name)
     const currentTimeOfDay = this.currentTimeOfDay
 
+    const headingStyle = {
+      ...defaultHeadingStyle,
+      textShadow: theme === 'dark' ? '0 0 5px #000000' : '0 0 5px #ffffff'
+    }
+
     return (
       <div style={appStyle}>
-        <Header />
-        <Level1Class
-          style={sectionLimit}
-          qna={qna}
-          qnaOpenArr={qnaOpen}
-          handleQnaOpenChange={this.changeQnaOpen}
-        />
+        <div
+          aria-hidden
+          style={bgStyle}
+        >
+          {/*
+            backgroundImage container
+            placed as first child of the parent to ensure that succeeding nodes will be on top of this container ONCE position: relative is set
 
-        <Level2Class
-          style={sectionLimit}
-          theme={theme}
-
-          seasons={seasonNames}
-          currentSeason={currentSeason}
-          existingSeason={season}
-          userInputSeason={userInputSeason}
-          handleSeasonInput={this.changeUserInputSeason}
-          handleSeasonChange={this.changeSeason}
-
-          timeOfDays={timeOfDayNames}
-          currentTimeOfDay={currentTimeOfDay}
-          existingTimeOfDay={timeOfDay}
-          userInputTimeOfDay={userInputTimeOfDay}
-          handleTimeOfDayInput={this.changeUserInputTimeOfDay}
-          handleTimeOfDayChange={this.changeTimeOfDay}
-        />
+          */}
+        </div>
 
 
-        <Level3Class
-          style={sectionLimit}
-        />
+        <div style={{ marginTop: '10vh', position: 'relative' }}>
+          <Header theme={theme} headingStyle={headingStyle} />
+
+          <Level1Class
+            theme={theme} // ? in case needed in the future
+            headingStyle={headingStyle}
+            style={sectionLimit}
+            qna={qna}
+            qnaOpenArr={qnaOpen}
+            handleQnaOpenChange={this.changeQnaOpen}
+          />
+
+          <Level2Class
+            style={sectionLimit}
+            theme={theme}
+            headingStyle={headingStyle}
+
+            seasons={seasonNames}
+            currentSeason={currentSeason}
+            existingSeason={season}
+            userInputSeason={userInputSeason}
+            handleSeasonInput={this.changeUserInputSeason}
+            handleSeasonChange={this.changeSeason}
+
+            timeOfDays={timeOfDayNames}
+            currentTimeOfDay={currentTimeOfDay}
+            existingTimeOfDay={timeOfDay}
+            userInputTimeOfDay={userInputTimeOfDay}
+            handleTimeOfDayInput={this.changeUserInputTimeOfDay}
+            handleTimeOfDayChange={this.changeTimeOfDay}
+          />
+
+          <Level3Class
+            style={sectionLimit}
+            theme={theme} // ? in case needed in the future
+            headingStyle={headingStyle}
+          />
+        </div>
       </div>
     )
   }
