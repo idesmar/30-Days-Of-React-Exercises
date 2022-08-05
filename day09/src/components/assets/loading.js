@@ -3,7 +3,8 @@
   NOTE: JSX accepts attribute values inside {''}, however, the format below is still accepted
   It is better to follow the correct format...
   too many attr requires change right now, perhaps...
-  TODO: create a function to convert to valid JSX format using JSON.stringify() & JSON.parse()
+  if style attribute exists, an error will occur
+  ? create a function to convert to valid JSX format using JSON.stringify() & JSON.parse()
 */
 const Loading = () => (
   <svg
