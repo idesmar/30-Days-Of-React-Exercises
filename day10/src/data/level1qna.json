@@ -1,0 +1,44 @@
+[
+  {
+    "_id": "q1",
+    "question": "What is the importance of React Folder Structure and File Naming?",
+    "answer": "Folder structure and file naming is important to ensure E.L.E.R. (Easy to Locate, Easy to Relate)."
+  },
+  {
+    "_id": "q2",
+    "question": "How do you export file?",
+    "answer": [
+      "Exporting file can either be a default or named export.",
+      "Note that there can only be one default export; and multiple named exports.",
+      "Samples below are the authors preferred format"
+    ],
+    "sample": [
+      "`export default DataName`",
+      "`export { DataName }`"
+    ]
+  },
+  {
+    "_id": "q3",
+    "question": "How do you import file?",
+    "answer": "Files are imported based on how they are exported. Note: named exports can be renamed by using the keyword `as`.",
+    "list": [
+      "default export: `import DataName from './filename'`",
+      "named export: `import { DataName } from './filename'`"
+    ]
+  },
+  {
+    "_id": "q4",
+    "question": "Make a component of module and export it as named or default export.",
+    "answer": "This has been implemented in previous CRA."
+  },
+  {
+    "_id": "q5",
+    "question": "Make a component or module and import it.",
+    "answer": "This has been implemented in previous CRA."
+  },
+  {
+    "_id": "q6",
+    "question": "Change all the components you have to different folder structure.",
+    "answer": "Done."
+  }
+]

@@ -1,11 +1,18 @@
-import './App.css'
+import { Component } from 'react'
+import Header from './Header/Header'
+import Level1Class from './Level1/Level1'
 
-function App() {
-  return (
-    <div>
-      <h1>30 days of React: Day 10 | React Project Folder Structure</h1>
-    </div>
-  )
+class App extends Component {
+
+  render() {
+
+    return (
+      <div>
+        <Header />
+        <Level1Class />
+      </div>
+    )
+  }
 }
 
 export default App
