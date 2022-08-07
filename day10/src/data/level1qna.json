@@ -1,5 +1,8 @@
 [
   {
+    "NOTE": "This file is not used in Day10, rather, a copy of this is without this object is copied manually to public/data"
+  },
+  {
     "_id": "q1",
     "question": "What is the importance of React Folder Structure and File Naming?",
     "answer": "Folder structure and file naming is important to ensure E.L.E.R. (Easy to Locate, Easy to Relate)."
@@ -12,7 +15,7 @@
       "Note that there can only be one default export; and multiple named exports.",
       "Samples below are the authors preferred format"
     ],
-    "sample": [
+    "samples": [
       "`export default DataName`",
       "`export { DataName }`"
     ]
@@ -21,9 +24,9 @@
     "_id": "q3",
     "question": "How do you import file?",
     "answer": "Files are imported based on how they are exported. Note: named exports can be renamed by using the keyword `as`.",
-    "list": [
-      "default export: `import DataName from './filename'`",
-      "named export: `import { DataName } from './filename'`"
+    "samples": [
+      "default export: `import DataName from './path/to/file'`",
+      "named export: `import { DataName } from './path/to/file'`"
     ]
   },
   {

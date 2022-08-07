@@ -1,17 +1,32 @@
 import { Component } from 'react'
-import { Details } from '../shared/Details'
+import { Details } from '../shared/Details/Details'
+import { userServices } from '../services/services'
+import { colorMe } from '../utils/colorFunc'
+import { wMax } from '../assets/globalStyles'
 
 /**
  * NOTE: the json file used in this component was manually copied to the public folder
  * ! This is only used to emulate fetching data from an API and may not be used in production
  */
 
-
 const Qna = ({ qna }) => {
+
+  const backgroundColor = colorMe()
+
   return (
     <>
       {
-        qna.map(q => <Details key={q._id} object={q} />)
+        qna.map(q => {
+          const { _id, question, answer, samples } = q
+          return (
+            <Details
+              key={_id}
+              summary={question}
+              content={{ answer, samples }}
+              backgroundColor={backgroundColor}
+            />
+          )
+        })
       }
     </>
   )
@@ -21,21 +36,26 @@ const Qna = ({ qna }) => {
 class Level1Class extends Component {
 
   state = {
-    qna: '',
+    qna: [],
   }
 
-  getData = () => {
-    const url = '../data/level1qna.json'
-    const fetchData = async () => {
-      const res = await fetch(url)
-      const data = await res.json()
-      this.setState({ qna: data })
-    }
-    fetchData()
-  }
+  /* //> transferred to services/services > userServices */
+  // getData = () => {
+  //   const fetchData = async () => {
+  //     const res = await fetch('../data/level1qna.json')
+  //     const data = await res.json()
+  //     this.setState({ qna: data })
+  //   }
+  //   fetchData()
+  // }
 
   componentDidMount() {
-    this.getData()
+    // this.getData()
+    const getData = async () => {
+      const qna = await userServices.getQna()
+      this.setState({qna: qna})
+    }
+    getData()
   }
 
   render() {
@@ -43,11 +63,9 @@ class Level1Class extends Component {
     const { qna } = this.state
 
     return (
-      <section>
+      <section style={wMax} >
         <h2>Level 1</h2>
-        {
-          qna && <Qna qna={qna} />
-        }
+        <Qna qna={qna} />
       </section>
     )
   }

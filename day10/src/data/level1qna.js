@@ -1,4 +1,4 @@
-/**
+/** // NOTE: This file is not used in Day10
  * What is the importance of React Folder Structure and File Naming
  * How do you export file
  * How do you import file
@@ -19,7 +19,7 @@ const level1qna = [
       'Note that there can only be one default export; and multiple named exports.',
       'Samples below are the author\'s preferred format',
     ],
-    sample: [
+    samples: [
       '`export default DataName`',
       'export { DataName }',
     ]
@@ -27,9 +27,9 @@ const level1qna = [
   {
     question: 'How do you import file?',
     answer: 'Files are imported based on how they are exported. Note: named exports can be renamed by using the keyword `as`.',
-    list: [
-      'default export: `import DataName from \'./filename\'`',
-      'named export: `import { DataName } from \'./filename\'`',
+    samples: [
+      'default export: `import DataName from \'./path/to/file\'`',
+      'named export: `import { DataName } from \'./path/to/file\'`',
     ]
   },
   {
