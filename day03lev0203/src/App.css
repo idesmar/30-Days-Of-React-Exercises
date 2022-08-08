@@ -86,6 +86,7 @@ h3 {
 button {
   margin-top: 1rem;
   background-color: var(--btn-background);
+  color: #fff;
   padding: 0.4em 1em;
   border-radius: 0.5em;
 }

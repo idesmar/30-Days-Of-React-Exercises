@@ -43,7 +43,7 @@ const Header = ({ headers, theme }) => {
 
 const Button = ({ text, onClick, addStyle }) => {
   const defaultButtonStyle = {
-    padding: rem(3) + ' ' + rem(8), // TODO: integrate created sass function rem4 to javascript
+    padding: rem(3) + ' ' + rem(8), // rem4 integrated in the next project
     borderRadius: '0.3em',
     backgroundColor: glob.light.bgColor,
     color: glob.dark.fColor,
@@ -282,6 +282,7 @@ class Level2bClass extends Component {
 
 
   shouldComponentUpdate(nextProps, nextState) {
+    console.log(nextState.country) // ? tester only
     return nextState.country
   }
 
