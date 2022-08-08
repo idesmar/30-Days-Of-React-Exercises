@@ -4,3 +4,6 @@ unexpected-error/
 
 # Workspace Settings
 .vscode
+
+# secret notes
+.secrets.md
