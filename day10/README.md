@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+# 30 Days of React: Day 10 | React Folder Structure
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Folder Structure used is not yet final
+Currently still experimenting with different structures\
+Using the ff. folder names as an experiment so they may still change in the future
+* ***assets*** - now also stores global styles (ie. *globalStyles.js*)
+* ***services*** - fetching data (ie. *level1qna.json*)
+* ***shared*** - shareable components (ie. *Button*, *Details*, *SuperficialButton*)
+* ***utils*** - previously referred to as lib/ that holds custom javascript functions
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Dev Notes
+* [CSS reset - version 1.7.2](https://github.com/elad2412/the-new-css-reset) by [@elad2412](https://github.com/elad2412) used
+* Styling done mostly inline (javascript)
+* Q&A now in .json format and being fetched from public/. see [level1qna.json](./public/data/level1qna.json)
+* Included *globalStyles.js* and *icons.js* to assets
+  * *globalStyles.js* includes styling and a colors object to easily get value through mapping `colors[property][theme]`
+    ```javascript
+    const colors = {
+      fColor: {
+        light: '#000000',
+        dark: '#5fdbfc',
+      },
+      bgColor: {
+        light: '#ffffff',
+        dark: '#0f172a',
+      },
+      headerBgColor: {
+        light: '#5fdbfc',
+        dark: '#0f172a',
+      },
+      buttonBgColor: {
+        light: '#0f172a',
+        dark: '#5fdbfc',
+      },
+      buttonFColor: {
+        light: '#5fdbfc',
+        dark: '#0f172a',
+      },
+    }
+    ```
+  * *icons.js* has an icons object that returns an svg by mapping `icons[iconName]`
+* utils/ folder, previously lib/, holds categorized custom javascript functions
+  * *colorFunc.js*
+  * *hasCode.js*
+  * *makeID.js*
+  * *misc.js*
+  * *unitConvert.js*
