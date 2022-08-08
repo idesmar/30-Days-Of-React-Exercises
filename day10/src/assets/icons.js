@@ -1,5 +1,3 @@
-// import { rem } from '../utils/unitConvert'
-
 const icons = {
 
   check: (

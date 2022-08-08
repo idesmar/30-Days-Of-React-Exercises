@@ -3,7 +3,6 @@ import { PortfolioClass } from './Portfolio/Portfolio'
 
 class Level2Class extends Component {
 
-
   render() {
     return (
       <section>

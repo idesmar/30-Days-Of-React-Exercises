@@ -1,11 +1,12 @@
 import { rem4, rem, em } from '../../utils/unitConvert'
+import { colors } from '../../assets/globalStyles'
 
-const SuperficialButton = ({ content }) => {
+const SuperficialButton = ({ content, theme }) => {
 
   const buttonStyle = {
     padding: rem4(3, 10),
-    backgroundColor: 'blue', // ? this should change based on the theme
-    color: '#ffffff',
+    backgroundColor: colors.buttonBgColor[theme],
+    color: colors.buttonFColor[theme],
     fontSize: rem(12),
     borderRadius: em(8),
   }

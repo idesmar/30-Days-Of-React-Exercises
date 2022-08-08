@@ -1,11 +1,10 @@
 import { Component } from 'react'
 import { rem } from '../../utils/unitConvert'
-import { wMax } from '../../assets/globalStyles'
 import idesmar from '../../assets/idesmar.jpg'
 import { icons } from '../../assets/icons'
-// import makeID from '../../utils/makeID'
 import { SuperficialButton } from '../../shared/SuperficialButton/SuperficialButton'
-import { Header } from './Header'
+import { PortfolioHeader as Header } from './PortfolioHeader'
+import { colors, wwMax } from '../../assets/globalStyles'
 
 // * Make a simple portfolio using the components we have created so far. Implement a dark mode by using the function we wrote on day 8 challenge.
 
@@ -42,7 +41,7 @@ const skillsContainer = {
 }
 
 
-const Skills = ({ skills }) => {
+const Skills = ({ skills, theme }) => {
 
   return (
     <>
@@ -50,14 +49,17 @@ const Skills = ({ skills }) => {
       <ul style={skillsContainer}>
         {
           skills.map(skill => (
-            <SuperficialButton key={skill} content={skill} />
+            <SuperficialButton
+              key={skill}
+              content={skill}
+              theme={theme}
+            />
           ))
         }
       </ul>
     </>
   )
 }
-
 
 
 const user = {
@@ -73,7 +75,18 @@ const user = {
 
 class PortfolioClass extends Component {
 
+  state = {
+    theme: 'light',
+  }
+
+  handleChangeTheme = () => {
+    const newTheme = this.state.theme === 'light' ? 'dark' : 'light'
+    this.setState({theme: newTheme})
+  }
+
   render() {
+
+    const { theme } = this.state
 
     const {
       firstName, lastName, img, position, skills, joinedDate
@@ -93,14 +106,27 @@ class PortfolioClass extends Component {
         {icons.clock}{joinedDate}
       </p>
     )
+
+    const containerStyle = {
+      color: colors.fColor[theme],
+      backgroundColor: colors.bgColor[theme],
+      boxShadow: `0 0 0 100vmax ${colors.bgColor[theme]}`,
+      clipPath: 'inset(0 -100vmax)', // NOTE: Global: 96.57% https://caniuse.com/mdn-css_properties_clip-path_html
+    }
+
     return (
-      <div style={wMax}>
-        <Header />
-        <Image />
-        <FullName />
-        <Position />
-        <Skills skills={skills} />
-        <JoinedDate />
+      <div style={{...containerStyle, ...wwMax}}>
+        <Header
+          theme={theme}
+          handleChangeTheme={this.handleChangeTheme}
+        />
+        <div style={{padding: '1rem'}}>
+          <Image />
+          <FullName />
+          <Position />
+          <Skills skills={skills} theme={theme} />
+          <JoinedDate />
+        </div>
       </div>
     )
   }
