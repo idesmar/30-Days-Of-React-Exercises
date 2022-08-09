@@ -1,0 +1,84 @@
+[
+  {
+    "_id": "q1",
+    "question": "What is an event?",
+    "answer": "An event is any interactivity with the user and the DOM such as clicking on an element, typing on an input element, moving the mouse/cursor, etc."
+  },
+  {
+    "_id": "q2",
+    "question": "What is the difference between an HTML element event and React event?",
+    "note": "Note: Author prefers to use event listeners in javascript rather than directly in HTML as a way to follow \"Separation of Concern\"",
+    "answer": "Below are the differences between HTML and React event",
+    "list": [
+      "Events are written in lowercase in HTML, while camelCase in React",
+      "Event handlers are written as string in HTML, while embedded directly inside of brackets {} in React"
+    ]
+  },
+  {
+    "_id": "q3",
+    "question": "Write at least 4 keyboard events?",
+    "answer": "Only 3 keyboard events found in [MDN Source](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent#obsolete_events); one of which is obsolete.",
+    "list": [
+      "`onKeyDown`",
+      "`onKeyUp`",
+      "`onKeyPress` obsolete in Javascript"
+    ]
+  },
+  {
+    "_id": "q4",
+    "question": "Write at least 8 mouse events?",
+    "answer": "Below are the mouse events found. Pointer, Wheel, and Drag can be included here since they are derived from Mouse Events",
+    "list": [
+      "onClick",
+      "onContextMenu (right click)",
+      "onDoubleClick",
+      "onMouseEnter",
+      "onMouseLeave [1]",
+      "onMouseDown",
+      "onMouseUp",
+      "onMouseOver",
+      "onMouseOut [1]",
+      "onMouseMove"
+    ],
+    "[1]": "mouseleave vs mouseout: [https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseout_event#mouseout_and_mouseleave](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseout_event#mouseout_and_mouseleave)"
+  },
+  {
+    "_id": "q5",
+    "question": "What are the most common mouse and keyboard events?",
+    "answer": "The most common events noticed so far are listed below",
+    "list": [
+      "onClick",
+      "onKeyDown"
+    ]
+  },
+  {
+    "_id": "q6",
+    "question": "Write an event specific to input element?",
+    "answer": "onInput and onChange"
+  },
+  {
+    "_id": "q7",
+    "question": "Write an event specific to form element?",
+    "answer": "onSubmit"
+  },
+  {
+    "_id": "q8",
+    "question": "Display the coordinate of the view port when a mouse is moving on the body?",
+    "answer": "onMouseMove={ (e) => console.log(e.offsetX, e.offsetY) }"
+  },
+  {
+    "_id": "q9",
+    "question": "What is the difference between onInput, onChange and onBlur?",
+    "answer": "The differences are listed below:",
+    "list": [
+      "onInput triggers on every character keyed in. eg. if you type in 'react' in an input element, it will register: 'r', 're', ... 'react",
+      "onChange only triggers after desired entry has been keyed in. eg. in the same scenario, what will only register is 'react'",
+      "onBlur only triggers after the input element has lost focus. Note that onBlur will trigger AFTER onChange in the scenario being used in this section"
+    ]
+  },
+  {
+    "_id": "q10",
+    "question": "Where do we put the onSubmit event?",
+    "answer": "onSubmit event is placed on a form element"
+  }
+]
