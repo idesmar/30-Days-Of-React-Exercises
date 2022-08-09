@@ -10,10 +10,10 @@
 
 ### 404 on flags URL in provided data
 Solution:
-* Used [https://restcountries.com](https://restcountries.com) to fetch flags .svg and used a default image if flag cannot be found due to country name difference (data name and fetch url path).
+* Used [https://restcountries.com](https://restcountries.com) to fetch flags .svg and used a default image if flag cannot be found due to country name difference (data name and fetch url path)
 ```javascript
 const url = `https://restcountries.com/v3.1/name/${name.toLowerCase()}`
 
 fetchFlag(url).catch(() => console.log(`Error fetching from ${url}`))
 ```
-* Done by using fetch API accompanied with `{ useState, useEffect } from 'react'`\
+* Done by using fetch API accompanied with `{ useState, useEffect } from 'react'`

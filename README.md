@@ -8,7 +8,7 @@ Solutions to exercises from [30 Days of React](https://github.com/Asabeneh/30-Da
   * ***DD*** - day of *30 Days of React*
   * ***LL*** - exercise level (if shown more than once, then sub repo contains answers to more than one level)
 
-* day***DD*** - Complete Exercises present\
+* day***DD*** - Complete Exercises included
 
 ## Start
 Each sub repository contains a single page application (SPA). To view desired exercise solution:
