@@ -29,42 +29,44 @@
     "question": "Write at least 8 mouse events?",
     "answer": "Below are the mouse events found. Pointer, Wheel, and Drag can be included here since they are derived from Mouse Events",
     "list": [
-      "onClick",
-      "onContextMenu (right click)",
-      "onDoubleClick",
-      "onMouseEnter",
-      "onMouseLeave [1]",
-      "onMouseDown",
-      "onMouseUp",
-      "onMouseOver",
-      "onMouseOut [1]",
-      "onMouseMove"
+      "`onClick`",
+      "`onContextMenu` (right click)",
+      "`onDoubleClick`",
+      "`onMouseEnter`",
+      "`onMouseLeave` [1]",
+      "`onMouseDown`",
+      "`onMouseUp`",
+      "`onMouseOver`",
+      "`onMouseOut` [1]",
+      "`onMouseMove`"
     ],
-    "[1]": "mouseleave vs mouseout: [https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseout_event#mouseout_and_mouseleave](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseout_event#mouseout_and_mouseleave)"
+    "footnote": [
+      "1 mouseleave vs mouseout: [https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseout_event#mouseout_and_mouseleave](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseout_event#mouseout_and_mouseleave)"
+    ]
   },
   {
     "_id": "q5",
     "question": "What are the most common mouse and keyboard events?",
     "answer": "The most common events noticed so far are listed below",
     "list": [
-      "onClick",
-      "onKeyDown"
+      "`onClick`",
+      "`onKeyDown`"
     ]
   },
   {
     "_id": "q6",
     "question": "Write an event specific to input element?",
-    "answer": "onInput and onChange"
+    "answer": "`onInput` and `onChange`"
   },
   {
     "_id": "q7",
     "question": "Write an event specific to form element?",
-    "answer": "onSubmit"
+    "answer": "`onSubmit`"
   },
   {
     "_id": "q8",
     "question": "Display the coordinate of the view port when a mouse is moving on the body?",
-    "answer": "onMouseMove={ (e) => console.log(e.offsetX, e.offsetY) }"
+    "answer": "`onMouseMove={ (e) => console.log(e.offsetX, e.offsetY) }`"
   },
   {
     "_id": "q9",
@@ -79,6 +81,6 @@
   {
     "_id": "q10",
     "question": "Where do we put the onSubmit event?",
-    "answer": "onSubmit event is placed on a form element"
+    "answer": "`onSubmit` event is placed on a form element"
   }
 ]

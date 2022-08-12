@@ -3,7 +3,7 @@ import { rem } from './utils/unitConvert'
 
 const Modal = ({ pos }) => {
   // alt argument is { pos: {x, y} }
-  // position will be determined by top left corner of the element
+  // origin of position is center of element
   const defaultStyle = {
     textAlign: 'center',
     backgroundColor: 'blue',
@@ -13,6 +13,7 @@ const Modal = ({ pos }) => {
     position: 'absolute',
     top: pos.y,
     left: pos.x,
+    transform: 'translate(-50%, -50%)',
   }
 
   return (
@@ -26,32 +27,53 @@ const Modal = ({ pos }) => {
 class Container extends Component {
 
   state = {
-    pos: { x: 0, y: 0, }
+    /*
+      ? initial offset needed and must be updated when document is resized to optimize calculation of new pos (hence preventing lag).
+      > Question is HOW?
+      // offset: { x: 0, y: 64 },
+    */
+    pos: { x: '50%', y: '50%', },
   }
 
   handlePos = (e) => {
-    console.log(e.offsetX, e.offsetY)
-    this.setState({ pos: {x: e.clientX, y: e.clientY,} })
+
+    const offsetLeft = e.target.offsetLeft
+    const offsetTop = e.target.offsetTop
+
+    /**
+     * client refers to the distance of the CURSOR from the document's top || left edges
+     * e.target.offset(Top || Left) refers to the distance of the ELEMENT's nearest edges to the document's top || left boundary
+     */
+
+    const newPos = {
+      x: e.clientX - offsetLeft,
+      y: e.clientY - offsetTop,
+    }
+
+    this.setState({ pos: newPos })
   }
 
   render() {
 
     const { pos } = this.state
+    const sides = rem(400)
 
     const defaultStyle = {
       border: '1px solid yellow',
-      height: rem(500),
+      borderRadius: '100%',
+      height: sides,
+      aspectRatio: '1/1',
       position: 'relative',
+      margin: '0 auto',
     }
 
     return (
       <div
         style={defaultStyle}
         onMouseEnter={this.handlePos}
+        // onMouseMove={this.handlePos} // > Test to see if code is optimized
       >
-        <Modal
-          pos={pos}
-        />
+        <Modal pos={pos} />
       </div>
     )
   }
@@ -60,10 +82,11 @@ class Container extends Component {
 class Level2Class extends Component {
 
   render() {
+    const Heading = () => <h2>Level 2</h2>
 
     return (
       <section>
-        <h2>Level 2</h2>
+        <Heading />
         <Container />
       </section>
     )
