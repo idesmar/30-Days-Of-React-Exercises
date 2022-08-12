@@ -1,29 +1,28 @@
 import makeID from './makeID'
 
-const Coded = ({ content }) => {
+const Code = ({ content }) => {
   return (
-    <pre
-      style={{tabSize: '2'}}
+    <code
+      style={{ fontStyle: 'italic' }}
     >
-      <code
-        style={{ fontStyle: 'italic' }}
-      >
-        {content}
-      </code>
-    </pre>
+      {content}
+    </code>
   )
 }
 
-// Note: return value is a fragment so it still needs to be enclosed in an element once imported
+// Note: return value is a fragment
 const hasCode = (str = '') => {
+  // NOTE: create a separate checker if the string has a code: hasCodeChecker
   const arr = str.split('`')
-  // get all odd array and pass it to coded
+
+  // ? Look into combining with code block (```codeBlock```)
   return (
     <>
       {
+        // all odd idx are to be coded
         arr.map((el, idx) => {
           return (idx % 2 === 1)
-            ? <Coded key={'code' + makeID()} content={el} />
+            ? <Code key={'code' + makeID()} content={el} />
             : el
         })
       }
