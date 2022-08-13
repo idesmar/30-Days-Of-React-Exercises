@@ -1,15 +1,20 @@
 import { Component } from 'react'
-import { rem } from './utils/unitConvert'
+import { colorMe } from './utils/colorFunc'
+import { rem, rem4 } from './utils/unitConvert'
 
 const Modal = ({ pos }) => {
-  // alt argument is { pos: {x, y} }
-  // origin of position is center of element
+  /* alt argument is { pos: {x, y} }
+     intersection: cursor point and center of element */
   const defaultStyle = {
-    textAlign: 'center',
-    backgroundColor: 'blue',
     width: 'max-content',
-    padding: '1rem',
+    padding: rem4(8, 16),
     borderRadius: '0.3rem',
+    backgroundColor: colorMe('dark'),
+    color: '#ffffff',
+    boxShadow: 'rgb(0 0 0 / 73%) -3px 6px 16px 0',
+    fontSize: rem(30),
+    fontWeight: '700',
+    textAlign: 'center',
     position: 'absolute',
     top: pos.y,
     left: pos.x,
@@ -18,7 +23,7 @@ const Modal = ({ pos }) => {
 
   return (
     <div style={defaultStyle}>
-      <p>30Days of React</p>
+      <p>30 Days Of React</p>
     </div>
   )
 }
@@ -28,7 +33,7 @@ class Container extends Component {
 
   state = {
     /*
-      ? initial offset needed and must be updated when document is resized to optimize calculation of new pos (hence preventing lag).
+      ? initial offset needed and must be updated when document is resized to optimize calculation of new pos (preventing lag).
       > Question is HOW?
       // offset: { x: 0, y: 64 },
     */
@@ -41,13 +46,12 @@ class Container extends Component {
     const offsetTop = e.target.offsetTop
 
     /**
-     * client refers to the distance of the CURSOR from the document's top || left edges
      * e.target.offset(Top || Left) refers to the distance of the ELEMENT's nearest edges to the document's top || left boundary
      */
 
     const newPos = {
-      x: e.clientX - offsetLeft,
-      y: e.clientY - offsetTop,
+      x: e.clientX - offsetLeft,    // clientX or pageX can be interchangeable here
+      y: e.pageY - offsetTop,       // pageY refers to top-most of document
     }
 
     this.setState({ pos: newPos })
@@ -59,19 +63,22 @@ class Container extends Component {
     const sides = rem(400)
 
     const defaultStyle = {
-      border: '1px solid yellow',
+      backgroundImage: 'linear-gradient(40deg, #0f172a, #5fdbfc50)',
+      boxShadow: '#00000026 -3px 15px 1rem 0px',
       borderRadius: '100%',
       height: sides,
       aspectRatio: '1/1',
       position: 'relative',
       margin: '0 auto',
+      marginBottom: rem(60),
     }
 
     return (
       <div
         style={defaultStyle}
         onMouseEnter={this.handlePos}
-        // onMouseMove={this.handlePos} // > Test to see if code is optimized
+        // onMouseMove={this.handlePos} // > Tester if code is optimized
+        className="globe"
       >
         <Modal pos={pos} />
       </div>
@@ -82,7 +89,14 @@ class Container extends Component {
 class Level2Class extends Component {
 
   render() {
-    const Heading = () => <h2>Level 2</h2>
+    const Heading = () => (
+      <>
+        <h2>Level 2</h2>
+        <small style={{ textAlign: 'center', display: 'block' }}>
+          Note that this solution is not optimized so the element may appear beyond the container's boundary
+        </small>
+      </>
+    )
 
     return (
       <section>

@@ -17,11 +17,14 @@
   {
     "_id": "q3",
     "question": "Write at least 4 keyboard events?",
-    "answer": "Only 3 keyboard events found in [MDN Source](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent#obsolete_events); one of which is obsolete.",
+    "answer": "Only 3 keyboard events found in source [1]; one of which is obsolete.",
     "list": [
       "`onKeyDown`",
       "`onKeyUp`",
       "`onKeyPress` obsolete in Javascript"
+    ],
+    "footnote": [
+      "[MDN Source](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent#obsolete_events)"
     ]
   },
   {
@@ -41,7 +44,7 @@
       "`onMouseMove`"
     ],
     "footnote": [
-      "1 mouseleave vs mouseout: [https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseout_event#mouseout_and_mouseleave](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseout_event#mouseout_and_mouseleave)"
+      "mouseleave vs mouseout: [MDN Source](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseout_event#mouseout_and_mouseleave)"
     ]
   },
   {
@@ -61,26 +64,26 @@
   {
     "_id": "q7",
     "question": "Write an event specific to form element?",
-    "answer": "`onSubmit`"
+    "answer": "`onSubmit={ e => e.preventDefault() }`"
   },
   {
     "_id": "q8",
     "question": "Display the coordinate of the view port when a mouse is moving on the body?",
-    "answer": "`onMouseMove={ (e) => console.log(e.offsetX, e.offsetY) }`"
+    "answer": "`onMouseMove={ (e) => console.log(e.clientX, e.clientY) }`"
   },
   {
     "_id": "q9",
     "question": "What is the difference between onInput, onChange and onBlur?",
     "answer": "The differences are listed below:",
     "list": [
-      "onInput triggers on every character keyed in. eg. if you type in 'react' in an input element, it will register: 'r', 're', ... 'react",
-      "onChange only triggers after desired entry has been keyed in. eg. in the same scenario, what will only register is 'react'",
-      "onBlur only triggers after the input element has lost focus. Note that onBlur will trigger AFTER onChange in the scenario being used in this section"
+      "`onInput` triggers on every character keyed in. eg. if you type in 'react' in an input element, it will register: 'r', 're', ... 'react",
+      "`onChange` only triggers after desired entry has been keyed in. eg. in the same scenario, what will only register is 'react'",
+      "`onBlur` only triggers after the input element has lost focus. Note that onBlur will trigger AFTER onChange in the scenario being used in this section"
     ]
   },
   {
     "_id": "q10",
     "question": "Where do we put the onSubmit event?",
-    "answer": "`onSubmit` event is placed on a form element"
+    "answer": "`onSubmit` event is placed in a form element"
   }
 ]

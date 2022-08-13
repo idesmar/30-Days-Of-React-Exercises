@@ -1,12 +1,15 @@
 import makeID from './makeID'
+import { rem } from './unitConvert'
 
 const Link = ({ text, href }) => (
   <a
     href={href}
     style={{
       textDecoration: 'none',
-      color: 'inherit',
+      color: '#ffffff',
       backgroundColor: 'green',
+      borderRadius: rem(8),
+      paddingInline: rem(10),
     }}
   >
     {text}
@@ -16,7 +19,8 @@ const Link = ({ text, href }) => (
 // Note: return value is a fragment
 const hasLink = (str = '') => {
   // NOTE: create a separate checker if the string has a link: hasLinkChecker
-  const mdLinkRegEx = /\[(.+?)\]\((.+?)\)/ // ? i: ignore case, g: global, m: multiline
+  const mdLinkRegEx = /\[(.+?)\]\((.+?)\)/gim
+  // ? flags i: ignore case, g: global, m: multiline
   const destructuredStr = str.split(mdLinkRegEx)
 
   return (
