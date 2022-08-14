@@ -1,0 +1,77 @@
+[
+  {
+    "_id": "q1",
+    "question": "What is the importance of form?",
+    "answer": ""
+  },
+  {
+    "_id": "q2",
+    "question": "How many input types do you know?",
+    "answer": ""
+  },
+  {
+    "_id": "q3",
+    "question": "Mention at least four attributes of an input element",
+    "answer": ""
+  },
+  {
+    "_id": "q4",
+    "question": "What is the importance of htmlFor?",
+    "answer": ""
+  },
+  {
+    "_id": "q5",
+    "question": "Write an input type which is not given in the example if there is?",
+    "answer": ""
+  },
+  {
+    "_id": "q6",
+    "question": "What is a controlled input?",
+    "answer": ""
+  },
+  {
+    "_id": "q7",
+    "question": "What do you need to write a controlled input?",
+    "answer": ""
+  },
+  {
+    "_id": "q8",
+    "question": "What event type do you use to listen changes on an input field?",
+    "answer": ""
+  },
+  {
+    "_id": "q9",
+    "question": "What is the value of a checked checkbox?",
+    "answer": ""
+  },
+  {
+    "_id": "q10",
+    "question": "When do you use onChange, onBlur, onSubmit?",
+    "answer": ""
+  },
+  {
+    "_id": "q11",
+    "question": "What is the purpose of writing e.preventDefault() inside the submit handler method?",
+    "answer": ""
+  },
+  {
+    "_id": "q12",
+    "question": "How do you bind data in React? The first input field example is data binding in React.",
+    "answer": ""
+  },
+  {
+    "_id": "q13",
+    "question": "What is validation?",
+    "answer": ""
+  },
+  {
+    "_id": "q14",
+    "question": "What is the event type you use to listen when an input changes?",
+    "answer": ""
+  },
+  {
+    "_id": "q15",
+    "question": "What are event types do you use to validate an input?",
+    "answer": ""
+  }
+]
