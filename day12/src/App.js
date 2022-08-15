@@ -1,3 +1,4 @@
+import { Sample } from './Sample/Sample'
 
 const App = () => {
 
@@ -5,7 +6,8 @@ const App = () => {
 
   return (
     <>
-	    <Heading />
+      <Heading />
+      <Sample />
     </>
   )
 }
