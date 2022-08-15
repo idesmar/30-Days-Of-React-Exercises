@@ -2,76 +2,118 @@
   {
     "_id": "q1",
     "question": "What is the importance of form?",
-    "answer": ""
+    "answer": "A form is important because it allows user input data to be collected."
   },
   {
     "_id": "q2",
     "question": "How many input types do you know?",
-    "answer": ""
+    "answer": "Just enough, for now."
   },
   {
     "_id": "q3",
     "question": "Mention at least four attributes of an input element",
-    "answer": ""
+    "answer": "Below are attributes that's been used in the past so far",
+    "list": [
+      "name",
+      "type",
+      "value",
+      "size",
+      "min",
+      "max",
+      "required",
+      "placeholder",
+      "checked"
+    ],
+    "footnote": [
+      "More reading: [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input)"
+    ]
   },
   {
     "_id": "q4",
     "question": "What is the importance of htmlFor?",
-    "answer": ""
+    "answer": "Since \"for\" is a reserved keyword in Javascript, htmlFor is used in its place."
   },
   {
     "_id": "q5",
     "question": "Write an input type which is not given in the example if there is?",
-    "answer": ""
+    "answer": "Below are some input type listed but not used in the last example",
+    "list": [
+      "range",
+      "password",
+      "url",
+      "image",
+      "hidden",
+      "datetime-local",
+      "month",
+      "week",
+      "time",
+      "reset",
+      "search",
+      "submit",
+      "button"
+    ],
+    "footnote": [
+      "More reading: [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input)"
+    ]
   },
   {
     "_id": "q6",
     "question": "What is a controlled input?",
-    "answer": ""
+    "answer": "A controlled input is the use of a callback like onChange to update its value."
   },
   {
     "_id": "q7",
     "question": "What do you need to write a controlled input?",
-    "answer": ""
+    "answer": "A controlled input is needed to update its value. If not done, the input will return to the original its original state/value after render."
   },
   {
     "_id": "q8",
     "question": "What event type do you use to listen changes on an input field?",
-    "answer": ""
+    "answer": "onChange"
   },
   {
     "_id": "q9",
     "question": "What is the value of a checked checkbox?",
-    "answer": ""
+    "answer": "true"
   },
   {
     "_id": "q10",
     "question": "When do you use onChange, onBlur, onSubmit?",
-    "answer": ""
+    "answer": "",
+    "list": [
+      "onChange is used to track the value of an input whenever there is any kind of change in it.",
+      "onBlur is used to track the change in an input only after losing focus. In the example given, it was used to initiate validation.",
+      "onSubmit is used, in the example, to prevent the default action of a form. If not prevented, the page will re-render, clear the form, and initiate the specified action (HTML inline) on the form, if any."
+    ]
   },
   {
     "_id": "q11",
     "question": "What is the purpose of writing e.preventDefault() inside the submit handler method?",
-    "answer": ""
+    "answer": "e.preventDefault() is used to stop the default action on forms which includes re-rendering of the page."
   },
   {
     "_id": "q12",
     "question": "How do you bind data in React? The first input field example is data binding in React.",
-    "answer": ""
+    "answer": "Data binding in React is using onChange in a controlled input to store and update it in a state variable."
   },
   {
     "_id": "q13",
     "question": "What is validation?",
-    "answer": ""
+    "answer": "Validation is a process to ensure that data entered is valid, follows the desired format and to prevent malicious users or data."
   },
   {
     "_id": "q14",
     "question": "What is the event type you use to listen when an input changes?",
-    "answer": ""
+    "answer": "onChange"
   },
   {
     "_id": "q15",
-    "question": "What are event types do you use to validate an input?",
-    "answer": ""
+    "question": "What are event types you use to validate an input?",
+    "answer": "Below are the event types used to validate input",
+    "list": [
+      "onBlur",
+      "onChange",
+      "onSubmit"
+    ]
   }
 ]
