@@ -1,4 +1,6 @@
-import { Sample } from './Sample/Sample'
+// import { Sample } from './Sample/Sample'
+import { Level1Func } from "./Level1/Level1"
+
 
 const App = () => {
 
@@ -7,7 +9,8 @@ const App = () => {
   return (
     <>
       <Heading />
-      <Sample />
+      {/* <Sample /> */}
+      <Level1Func />
     </>
   )
 }
