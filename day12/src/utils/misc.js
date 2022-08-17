@@ -44,13 +44,16 @@ const isOdd = (num) => num % 2 === 1
 const toTitleCase = (str = '') => {
   return (
     str.split(' ')
-      .map(subStr => (subStr[0].toUpperCase() + subStr.slice(1)))
+      .map(subStr => (subStr[0].toUpperCase() + subStr.slice(1).toLowerCase()))
+      .join(' ')
   )
 }
+
+const toProperCase = (str = '') => str[0].toUpperCase() + str.slice(1).toLowerCase()
 
 
 export {
   seqNumsArr,
   isPrime, isPrime0, isEven, isOdd,
-  toTitleCase,
+  toTitleCase, toProperCase,
 }
