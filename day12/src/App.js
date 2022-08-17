@@ -1,5 +1,6 @@
 // import { Sample } from './Sample/Sample'
 import { Level1Func } from "./Level1/Level1"
+import { Level2Func } from "./Level2/Level2"
 
 
 const App = () => {
@@ -10,7 +11,8 @@ const App = () => {
     <>
       <Heading />
       {/* <Sample /> */}
-      <Level1Func />
+      {/* <Level1Func /> */}
+      <Level2Func />
     </>
   )
 }
