@@ -124,7 +124,7 @@ const SignUpForm = () => {
             nonBinary: {
               id: 'non-binary',
               label: 'non-binary',
-              vale: 'non-binary',
+              value: 'non-binary',
             },
           },
         }
@@ -184,7 +184,7 @@ const SignUpForm = () => {
         />
 
         { // NOTE: for checking purposes only
-          // console.log(data)
+          console.log(data)
         }
 
         <button>Submit</button>
