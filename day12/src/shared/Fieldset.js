@@ -1,0 +1,83 @@
+import {
+  InputText,
+  InputRadios,
+  InputDate,
+  InputSelect,
+} from "./Inputs"
+import { toTitleCase } from "../utils/misc"
+
+const Fieldset = ({
+  field: {
+    legend,
+    body,
+  },
+  handleChange,
+}) => {
+
+  const parts = Object.keys(body)
+
+  /* // ? Broader browser support using for...in
+    const _parts = []
+    for (const _part in body) {
+      _parts.push(_part)
+    }
+  */
+
+  return (
+    <fieldset>
+      <legend>{toTitleCase(legend)}</legend>
+      {
+        parts.map((part, idx) => {
+          const { type, contents } = body[part]
+          const key = part + type + idx
+
+          switch (type) {
+            case 'text': {
+              return (
+                <InputText
+                  key={key}
+                  contents={contents}
+                  handleChange={handleChange}
+                />
+              )
+            }
+            case 'radio': {
+              return (
+                <InputRadios
+                  key={key}
+                  contents={contents}
+                  handleChange={handleChange}
+                />
+              )
+            }
+            case 'date': {
+              return (
+                <InputDate
+                  key={key}
+                  contents={contents}
+                  handleChange={handleChange}
+                />
+              )
+            }
+            case 'select': {
+              return (
+                <InputSelect
+                  key={key}
+                  contents={contents}
+                  handleChange={handleChange}
+                />
+              )
+            }
+            default: {
+              // > Uncomment below once all Input Components in this project is created
+              // console.error(`No component for ${body[part].type || 'part type'} in ${part}`)
+              return null
+            }
+          }
+        })
+      }
+    </fieldset>
+  )
+}
+
+export { Fieldset }

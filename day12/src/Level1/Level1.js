@@ -23,21 +23,25 @@ const QNA = () => {
     footnote: [],
   }])
 
-  // const getQna = async () => {
-  //   const res = await fetch('./data/level1qna.json')
-  //   const data = await res.json()
-  //   setQna(data)
-  // }
-
-  useEffect(() => {
-    console.count('useEffect')
-    // getQna()
-
-    const getData = async () => {
-      const data = await userServices.getQna()
+  /* // ? alternative to using userServices - fetch w/in the component
+    const getQna = async () => {
+      const res = await fetch('./data/level1qna.json')
+      const data = await res.json()
       setQna(data)
     }
-    getData()
+  */
+
+  useEffect(() => {
+    console.count('getQna useEffect')
+    /* // ? alternative to using userServices
+      getQna()
+     */
+
+    const getQna = async () => {
+      const qna = await userServices.getQna()
+      setQna(qna)
+    }
+    getQna()
   }, [])
 
   return (
