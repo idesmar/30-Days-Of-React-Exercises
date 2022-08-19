@@ -1,4 +1,4 @@
-import { toTitleCase } from '../utils/misc'
+import { toProperCase} from '../utils/misc' // ? Remove to use manual string format
 
 
 const InputText = ({
@@ -13,7 +13,7 @@ const InputText = ({
 
   return (
     <div>
-      <label htmlFor={id}>{toTitleCase(label)}: </label>
+      <label htmlFor={id}>{toProperCase(label)}: </label>
       <input
         type="text"
         name={name}
@@ -28,7 +28,7 @@ const InputText = ({
 
 const InputRadio = ({
   name,
-  contents: {
+  radioContents: {
     label,
     id,
     value,
@@ -38,7 +38,6 @@ const InputRadio = ({
 
   return (
     <div>
-      <label htmlFor="">{label}</label>
       <input
         type="radio"
         name={name}
@@ -46,6 +45,7 @@ const InputRadio = ({
         id={id}
         onChange={handleChange}
       />
+    <label htmlFor={id}>{label}</label>
     </div>
   )
 }
@@ -53,25 +53,95 @@ const InputRadio = ({
 const InputRadios = ({
   contents: {
     name,
-    radioValues,
+    radioOptions,
+    radiosLegend,
   },
   handleChange
 }) => {
 
-  const radios = Object.keys(radioValues)
+  const radios = Object.keys(radioOptions)
+
+  /* // ? Broader browser support using for...in
+    const _radios = []
+    for (key in radioOptions) {
+      _radios.push(key)
+    }
+  */
+
   return (
-    <div>
+    <fieldset>
+      <legend>{radiosLegend}</legend>
       {
         radios.map((radio, radioIdx) => (
           <InputRadio
-            key={name + radioIdx}
+            key={name + 'radio' + radioIdx}
             name={name}
-            contents={radioValues[radio]}
+            radioContents={radioOptions[radio]}
             handleChange={handleChange}
           />
         ))
       }
+    </fieldset>
+  )
+}
+
+
+const InputCheckbox = ({
+  name,
+  checkboxContents: {
+    label,
+    id,
+    value,
+  },
+  handleChange,
+}) => {
+
+  return (
+    <div>
+      <input
+        type="checkbox"
+        name={name}
+        id={id}
+        value={value}
+        onChange={handleChange}
+      />
+      <label htmlFor={id}>{label}</label>
     </div>
+  )
+}
+
+const InputCheckboxes = ({
+  contents: {
+    name,
+    checkboxOptions,
+    checkboxesLegend,
+  },
+  handleChange
+}) => {
+
+  const checkboxes = Object.keys(checkboxOptions)
+
+  /* // ? Broader browser support using for...in
+    const _checkboxes = []
+    for (key in checkboxOptions) {
+      _checkboxes.push(key)
+    }
+  */
+
+  return (
+    <fieldset>
+      <legend>{checkboxesLegend}</legend>
+      {
+        checkboxes.map((checkbox, checkboxIdx) => (
+          <InputCheckbox
+            key={name + 'checkbox' + checkboxIdx}
+            name={name}
+            checkboxContents={checkboxOptions[checkbox]}
+            handleChange={handleChange}
+          />
+        ))
+      }
+    </fieldset>
   )
 }
 
@@ -134,9 +204,11 @@ const InputSelect = ({
   )
 }
 
+
 export {
   InputText,
   InputRadios,
   InputDate,
   InputSelect,
+  InputCheckboxes
 }

@@ -2,7 +2,11 @@ import { useState, useEffect } from 'react'
 // import { Personal } from './_Personal'
 // import { Subscription } from './_Subscription'
 // import { Credentials } from './_Credentials'
-import { Fieldset } from '../../../shared/Fieldset'
+// import { Fieldset } from '../../../shared/Fieldset'
+import {
+  PersonalInformation,
+  SubscriptionDetails,
+} from './_FormSections'
 import { userServices } from '../../../services/userServices'
 
 /* Sign up form format:
@@ -31,8 +35,7 @@ submit
 
 const SignUpForm = () => {
 
-  const countryPlaceholder = 'Select your country'
-
+  const countryOptionsPlaceholder = 'Select your country'
   const [countries, setCountries] = useState([])
 
   useEffect(() => {
@@ -66,7 +69,15 @@ const SignUpForm = () => {
   )
 
   const handleChange = (e) => {
-    const { name, value, } = e.target
+    const { name, value, type, checked } = e.target
+    if (type === 'checkbox') {
+      setData(prev => {
+        const snapshot = { ...prev }
+        snapshot[name][value] = checked
+        return { ...prev, ...snapshot }
+      })
+      return
+    }
     setData(prev => ({ ...prev, [name]: value }))
   }
 
@@ -76,8 +87,8 @@ const SignUpForm = () => {
     gender,
     dob,
     country,
-    // plan,
-    // notifications,
+    plan,
+    notifications,
     // email,
     // username,
     // password,
@@ -110,7 +121,8 @@ const SignUpForm = () => {
         contents: {
           name: 'gender',
           value: gender,  // ? not being used; input component value is manually set below
-          radioValues: {
+          radiosLegend: 'please specify your gender',
+          radioOptions: {
             male: {
               id: 'male',
               label: 'male',
@@ -146,7 +158,7 @@ const SignUpForm = () => {
           id: 'country',
           name: 'country',
           options: [
-            countryPlaceholder,
+            countryOptionsPlaceholder,
             ...countries,
           ]
         }
@@ -154,10 +166,61 @@ const SignUpForm = () => {
     }
   }
 
-  // const subscription = {
-  //   plan,
-  //   notifications,
-  // }
+  const subscription = {
+    legend: 'subscription details',
+    body: {
+      plan: {
+        type: 'radio',
+        contents: {
+          name: 'plan',
+          value: plan,  // ? not being used; input component value is manually set below
+          radiosLegend: 'choose your plan',
+          radioOptions: {
+            free: {
+              id: 'free',
+              label: 'free',
+              value: 'free',
+            },
+            freePlus: {
+              id: 'freePlus',
+              label: 'free+',
+              value: 'freePlus',
+            },
+            freePlusPlus: {
+              id: 'freePlusPlus',
+              label: 'free++',
+              value: 'freePlusPlus',
+            },
+          },
+        }
+      },
+      notifications: {
+        type: 'checkbox',
+        contents: {
+          name: 'notifications',
+          value: notifications, // ? CHECK IF IT IT WILL BE USED
+          checkboxesLegend: 'what would you like to be notified',
+          checkboxOptions: {
+            promotions: {
+              id: 'promotions',
+              label: 'promotions',
+              value: 'promotions',
+            },
+            newsletter: {
+              id: 'newsletter',
+              label: 'newsletter',
+              value: 'newsletter',
+            },
+            updates: {
+              id: 'updates',
+              label: 'updates',
+              value: 'updates',
+            },
+          }
+        }
+      },
+    }
+  }
 
   // const credentials = {
   //   email,
@@ -168,7 +231,7 @@ const SignUpForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(data)
+    console.table(data)
   }
 
   return (
@@ -178,13 +241,17 @@ const SignUpForm = () => {
         <Subscription contents={subscription} handleChange={handleChange} />
         <Credentials contents={credentials} handleChange={handleChange} /> */}
 
-        <Fieldset
+        {/* <Fieldset
           field={personal}
           handleChange={handleChange}
-        />
+        /> */}
+
+        <PersonalInformation field={personal} handleChange={handleChange} />
+        <SubscriptionDetails field={subscription} handleChange={handleChange} />
 
         { // NOTE: for checking purposes only
-          console.log(data)
+          // console.log(data)
+          console.count('render')
         }
 
         <button>Submit</button>

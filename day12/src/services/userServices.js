@@ -7,7 +7,12 @@ const userServices = {
 
   getAllCountries: async () => {
     const res = await fetch('https://restcountries.com/v3.1/all')
-    return await res.json()
+    /*
+      ! Create an error handler for fetching data
+      Note: data being fetched is an array of objects
+    */
+    const countries = await res.json()
+    return countries
   }
 
   // more services here

@@ -3,8 +3,10 @@ import {
   InputRadios,
   InputDate,
   InputSelect,
+  InputCheckboxes,
 } from "./Inputs"
-import { toTitleCase } from "../utils/misc"
+import { toTitleCase } from "../utils/misc" // ? Remove to use manual string format
+
 
 const Fieldset = ({
   field: {
@@ -62,6 +64,15 @@ const Fieldset = ({
             case 'select': {
               return (
                 <InputSelect
+                  key={key}
+                  contents={contents}
+                  handleChange={handleChange}
+                />
+              )
+            }
+            case 'checkbox': {
+              return (
+                <InputCheckboxes
                   key={key}
                   contents={contents}
                   handleChange={handleChange}
