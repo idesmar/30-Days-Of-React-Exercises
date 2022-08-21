@@ -40,7 +40,7 @@ const SignUpForm = () => {
   const [countries, setCountries] = useState([])
 
   useEffect(() => {
-     // ! suspended until error handle is created
+    /* // ! suspended until error handler is created
       const getAllCountries = async () => {
         const allCountries = await userServices.getAllCountries()
         const countryNames = allCountries.map(country => country.name.common)
@@ -48,7 +48,7 @@ const SignUpForm = () => {
         setCountries([...sortedCountries])
       }
       getAllCountries()
-
+    */
   }, [])
 
   const [data, setData] = useState(
@@ -75,10 +75,16 @@ const SignUpForm = () => {
     const { name, value, type, checked } = e.target
     if (type === 'checkbox') {
       setData(prev => {
+        /*
+          deep copy prev to snapshot,
+          use snapshot to change desired state property value,
+          then combine; essentially snapshot will replace prev
+        */
         const snapshot = { ...prev }
         snapshot[name][value] = checked
         return { ...prev, ...snapshot }
       })
+      // > Make sure to include return to prevent code reaching default setData()
       return
     }
     setData(prev => ({ ...prev, [name]: value }))
@@ -201,8 +207,8 @@ const SignUpForm = () => {
         type: 'checkbox',
         contents: {
           name: 'notifications',
-          value: notifications, // ? CHECK IF IT IT WILL BE USED
-          checkboxesLegend: 'what would you like to be notified',
+          value: notifications, // ? not being used; input component value is manually set below
+          checkboxesLegend: 'get notified about?',
           checkboxOptions: {
             promotions: {
               id: 'promotions',
@@ -260,7 +266,7 @@ const SignUpForm = () => {
         contents: {
           name: 'password2',
           value: password2,
-          label: 'password2',
+          label: 're-type password',
           id: 'password2',
         }
       },
@@ -290,7 +296,7 @@ const SignUpForm = () => {
         <SubscriptionDetails field={subscription} handleChange={handleChange} />
         <SetupCredentials field={credentials} handleChange={handleChange} />
 
-        { // NOTE: for checking purposes only
+        { // NOTE: for TESTING purposes only
           // console.log(data)
           console.count('render')
         }

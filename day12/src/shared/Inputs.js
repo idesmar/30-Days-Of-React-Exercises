@@ -192,7 +192,7 @@ const InputSelect = ({
           options.map((option,) => {
             return (
               <option
-                key={name + option}
+                key={`${name} ${option}`}
                 value={option}
               >
                 {option}
@@ -272,9 +272,9 @@ const InputPassword = ({
 export {
   InputText,
   InputRadios,
+  InputCheckboxes,
   InputDate,
   InputSelect,
-  InputCheckboxes,
   InputEmail,
   InputPassword,
 }
