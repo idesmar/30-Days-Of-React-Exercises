@@ -13,7 +13,7 @@ const InputText = ({
 
   return (
     <div>
-      <label htmlFor={id}>{toProperCase(label)}: </label>
+      <label htmlFor={id}>{toProperCase(label)}:</label>
       <input
         type="text"
         name={name}
@@ -157,7 +157,7 @@ const InputDate = ({
 
   return (
     <div>
-      <label htmlFor={id}>{label}: </label>
+      <label htmlFor={id}>{label}:</label>
       <input
         type="date"
         name={name}
@@ -181,7 +181,7 @@ const InputSelect = ({
 
   return (
     <div>
-      <label htmlFor={id}>{label}: </label>
+      <label htmlFor={id}>{label}:</label>
       <select
         name={name}
         id={id}
@@ -205,10 +205,58 @@ const InputSelect = ({
 }
 
 
+const InputEmail = ({
+  contents: {
+    name,
+    label,
+    id,
+  },
+  handleChange,
+}) => {
+
+  return (
+    <div>
+      <label htmlFor={id}>{label}</label>
+      <input
+        type="email"
+        name={name}
+        id={id}
+        onChange={handleChange}
+      />
+    </div>
+  )
+}
+
+
+const InputPassword = ({
+  contents: {
+    name,
+    label,
+    id,
+  },
+  handleChange,
+}) => {
+
+  return (
+    <div>
+      <label htmlFor={id}>{label}:</label>
+      <input
+        type="password"
+        name={name}
+        id={id}
+        onChange={handleChange}
+      />
+    </div>
+  )
+}
+
+
 export {
   InputText,
   InputRadios,
   InputDate,
   InputSelect,
-  InputCheckboxes
+  InputCheckboxes,
+  InputEmail,
+  InputPassword,
 }

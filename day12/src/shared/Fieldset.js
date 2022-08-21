@@ -4,6 +4,8 @@ import {
   InputDate,
   InputSelect,
   InputCheckboxes,
+  InputEmail,
+  InputPassword,
 } from "./Inputs"
 import { toTitleCase } from "../utils/misc" // ? Remove to use manual string format
 
@@ -73,6 +75,24 @@ const Fieldset = ({
             case 'checkbox': {
               return (
                 <InputCheckboxes
+                  key={key}
+                  contents={contents}
+                  handleChange={handleChange}
+                />
+              )
+            }
+            case 'email': {
+              return (
+                <InputEmail
+                  key={key}
+                  contents={contents}
+                  handleChange={handleChange}
+                />
+              )
+            }
+            case 'password': {
+              return (
+                <InputPassword
                   key={key}
                   contents={contents}
                   handleChange={handleChange}
