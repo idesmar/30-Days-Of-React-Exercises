@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { toProperCase} from '../utils/misc' // ? Remove to use manual string format
 
 
@@ -237,15 +238,32 @@ const InputPassword = ({
   handleChange,
 }) => {
 
+  const [hiddenPassword, setHiddenPassword] = useState(true)
+
+  const passwordCheckboxContents = {
+    label: hiddenPassword ? `show password` : `hide password`,
+    id: id + 'checkbox',
+  }
+
+  const handlePasswordVisibility = () => {
+    setHiddenPassword(prev => !prev)
+  }
+
   return (
     <div>
       <label htmlFor={id}>{label}:</label>
       <input
-        type="password"
+        type={hiddenPassword ? 'password' : 'text'}
         name={name}
         id={id}
         onChange={handleChange}
       />
+
+      <InputCheckbox
+        checkboxContents={passwordCheckboxContents}
+        handleChange={handlePasswordVisibility}
+      />
+
     </div>
   )
 }
