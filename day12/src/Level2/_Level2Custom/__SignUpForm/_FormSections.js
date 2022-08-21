@@ -14,7 +14,15 @@ const SubscriptionDetails = ({ field, handleChange }) => (
   />
 )
 
+const SetupCredentials = ({ field, handleChange }) => (
+  <Fieldset
+    field={field}
+    handleChange={handleChange}
+  />
+)
+
 export {
   PersonalInformation,
   SubscriptionDetails,
+  SetupCredentials,
 }

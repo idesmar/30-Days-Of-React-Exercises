@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react'
 import {
   PersonalInformation,
   SubscriptionDetails,
+  SetupCredentials,
 } from './_FormSections'
 import { userServices } from '../../../services/userServices'
 
@@ -39,13 +40,15 @@ const SignUpForm = () => {
   const [countries, setCountries] = useState([])
 
   useEffect(() => {
-    const getAllCountries = async () => {
-      const allCountries = await userServices.getAllCountries()
-      const countryNames = allCountries.map(country => country.name.common)
-      const sortedCountries = [...countryNames].sort()
-      setCountries([...sortedCountries])
-    }
-    getAllCountries()
+     // ! suspended until error handle is created
+      const getAllCountries = async () => {
+        const allCountries = await userServices.getAllCountries()
+        const countryNames = allCountries.map(country => country.name.common)
+        const sortedCountries = [...countryNames].sort()
+        setCountries([...sortedCountries])
+      }
+      getAllCountries()
+
   }, [])
 
   const [data, setData] = useState(
@@ -89,10 +92,10 @@ const SignUpForm = () => {
     country,
     plan,
     notifications,
-    // email,
-    // username,
-    // password,
-    // password2,
+    email,
+    username,
+    password,
+    password2,
   } = data
 
   const personal = {
@@ -222,12 +225,47 @@ const SignUpForm = () => {
     }
   }
 
-  // const credentials = {
-  //   email,
-  //   username,
-  //   password,
-  //   password2,
-  // }
+  const credentials = {
+    legend: 'setup credentials',
+    body: {
+      email: {
+        type: 'email',
+        contents: {
+          name: 'email',
+          value: email,
+          label: 'email',
+          id: 'email',
+        },
+      },
+      username: {
+        type: 'text',
+        contents: {
+          name: 'username',
+          value: username,
+          label: 'username',
+          id: 'username',
+        },
+      },
+      password: {
+        type: 'password',
+        contents: {
+          name: 'password',
+          value: password,
+          label: 'password',
+          id: 'password',
+        }
+      },
+      password2: {
+        type: 'password',
+        contents: {
+          name: 'password2',
+          value: password2,
+          label: 'password2',
+          id: 'password2',
+        }
+      },
+    },
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -237,17 +275,20 @@ const SignUpForm = () => {
   return (
     <div>
       <form onSubmit={handleSubmit} noValidate >
-        {/* <Personal contents={personal} handleChange={handleChange} />
-        <Subscription contents={subscription} handleChange={handleChange} />
-        <Credentials contents={credentials} handleChange={handleChange} /> */}
+        {/*
+          <Personal contents={personal} handleChange={handleChange} />
+          <Subscription contents={subscription} handleChange={handleChange} />
+          <Credentials contents={credentials} handleChange={handleChange} />
 
-        {/* <Fieldset
-          field={personal}
-          handleChange={handleChange}
-        /> */}
+          <Fieldset
+            field={personal}
+            handleChange={handleChange}
+          />
+        */}
 
         <PersonalInformation field={personal} handleChange={handleChange} />
         <SubscriptionDetails field={subscription} handleChange={handleChange} />
+        <SetupCredentials field={credentials} handleChange={handleChange} />
 
         { // NOTE: for checking purposes only
           // console.log(data)
