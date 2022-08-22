@@ -18,6 +18,7 @@ const InputText = ({
     name,
     id,
     label,
+    required,
   },
   handleChange,
   handleBlur,
@@ -38,6 +39,7 @@ const InputText = ({
         value={value}
         onChange={handleChange}
         onBlur={handleBlur}
+        required={required}
       />
       {errorMsg}
     </div>
@@ -170,6 +172,7 @@ const InputDate = ({
     label,
     id,
     name,
+    required,
   },
   handleChange
 }) => {
@@ -182,6 +185,7 @@ const InputDate = ({
         name={name}
         id={id}
         onChange={handleChange}
+        required={required}
       />
     </div>
   )
@@ -194,6 +198,7 @@ const InputSelect = ({
     name,
     id,
     options,
+    required,
   },
   handleChange
 }) => {
@@ -205,6 +210,7 @@ const InputSelect = ({
         name={name}
         id={id}
         onChange={handleChange}
+        required={required}
       >
         {
           options.map((option,) => {
@@ -229,6 +235,8 @@ const InputEmail = ({
     name,
     label,
     id,
+    value,
+    required,
   },
   handleChange,
   handleBlur,
@@ -246,8 +254,10 @@ const InputEmail = ({
         type="email"
         name={name}
         id={id}
+        value={value}
         onChange={handleChange}
         onBlur={handleBlur}
+        required={required}
       />
       {errorMsg}
     </div>
@@ -260,6 +270,7 @@ const InputPassword = ({
     name,
     label,
     id,
+    required,
   },
   handleChange,
   handleBlur,
@@ -290,6 +301,7 @@ const InputPassword = ({
         id={id}
         onChange={handleChange}
         onBlur={handleBlur}
+        required={required}
       />
 
       {errorMsg}

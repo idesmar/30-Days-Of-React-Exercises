@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react'
-// import { Personal } from './_Personal'
-// import { Subscription } from './_Subscription'
-// import { Credentials } from './_Credentials'
-// import { Fieldset } from '../../../shared/Fieldset'
 import {
   PersonalInformation,
   SubscriptionDetails,
   SetupCredentials,
 } from './_FormSections'
 import { userServices } from '../../../services/userServices'
+import { toTitleCase } from '../../../utils/misc'
 
+/* // TODO:
+  see if 'required' attribute is needed
+    how to apply this to [input='radio'] and [input='checkbox']
+*/
 /* Sign up form format:
 
 * Personal information
@@ -114,6 +115,7 @@ const SignUpForm = () => {
           name: 'firstName',
           id: 'firstName',
           label: 'first name',
+          required: true,
         }
       },
       lastName: {
@@ -123,6 +125,7 @@ const SignUpForm = () => {
           name: 'lastName',
           id: 'lastName',
           label: 'last name',
+          required: true,
         }
       },
       gender: {
@@ -157,6 +160,7 @@ const SignUpForm = () => {
           id: 'dob',
           name: 'dob',
           value: dob, // ? not being used; input type does not require any control from parent component
+          required: true,
         },
       },
       country: {
@@ -169,7 +173,8 @@ const SignUpForm = () => {
           options: [
             countryOptionsPlaceholder,
             ...countries,
-          ]
+          ],
+          required: true,
         }
       },
     }
@@ -241,6 +246,7 @@ const SignUpForm = () => {
           value: email,
           label: 'email',
           id: 'email',
+          required: true,
         },
       },
       username: {
@@ -250,6 +256,7 @@ const SignUpForm = () => {
           value: username,
           label: 'username',
           id: 'username',
+          required: true,
         },
       },
       password: {
@@ -259,6 +266,7 @@ const SignUpForm = () => {
           value: password,
           label: 'password',
           id: 'password',
+          required: true,
         }
       },
       password2: {
@@ -268,6 +276,7 @@ const SignUpForm = () => {
           value: password2,
           label: 're-type password',
           id: 'password2',
+          required: true,
         }
       },
     },
@@ -297,6 +306,7 @@ const SignUpForm = () => {
   })
 
   const errorMsgs = {
+    empty: 'cannot be blank',
     firstName: 'first name format is invalid',
     lastName: 'last name format is invalid',
     email: 'email is invalid',
@@ -306,6 +316,7 @@ const SignUpForm = () => {
 
   const handleBlur = (e) => {
     const { name, value, } = e.target
+
     const isNameFormatValid = (name) => {
       // source: https://stackoverflow.com/questions/2385701/regular-expression-for-first-and-last-name
       const nameRegEx = /^[^0-9_!¡?÷?¿/\\+=@#$%^&*(){}|~<>;:[\]]{2,}$/ // ! test more
@@ -324,7 +335,15 @@ const SignUpForm = () => {
     }
 
     const validationList = Object.keys(dataChecker)
-    if (validationList.includes(name) && !dataChecker[name].touched) {
+
+    // > guard clause in case any named input that does not have a validation is passed
+    if (!validationList.includes(name)) {
+      // ? 'password' triggers error
+      // console.error(`${name} is not included in validation list. Include to proceed.`)
+      return
+    }
+
+    if (!dataChecker[name].touched) {
       setDataChecker(prev => {
         const snapshot = { ...prev }
         snapshot[name].touched = true
@@ -335,25 +354,47 @@ const SignUpForm = () => {
     let isValid = true
     if (name === 'firstName' || name === 'lastName') {
       isValid = isNameFormatValid(value)
-      // * format value appropriately
+      isValid && setData(prev => {
+        const snapshot = { ...prev }
+        snapshot[name] = toTitleCase(snapshot[name])
+        return { ...prev, ...snapshot }
+      })
     }
     if (name === 'email') {
       isValid = isEmailValid(value)
-      // * format value appropriately
+      isValid && setData(prev => {
+        const snapshot = { ...prev }
+        snapshot[name] = snapshot[name].toLowerCase()
+        return { ...prev, ...snapshot }
+      })
     }
     if (name === 'username') {
       isValid = isUsernameValid(value)
+      isValid && setData(prev => {
+        const snapshot = { ...prev }
+        snapshot[name] = snapshot[name].toLowerCase()
+        return { ...prev, ...snapshot }
+      })
     }
     if (name === 'password2') {
       isValid = isPasswordMatching(data.password, value)
     }
 
-    !isValid && setDataChecker(prev => {
-      const snapshot = { ...prev }
-      snapshot[name].error = errorMsgs[name]
-      return {...prev, ...snapshot}
-    })
-
+    !isValid
+      /* assign error message */
+      ? setDataChecker(prev => {
+        const snapshot = { ...prev }
+        snapshot[name].error = value === ''
+          ? errorMsgs.empty
+          : errorMsgs[name]
+        return { ...prev, ...snapshot }
+      })
+      /* remove error message */
+      : setDataChecker(prev => {
+        const snapshot = { ...prev }
+        snapshot[name].error = ''
+        return { ...prev, ...snapshot }
+      })
   }
 
   const handleSubmit = (e) => {
@@ -364,16 +405,6 @@ const SignUpForm = () => {
   return (
     <div>
       <form onSubmit={handleSubmit} noValidate >
-        {/*
-          <Personal contents={personal} handleChange={handleChange} />
-          <Subscription contents={subscription} handleChange={handleChange} />
-          <Credentials contents={credentials} handleChange={handleChange} />
-
-          <Fieldset
-            field={personal}
-            handleChange={handleChange}
-          />
-        */}
 
         <PersonalInformation
           field={personal}
@@ -381,12 +412,16 @@ const SignUpForm = () => {
           handleBlur={handleBlur}
           dataChecker={dataChecker}
         />
+
         <SubscriptionDetails
           field={subscription}
           handleChange={handleChange}
-          handleBlur={handleBlur} // ? Optional, currently data in this section do not require validation
+          handleBlur={handleBlur}
+          /* // ? handleBLur is OPTIONAL in this section,
+            no data here requires validation */
           dataChecker={dataChecker}
         />
+
         <SetupCredentials
           field={credentials}
           handleChange={handleChange}
