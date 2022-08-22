@@ -3,7 +3,9 @@ import { Personal } from "./__Personal"
 // import { Subscription } from "./__Subscription"
 // import { Credentials } from "./__Credentials"
 
-
+/** // ! ABANDONED
+ * state and input template is combined in this component's child creating a complicated structure
+ */
 /* Sign up form format:
 
 * Personal information
