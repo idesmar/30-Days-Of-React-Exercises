@@ -3,6 +3,14 @@ import { Personal } from './_Personal'
 import { Subscription } from './_Subscription'
 import { Credentials } from './_Credentials'
 
+/** // ! ABANDONED
+ * private component causing input to lose focus after each keydown
+    - PersonalInformation
+    - SubscriptionDetails
+    - UserCredentialDetails
+  * main should have this fixed by turning previously private component to an independent component (outside of parent component and ensuring that props are properly passed)
+ */
+
 /* Sign up form format:
 
 * Personal information
