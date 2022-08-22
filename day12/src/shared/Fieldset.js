@@ -16,6 +16,8 @@ const Fieldset = ({
     body,
   },
   handleChange,
+  handleBlur,
+  dataChecker,
 }) => {
 
   const parts = Object.keys(body)
@@ -25,6 +27,13 @@ const Fieldset = ({
     for (const _part in body) {
       _parts.push(_part)
     }
+  */
+
+
+  /* handleBlur on input types:
+    text        :  firstName, lastName
+    email       :  email
+    password    :  password2
   */
 
   return (
@@ -42,6 +51,8 @@ const Fieldset = ({
                   key={key}
                   contents={contents}
                   handleChange={handleChange}
+                  handleBlur={handleBlur}
+                  dataChecker={dataChecker}
                 />
               )
             }
@@ -87,6 +98,8 @@ const Fieldset = ({
                   key={key}
                   contents={contents}
                   handleChange={handleChange}
+                  handleBlur={handleBlur}
+                  dataChecker={dataChecker}
                 />
               )
             }
@@ -96,6 +109,8 @@ const Fieldset = ({
                   key={key}
                   contents={contents}
                   handleChange={handleChange}
+                  handleBlur={handleBlur}
+                  dataChecker={dataChecker}
                 />
               )
             }

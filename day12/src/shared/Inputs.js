@@ -2,6 +2,16 @@ import { useState } from 'react'
 import { toProperCase} from '../utils/misc' // ? Remove to use manual string format
 
 
+const ErrorMessage = ({ err }) => (
+  <small
+    style={{
+      display: 'block',
+    }}
+  >
+    {err}
+  </small>
+)
+
 const InputText = ({
   contents: {
     value,
@@ -9,8 +19,14 @@ const InputText = ({
     id,
     label,
   },
-  handleChange
+  handleChange,
+  handleBlur,
+  dataChecker,
 }) => {
+
+  const errorMsg = dataChecker[name].touched
+    && dataChecker[name].error
+    && <ErrorMessage err={dataChecker[name].error} />
 
   return (
     <div>
@@ -21,7 +37,9 @@ const InputText = ({
         id={id}
         value={value}
         onChange={handleChange}
+        onBlur={handleBlur}
       />
+      {errorMsg}
     </div>
   )
 }
@@ -213,7 +231,13 @@ const InputEmail = ({
     id,
   },
   handleChange,
+  handleBlur,
+  dataChecker,
 }) => {
+
+  const errorMsg = dataChecker[name].touched
+    && dataChecker[name].error
+    && <ErrorMessage err={dataChecker[name].error} />
 
   return (
     <div>
@@ -223,7 +247,9 @@ const InputEmail = ({
         name={name}
         id={id}
         onChange={handleChange}
+        onBlur={handleBlur}
       />
+      {errorMsg}
     </div>
   )
 }
@@ -236,6 +262,8 @@ const InputPassword = ({
     id,
   },
   handleChange,
+  handleBlur,
+  dataChecker,
 }) => {
 
   const [hiddenPassword, setHiddenPassword] = useState(true)
@@ -249,6 +277,10 @@ const InputPassword = ({
     setHiddenPassword(prev => !prev)
   }
 
+  const errorMsg = dataChecker.password2.touched
+  && dataChecker.password2.error
+  && <ErrorMessage err={dataChecker.password2.error} />
+
   return (
     <div>
       <label htmlFor={id}>{label}:</label>
@@ -257,7 +289,10 @@ const InputPassword = ({
         name={name}
         id={id}
         onChange={handleChange}
+        onBlur={handleBlur}
       />
+
+      {errorMsg}
 
       <InputCheckbox
         checkboxContents={passwordCheckboxContents}

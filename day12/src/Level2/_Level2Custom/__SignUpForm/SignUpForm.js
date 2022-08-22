@@ -273,6 +273,89 @@ const SignUpForm = () => {
     },
   }
 
+  const [dataChecker, setDataChecker] = useState({
+    firstName: {
+      touched: false,
+      error: '',
+    },
+    lastName: {
+      touched: false,
+      error: '',
+    },
+    email: {
+      touched: false,
+      error: '',
+    },
+    username: {
+      touched: false,
+      error: '',
+    },
+    password2: {
+      touched: false,
+      error: '',
+    },
+  })
+
+  const errorMsgs = {
+    firstName: 'first name format is invalid',
+    lastName: 'last name format is invalid',
+    email: 'email is invalid',
+    username: 'username must be at least 6 characters and can only contain letters, numbers, -, and _',
+    password2: 'passwords do not match',
+  }
+
+  const handleBlur = (e) => {
+    const { name, value, } = e.target
+    const isNameFormatValid = (name) => {
+      // source: https://stackoverflow.com/questions/2385701/regular-expression-for-first-and-last-name
+      const nameRegEx = /^[^0-9_!¡?÷?¿/\\+=@#$%^&*(){}|~<>;:[\]]{2,}$/ // ! test more
+      return nameRegEx.test(name)
+    }
+    const isEmailValid = (email = '') => {
+      const emailRegEx = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/
+      return emailRegEx.test(email)
+    }
+    const isUsernameValid = (username = '') => {
+      const usernameRegEx = /\w+/
+      return usernameRegEx.test(username) && username.length >= 6
+    }
+    const isPasswordMatching = (password = '', password2 = '') => {
+      return password && password2 && password === password2
+    }
+
+    const validationList = Object.keys(dataChecker)
+    if (validationList.includes(name) && !dataChecker[name].touched) {
+      setDataChecker(prev => {
+        const snapshot = { ...prev }
+        snapshot[name].touched = true
+        return { ...prev, ...snapshot }
+      })
+    }
+
+    let isValid = true
+    if (name === 'firstName' || name === 'lastName') {
+      isValid = isNameFormatValid(value)
+      // * format value appropriately
+    }
+    if (name === 'email') {
+      isValid = isEmailValid(value)
+      // * format value appropriately
+    }
+    if (name === 'username') {
+      isValid = isUsernameValid(value)
+    }
+    if (name === 'password2') {
+      isValid = isPasswordMatching(data.password, value)
+    }
+
+    !isValid && setDataChecker(prev => {
+      const snapshot = { ...prev }
+      snapshot[name].error = errorMsgs[name]
+      return {...prev, ...snapshot}
+    })
+
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault()
     console.table(data)
@@ -292,13 +375,29 @@ const SignUpForm = () => {
           />
         */}
 
-        <PersonalInformation field={personal} handleChange={handleChange} />
-        <SubscriptionDetails field={subscription} handleChange={handleChange} />
-        <SetupCredentials field={credentials} handleChange={handleChange} />
+        <PersonalInformation
+          field={personal}
+          handleChange={handleChange}
+          handleBlur={handleBlur}
+          dataChecker={dataChecker}
+        />
+        <SubscriptionDetails
+          field={subscription}
+          handleChange={handleChange}
+          handleBlur={handleBlur} // ? Optional, currently data in this section do not require validation
+          dataChecker={dataChecker}
+        />
+        <SetupCredentials
+          field={credentials}
+          handleChange={handleChange}
+          handleBlur={handleBlur}
+          dataChecker={dataChecker}
+        />
 
         { // NOTE: for TESTING purposes only
           // console.log(data)
-          console.count('render')
+          // console.count('render')
+          // console.log(dataChecker)
         }
 
         <button>Submit</button>
