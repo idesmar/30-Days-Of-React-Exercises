@@ -3,6 +3,20 @@
 ## Content
 Solutions to exercises from [30 Days of React](https://github.com/Asabeneh/30-Days-Of-React) by [Asabeneh](https://github.com/Asabeneh) that require CRA (create-react-app)
 
+## Daily READMEs
+| Day | Scope |
+|:-:|:-|
+|[Day 3](./day03lev0203/README.md) | Setting Up|
+|[Day 4](./day04lev0203/README.md) | Components|
+|[Day 5](./day05/README.md) | Props|
+|[Day 6](./day06/README.md) | Map List Keys|
+|[Day 7](./day07/README.md) | Class Components|
+|[Day 8](./day08/README.md) | States|
+|[Day 9](./day09/README.md) | Conditional Rendering|
+|[Day 10](./day10/README.md) | React Folder Structure|
+|[Day 11](./day11/README.md) | Events|
+|[Day 12](./day12/README.md) | Forms|
+
 ## Sub Repo Name
 * day***DD***lev***LL***... - With missing Level Exercises
   * ***DD*** - day of *30 Days of React*
