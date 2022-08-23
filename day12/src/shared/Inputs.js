@@ -1,6 +1,11 @@
 import { useState } from 'react'
 import { toProperCase} from '../utils/misc' // ? Remove to use manual string format
 
+/* // TODO: make errorMsg DRY
+  make a separate function and store result in errorMsg
+  errorMsg = checkErrors() && <ErrorMessage err={checkErrors()} />
+*/
+const missingDataOnSubmitErrorMessage = 'Do not leave blank'
 
 const ErrorMessage = ({ err }) => (
   <small
@@ -23,11 +28,18 @@ const InputText = ({
   handleChange,
   handleBlur,
   dataChecker,
+  missingDataOnSubmit,
 }) => {
 
-  const errorMsg = dataChecker[name].touched
-    && dataChecker[name].error
-    && <ErrorMessage err={dataChecker[name].error} />
+  const errorMsg = () => {
+    if (dataChecker[name].touched && dataChecker[name].error) {
+      return <ErrorMessage err={dataChecker[name].error} />
+    }
+    if (missingDataOnSubmit.includes(name)) {
+      return <ErrorMessage err={missingDataOnSubmitErrorMessage} />
+    }
+    return null
+  }
 
   return (
     <div>
@@ -41,7 +53,7 @@ const InputText = ({
         onBlur={handleBlur}
         required={required}
       />
-      {errorMsg}
+      {errorMsg()}
     </div>
   )
 }
@@ -77,7 +89,8 @@ const InputRadios = ({
     radioOptions,
     radiosLegend,
   },
-  handleChange
+  handleChange,
+  missingDataOnSubmit,
 }) => {
 
   const radios = Object.keys(radioOptions)
@@ -88,6 +101,13 @@ const InputRadios = ({
       _radios.push(key)
     }
   */
+
+    const errorMsg = () => {
+      if (missingDataOnSubmit.includes(name)) {
+        return <ErrorMessage err={missingDataOnSubmitErrorMessage} />
+      }
+      return null
+    }
 
   return (
     <fieldset>
@@ -102,6 +122,7 @@ const InputRadios = ({
           />
         ))
       }
+      {errorMsg()}
     </fieldset>
   )
 }
@@ -137,7 +158,7 @@ const InputCheckboxes = ({
     checkboxOptions,
     checkboxesLegend,
   },
-  handleChange
+  handleChange,
 }) => {
 
   const checkboxes = Object.keys(checkboxOptions)
@@ -174,8 +195,16 @@ const InputDate = ({
     name,
     required,
   },
-  handleChange
+  handleChange,
+  missingDataOnSubmit,
 }) => {
+
+  const errorMsg = () => {
+     if (missingDataOnSubmit.includes(name)) {
+      return <ErrorMessage err={missingDataOnSubmitErrorMessage} />
+    }
+    return null
+  }
 
   return (
     <div>
@@ -187,6 +216,7 @@ const InputDate = ({
         onChange={handleChange}
         required={required}
       />
+      {errorMsg()}
     </div>
   )
 }
@@ -200,8 +230,16 @@ const InputSelect = ({
     options,
     required,
   },
-  handleChange
+  handleChange,
+  missingDataOnSubmit,
 }) => {
+
+  const errorMsg = () => {
+    if (missingDataOnSubmit.includes(name)) {
+      return <ErrorMessage err={missingDataOnSubmitErrorMessage} />
+    }
+    return null
+  }
 
   return (
     <div>
@@ -225,6 +263,7 @@ const InputSelect = ({
           })
         }
       </select>
+      {errorMsg()}
     </div>
   )
 }
@@ -241,11 +280,18 @@ const InputEmail = ({
   handleChange,
   handleBlur,
   dataChecker,
+  missingDataOnSubmit,
 }) => {
 
-  const errorMsg = dataChecker[name].touched
-    && dataChecker[name].error
-    && <ErrorMessage err={dataChecker[name].error} />
+  const errorMsg = () => {
+    if (dataChecker[name].touched && dataChecker[name].error) {
+      return <ErrorMessage err={dataChecker[name].error} />
+    }
+    if (missingDataOnSubmit.includes(name)) {
+      return <ErrorMessage err={missingDataOnSubmitErrorMessage} />
+    }
+    return null
+  }
 
   return (
     <div>
@@ -259,7 +305,7 @@ const InputEmail = ({
         onBlur={handleBlur}
         required={required}
       />
-      {errorMsg}
+      {errorMsg()}
     </div>
   )
 }
@@ -275,6 +321,7 @@ const InputPassword = ({
   handleChange,
   handleBlur,
   dataChecker,
+  missingDataOnSubmit,
 }) => {
 
   const [hiddenPassword, setHiddenPassword] = useState(true)
@@ -288,9 +335,15 @@ const InputPassword = ({
     setHiddenPassword(prev => !prev)
   }
 
-  const errorMsg = dataChecker.password2.touched
-  && dataChecker.password2.error
-  && <ErrorMessage err={dataChecker.password2.error} />
+  const errorMsg = () => {
+    if (dataChecker.password2.touched && dataChecker.password2.error) {
+      return <ErrorMessage err={dataChecker.password2.error} />
+    }
+    if (missingDataOnSubmit.includes(name)) {
+      return <ErrorMessage err={missingDataOnSubmitErrorMessage} />
+    }
+    return null
+  }
 
   return (
     <div>
@@ -304,7 +357,7 @@ const InputPassword = ({
         required={required}
       />
 
-      {errorMsg}
+      {errorMsg()}
 
       <InputCheckbox
         checkboxContents={passwordCheckboxContents}

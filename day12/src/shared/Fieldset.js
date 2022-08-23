@@ -18,6 +18,7 @@ const Fieldset = ({
   handleChange,
   handleBlur,
   dataChecker,
+  missingDataOnSubmit,
 }) => {
 
   const parts = Object.keys(body)
@@ -53,6 +54,7 @@ const Fieldset = ({
                   handleChange={handleChange}
                   handleBlur={handleBlur}
                   dataChecker={dataChecker}
+                  missingDataOnSubmit={missingDataOnSubmit}
                 />
               )
             }
@@ -62,6 +64,7 @@ const Fieldset = ({
                   key={key}
                   contents={contents}
                   handleChange={handleChange}
+                  missingDataOnSubmit={missingDataOnSubmit}
                 />
               )
             }
@@ -71,6 +74,7 @@ const Fieldset = ({
                   key={key}
                   contents={contents}
                   handleChange={handleChange}
+                  missingDataOnSubmit={missingDataOnSubmit}
                 />
               )
             }
@@ -80,6 +84,7 @@ const Fieldset = ({
                   key={key}
                   contents={contents}
                   handleChange={handleChange}
+                  missingDataOnSubmit={missingDataOnSubmit}
                 />
               )
             }
@@ -89,6 +94,7 @@ const Fieldset = ({
                   key={key}
                   contents={contents}
                   handleChange={handleChange}
+                  missingDataOnSubmit={missingDataOnSubmit}
                 />
               )
             }
@@ -100,6 +106,7 @@ const Fieldset = ({
                   handleChange={handleChange}
                   handleBlur={handleBlur}
                   dataChecker={dataChecker}
+                  missingDataOnSubmit={missingDataOnSubmit}
                 />
               )
             }
@@ -111,6 +118,7 @@ const Fieldset = ({
                   handleChange={handleChange}
                   handleBlur={handleBlur}
                   dataChecker={dataChecker}
+                  missingDataOnSubmit={missingDataOnSubmit}
                 />
               )
             }

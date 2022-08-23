@@ -5,12 +5,22 @@ import {
   SetupCredentials,
 } from './_FormSections'
 import { userServices } from '../../../services/userServices'
+import {
+  isNameFormatValid,
+  isEmailValid,
+  isUsernameValid,
+  isPasswordMatching,
+} from '../../../utils/customValidation'
 import { toTitleCase } from '../../../utils/misc'
 
-/* // TODO:
-  see if 'required' attribute is needed
-    how to apply this to [input='radio'] and [input='checkbox']
+
+/* // > FINDINGS: noValidate w/ required, required for radio and checkbox, username
+note: noValidate on form element removes effect of required attribute on input
+    * required attribute in at least one radio will apply to the entire radio group (under same name)
+    * apply required to checkbox ONLY if at least one checkbox needs to be checked
+    * username may be further validated onSubmit to see if it already exists in database
 */
+
 /* Sign up form format:
 
 * Personal information
@@ -76,16 +86,14 @@ const SignUpForm = () => {
     const { name, value, type, checked } = e.target
     if (type === 'checkbox') {
       setData(prev => {
-        /*
-          deep copy prev to snapshot,
-          use snapshot to change desired state property value,
-          then combine; essentially snapshot will replace prev
-        */
+        /*  deep copy prev to snapshot,
+            use snapshot to change desired state property value,
+            then combine; essentially snapshot will replace prev  */
         const snapshot = { ...prev }
         snapshot[name][value] = checked
         return { ...prev, ...snapshot }
       })
-      // > Make sure to include return to prevent code reaching default setData()
+      /* // > Make sure to include return to prevent reaching default setData() */
       return
     }
     setData(prev => ({ ...prev, [name]: value }))
@@ -105,6 +113,9 @@ const SignUpForm = () => {
     password2,
   } = data
 
+  /* ////////////////////////////////
+    > INPUT TEMPLATE OBJECTS
+  //////////////////////////////// */
   const personal = {
     legend: 'personal information',
     body: {
@@ -282,6 +293,10 @@ const SignUpForm = () => {
     },
   }
 
+  /* ////////////////////////////////
+    * END OF INPUT TEMPLATE OBJECTS
+  //////////////////////////////// */
+
   const [dataChecker, setDataChecker] = useState({
     firstName: {
       touched: false,
@@ -316,23 +331,6 @@ const SignUpForm = () => {
 
   const handleBlur = (e) => {
     const { name, value, } = e.target
-
-    const isNameFormatValid = (name) => {
-      // source: https://stackoverflow.com/questions/2385701/regular-expression-for-first-and-last-name
-      const nameRegEx = /^[^0-9_!¡?÷?¿/\\+=@#$%^&*(){}|~<>;:[\]]{2,}$/ // ! test more
-      return nameRegEx.test(name)
-    }
-    const isEmailValid = (email = '') => {
-      const emailRegEx = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/
-      return emailRegEx.test(email)
-    }
-    const isUsernameValid = (username = '') => {
-      const usernameRegEx = /\w+/
-      return usernameRegEx.test(username) && username.length >= 6
-    }
-    const isPasswordMatching = (password = '', password2 = '') => {
-      return password && password2 && password === password2
-    }
 
     const validationList = Object.keys(dataChecker)
 
@@ -397,20 +395,33 @@ const SignUpForm = () => {
       })
   }
 
+  const [missingDataOnSubmit, setMissingDataOnSubmit] = useState([])
+
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.table(data)
+
+    const missingData = []
+    for (const key in data) {
+      if (key === 'notifications') continue
+      if (data[key] === '') missingData.push(key)
+    }
+
+    setMissingDataOnSubmit(() => [...missingData])
   }
 
   return (
     <div>
-      <form onSubmit={handleSubmit} noValidate >
+      <form
+        onSubmit={handleSubmit}
+        noValidate
+      >
 
         <PersonalInformation
           field={personal}
           handleChange={handleChange}
           handleBlur={handleBlur}
           dataChecker={dataChecker}
+          missingDataOnSubmit={missingDataOnSubmit}
         />
 
         <SubscriptionDetails
@@ -420,6 +431,7 @@ const SignUpForm = () => {
           /* // ? handleBLur is OPTIONAL in this section,
             no data here requires validation */
           dataChecker={dataChecker}
+          missingDataOnSubmit={missingDataOnSubmit}
         />
 
         <SetupCredentials
@@ -427,15 +439,19 @@ const SignUpForm = () => {
           handleChange={handleChange}
           handleBlur={handleBlur}
           dataChecker={dataChecker}
+          missingDataOnSubmit={missingDataOnSubmit}
         />
 
         { // NOTE: for TESTING purposes only
           // console.log(data)
           // console.count('render')
           // console.log(dataChecker)
+          // console.log(missingDataOnSubmit)
         }
 
-        <button>Submit</button>
+        <button>
+          Submit
+        </button>
       </form>
     </div>
   )
