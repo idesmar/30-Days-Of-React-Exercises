@@ -7,6 +7,10 @@ const isNameFormatValid = (name) => {
 const isEmailValid = (email = '') => {
   const emailRegEx = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/
   return emailRegEx.test(email)
+  /* regex from validator-js package
+    new RegExp("^[a-z0-9._%-]+@[a-z0-9.-]*[a-z0-9]{1}\.[a-z]{2,4}$", "i")
+   * regex = /^[a-z0-9._%-]+@[a-z0-9.-]*[a-z0-9]{1}\.[a-z]{2,4}$/i
+  */
 }
 
 const isUsernameValid = (username = '') => {
