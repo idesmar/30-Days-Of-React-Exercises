@@ -1,0 +1,437 @@
+import { useState, useEffect } from 'react'
+import {
+  PersonalInformation,
+  SubscriptionDetails,
+  SetupCredentials,
+} from './_FormSections_Validator'
+import { userServices } from '../../../services/userServices'
+import {
+  isNameFormatValid,
+  // isEmailValid,
+  isUsernameValid,
+  isPasswordMatching,
+} from '../../../utils/customValidation'
+import { toTitleCase } from '../../../utils/misc'
+import isEmail from 'validator'
+
+
+/* // > FINDINGS: noValidate w/ required, required for radio and checkbox, username
+  refer to notes in _Level2Custom/Level2Custom.js
+*/
+
+
+const SignUpForm = () => {
+
+  const countryOptionsPlaceholder = 'Select your country'
+  const [countries, setCountries] = useState([])
+
+  useEffect(() => {
+    /* // ! suspended until error handler is created
+    */
+    const getAllCountries = async () => {
+      const allCountries = await userServices.getAllCountries()
+      const countryNames = allCountries.map(country => country.name.common)
+      const sortedCountries = [...countryNames].sort()
+      setCountries([...sortedCountries])
+    }
+    getAllCountries()
+  }, [])
+
+  const [data, setData] = useState(
+    {
+      firstName: '',
+      lastName: '',
+      gender: '',
+      dob: '',
+      country: '',
+      plan: '',
+      notifications: {
+        promotions: false,
+        newsletter: false,
+        updates: false,
+      },
+      email: '',
+      username: '',
+      password: '',
+      password2: '',
+    }
+  )
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target
+    if (type === 'checkbox') {
+      setData(prev => {
+        /*  deep copy prev to snapshot,
+            use snapshot to change desired state property value,
+            then combine; essentially snapshot will replace prev  */
+        const snapshot = { ...prev }
+        snapshot[name][value] = checked
+        return { ...prev, ...snapshot }
+      })
+      /* // > Make sure to include return to prevent reaching default setData() */
+      return
+    }
+    setData(prev => ({ ...prev, [name]: value }))
+  }
+
+  const {
+    firstName,
+    lastName,
+    gender,
+    dob,
+    country,
+    plan,
+    notifications,
+    email,
+    username,
+    password,
+    password2,
+  } = data
+
+  /* ////////////////////////////////
+    > INPUT TEMPLATE OBJECTS
+  //////////////////////////////// */
+
+  const personal = {
+    legend: 'personal information',
+    body: {
+      firstName: {
+        type: 'text',
+        contents: {
+          value: firstName,
+          name: 'firstName',
+          id: 'firstName',
+          label: 'first name',
+          required: true,
+        }
+      },
+      lastName: {
+        type: 'text',
+        contents: {
+          value: lastName,
+          name: 'lastName',
+          id: 'lastName',
+          label: 'last name',
+          required: true,
+        }
+      },
+      gender: {
+        type: 'radio',
+        contents: {
+          name: 'gender',
+          value: gender,  // ? not being used; input component value is manually set below
+          radiosLegend: 'please specify your gender',
+          radioOptions: {
+            male: {
+              id: 'male',
+              label: 'male',
+              value: 'male',
+            },
+            female: {
+              id: 'female',
+              label: 'female',
+              value: 'female',
+            },
+            nonBinary: {
+              id: 'non-binary',
+              label: 'non-binary',
+              value: 'non-binary',
+            },
+          },
+        }
+      },
+      dob: {
+        type: 'date',
+        contents: {
+          label: 'date of birth',
+          id: 'dob',
+          name: 'dob',
+          value: dob, // ? not being used; input type does not require any control from parent component
+          required: true,
+        },
+      },
+      country: {
+        type: 'select',
+        contents: {
+          value: country, // ? not being used; input type does not require any control from parent component
+          label: 'country',
+          id: 'country',
+          name: 'country',
+          options: [
+            countryOptionsPlaceholder,
+            ...countries,
+          ],
+          required: true,
+        }
+      },
+    }
+  }
+
+  const subscription = {
+    legend: 'subscription details',
+    body: {
+      plan: {
+        type: 'radio',
+        contents: {
+          name: 'plan',
+          value: plan,  // ? not being used; input component value is manually set below
+          radiosLegend: 'choose your plan',
+          radioOptions: {
+            free: {
+              id: 'free',
+              label: 'free',
+              value: 'free',
+            },
+            freePlus: {
+              id: 'freePlus',
+              label: 'free+',
+              value: 'freePlus',
+            },
+            freePlusPlus: {
+              id: 'freePlusPlus',
+              label: 'free++',
+              value: 'freePlusPlus',
+            },
+          },
+        }
+      },
+      notifications: {
+        type: 'checkbox',
+        contents: {
+          name: 'notifications',
+          value: notifications, // ? not being used; input component value is manually set below
+          checkboxesLegend: 'get notified about?',
+          checkboxOptions: {
+            promotions: {
+              id: 'promotions',
+              label: 'promotions',
+              value: 'promotions',
+            },
+            newsletter: {
+              id: 'newsletter',
+              label: 'newsletter',
+              value: 'newsletter',
+            },
+            updates: {
+              id: 'updates',
+              label: 'updates',
+              value: 'updates',
+            },
+          }
+        }
+      },
+    }
+  }
+
+  const credentials = {
+    legend: 'setup credentials',
+    body: {
+      email: {
+        type: 'email',
+        contents: {
+          name: 'email',
+          value: email,
+          label: 'email',
+          id: 'email',
+          required: true,
+        },
+      },
+      username: {
+        type: 'text',
+        contents: {
+          name: 'username',
+          value: username,
+          label: 'username',
+          id: 'username',
+          required: true,
+        },
+      },
+      password: {
+        type: 'password',
+        contents: {
+          name: 'password',
+          value: password,
+          label: 'password',
+          id: 'password',
+          required: true,
+        }
+      },
+      password2: {
+        type: 'password',
+        contents: {
+          name: 'password2',
+          value: password2,
+          label: 're-type password',
+          id: 'password2',
+          required: true,
+        }
+      },
+    },
+  }
+
+  /* ////////////////////////////////
+    * END OF INPUT TEMPLATE OBJECTS
+  //////////////////////////////// */
+
+  const [dataChecker, setDataChecker] = useState({
+    firstName: {
+      touched: false,
+      error: '',
+    },
+    lastName: {
+      touched: false,
+      error: '',
+    },
+    email: {
+      touched: false,
+      error: '',
+    },
+    username: {
+      touched: false,
+      error: '',
+    },
+    password2: {
+      touched: false,
+      error: '',
+    },
+  })
+
+  const errorMsgs = {
+    empty: 'cannot be blank',
+    firstName: 'first name format is invalid',
+    lastName: 'last name format is invalid',
+    email: 'email is invalid',
+    username: 'username must be at least 6 characters and can only contain letters, numbers, -, and _',
+    password2: 'passwords do not match',
+  }
+
+  const handleBlur = (e) => {
+    const { name, value, } = e.target
+
+    const validationList = Object.keys(dataChecker)
+
+    // > guard clause in case any named input that does not have a validation is passed
+    if (!validationList.includes(name)) {
+      // ? 'password' triggers error
+      // console.error(`${name} is not included in validation list. Include to proceed.`)
+      return
+    }
+
+    if (!dataChecker[name].touched) {
+      setDataChecker(prev => {
+        const snapshot = { ...prev }
+        snapshot[name].touched = true
+        return { ...prev, ...snapshot }
+      })
+    }
+
+    let isValid = true
+    if (name === 'firstName' || name === 'lastName') {
+      isValid = isNameFormatValid(value)
+      isValid && setData(prev => {
+        const snapshot = { ...prev }
+        snapshot[name] = toTitleCase(snapshot[name])
+        return { ...prev, ...snapshot }
+      })
+    }
+    if (name === 'email') {
+      // * validator.js
+      isValid = isEmail(value)
+      isValid && setData(prev => {
+        const snapshot = { ...prev }
+        snapshot[name] = snapshot[name].toLowerCase()
+        return { ...prev, ...snapshot }
+      })
+    }
+    if (name === 'username') {
+      isValid = isUsernameValid(value)
+      isValid && setData(prev => {
+        const snapshot = { ...prev }
+        snapshot[name] = snapshot[name].toLowerCase()
+        return { ...prev, ...snapshot }
+      })
+    }
+    if (name === 'password2') {
+      isValid = isPasswordMatching(data.password, value)
+    }
+
+    !isValid
+      /* assign error message */
+      ? setDataChecker(prev => {
+        const snapshot = { ...prev }
+        snapshot[name].error = value === ''
+          ? errorMsgs.empty
+          : errorMsgs[name]
+        return { ...prev, ...snapshot }
+      })
+      /* remove error message */
+      : setDataChecker(prev => {
+        const snapshot = { ...prev }
+        snapshot[name].error = ''
+        return { ...prev, ...snapshot }
+      })
+  }
+
+  const [missingDataOnSubmit, setMissingDataOnSubmit] = useState([])
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    const missingData = []
+    for (const key in data) {
+      if (key === 'notifications') continue
+      if (data[key] === '') missingData.push(key)
+    }
+
+    setMissingDataOnSubmit(() => [...missingData])
+  }
+
+  return (
+    <div>
+      <form
+        onSubmit={handleSubmit}
+        noValidate
+      >
+
+        <PersonalInformation
+          field={personal}
+          handleChange={handleChange}
+          handleBlur={handleBlur}
+          dataChecker={dataChecker}
+          missingDataOnSubmit={missingDataOnSubmit}
+        />
+
+        <SubscriptionDetails
+          field={subscription}
+          handleChange={handleChange}
+          handleBlur={handleBlur}
+          /* // ? handleBLur is OPTIONAL in this section,
+            no data here requires validation */
+          dataChecker={dataChecker}
+          missingDataOnSubmit={missingDataOnSubmit}
+        />
+
+        <SetupCredentials
+          field={credentials}
+          handleChange={handleChange}
+          handleBlur={handleBlur}
+          dataChecker={dataChecker}
+          missingDataOnSubmit={missingDataOnSubmit}
+        />
+
+        { // NOTE: for TESTING purposes only
+          // console.log(data)
+          // console.count('render')
+          // console.log(dataChecker)
+          // console.log(missingDataOnSubmit)
+        }
+
+        <button>
+          Submit
+        </button>
+      </form>
+    </div>
+  )
+}
+
+export { SignUpForm }
