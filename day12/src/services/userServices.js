@@ -11,8 +11,13 @@ const userServices = {
       ! Create an error handler for fetching data
       Note: data being fetched is an array of objects
     */
-    const countries = await res.json()
-    return countries
+    if (!res.ok) {
+      console.log(res)
+      console.log(`Error: ${res.statusText}`)
+      return []
+    } else {
+      return await res.json()
+    }
   }
 
   // more services here

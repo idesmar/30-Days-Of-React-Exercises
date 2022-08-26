@@ -51,15 +51,13 @@ const SignUpForm = () => {
   const [countries, setCountries] = useState([])
 
   useEffect(() => {
-    /* // ! suspended until error handler is created
-      const getAllCountries = async () => {
-        const allCountries = await userServices.getAllCountries()
-        const countryNames = allCountries.map(country => country.name.common)
-        const sortedCountries = [...countryNames].sort()
-        setCountries([...sortedCountries])
-      }
-      getAllCountries()
-    */
+    const getAllCountries = async () => {
+      const allCountries = await userServices.getAllCountries()
+      const countryNames = allCountries.map(country => country.name.common)
+      const sortedCountries = [...countryNames].sort()
+      setCountries([...sortedCountries])
+    }
+    getAllCountries()
   }, [])
 
   const [data, setData] = useState(
@@ -116,6 +114,7 @@ const SignUpForm = () => {
   /* ////////////////////////////////
     > INPUT TEMPLATE OBJECTS
   //////////////////////////////// */
+
   const personal = {
     legend: 'personal information',
     body: {
