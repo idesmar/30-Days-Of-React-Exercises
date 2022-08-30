@@ -1,26 +1,30 @@
 # 30 Days of React: Day 12 | Forms
 
+
 ### Dev Notes
 <!-- * Folder Structure here -->
 * only functional components are used hereafter
 * started using a ***callback function*** approach to change the state rather than a direct approach which can sometimes leave the state to be incorrectly updated. <br/>**note:** in cases where values to be updated are buried deep within the state object, a snapshot approach is used. see example below found in [SignUpForm.js](./src//Level2/_Level2Custom/__SignUpForm/SignUpForm.js)
 ```javascript
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target
-    if (type === 'checkbox') {
-      setData(prev => {
-        /*  deep copy prev to snapshot,
-            use snapshot to change desired state property value,
-            then combine; essentially snapshot will replace prev */
-        const snapshot = { ...prev }
-        snapshot[name][value] = checked
-        return { ...prev, ...snapshot }
-      })
-      /* Make sure to include return to prevent reaching default setData() */
-      return
-    }
-    setData(prev => ({ ...prev, [name]: value }))
+const handleChange = (e) => {
+  const { name, value, type, checked } = e.target
+  if (type === 'checkbox') {
+    /** process
+     * deep copy prev to snapshot,
+     * change needed property in snapshot
+     * combine prev and snapshot object,
+       essentially snapshot replaces prev */
+    setData(prev => {
+      const snapshot = { ...prev }
+      snapshot[name][value] = checked
+      return { ...prev, ...snapshot }
+    })
+    /* Make sure to include return to
+    prevent reaching default setData() */
+    return
   }
+  setData(prev => ({ ...prev, [name]: value }))
+}
 ```
 * [shared](./src/shared/) components folder
   * [Fieldset.js](./src/shared/Fieldset.js) - contains a map that direct `props` (using switch statement) to the appropriate Reusable Input component
@@ -41,3 +45,18 @@
     * email address format
     * username format
     * password and re-typed password match
+
+
+### Additional Learnings
+* `noValidate` on **form** element removes the effect of `required` attribute in enclosed input elements onSubmit.
+
+
+#### Look-back Learnings
+* `required` attribute in at least one `input[type=radio]` will apply to the entire radio group (under same name)
+
+
+#### Additional Package Used
+* [validator](https://github.com/validatorjs/validator.js#validators) - as advised by source material
+```bash
+npm i validator
+```
