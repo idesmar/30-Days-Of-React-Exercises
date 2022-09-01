@@ -4,7 +4,10 @@ const Heading = () => <h3>Validation using validator.js</h3>
 const Level2Validator = () => {
 
   return (
-    <div>
+    <div style={{
+      backgroundColor: '#222',
+      color: 'cyan',
+    }}>
       <Heading />
       <SignUpForm />
     </div>

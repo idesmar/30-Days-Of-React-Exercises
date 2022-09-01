@@ -7,12 +7,12 @@ import {
 import { userServices } from '../../../services/userServices'
 import {
   isNameFormatValid,
-  // isEmailValid,
+  // isEmailValid, // replaced by validator package
   isUsernameValid,
   isPasswordMatching,
 } from '../../../utils/customValidation'
 import { toTitleCase } from '../../../utils/misc'
-import isEmail from 'validator'
+import isEmail from 'validator/es/lib/isEmail'
 
 
 /* // > FINDINGS: noValidate w/ required, required for radio and checkbox, username
@@ -26,8 +26,6 @@ const SignUpForm = () => {
   const [countries, setCountries] = useState([])
 
   useEffect(() => {
-    /* // ! suspended until error handler is created
-    */
     const getAllCountries = async () => {
       const allCountries = await userServices.getAllCountries()
       const countryNames = allCountries.map(country => country.name.common)
@@ -85,7 +83,7 @@ const SignUpForm = () => {
     email,
     username,
     password,
-    password2,
+    password2,  /* will not passed to db */
   } = data
 
   /* ////////////////////////////////
@@ -100,7 +98,7 @@ const SignUpForm = () => {
         contents: {
           value: firstName,
           name: 'firstName',
-          id: 'firstName',
+          id: '_firstName',
           label: 'first name',
           required: true,
         }
@@ -110,7 +108,7 @@ const SignUpForm = () => {
         contents: {
           value: lastName,
           name: 'lastName',
-          id: 'lastName',
+          id: '_lastName',
           label: 'last name',
           required: true,
         }
@@ -123,17 +121,17 @@ const SignUpForm = () => {
           radiosLegend: 'please specify your gender',
           radioOptions: {
             male: {
-              id: 'male',
+              id: '_male',
               label: 'male',
               value: 'male',
             },
             female: {
-              id: 'female',
+              id: '_female',
               label: 'female',
               value: 'female',
             },
             nonBinary: {
-              id: 'non-binary',
+              id: '_non-binary',
               label: 'non-binary',
               value: 'non-binary',
             },
@@ -144,7 +142,7 @@ const SignUpForm = () => {
         type: 'date',
         contents: {
           label: 'date of birth',
-          id: 'dob',
+          id: '_dob',
           name: 'dob',
           value: dob, // ? not being used; input type does not require any control from parent component
           required: true,
@@ -155,7 +153,7 @@ const SignUpForm = () => {
         contents: {
           value: country, // ? not being used; input type does not require any control from parent component
           label: 'country',
-          id: 'country',
+          id: '_country',
           name: 'country',
           options: [
             countryOptionsPlaceholder,
@@ -178,17 +176,17 @@ const SignUpForm = () => {
           radiosLegend: 'choose your plan',
           radioOptions: {
             free: {
-              id: 'free',
+              id: '_free',
               label: 'free',
               value: 'free',
             },
             freePlus: {
-              id: 'freePlus',
+              id: '_freePlus',
               label: 'free+',
               value: 'freePlus',
             },
             freePlusPlus: {
-              id: 'freePlusPlus',
+              id: '_freePlusPlus',
               label: 'free++',
               value: 'freePlusPlus',
             },
@@ -203,17 +201,17 @@ const SignUpForm = () => {
           checkboxesLegend: 'get notified about?',
           checkboxOptions: {
             promotions: {
-              id: 'promotions',
+              id: '_promotions',
               label: 'promotions',
               value: 'promotions',
             },
             newsletter: {
-              id: 'newsletter',
+              id: '_newsletter',
               label: 'newsletter',
               value: 'newsletter',
             },
             updates: {
-              id: 'updates',
+              id: '_updates',
               label: 'updates',
               value: 'updates',
             },
@@ -232,7 +230,7 @@ const SignUpForm = () => {
           name: 'email',
           value: email,
           label: 'email',
-          id: 'email',
+          id: '_email',
           required: true,
         },
       },
@@ -242,7 +240,7 @@ const SignUpForm = () => {
           name: 'username',
           value: username,
           label: 'username',
-          id: 'username',
+          id: '_username',
           required: true,
         },
       },
@@ -252,7 +250,7 @@ const SignUpForm = () => {
           name: 'password',
           value: password,
           label: 'password',
-          id: 'password',
+          id: '_password',
           required: true,
         }
       },
@@ -262,7 +260,7 @@ const SignUpForm = () => {
           name: 'password2',
           value: password2,
           label: 're-type password',
-          id: 'password2',
+          id: '_password2',
           required: true,
         }
       },
@@ -273,12 +271,28 @@ const SignUpForm = () => {
     * END OF INPUT TEMPLATE OBJECTS
   //////////////////////////////// */
 
+  const errorMsgs = {
+    _EMPTY:       'cannot be blank',
+    firstName:    'first name format is invalid',
+    lastName:     'last name format is invalid',
+    country:      'select a country',
+    email:        'email is invalid',
+    username:     'username must be at least 6 characters and can only contain letters, numbers, -, and _',
+    password2:    'passwords do not match',
+  }
+
+  /* dataChecker used onBLur */
   const [dataChecker, setDataChecker] = useState({
+    _EMPTY: errorMsgs._EMPTY,
     firstName: {
       touched: false,
       error: '',
     },
     lastName: {
+      touched: false,
+      error: '',
+    },
+    country: {
       touched: false,
       error: '',
     },
@@ -294,26 +308,33 @@ const SignUpForm = () => {
       touched: false,
       error: '',
     },
+    gender: {
+      touched: false,
+      error: '',
+    },
+    plan: {
+      touched: false,
+      error: '',
+    },
   })
 
-  const errorMsgs = {
-    empty: 'cannot be blank',
-    firstName: 'first name format is invalid',
-    lastName: 'last name format is invalid',
-    email: 'email is invalid',
-    username: 'username must be at least 6 characters and can only contain letters, numbers, -, and _',
-    password2: 'passwords do not match',
-  }
 
   const handleBlur = (e) => {
     const { name, value, } = e.target
 
     const validationList = Object.keys(dataChecker)
 
+    /* used for verifying controlled or uncontrolled input
+      console.log(e.target.name, e.target._wrapperState.controlled)
+      console.dir(e.target)
+    */
+
     // > guard clause in case any named input that does not have a validation is passed
     if (!validationList.includes(name)) {
-      // ? 'password' triggers error
-      // console.error(`${name} is not included in validation list. Include to proceed.`)
+      /* dev remarks:
+        * 'password' triggers error hence did not proceed on using
+        console.error(`${name} is not included in validation list. Include to proceed.`)
+      */
       return
     }
 
@@ -325,18 +346,28 @@ const SignUpForm = () => {
       })
     }
 
-    let isValid = true
+    let isValid = false
+
+    /* // note: A switch statement may be more appropriate here */
+
+    if (name === 'gender' || name === 'plan') isValid = true
     if (name === 'firstName' || name === 'lastName') {
       isValid = isNameFormatValid(value)
+      /* format before passing back to state data */
       isValid && setData(prev => {
         const snapshot = { ...prev }
         snapshot[name] = toTitleCase(snapshot[name])
         return { ...prev, ...snapshot }
       })
     }
+    if (name === 'country') {
+      isValid = value !== countryOptionsPlaceholder
+    }
     if (name === 'email') {
-      // * validator.js
+      /* // * validator.js */
       isValid = isEmail(value)
+
+      /* format before passing back to state data */
       isValid && setData(prev => {
         const snapshot = { ...prev }
         snapshot[name] = snapshot[name].toLowerCase()
@@ -345,6 +376,7 @@ const SignUpForm = () => {
     }
     if (name === 'username') {
       isValid = isUsernameValid(value)
+      /* format before passing back to state data */
       isValid && setData(prev => {
         const snapshot = { ...prev }
         snapshot[name] = snapshot[name].toLowerCase()
@@ -355,21 +387,39 @@ const SignUpForm = () => {
       isValid = isPasswordMatching(data.password, value)
     }
 
-    !isValid
-      /* assign error message */
-      ? setDataChecker(prev => {
-        const snapshot = { ...prev }
-        snapshot[name].error = value === ''
-          ? errorMsgs.empty
-          : errorMsgs[name]
-        return { ...prev, ...snapshot }
-      })
+    /* // ? How is this reachable even if it doesn't pass the guard clause */
+    // if (name === 'password') {
+    //   console.log(`reached using ${name}`)
+    //   isValid = isPasswordMatching(data.password2, value)
+    // }
+
+    if (isValid) {
       /* remove error message */
-      : setDataChecker(prev => {
+      setDataChecker(prev => {
         const snapshot = { ...prev }
         snapshot[name].error = ''
         return { ...prev, ...snapshot }
       })
+
+      missingDataOnSubmit.includes(name) && setMissingDataOnSubmit(prev => {
+        const snapshot = [...prev]
+        /* mutation on snapshot */
+        snapshot.splice(snapshot.indexOf(name), 1)
+        return snapshot
+      })
+    } else {
+      /* assign error message */
+      setDataChecker(prev => {
+
+        const displayError = (value === '' || (name === 'country' && value === countryOptionsPlaceholder))
+          ? errorMsgs._EMPTY
+          : errorMsgs[name]
+
+        const snapshot = { ...prev }
+        snapshot[name].error = displayError
+        return { ...prev, ...snapshot }
+      })
+    }
   }
 
   const [missingDataOnSubmit, setMissingDataOnSubmit] = useState([])
@@ -379,6 +429,7 @@ const SignUpForm = () => {
 
     const missingData = []
     for (const key in data) {
+      /* skip notifications -- input not required */
       if (key === 'notifications') continue
       if (data[key] === '') missingData.push(key)
     }

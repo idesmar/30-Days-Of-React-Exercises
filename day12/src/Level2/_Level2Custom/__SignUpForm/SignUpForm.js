@@ -108,7 +108,7 @@ const SignUpForm = () => {
     email,
     username,
     password,
-    password2,
+    password2,  /* will not passed to db */
   } = data
 
   /* ////////////////////////////////
@@ -296,12 +296,28 @@ const SignUpForm = () => {
     * END OF INPUT TEMPLATE OBJECTS
   //////////////////////////////// */
 
+  const errorMsgs = {
+    _EMPTY:       'cannot be blank',
+    firstName:    'first name format is invalid',
+    lastName:     'last name format is invalid',
+    country:      'select a country',
+    email:        'email is invalid',
+    username:     'username must be at least 6 characters and can only contain letters, numbers, -, and _',
+    password2:    'passwords do not match',
+  }
+
+  /* dataChecker used onBLur */
   const [dataChecker, setDataChecker] = useState({
+    _EMPTY: errorMsgs._EMPTY,
     firstName: {
       touched: false,
       error: '',
     },
     lastName: {
+      touched: false,
+      error: '',
+    },
+    country: {
       touched: false,
       error: '',
     },
@@ -317,26 +333,33 @@ const SignUpForm = () => {
       touched: false,
       error: '',
     },
+    gender: {
+      touched: false,
+      error: '',
+    },
+    plan: {
+      touched: false,
+      error: '',
+    },
   })
 
-  const errorMsgs = {
-    empty: 'cannot be blank',
-    firstName: 'first name format is invalid',
-    lastName: 'last name format is invalid',
-    email: 'email is invalid',
-    username: 'username must be at least 6 characters and can only contain letters, numbers, -, and _',
-    password2: 'passwords do not match',
-  }
 
   const handleBlur = (e) => {
     const { name, value, } = e.target
 
     const validationList = Object.keys(dataChecker)
 
+    /* used for verifying controlled or uncontrolled input
+      console.log(e.target.name, e.target._wrapperState.controlled)
+      console.dir(e.target)
+    */
+
     // > guard clause in case any named input that does not have a validation is passed
     if (!validationList.includes(name)) {
-      // ? 'password' triggers error
-      // console.error(`${name} is not included in validation list. Include to proceed.`)
+      /* dev remarks:
+        * 'password' triggers error hence did not proceed on using
+        console.error(`${name} is not included in validation list. Include to proceed.`)
+      */
       return
     }
 
@@ -348,17 +371,28 @@ const SignUpForm = () => {
       })
     }
 
-    let isValid = true
+    let isValid = false
+
+    /* // note: A switch statement may be more appropriate here */
+
+    if (name === 'gender' || name === 'plan') isValid = true
     if (name === 'firstName' || name === 'lastName') {
       isValid = isNameFormatValid(value)
+      /* format before passing back to state data */
       isValid && setData(prev => {
         const snapshot = { ...prev }
         snapshot[name] = toTitleCase(snapshot[name])
         return { ...prev, ...snapshot }
       })
     }
+    if (name === 'country') {
+      isValid = value !== countryOptionsPlaceholder
+    }
     if (name === 'email') {
+
       isValid = isEmailValid(value)
+
+      /* format before passing back to state data */
       isValid && setData(prev => {
         const snapshot = { ...prev }
         snapshot[name] = snapshot[name].toLowerCase()
@@ -367,6 +401,7 @@ const SignUpForm = () => {
     }
     if (name === 'username') {
       isValid = isUsernameValid(value)
+      /* format before passing back to state data */
       isValid && setData(prev => {
         const snapshot = { ...prev }
         snapshot[name] = snapshot[name].toLowerCase()
@@ -377,21 +412,39 @@ const SignUpForm = () => {
       isValid = isPasswordMatching(data.password, value)
     }
 
-    !isValid
-      /* assign error message */
-      ? setDataChecker(prev => {
-        const snapshot = { ...prev }
-        snapshot[name].error = value === ''
-          ? errorMsgs.empty
-          : errorMsgs[name]
-        return { ...prev, ...snapshot }
-      })
+    /* // ? How is this reachable even if it doesn't pass the guard clause */
+    // if (name === 'password') {
+    //   console.log(`reached using ${name}`)
+    //   isValid = isPasswordMatching(data.password2, value)
+    // }
+
+    if (isValid) {
       /* remove error message */
-      : setDataChecker(prev => {
+      setDataChecker(prev => {
         const snapshot = { ...prev }
         snapshot[name].error = ''
         return { ...prev, ...snapshot }
       })
+
+      missingDataOnSubmit.includes(name) && setMissingDataOnSubmit(prev => {
+        const snapshot = [...prev]
+        /* mutation on snapshot */
+        snapshot.splice(snapshot.indexOf(name), 1)
+        return snapshot
+      })
+    } else {
+      /* assign error message */
+      setDataChecker(prev => {
+
+        const displayError = (value === '' || (name === 'country' && value === countryOptionsPlaceholder))
+        ? errorMsgs._EMPTY
+        : errorMsgs[name]
+
+        const snapshot = { ...prev }
+        snapshot[name].error = displayError
+        return { ...prev, ...snapshot }
+      })
+    }
   }
 
   const [missingDataOnSubmit, setMissingDataOnSubmit] = useState([])
@@ -401,6 +454,7 @@ const SignUpForm = () => {
 
     const missingData = []
     for (const key in data) {
+      /* skip notifications -- input not required */
       if (key === 'notifications') continue
       if (data[key] === '') missingData.push(key)
     }
