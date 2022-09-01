@@ -78,7 +78,7 @@ const handleChange = (e) => {
   // result: country undefined
   ```
 
-<footer align="right" style="font-size: 0.7em;"><a href="#top">[Back to top]</a></footer>
+<div align="right"><a href="#top">[Back to top]</a></div>
 
 ### Learnings
 * `noValidate` on **form** element removes the effect of `required` attribute in enclosed input elements `onSubmit`.
@@ -108,7 +108,7 @@ const handleChange = (e) => {
   #### Look-back Learnings
   * `required` attribute in at least one `input[type=radio]` will apply to the entire radio group (under same name)
 
-<footer align="right" style="font-size: 0.7em;"><a href="#top">[Back to top]</a></footer>
+<div align="right"><a href="#top">[Back to top]</a></div>
 
 ### Installed Packages
 * [validator](https://github.com/validatorjs/validator.js#validators) - as advised by source material
@@ -116,4 +116,4 @@ const handleChange = (e) => {
 npm i validator
 ```
 
-<footer align="right" style="font-size: 0.7em;"><a href="#top">[Back to top]</a></footer>
+<div align="right"><a href="#top">[Back to top]</a></div>
