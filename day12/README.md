@@ -1,42 +1,16 @@
 <div id="top"></div>
 
+<!-- omit in toc -->
 # 30 Days of React: Day 12 | Forms
 
-<style>
-  #toc * { box-sizing: border-box; }
-  #toc {
-    width: max-content;
-    width: 20rem;
-    max-width: 100%;
-    margin-bottom: 2rem;
-  }
-  #toc summary {
-    font-weight: 600;
-    list-style: none;
-    cursor: pointer;
-    border: 3px double;
-    padding: 0 1rem;
-  }
-  #toc > ul {
-    padding: 1rem 3rem;
-    border: 1px solid;
-  }
-  #toc > ul > ul {
-    padding-left: 2rem;
-  }
-</style>
 
-<details id="toc" open>
-  <summary>Table of Contents</summary>
-  <ul>
-    <li><a href="#dev-notes">Dev Notes</a></li>
-    <li><a href="#learnings">Learnings</a></li>
-    <ul>
-      <li><a href="#look-back-learnings">Look-back Learnings</a></li>
-    </ul>
-    <li><a href="#installed-packages">Installed Packages</a></li>
-  </ul>
-</details>
+<!-- omit in toc -->
+## Table of Contents
+- [Dev Notes](#dev-notes)
+- [Learnings](#learnings)
+  - [Look-back Learnings](#look-back-learnings)
+- [Installed Packages](#installed-packages)
+
 
 ### Dev Notes
 <!-- * Folder Structure here -->
@@ -104,7 +78,7 @@ const handleChange = (e) => {
   // result: country undefined
   ```
 
-<p align="right"><a href="#top">[Back to top]</a></p>
+<footer align="right" style="font-size: 0.7em;"><a href="#top">[Back to top]</a></footer>
 
 ### Learnings
 * `noValidate` on **form** element removes the effect of `required` attribute in enclosed input elements `onSubmit`.
@@ -134,7 +108,7 @@ const handleChange = (e) => {
   #### Look-back Learnings
   * `required` attribute in at least one `input[type=radio]` will apply to the entire radio group (under same name)
 
-<p align="right"><a href="#top">[Back to top]</a></p>
+<footer align="right" style="font-size: 0.7em;"><a href="#top">[Back to top]</a></footer>
 
 ### Installed Packages
 * [validator](https://github.com/validatorjs/validator.js#validators) - as advised by source material
@@ -142,4 +116,4 @@ const handleChange = (e) => {
 npm i validator
 ```
 
-<p align="right"><a href="#top">[Back to top]</a></p>
+<footer align="right" style="font-size: 0.7em;"><a href="#top">[Back to top]</a></footer>
