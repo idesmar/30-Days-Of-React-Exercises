@@ -79,7 +79,7 @@ const InputRadio = ({
         onChange={handleChange}
         onBlur={handleBlur}
       />
-    <label htmlFor={id}>{label}</label>
+    <label htmlFor={id}>{toProperCase(label)}</label>
     </div>
   )
 }
@@ -114,7 +114,7 @@ const InputRadios = ({
 
   return (
     <fieldset>
-      <legend>{radiosLegend}</legend>
+      <legend>{toProperCase(radiosLegend)}</legend>
       {
         radios.map((radio, radioIdx) => (
           <InputRadio
@@ -153,7 +153,7 @@ const InputCheckbox = ({
         onChange={handleChange}
         onBlur={handleBlur}
       />
-      <label htmlFor={id}>{label}</label>
+      <label htmlFor={id}>{toProperCase(label)}</label>
     </div>
   )
 }
@@ -218,7 +218,7 @@ const InputDate = ({
 
   return (
     <div>
-      <label htmlFor={id}>{label}:</label>
+      <label htmlFor={id}>{toProperCase(label)}:</label>
       <input
         type="date"
         name={name}
@@ -259,7 +259,7 @@ const InputSelect = ({
 
   return (
     <div>
-      <label htmlFor={id}>{label}:</label>
+      <label htmlFor={id}>{toProperCase(label)}:</label>
       <select
         name={name}
         id={id}
@@ -312,7 +312,7 @@ const InputEmail = ({
 
   return (
     <div>
-      <label htmlFor={id}>{label}</label>
+      <label htmlFor={id}>{toProperCase(label)}</label>
       <input
         type="email"
         name={name}
@@ -364,7 +364,7 @@ const InputPassword = ({
 
   return (
     <div>
-      <label htmlFor={id}>{label}:</label>
+      <label htmlFor={id}>{toProperCase(label)}:</label>
       <input
         type={hiddenPassword ? 'password' : 'text'}
         name={name}
