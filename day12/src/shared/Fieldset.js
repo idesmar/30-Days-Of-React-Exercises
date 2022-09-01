@@ -64,6 +64,8 @@ const Fieldset = ({
                   key={key}
                   contents={contents}
                   handleChange={handleChange}
+                  handleBlur={handleBlur}
+                  dataChecker={dataChecker}
                   missingDataOnSubmit={missingDataOnSubmit}
                 />
               )
@@ -74,6 +76,8 @@ const Fieldset = ({
                   key={key}
                   contents={contents}
                   handleChange={handleChange}
+                  handleBlur={handleBlur}
+                  dataChecker={dataChecker}
                   missingDataOnSubmit={missingDataOnSubmit}
                 />
               )
@@ -84,6 +88,8 @@ const Fieldset = ({
                   key={key}
                   contents={contents}
                   handleChange={handleChange}
+                  handleBlur={handleBlur}
+                  dataChecker={dataChecker}
                   missingDataOnSubmit={missingDataOnSubmit}
                 />
               )
@@ -94,6 +100,8 @@ const Fieldset = ({
                   key={key}
                   contents={contents}
                   handleChange={handleChange}
+                  handleBlur={handleBlur}
+                  dataChecker={dataChecker}
                   missingDataOnSubmit={missingDataOnSubmit}
                 />
               )

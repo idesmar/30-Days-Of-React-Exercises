@@ -5,7 +5,6 @@ import { toProperCase} from '../utils/misc' // ? Remove to use manual string for
   make a separate function and store result in errorMsg
   errorMsg = checkErrors() && <ErrorMessage err={checkErrors()} />
 */
-const missingDataOnSubmitErrorMessage = 'Do not leave blank'
 
 const ErrorMessage = ({ err }) => (
   <small
@@ -36,7 +35,7 @@ const InputText = ({
       return <ErrorMessage err={dataChecker[name].error} />
     }
     if (missingDataOnSubmit.includes(name)) {
-      return <ErrorMessage err={missingDataOnSubmitErrorMessage} />
+      return <ErrorMessage err={dataChecker._EMPTY} />
     }
     return null
   }
@@ -66,6 +65,7 @@ const InputRadio = ({
     id,
     value,
   },
+  handleBlur,
   handleChange,
 }) => {
 
@@ -77,6 +77,7 @@ const InputRadio = ({
         value={value}
         id={id}
         onChange={handleChange}
+        onBlur={handleBlur}
       />
     <label htmlFor={id}>{label}</label>
     </div>
@@ -90,6 +91,8 @@ const InputRadios = ({
     radiosLegend,
   },
   handleChange,
+  handleBlur,
+  dataChecker,
   missingDataOnSubmit,
 }) => {
 
@@ -104,7 +107,7 @@ const InputRadios = ({
 
     const errorMsg = () => {
       if (missingDataOnSubmit.includes(name)) {
-        return <ErrorMessage err={missingDataOnSubmitErrorMessage} />
+        return <ErrorMessage err={dataChecker._EMPTY} />
       }
       return null
     }
@@ -118,6 +121,7 @@ const InputRadios = ({
             key={name + 'radio' + radioIdx}
             name={name}
             radioContents={radioOptions[radio]}
+            handleBlur={handleBlur}
             handleChange={handleChange}
           />
         ))
@@ -136,6 +140,7 @@ const InputCheckbox = ({
     value,
   },
   handleChange,
+  handleBlur,
 }) => {
 
   return (
@@ -146,6 +151,7 @@ const InputCheckbox = ({
         id={id}
         value={value}
         onChange={handleChange}
+        onBlur={handleBlur}
       />
       <label htmlFor={id}>{label}</label>
     </div>
@@ -159,6 +165,7 @@ const InputCheckboxes = ({
     checkboxesLegend,
   },
   handleChange,
+  handleBlur,
 }) => {
 
   const checkboxes = Object.keys(checkboxOptions)
@@ -180,6 +187,7 @@ const InputCheckboxes = ({
             name={name}
             checkboxContents={checkboxOptions[checkbox]}
             handleChange={handleChange}
+            handleBlur={handleBlur}
           />
         ))
       }
@@ -196,12 +204,14 @@ const InputDate = ({
     required,
   },
   handleChange,
+  dataChecker,
   missingDataOnSubmit,
+  handleBlur,
 }) => {
 
   const errorMsg = () => {
      if (missingDataOnSubmit.includes(name)) {
-      return <ErrorMessage err={missingDataOnSubmitErrorMessage} />
+      return <ErrorMessage err={dataChecker._EMPTY} />
     }
     return null
   }
@@ -214,6 +224,7 @@ const InputDate = ({
         name={name}
         id={id}
         onChange={handleChange}
+        onBlur={handleBlur}
         required={required}
       />
       {errorMsg()}
@@ -231,12 +242,17 @@ const InputSelect = ({
     required,
   },
   handleChange,
+  dataChecker,
+  handleBlur,
   missingDataOnSubmit,
 }) => {
 
   const errorMsg = () => {
+    if (dataChecker[name].touched && dataChecker[name].error) {
+      return <ErrorMessage err={dataChecker[name].error} />
+    }
     if (missingDataOnSubmit.includes(name)) {
-      return <ErrorMessage err={missingDataOnSubmitErrorMessage} />
+      return <ErrorMessage err={dataChecker._EMPTY} />
     }
     return null
   }
@@ -248,6 +264,7 @@ const InputSelect = ({
         name={name}
         id={id}
         onChange={handleChange}
+        onBlur={handleBlur}
         required={required}
       >
         {
@@ -288,7 +305,7 @@ const InputEmail = ({
       return <ErrorMessage err={dataChecker[name].error} />
     }
     if (missingDataOnSubmit.includes(name)) {
-      return <ErrorMessage err={missingDataOnSubmitErrorMessage} />
+      return <ErrorMessage err={dataChecker._EMPTY} />
     }
     return null
   }
@@ -340,7 +357,7 @@ const InputPassword = ({
       return <ErrorMessage err={dataChecker.password2.error} />
     }
     if (missingDataOnSubmit.includes(name)) {
-      return <ErrorMessage err={missingDataOnSubmitErrorMessage} />
+      return <ErrorMessage err={dataChecker._EMPTY} />
     }
     return null
   }
