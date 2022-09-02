@@ -6,7 +6,7 @@ const Heading = () => <h2>Level 2</h2>
 const Level2Func = () => {
 
   return (
-    <section>
+    <section className='level2'>
       <Heading />
       <div>
         <Level2Custom />

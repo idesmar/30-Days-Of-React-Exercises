@@ -460,6 +460,23 @@ const SignUpForm = () => {
     }
 
     setMissingDataOnSubmit(() => [...missingData])
+
+    if (!missingDataOnSubmit.length) {
+
+      const formattedNotifications = []
+      // const { notifications } = data
+      for (const key in data.notifications) {
+        data.notifications[key] && formattedNotifications.push(key)
+      }
+      const notifications = [...formattedNotifications]
+      const dataToSubmit = { ...data, notifications }
+      // delete dataToSubmit.notifications
+      delete dataToSubmit.password2
+
+      console.log(dataToSubmit, 'dataToSubmit')
+
+      /* //> send dataToSubmit to database */
+    }
   }
 
   return (
