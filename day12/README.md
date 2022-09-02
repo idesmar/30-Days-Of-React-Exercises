@@ -9,34 +9,34 @@
 - [Dev Notes](#dev-notes)
 - [Learnings](#learnings)
   - [Look-back Learnings](#look-back-learnings)
-- [Installed Packages and/or extensions](#installed-packages-andor-extensions)
+- [Trying Something New](#trying-something-new)
+- [Installed Packages and/or Extensions](#installed-packages-andor-extensions)
 
 
 ### Dev Notes
-<!-- * Folder Structure here -->
 * only functional components are used hereafter
 * started using a ***callback function*** approach to change the state rather than a direct approach which can sometimes leave the state to be incorrectly updated. <br/>**note:** in cases where values to be updated are buried deep within the state object, a snapshot approach is used. see example below found in [SignUpForm.js](./src//Level2/_Level2Custom/__SignUpForm/SignUpForm.js)
-```javascript
-const handleChange = (e) => {
-  const { name, value, type, checked } = e.target
-  if (type === 'checkbox') {
-    /** process
-     * deep copy prev to snapshot,
-     * change needed property in snapshot
-     * combine prev and snapshot object,
-       essentially snapshot replaces prev */
-    setData(prev => {
-      const snapshot = { ...prev }
-      snapshot[name][value] = checked
-      return { ...prev, ...snapshot }
-    })
-    /* Make sure to include return to
-    prevent reaching default setData() */
-    return
+  ```javascript
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target
+    if (type === 'checkbox') {
+      /** process
+       * deep copy prev to snapshot,
+       * change needed property in snapshot
+       * combine prev and snapshot object,
+         essentially snapshot replaces prev */
+      setData(prev => {
+        const snapshot = { ...prev }
+        snapshot[name][value] = checked
+        return { ...prev, ...snapshot }
+      })
+      /* Make sure to include return to
+      prevent reaching default setData() */
+      return
+    }
+    setData(prev => ({ ...prev, [name]: value }))
   }
-  setData(prev => ({ ...prev, [name]: value }))
-}
-```
+  ```
 * [shared](./src/shared/) components folder
   * [Fieldset.js](./src/shared/Fieldset.js) - contains a map that direct `props` (using switch statement) to the appropriate Reusable Input component
   * [Inputs.js](./src/shared/Inputs.js) - contains different custom input-type components:
@@ -57,6 +57,13 @@ const handleChange = (e) => {
     * username format
     * password and re-typed password match
 * Controlled and Uncontrolled inputs
+  <small style="font-size: 0.9em; font-style: italic; display: block;">
+  Note: <em style="font-weight: bold;">select</em> elements are not considered as input elements hence it is not included here; tested in `onBlur` event handler using:
+  </small>
+  ```javascript
+  console.log(e.target.name, e.target._wrapperState.controlled)
+  // result: country undefined
+  ```
   * Controlled inputs:
     * firstName
     * lastName
@@ -68,15 +75,6 @@ const handleChange = (e) => {
     * plan (radio)
     * notifications (checkbox)
     * passwords
-
-  <small style="font-size: 0.9em; font-style: italic;">
-    note: <em style="font-weight: bold;">select</em> elements are not considered as input elements hence it is not included here; tested in `onBlur` event handler using:
-  </small>
-
-  ```javascript
-  console.log(e.target.name, e.target._wrapperState.controlled)
-  // result: country undefined
-  ```
 
 <div align="right"><a href="#top">[Back to top]</a></div>
 
@@ -110,11 +108,39 @@ const handleChange = (e) => {
 
 <div align="right"><a href="#top">[Back to top]</a></div>
 
-### Installed Packages and/or extensions
+### Trying Something New
+* Folder structure and file naming for better location/depth awareness of file or folder being worked on.
+
+  Leading underscore/s (`_`) in name
+  * ***file***: if file only contains sub component/s then it is named with one leading `_` (eg. `_components.js`)
+  * ***folder***: number of leading (`_`) depends on the level the folder is located relative to src files/folders
+
+```
+src/
+:-  Level1/
+:-  Level2/
+:   ├─  _Level2Custom/
+:   │   └─  __SignUpForm/
+:   │       ├─  _FormSections.js
+:   │       └─  SignUpForm.js
+:   ├─  _Level2Validator/
+:   ├─  Level2.css
+:   └─  Level2.js
+:-  services/
+:-  shared/
+:-  utils/
+:-  App.js
+:-  index.js
+:-  reset.css
+```
+
+<div align="right"><a href="#top">[Back to top]</a></div>
+
+### Installed Packages and/or Extensions
 * [validator](https://github.com/validatorjs/validator.js#validators) -  advised by source material to validate form input values
 ```bash
 npm i validator
 ```
-* [fakefiller](https://fakefiller.com/) - fills form inputs automatically
+* [fakefiller](https://fakefiller.com/) - browser extension that fills form inputs automatically making form testing faster
 
 <div align="right"><a href="#top">[Back to top]</a></div>

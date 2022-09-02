@@ -26,7 +26,7 @@ note: noValidate on form element removes effect of required attribute on input
 * Personal information
 firstName       --- text alphanumeric only
 lastName        --- text alphanumeric only
-gender          --- option select [ male, female, non-binary ]
+gender          --- radio button [ male, female, non-binary ]
 date of birth   --- date
 country         --- country list: options select
 
@@ -36,8 +36,8 @@ Notifications    --- checkbox [ promotions, newsletter, updates ]
 
 * Credentials
 username        --- text with rules: alphanumeric + special characters ( _- )
-password        --- password
-verify password --- password
+password        --- password (no rules - simple learning exercise)
+verify password --- password (no rules - simple learning exercise)
 
 submit
 
