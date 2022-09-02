@@ -9,7 +9,7 @@
 - [Dev Notes](#dev-notes)
 - [Learnings](#learnings)
   - [Look-back Learnings](#look-back-learnings)
-- [Installed Packages](#installed-packages)
+- [Installed Packages and/or extensions](#installed-packages-andor-extensions)
 
 
 ### Dev Notes
@@ -110,10 +110,11 @@ const handleChange = (e) => {
 
 <div align="right"><a href="#top">[Back to top]</a></div>
 
-### Installed Packages
-* [validator](https://github.com/validatorjs/validator.js#validators) - as advised by source material
+### Installed Packages and/or extensions
+* [validator](https://github.com/validatorjs/validator.js#validators) -  advised by source material to validate form input values
 ```bash
 npm i validator
 ```
+* [fakefiller](https://fakefiller.com/) - fills form inputs automatically
 
 <div align="right"><a href="#top">[Back to top]</a></div>
