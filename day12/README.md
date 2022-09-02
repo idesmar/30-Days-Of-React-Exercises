@@ -1,8 +1,5 @@
-<div id="top"></div>
-
 <!-- omit in toc -->
 # 30 Days of React: Day 12 | Forms
-
 
 <!-- omit in toc -->
 ## Table of Contents
@@ -11,7 +8,6 @@
   - [Look-back Learnings](#look-back-learnings)
 - [Trying Something New](#trying-something-new)
 - [Installed Packages and/or Extensions](#installed-packages-andor-extensions)
-
 
 ### Dev Notes
 * only functional components are used hereafter
@@ -56,8 +52,8 @@
     * email address format
     * username format
     * password and re-typed password match
-* Controlled and Uncontrolled inputs
-  <small style="font-size: 0.9em; font-style: italic; display: block;">
+* Controlled and Uncontrolled inputs <br/>
+  <small style="font-size: 0.9em; font-style: italic;">
   Note: <em style="font-weight: bold;">select</em> elements are not considered as input elements hence it is not included here; tested in `onBlur` event handler using:
   </small>
   ```javascript
@@ -76,7 +72,7 @@
     * notifications (checkbox)
     * passwords
 
-<div align="right"><a href="#top">[Back to top]</a></div>
+<div align="right">[<a href="#table-of-contents">Go to Table of Contents</a>]</div>
 
 ### Learnings
 * `noValidate` on **form** element removes the effect of `required` attribute in enclosed input elements `onSubmit`.
@@ -106,7 +102,7 @@
   #### Look-back Learnings
   * `required` attribute in at least one `input[type=radio]` will apply to the entire radio group (under same name)
 
-<div align="right"><a href="#top">[Back to top]</a></div>
+<div align="right">[<a href="#table-of-contents">Go to Table of Contents</a>]</div>
 
 ### Trying Something New
 * Folder structure and file naming for better location/depth awareness of file or folder being worked on.
@@ -134,7 +130,7 @@ src/
 :-  reset.css
 ```
 
-<div align="right"><a href="#top">[Back to top]</a></div>
+<div align="right">[<a href="#table-of-contents">Go to Table of Contents</a>]</div>
 
 ### Installed Packages and/or Extensions
 * [validator](https://github.com/validatorjs/validator.js#validators) -  advised by source material to validate form input values
@@ -143,4 +139,4 @@ npm i validator
 ```
 * [fakefiller](https://fakefiller.com/) - browser extension that fills form inputs automatically making form testing faster
 
-<div align="right"><a href="#top">[Back to top]</a></div>
+<div align="right">[<a href="#table-of-contents">Go to Table of Contents</a>]</div>
