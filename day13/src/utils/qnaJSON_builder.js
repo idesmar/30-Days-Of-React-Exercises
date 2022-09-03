@@ -1,8 +1,8 @@
 /** //> Build basic QNA json using an array of questions
  * run code below
    node [this_file_name]
- * copy the printed text in console and paste to your json file
- * make sure that copied text was not wrapped; should be one line
+ * copy the printed text in the console and paste to your json file
+ * make sure that copied text was not wrapped; should be in one line only
  * format JSON document with default JSON language feature
  */
 
@@ -18,21 +18,52 @@ const questionsArr = [
   'When do you use controlled input?',
   'Do you use a controlled or uncontrolled input to validate form input fields?'
 ]
+/* //> making use of thisArg object in array.prototype.map */
+const buildQNA2 = (arr = []) => {
 
-/* using a class
+  return arr.map(function (q, qIdx) {
+    const temp = { ...this }
+    temp._id = 'q' + ++qIdx
+    temp.question = q
+    return temp
+  }, { _id: '', question: '', answer: '' })
+
+  /* ONLY USE ARROW FUNCTION version if running in node
+  NOTE: if this is ran in the browser, `this` will refer to the window object
+  return arr.map((question, qIdx) => {
+    const temp = { ...this }
+    temp._id = 'q' + ++qIdx
+    temp.question = question
+    return temp
+  }, { _id: '', question: '', answer: '' })
+  */
+}
+
+const qnaObject = buildQNA2(questionsArr)
+const stringifiedQNA = JSON.stringify(qnaObject)
+
+console.log(stringifiedQNA)
+
+
+/* ////////////////////////
+  OTHER APPROACHES BELOW
+//////////////////////// */
+
+/* //* using a class
 class BuildQna {
   constructor(arr) {
     this.arr = arr
   }
   print() {
     const arr = this.arr
-    const obj = arr.map(function (question) {
+    const obj = arr.map(function (q, qIdx) {
       const temp = { ...this }
-      temp.question = question
+      temp._id = 'q' + ++qIdx
+      temp.question = q
       return temp
-    }, { question: '', answer: '' })
+    }, { _id: '', question: '', answer: '' })
 
-    console.log(obj)
+    console.log(JSON.stringify(obj))
   }
 }
 
@@ -40,16 +71,18 @@ const buildQna = new BuildQna(questionsArr)
 buildQna.print()
 */
 
-/* using a template variable
+/* //* using a template variable
 const buildQNA = (arr = []) => {
   const template = {
+    _id: '',
     question: '',
     answer: ''
   }
 
-  return arr.map(el => {
+  return arr.map((q, qIdx) => {
     const copyTemplate = { ...template }
-    copyTemplate.question = el
+    copyTemplate._id = 'q' + ++qIdx
+    copyTemplate.question = q
     return copyTemplate
   })
 }
@@ -58,33 +91,17 @@ const stringifiedQNA = JSON.stringify(qnaObject)
 console.log(stringifiedQNA)
 */
 
-/* binding an template object to a callback function in array.prototype.map
+/* //* binding a template object to a callback function in array.prototype.map
 const buildQNA3 = (arr = []) => {
-  function builder(question) {
+  function builder(q, qIdx) {
     const temp = { ...this }
-    console.log(temp)
-    temp.question = question
+    temp._id = 'q' + ++qIdx
+    temp.question = q
     return temp
   }
-  return arr.map(builder.bind({ question: '', answer: '' }))
+  return arr.map(builder.bind({ _id: '', question: '', answer: '' }))
 }
 const qnaObject = buildQNA3(questionsArr)
 const stringifiedQNA = JSON.stringify(qnaObject)
 console.log(stringifiedQNA)
 */
-
-// > making use of thisArg object in array.prototype.map
-const buildQNA2 = (arr = []) => {
-
-  // * arrow function will not work with the use of 'this' here
-  return arr.map(function (question) {
-    const temp = { ...this }
-    temp.question = question
-    return temp
-  }, { question: '', answer: '' })
-}
-
-const qnaObject = buildQNA2(questionsArr)
-const stringifiedQNA = JSON.stringify(qnaObject)
-
-console.log(stringifiedQNA)
