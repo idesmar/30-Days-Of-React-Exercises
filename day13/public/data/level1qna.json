@@ -1,0 +1,85 @@
+[
+  {
+    "_id": "q1",
+    "question": "What is a controlled input?",
+    "answer": "A controlled input is an input component that relies on its parent component to determine its `value`. The element collects the input data and passes it to it's parent component to be stored in `state` with the use of `onChange` event. This allows the input component value to be updated each time the page re-renders.",
+    "footnote": [
+      "Explanation from [react](https://reactjs.org/docs/uncontrolled-components.html) while comparing controlled and uncontrolled components: In a controlled component, form data is handled by a React component."
+    ]
+  },
+  {
+    "_id": "q2",
+    "question": "What is an uncontrolled input?",
+    "answer": "A Uncontrolled Component is one that stores its own state internally, and you query the DOM using a ref to find its `current` value when you need it. This is a bit more like traditional HTML. Dev note: Using an uncontrolled input will not result to the page re-rendering unlike with controlled inputs.",
+    "footnote": [
+      "A good explanation in [Stackoverflow](https://stackoverflow.com/questions/42522515/what-are-react-controlled-components-and-uncontrolled-components)"
+    ]
+  },
+  {
+    "_id": "q3",
+    "question": "How do you get a content of a certain HTML element in React?",
+    "answer": "To get the content of an element, use `[stateName].current.value`"
+  },
+  {
+    "_id": "q4",
+    "question": "Why is it not a good idea to touch the DOM directly in React?",
+    "answer": "Firstly, the answers here are NOT specific to inputs but to Uncontrolled Components in general. Reasons not to touch DOM directly:",
+    "list": [
+      "Direct DOM manipulation renders slower than when done with React wherein the Virtual DOM repaints the real DOM [1]",
+      "Direct manipulation can make it harder to debug and is error prone."
+    ],
+    "footnote": [
+      "[1] [DOM Manipulation in React > The Issue](https://dzone.com/articles/dom-manipulation-in-react)"
+    ]
+  },
+  {
+    "_id": "q5",
+    "question": "What is most frequently used in React? Controlled or Uncontrolled input?",
+    "answer": "According to React's documentation, it is advised to use Controlled inputs."
+  },
+  {
+    "_id": "q6",
+    "question": "What do you need to write uncontrolled input?",
+    "answer": "Requirement for uncontrolled input listed below",
+    "list": [
+      "ref"
+    ]
+  },
+  {
+    "_id": "q7",
+    "question": "What does state require to write uncontrolled input?",
+    "answer": "Requirement for state listed below",
+    "list": [
+      "Class component: `React.createRef()`",
+      "Functional component: `useRef()`"
+    ]
+  },
+  {
+    "_id": "q8",
+    "question": "When do you use uncontrolled input?",
+    "answer": "Situations to use uncontrolled inputs",
+    "list": [
+      "Validation is not needed or is only required `onSubmit`"
+    ],
+    "footnote": [
+      "More reading: [React-Champ: Part II: When and how to use uncontrolled components](https://medium.com/@adarshsingh1407/react-champ-part-ii-when-to-use-controlled-uncontrolled-components-870f42cf398) by Adarsh Singh"
+    ]
+  },
+  {
+    "_id": "q9",
+    "question": "When do you use controlled input?",
+    "answer": "Situations to use controlled inputs",
+    "list": [
+      "Validation is needed especially onChange",
+      "Component needs to broken down into child components"
+    ],
+    "footnote": [
+      "More reading: [React-Champ: Part I: Controlled vs Uncontrolled Components](https://medium.com/@adarshsingh1407/react-champ-part-i-controlled-vs-uncontrolled-components-9af452277d79) by Adarsh Singh"
+    ]
+  },
+  {
+    "_id": "q10",
+    "question": "Do you use a controlled or uncontrolled input to validate form input fields?",
+    "answer": "Controlled input is advised if validation is required especially `onChange`"
+  }
+]
