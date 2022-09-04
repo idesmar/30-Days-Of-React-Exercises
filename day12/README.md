@@ -137,6 +137,6 @@ src/
 ```bash
 npm i validator
 ```
-* [fakefiller](https://fakefiller.com/) - browser extension that fills form inputs automatically making form testing faster
+* [fakefiller](https://fakefiller.com/) - browser extension that fills form inputs automatically; making form testing faster
 
 <div align="right">[<a href="#table-of-contents">Go to Table of Contents</a>]</div>
