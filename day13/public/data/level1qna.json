@@ -4,7 +4,7 @@
     "question": "What is a controlled input?",
     "answer": "A controlled input is an input component that relies on its parent component to determine its `value`. The element collects the input data and passes it to it's parent component to be stored in `state` with the use of `onChange` event. This allows the input component value to be updated each time the page re-renders.",
     "footnote": [
-      "Explanation from [react](https://reactjs.org/docs/uncontrolled-components.html) while comparing controlled and uncontrolled components: In a controlled component, form data is handled by a React component."
+      "Explanation from [react](https://reactjs.org/docs/uncontrolled-components.html): while comparing controlled and uncontrolled components: In a controlled component, form data is handled by a React component."
     ]
   },
   {
@@ -62,7 +62,7 @@
       "Validation is not needed or is only required `onSubmit`"
     ],
     "footnote": [
-      "More reading: [React-Champ: Part II: When and how to use uncontrolled components](https://medium.com/@adarshsingh1407/react-champ-part-ii-when-to-use-controlled-uncontrolled-components-870f42cf398) by Adarsh Singh"
+      "More reading: [When and how to use uncontrolled components](https://medium.com/@adarshsingh1407/react-champ-part-ii-when-to-use-controlled-uncontrolled-components-870f42cf398) by Adarsh Singh"
     ]
   },
   {
@@ -70,11 +70,11 @@
     "question": "When do you use controlled input?",
     "answer": "Situations to use controlled inputs",
     "list": [
-      "Validation is needed especially onChange",
-      "Component needs to broken down into child components"
+      "Validation is needed especially `onChange`",
+      "Component needs to be broken down into small components"
     ],
     "footnote": [
-      "More reading: [React-Champ: Part I: Controlled vs Uncontrolled Components](https://medium.com/@adarshsingh1407/react-champ-part-i-controlled-vs-uncontrolled-components-9af452277d79) by Adarsh Singh"
+      "More reading: [Controlled vs Uncontrolled Components](https://medium.com/@adarshsingh1407/react-champ-part-i-controlled-vs-uncontrolled-components-9af452277d79) by Adarsh Singh"
     ]
   },
   {
