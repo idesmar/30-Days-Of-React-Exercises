@@ -1,20 +1,24 @@
 import makeID from './makeID'
-import { rem } from './unitConvert'
+import { rem, em } from './unitConvert'
 
-const Link = ({ text, href }) => (
-  <a
-    href={href}
-    style={{
-      textDecoration: 'none',
-      color: '#ffffff',
-      backgroundColor: 'green',
-      borderRadius: rem(8),
-      paddingInline: rem(10),
-    }}
-  >
-    {text}
-  </a>
-)
+const Link = ({ text, href }) => {
+  const defaultLinkStyle = {
+    textDecoration: 'none',
+    color: '#ffffff',
+    backgroundColor: '#154f62',
+    borderRadius: em(4),
+    paddingInline: rem(10),
+  }
+
+  return (
+    <a
+      href={href}
+      style={defaultLinkStyle}
+    >
+      {text}
+    </a>
+  )
+}
 
 // Note: return value is a fragment
 const hasLink = (str = '') => {

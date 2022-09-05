@@ -1,12 +1,22 @@
 import makeID from './makeID'
+import { em } from './unitConvert'
 
 const Code = ({ content }) => {
+  const defaultCodeStyle = {
+    fontStyle: 'italic',
+  }
+  const defaultSpanStyle = {
+    padding: `0 ${em(8)}`,
+    margin: `0 ${em(4)}`,
+    outline: `1px dashed`,
+    borderRadius: em(4),
+  }
   return (
-    <code
-      style={{ fontStyle: 'italic' }}
-    >
-      {content}
-    </code>
+    <span style={defaultSpanStyle}>
+      <code style={defaultCodeStyle}>
+        {content}
+      </code>
+    </span>
   )
 }
 
