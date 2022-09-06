@@ -1,0 +1,45 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+summary {
+  cursor: pointer;
+}
+
+#root {
+  background-color: #222;
+  color: cyan;
+  min-height: 100vh;
+}
+
+input,
+select {
+  background-color: inherit;
+  color: inherit;
+  border: none;
+  outline: 1px solid;
+}
+
+option {
+  scrollbar-width: 3px;
+}
+
+select option {
+  /* ? inherit doesn't work
+  background-color: inherit;
+  color: inherit;
+  */
+  background-color: #222;
+  color: cyan;
+}
+
+input[type="radio"] {
+  appearance: unset;
+  height: 0.8em;
+  width: 0.8em;
+  border-radius: 100%;
+}
+input[type="radio"]:checked {
+  background-color: cyan;
+}
