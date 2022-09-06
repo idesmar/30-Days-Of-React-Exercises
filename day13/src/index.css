@@ -34,12 +34,21 @@ select option {
   color: cyan;
 }
 
-input[type="radio"] {
+input[type="radio"],
+input[type="checkbox"] {
   appearance: unset;
   height: 0.8em;
   width: 0.8em;
+}
+
+input[type="radio"] {
   border-radius: 100%;
 }
-input[type="radio"]:checked {
+input[type="radio"]:checked,
+input[type="checkbox"]:checked {
   background-color: cyan;
 }
+
+/* input[type="checkbox"] {
+
+} */

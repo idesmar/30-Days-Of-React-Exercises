@@ -1,8 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { userServices } from '../../services/userServices'
 
-/*
-* Personal information
+/* //* Personal information
   firstName       --- text alphanumeric only
   lastName        --- text alphanumeric only
   gender          --- radio button [ male, female, non-binary ]
@@ -48,9 +47,10 @@ const Personal = ({
   }, [])
 
 
+  /* CHANGE LATER FROM FORM TO FIELDSET WITH SUBMIT BUTTON TO LIFT DATA TO PARENT */
   const handleFormSubmit = (e) => {
     e.preventDefault()
-    console.log('Passing data object to parent. Object to lifted', personalInfo)
+
     updateUserData(personalInfo)
   }
 
@@ -65,6 +65,7 @@ const Personal = ({
             name="firstName"
             id="firstName"
             ref={firstName}
+            required
           />
         </div>
         <div>
@@ -74,6 +75,7 @@ const Personal = ({
             name="lastName"
             id="lastName"
             ref={lastName}
+            required
           />
         </div>
         <div>
@@ -85,6 +87,7 @@ const Personal = ({
               id="male"
               value="male"
               ref={gender}
+              required
             />
             <label htmlFor="male"> Male</label>
           </div>
@@ -95,6 +98,7 @@ const Personal = ({
               id="female"
               value="female"
               ref={gender}
+              required
             />
             <label htmlFor="female"> Female</label>
           </div>
@@ -105,6 +109,7 @@ const Personal = ({
               id="non-binary"
               value="non-binary"
               ref={gender}
+              required
             />
             <label htmlFor="non-binary"> Non-binary</label>
           </div>
@@ -116,6 +121,7 @@ const Personal = ({
             name="dob"
             id="dob"
             ref={dob}
+            required
           />
         </div>
         <div>
@@ -125,6 +131,7 @@ const Personal = ({
             id="country"
             ref={country}
             defaultValue={COUNTRY_PLACEHOLDER}
+            required
           >
             <option disabled>
               {COUNTRY_PLACEHOLDER}
