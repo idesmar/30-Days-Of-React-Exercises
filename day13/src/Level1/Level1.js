@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { userServices } from '../services/userServices'
 import hasCode from '../utils/hasCode'
 import hasLink from '../utils/hasLink'
 
@@ -33,7 +34,7 @@ const QnaDetails = ({ q }) => {
   } = q
 
   return (
-    <details open>
+    <details>
       <summary>{question}</summary>
       <div>
         <p>{hasCode(answer)}</p>
@@ -56,15 +57,14 @@ const Qna = () => {
         question: '',
         answer: '',
         list: [],
-        footnote: []
+        footnote: [],
       }
     ]
   )
 
   useEffect(() => {
     const fetchQna = async () => {
-      const res = await fetch('./data/level1qna.json')
-      const data = await res.json()
+      const data = await userServices.getQna()
       setQna(prev => [...data])
     }
     fetchQna()

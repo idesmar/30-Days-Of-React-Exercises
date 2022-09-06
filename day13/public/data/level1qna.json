@@ -42,17 +42,14 @@
     "question": "What do you need to write uncontrolled input?",
     "answer": "Requirement for uncontrolled input listed below",
     "list": [
-      "ref"
+      "Class component: `React.createRef()`",
+      "Functional component: `useRef()`"
     ]
   },
   {
     "_id": "q7",
-    "question": "What does state require to write uncontrolled input?",
-    "answer": "Requirement for state listed below",
-    "list": [
-      "Class component: `React.createRef()`",
-      "Functional component: `useRef()`"
-    ]
+    "question": "Is state require to write uncontrolled input?",
+    "answer": "State is NOT required to write an uncontrolled input. This is because the content or current value of the input is not tracked by React, rather internally by the DOM Element."
   },
   {
     "_id": "q8",
