@@ -35,6 +35,7 @@ Plan             --- radio button [ free, free+, free++ ]
 Notifications    --- checkbox [ promotions, newsletter, updates ]
 
 * Credentials
+email           --- email address
 username        --- text with rules: alphanumeric + special characters ( _- )
 password        --- password (no rules - simple learning exercise)
 verify password --- password (no rules - simple learning exercise)
