@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { rem, rem4 } from '../utils/unitConvert'
 import { Personal } from './_FormSections/Personal'
 import { Subscription } from './_FormSections/Subscription'
-
+import { Credentials } from './_FormSections/Credentials'
 
 /* Sign up form format:
 
@@ -18,6 +18,7 @@ Plan             --- radio button [ free, free+, free++ ]
 Notifications    --- checkbox [ promotions, newsletter, updates ]
 
 * Credentials
+email           --- email address
 username        --- text with rules: alphanumeric + special characters ( _- )
 password        --- password (no rules - simple learning exercise)
 verify password --- password (no rules - simple learning exercise)
@@ -111,7 +112,7 @@ const Level2 = () => {
     }
 
     /* peek at userFormData */
-    // console.log(userFormData)
+    console.log(userFormData)
     setUserData(prev => ({ ...prev, ...userFormData }))
   }
 
@@ -122,6 +123,7 @@ const Level2 = () => {
       <div>
         <Personal updateUserData={handleDataFromForm} />
         <Subscription updateUserData={handleDataFromForm} />
+        <Credentials updateUserData={handleDataFromForm} />
         <button onClick={handleSignUp}>Sign up</button>
       </div>
     </section>

@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { userServices } from '../../services/userServices'
+import { namePattern } from '../../utils/customValidation'
 
 /* //* Personal information
   firstName       --- text alphanumeric only
@@ -65,6 +66,7 @@ const Personal = ({
             name="firstName"
             id="firstName"
             ref={firstName}
+            pattern={namePattern}
             required
           />
         </div>
@@ -75,6 +77,7 @@ const Personal = ({
             name="lastName"
             id="lastName"
             ref={lastName}
+            pattern={namePattern}
             required
           />
         </div>
