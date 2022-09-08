@@ -29,12 +29,15 @@ const Subscription = ({
 
   const handleFormSubmit = (e) => {
     e.preventDefault()
-    // const
-    updateUserData(subscriptionInfo)
+    /* alt to passing argument "formDescription" to userUpdateData
+      * opted to hardcoding "formDescription" since data-* is exposed in html and unsure if it can be a DevSec risk
+      const { dataset } = e.target
+      const formDescription = Object.keys(dataset).toString() */
+    updateUserData(subscriptionInfo, 'subscription')
   }
 
   return (
-    <form onSubmit={handleFormSubmit}>
+    <form onSubmit={handleFormSubmit} data-subscription>
       <fieldset>
         <legend>Subscription Details</legend>
         <div>
@@ -109,7 +112,7 @@ const Subscription = ({
           </div>
         </div>
       </fieldset>
-      <button>Submit</button>
+      <button>Next</button>
     </form>
   )
 }

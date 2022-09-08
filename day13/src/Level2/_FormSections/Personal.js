@@ -30,7 +30,6 @@ const Personal = ({
     country,
   } = personalInfo
 
-
   const COUNTRY_PLACEHOLDER = 'Select a country'
   const [countries, setCountries] = useState([])
 
@@ -47,16 +46,17 @@ const Personal = ({
     fetchCountries()
   }, [])
 
-
-  /* CHANGE LATER FROM FORM TO FIELDSET WITH SUBMIT BUTTON TO LIFT DATA TO PARENT */
   const handleFormSubmit = (e) => {
     e.preventDefault()
-
-    updateUserData(personalInfo)
+    /* alt to passing argument "formDescription" to userUpdateData
+      * opted to hardcoding "formDescription" since data-* is exposed in html and unsure if it can be a DevSec risk
+      const { dataset } = e.target
+      const formDescription = Object.keys(dataset).toString() */
+    updateUserData(personalInfo, 'personal')
   }
 
   return (
-    <form onSubmit={handleFormSubmit}>
+    <form onSubmit={handleFormSubmit} data-personal>
       <fieldset>
         <legend>Personal Information</legend>
         <div>
@@ -152,7 +152,7 @@ const Personal = ({
           </select>
         </div>
       </fieldset>
-      <button>Submit</button>
+      <button>Next</button>
     </form>
   )
 }

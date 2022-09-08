@@ -3,14 +3,11 @@
   margin: 0;
 }
 
-summary {
-  cursor: pointer;
-}
-
 #root {
   background-color: #222;
   color: cyan;
   min-height: 100vh;
+  padding: 1rem;
 }
 
 input,
@@ -21,15 +18,10 @@ select {
   outline: 1px solid;
 }
 
-option {
-  scrollbar-width: 3px;
-}
-
 select option {
   /* ? inherit doesn't work
   background-color: inherit;
-  color: inherit;
-  */
+  color: inherit; */
   background-color: #222;
   color: cyan;
 }
@@ -49,6 +41,23 @@ input[type="checkbox"]:checked {
   background-color: cyan;
 }
 
-/* input[type="checkbox"] {
+h1,
+h2 {
+  text-align: center;
+  padding: 0.4em 0;
+}
 
-} */
+details + details {
+  margin-top: 0.4rem;
+}
+
+details > *:not(summary) {
+  padding-inline: 1em;
+}
+
+summary {
+  list-style: none;
+  padding: 0.4em 1em;
+  border-radius: 0.4em;
+  cursor: pointer;
+}

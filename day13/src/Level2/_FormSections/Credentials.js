@@ -46,12 +46,20 @@ updateUserData,
     /* do NOT use state.passwordMatching;
      setState only update state AFTER COMPONENT MOUNTS */
     if (pwdMatching) {
-      updateUserData(credentialDetails)
+      /* alt to passing argument "formDescription" to userUpdateData
+        * opted to hardcoding "formDescription" since data-* is exposed in html and unsure if it can be a DevSec risk
+        const { dataset } = e.target
+        const formDescription = Object.keys(dataset).toString() */
+      /* alt to removing password2 from being added to parent's state
+        * opted to control data to be updated to state in updateUserData instead
+        const cred = { ...credentialDetails }
+        delete cred.password2 */
+      updateUserData(credentialDetails, 'credentials')
     }
   }
 
   return (
-    <form onSubmit={handleFormSubmit}>
+    <form onSubmit={handleFormSubmit} data-credentials>
       <fieldset>
         <legend>Setup Credentials</legend>
         <div>
@@ -99,7 +107,7 @@ updateUserData,
           {!passwordMatching && <PasswordsDoNotMatch />}
         </div>
       </fieldset>
-      <button>Submit</button>
+      <button>Next</button>
     </form>
   )
 }
