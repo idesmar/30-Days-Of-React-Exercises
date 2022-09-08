@@ -7,7 +7,7 @@
 - [Learnings](#learnings)
   - [Look-back Learnings](#look-back-learnings)
 - [Trying Something New](#trying-something-new)
-- [Installed Packages and/or Extensions](#installed-packages-andor-extensions)
+- [Third Party Resources](#third-party-resources)
 
 ### Dev Notes
 * only functional components are used hereafter
@@ -132,7 +132,7 @@ src/
 
 <div align="right">[<a href="#table-of-contents">Go to Table of Contents</a>]</div>
 
-### Installed Packages and/or Extensions
+### Third Party Resources
 * [validator](https://github.com/validatorjs/validator.js#validators) -  advised by source material to validate form input values
 ```bash
 npm i validator
