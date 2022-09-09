@@ -28,7 +28,6 @@ verify password --- password (no rules - simple learning exercise)
 submit
 */
 
-
 const Heading2 = () => <h2>Level 2</h2>
 const Disclaimer = () => (
   <div style={
@@ -54,9 +53,10 @@ const Disclaimer = () => (
 
 
 const Final = () => {
+
   return (
     <>
-      <h4>Thank You for Signing Up!</h4>
+      <h3>Thank You for Signing Up!</h3>
       <p>Check the console to see data that is being sent to imaginary database</p>
     </>
   )
@@ -187,7 +187,7 @@ const Level2 = () => {
         {subscription && <Subscription updateUserData={handleDataFromForm} />}
         {credentials && <Credentials updateUserData={handleDataFromForm} />}
         {confirmation && <Confirmation userData={userData} handleSignUp={handleSignUp} />}
-        {final && <Final /> }
+        {final && <Final />}
       </div>
     </section>
   )

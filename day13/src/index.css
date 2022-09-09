@@ -61,3 +61,22 @@ summary {
   border-radius: 0.4em;
   cursor: pointer;
 }
+
+button {
+  all: unset;
+}
+
+
+fieldset {
+  all: unset;
+  display: revert;
+  outline: 1px solid;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+fieldset > legend {
+  all: unset;
+  position: revert;
+  display: revert;
+}

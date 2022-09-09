@@ -1,3 +1,5 @@
+import { Button } from "../shared/Button"
+
 const Confirmation = ({
   userData: {
     firstName,
@@ -15,6 +17,7 @@ const Confirmation = ({
 
   return (
     <>
+      <h3>Please check the data to be submitted</h3>
       <div>
         <h4>Personal Information</h4>
         <p>Full Name: {`${firstName} ${lastName}`}</p>
@@ -32,7 +35,10 @@ const Confirmation = ({
         <p>Email: {email}</p>
         <p>Username: {username}</p>
       </div>
-      <button onClick={handleSignUp}>Sign up</button>
+      <Button
+        handleClick={handleSignUp}
+        innerText='Sign up'
+      />
     </>
   )
 }

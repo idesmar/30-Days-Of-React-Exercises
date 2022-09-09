@@ -1,4 +1,5 @@
 import { useRef } from "react"
+import { Button } from "../../shared/Button"
 
 /* //* Subscription details
 Plan             --- radio button [ free, free+, free++ ]
@@ -39,7 +40,7 @@ const Subscription = ({
   return (
     <form onSubmit={handleFormSubmit} data-subscription>
       <fieldset>
-        <legend>Subscription Details</legend>
+        <legend><h3>Subscription Details</h3></legend>
         <div>
           <p>Choose Plan</p>
           <div>
@@ -112,7 +113,7 @@ const Subscription = ({
           </div>
         </div>
       </fieldset>
-      <button>Next</button>
+      <Button innerText='Next' />
     </form>
   )
 }

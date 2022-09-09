@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { emailPattern, isPasswordMatching, usernamePattern } from "../../utils/customValidation";
+import { Button } from "../../shared/Button";
 
 /*
   * Credentials
@@ -37,7 +38,6 @@ updateUserData,
     password2,
   } = credentialDetails
 
-
   const handleFormSubmit = (e) => {
     e.preventDefault()
     const pwdMatching = isPasswordMatching(password.current.value, password2.current.value)
@@ -61,7 +61,7 @@ updateUserData,
   return (
     <form onSubmit={handleFormSubmit} data-credentials>
       <fieldset>
-        <legend>Setup Credentials</legend>
+        <legend><h3>Setup Credentials</h3></legend>
         <div>
           <label htmlFor="email">Email: </label>
           <input
@@ -107,9 +107,10 @@ updateUserData,
           {!passwordMatching && <PasswordsDoNotMatch />}
         </div>
       </fieldset>
-      <button>Next</button>
+      <Button innerText='Next' />
     </form>
   )
 }
+
 
 export { Credentials }

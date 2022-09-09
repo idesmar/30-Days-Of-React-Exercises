@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { userServices } from '../../services/userServices'
 import { namePattern } from '../../utils/customValidation'
+import { Button } from '../../shared/Button'
 
 /* //* Personal information
   firstName       --- text alphanumeric only
@@ -58,7 +59,7 @@ const Personal = ({
   return (
     <form onSubmit={handleFormSubmit} data-personal>
       <fieldset>
-        <legend>Personal Information</legend>
+        <legend><h3>Personal Information</h3></legend>
         <div>
           <label htmlFor="firstName">First Name: </label>
           <input
@@ -152,7 +153,7 @@ const Personal = ({
           </select>
         </div>
       </fieldset>
-      <button>Next</button>
+      <Button innerText='Next' />
     </form>
   )
 }
