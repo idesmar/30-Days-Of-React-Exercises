@@ -1,5 +1,5 @@
 <!-- omit in toc -->
-# 30 Days of React: Day 13 | Uncontrolled Components
+# 30 Days of React: Day 14 | Component Life Cycle
 
 <!-- omit in toc -->
 ## Table of Contents

@@ -1,0 +1,52 @@
+[
+  {
+    "_id": "q1",
+    "question": "What is component life cycle",
+    "answer": ""
+  },
+  {
+    "_id": "q2",
+    "question": "What is the purpose of life cycles",
+    "answer": ""
+  },
+  {
+    "_id": "q3",
+    "question": "What are the three stages of a component life cycle",
+    "answer": ""
+  },
+  {
+    "_id": "q4",
+    "question": "What does mounting means?",
+    "answer": ""
+  },
+  {
+    "_id": "q5",
+    "question": "What does updating means",
+    "answer": ""
+  },
+  {
+    "_id": "q6",
+    "question": "What does unmounting means?",
+    "answer": ""
+  },
+  {
+    "_id": "q7",
+    "question": "What is the most common built-in mounting lifecycle method?",
+    "answer": ""
+  },
+  {
+    "_id": "q8",
+    "question": "What are the mounting life cycle methods?",
+    "answer": ""
+  },
+  {
+    "_id": "q9",
+    "question": "What are the updating life cycle methods?",
+    "answer": ""
+  },
+  {
+    "_id": "q10",
+    "question": "What is the unmounting life cycle method?",
+    "answer": ""
+  }
+]
