@@ -3,6 +3,7 @@ import { rem, rem4 } from '../utils/unitConvert'
 import { Personal } from './_FormSections/Personal'
 import { Subscription } from './_FormSections/Subscription'
 import { Credentials } from './_FormSections/Credentials'
+import { Confirmation } from './_Confirmation'
 import { themeColor } from '../App'
 
 /* Sign up form format:
@@ -52,6 +53,16 @@ const Disclaimer = () => (
 )
 
 
+const Final = () => {
+  return (
+    <>
+      <h4>Thank You for Signing Up!</h4>
+      <p>Check the console to see data that is being sent to imaginary database</p>
+    </>
+  )
+}
+
+
 const Level2 = () => {
 
   const [userData, setUserData] = useState(
@@ -68,18 +79,6 @@ const Level2 = () => {
       password: '',
     }
   )
-
-  const {
-    firstName,
-    lastName,
-    gender,
-    dob,
-    country,
-    plan,
-    notifications,
-    email,
-    username,
-  } = userData
 
   const [visibleComponent, setVisibleComponent] = useState({
     personal: true,
@@ -136,6 +135,7 @@ const Level2 = () => {
 
     for (const key in formInfo) {
 
+      /* guard clause to skip; if property is not being tracked by userData */
       if (!userDataKeys.includes(key)) continue
 
       /* guard clause for properties that do not contain a ref
@@ -166,20 +166,13 @@ const Level2 = () => {
     setVisibleComponent(prev => {
       const snapshot = { ...prev }
 
-      let toggle = false
+      let toggler = false
       for (const key in snapshot) {
-        /* reset visible to false */
-        snapshot[key] = false
+        snapshot[key] = toggler
+        if (toggler) toggler = !toggler
 
-        if (toggle) {
-          snapshot[key] = true
-          toggle = false
-        }
-
-        /* trigger toggle to make next key to visible */
-        if (key === formDescription) {
-          toggle = true
-        }
+        /* trigger toggler to make next key visible */
+        if (key === formDescription) toggler = true
       }
       return { ...prev, ...snapshot }
     })
@@ -193,37 +186,12 @@ const Level2 = () => {
         {personal && <Personal updateUserData={handleDataFromForm} />}
         {subscription && <Subscription updateUserData={handleDataFromForm} />}
         {credentials && <Credentials updateUserData={handleDataFromForm} />}
-        {confirmation && (
-          <>
-            <div>
-              <h4>Personal Information</h4>
-              <p>Full Name: {`${firstName} ${lastName}`}</p>
-              <p>Gender: {gender}</p>
-              <p>Date of birth: {dob}</p>
-              <p>Country: {country}</p>
-            </div>
-            <div>
-              <h4>Subscription</h4>
-              <p>Plan: {plan}</p>
-              <p>Notifications: {notifications.length ? notifications.join(',') : 'none'}</p>
-            </div>
-            <div>
-              <h4>Credentials</h4>
-              <p>Email: {email}</p>
-              <p>Username: {username}</p>
-            </div>
-            <button onClick={handleSignUp}>Sign up</button>
-          </>
-        )}
-        {final && (
-          <>
-            <h4>Thank You for Signing Up!</h4>
-            <p>Check the console to see data that is being sent to imaginary database</p>
-          </>
-        )}
+        {confirmation && <Confirmation userData={userData} handleSignUp={handleSignUp} />}
+        {final && <Final /> }
       </div>
     </section>
   )
 }
+
 
 export { Level2 }
