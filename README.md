@@ -28,6 +28,7 @@ Solutions to exercises from [30 Days of React](https://github.com/Asabeneh/30-Da
 |    [Day 11](./day11/README.md)    | Events                  |
 |    [Day 12](./day12/README.md)    | Forms                   |
 |    [Day 13](./day13/README.md)    | Uncontrolled Components |
+|    [Day 14](./day14/README.md)    | Component Life Cycle    |
 
 <div align="right">[<a href="#table-of-contents">Go to Table of Contents</a>]</div>
 

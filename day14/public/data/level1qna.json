@@ -1,52 +1,70 @@
 [
   {
     "_id": "q1",
-    "question": "What is component life cycle",
-    "answer": ""
+    "question": "What is component life cycle?",
+    "answer": "Component life cycle shows the stages of a component's creation to its ultimate destruction."
   },
   {
     "_id": "q2",
-    "question": "What is the purpose of life cycles",
-    "answer": ""
+    "question": "What is the purpose of life cycles?",
+    "answer": "The purpose of life cycles let the developer track and make appropriate changes on the component throughout it's life span"
   },
   {
     "_id": "q3",
-    "question": "What are the three stages of a component life cycle",
-    "answer": ""
+    "question": "What are the three stages of a component life cycle?",
+    "answer": "Component LIfe Cycle Stages:",
+    "list": [
+      "Mounting",
+      "Updating",
+      "Unmounting"
+    ]
   },
   {
     "_id": "q4",
-    "question": "What does mounting means?",
-    "answer": ""
+    "question": "What does mounting mean?",
+    "answer": "Mounting the stage from component is being constructed until it is fully painted on the DOM"
   },
   {
     "_id": "q5",
-    "question": "What does updating means",
-    "answer": ""
+    "question": "What does updating mean?",
+    "answer": "Updating is the stage where there are changes that needs to be done on the component after it is mounted"
   },
   {
     "_id": "q6",
-    "question": "What does unmounting means?",
-    "answer": ""
+    "question": "What does unmounting mean?",
+    "answer": "Unmounting is the removal of the component From the DOM"
   },
   {
     "_id": "q7",
     "question": "What is the most common built-in mounting lifecycle method?",
-    "answer": ""
+    "answer": "`render` is the most common built-in mounting lifecycle method"
   },
   {
     "_id": "q8",
     "question": "What are the mounting life cycle methods?",
-    "answer": ""
+    "answer": "Mounting Life Cycle Methods:",
+    "list": [
+      "`constructor`()",
+      "`static getDerivedStateFromProps`(props, state)",
+      "`render`()",
+      "`componentDidMount`()"
+    ]
   },
   {
     "_id": "q9",
     "question": "What are the updating life cycle methods?",
-    "answer": ""
+    "answer": "Updating Life Cycle Methods:",
+    "list": [
+      "`static getDerivedStateFromProps`(props, state)",
+      "`shouldComponentUpdate`(nextProps, nextState)",
+      "`render`()",
+      "`getSnapshotBeforeUpdate`(prevProps, prevState)",
+      "`componentDidUpdate`(prevProps, prevState, snapshot)"
+    ]
   },
   {
     "_id": "q10",
     "question": "What is the unmounting life cycle method?",
-    "answer": ""
+    "answer": "`componentWillUnmount`()"
   }
 ]
