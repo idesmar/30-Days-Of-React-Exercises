@@ -1,7 +1,8 @@
 import { useState } from 'react'
-import { Sample1 } from "./Sample1"
-import { Sample2 } from "./Sample2"
-import { Button } from './shared/Button'
+import { Level1 } from './_Level1'
+import { Sample1 } from "./_Sample1"
+import { Sample2 } from "./_Sample2"
+import { Button } from './_shared/Button'
 
 
 const SelectSample = ({
@@ -64,6 +65,7 @@ const App = () => {
   return (
     <>
       <Heading1 />
+      <Level1 />
       <Note />
       <ClearConsoleBtn />
       <SelectSample handleChange={handleChange}/>
