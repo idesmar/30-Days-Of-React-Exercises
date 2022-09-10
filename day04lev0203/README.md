@@ -1,4 +1,6 @@
-# 30 Days of React: Day 04 | Components
+<div id="readme"></div>
+
+# [30 Days of React](../README.md#readme): Day 04 | [Components](https://github.com/Asabeneh/30-Days-Of-React/blob/master/04_Day_Components/04_components.md)
 
 ### Dev Notes
 * [Personal CSS Reset](./src/reset.css) used inspired by [CSS Reset](https://github.com/elad2412/the-new-css-reset) by [@elad2412](https://github.com/elad2412)

@@ -1,5 +1,7 @@
+<div id="readme"></div>
+
 <!-- omit in toc -->
-# 30 Days of React: Day 14 | Component Life Cycle
+# [30 Days of React](../README.md#readme): Day 14 | [Component Life Cycle](https://github.com/Asabeneh/30-Days-Of-React/blob/master/14_Day_Component_Life_Cycles/14_component_life_cycles.md)
 
 <!-- omit in toc -->
 ## Table of Contents
@@ -20,21 +22,21 @@
 | | [getSnapshotBeforeUpdate (prevProps, prevState)](https://reactjs.org/docs/react-component.html#getsnapshotbeforeupdate) | |
 | [componentDidMount()](https://reactjs.org/docs/react-component.html#componentdidmount) | [componentDidUpdate (prevProps, prevState, snapshot)](https://reactjs.org/docs/react-component.html#componentdidupdate) | [componentWillUnmount()](https://reactjs.org/docs/react-component.html#componentwillunmount) |
 
-<div align="right">[<a href="#table-of-contents">Go to Table of Contents</a>]</div>
+<div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
 
 ### Learnings
-* React Life Cycle Diagram
+* React Life Cycle Diagram <sup><a href="#1">[1]</a></sup>
 ![React Life Cycle Diagram](./src/_assets/react-life-cycle-diagram.png?raw=true)
 
-<div align="right">[<a href="#table-of-contents">Go to Table of Contents</a>]</div>
+<div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
 
 ### Third Party Resources
 * Rest Countries API: https://[restcountries.com](https://restcountries.com)/v3.1/all
 
-<div align="right">[<a href="#table-of-contents">Go to Table of Contents</a>]</div>
+<div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
 
 ### Other References
-* [React Life Cycle Methods Diagram](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) by [Wojciech MAJ](https://github.com/wojtekmaj)
+* [React Life Cycle Methods Diagram](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) by [Wojciech MAJ](https://github.com/wojtekmaj) <sup id="1">[1]</sup>
 * [React Components](https://reactjs.org/docs/react-component.html) official documentation
 
-<div align="right">[<a href="#table-of-contents">Go to Table of Contents</a>]</div>
+<div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>

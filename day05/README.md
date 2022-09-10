@@ -1,4 +1,6 @@
-# 30 Days of React: Day 05 | Props
+<div id="readme"></div>
+
+# [30 Days of React](../README.md#readme): Day 05 | [Props](https://github.com/Asabeneh/30-Days-Of-React/blob/master/05_Day_Props/05_props.md)
 
 ### Dev Notes
 * [Personal CSS Reset](./src/reset.css) used inspired by [CSS Reset](https://github.com/elad2412/the-new-css-reset) by [@elad2412](https://github.com/elad2412)

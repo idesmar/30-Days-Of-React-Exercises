@@ -1,12 +1,12 @@
-# 30 Days of React: Day 10 | React Folder Structure
+<div id="readme"></div>
 
-### Folder Structure used is not yet final
-Currently still experimenting with different structures\
-Using the ff. folder names as an experiment so they may still change in the future
-* ***assets*** - now also stores global styles (ie. *globalStyles.js*)
-* ***services*** - fetching data (ie. *level1qna.json*)
-* ***shared*** - shareable components (ie. *Button*, *Details*, *SuperficialButton*)
-* ***utils*** - previously referred to as lib/ that holds custom javascript functions
+<!-- omit in TOC -->
+# [30 Days of React](../README.md#readme): Day 10 | [React Folder Structure](https://github.com/Asabeneh/30-Days-Of-React/blob/master/10_React_Project_Folder_Structure/10_react_project_folder_structure.md)
+
+<!-- omit in TOC -->
+## Table of Contents
+- [Dev Notes](#dev-notes)
+- [Folder Structure](#folder-structure)
 
 ### Dev Notes
 * [CSS reset - version 1.7.2](https://github.com/elad2412/the-new-css-reset) by [@elad2412](https://github.com/elad2412) used
@@ -45,3 +45,15 @@ Using the ff. folder names as an experiment so they may still change in the futu
   * *makeID.js*
   * *misc.js*
   * *unitConvert.js*
+
+<div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
+
+### Folder Structure
+Currently still experimenting with different structures\
+Using the ff. folder names as an experiment so they may still change in the future
+* ***assets*** - now also stores global styles (ie. *globalStyles.js*)
+* ***services*** - fetching data (ie. *level1qna.json*)
+* ***shared*** - shareable components (ie. *Button*, *Details*, *SuperficialButton*)
+* ***utils*** - previously referred to as lib/ that holds custom javascript functions
+
+<div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>

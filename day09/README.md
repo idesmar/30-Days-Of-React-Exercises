@@ -1,4 +1,6 @@
-# 30 Days of React: Day 09 | Conditional Rendering
+<div id="readme"></div>
+
+# [30 Days of React](../README.md#readme): Day 09 | [Conditional Rendering](https://github.com/Asabeneh/30-Days-Of-React/blob/master/09_Day_Conditional_Rendering/09_conditional_rendering.md)
 
 ### Dev Notes
 * [CSS reset - version 1.7.2](https://github.com/elad2412/the-new-css-reset) by [@elad2412](https://github.com/elad2412) used

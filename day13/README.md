@@ -1,5 +1,7 @@
+<div id="readme"></div>
+
 <!-- omit in toc -->
-# 30 Days of React: Day 13 | Uncontrolled Components
+# [30 Days of React](../README.md#readme): Day 13 | [Uncontrolled Components](https://github.com/Asabeneh/30-Days-Of-React/blob/master/13_Day_Controlled_Versus_Uncontrolled_Input/13_uncontrolled_input.md)
 
 <!-- omit in toc -->
 ## Table of Contents
@@ -12,7 +14,7 @@
   * [qnaJSON_builder.js](./src/utils/qnaJSON_builder.js) to generate content for level1qna.json
 * `getPatternFromRegEx` function in ***customValidation.js*** to extract pattern which can be used in `pattern` attribute of input element
 
-<div align="right">[<a href="#table-of-contents">Go to Table of Contents</a>]</div>
+<div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
 
 ### Learnings
 * `pattern` attribute for validating `input` value
@@ -40,11 +42,11 @@ const loadingStyle = {
 }
 ```
 
-<div align="right">[<a href="#table-of-contents">Go to Table of Contents</a>]</div>
+<div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
 
 ### Third Party Resources
 * [loader.io](https://loader.io) - used for [loader](./src/assets/bean_eater_animated.svg)
 * [fakefiller](https://fakefiller.com/) - browser extension that fills form inputs automatically; making form testing faster
 * Rest Countries API: https://[restcountries.com](https://restcountries.com)/v3.1/all
 
-<div align="right">[<a href="#table-of-contents">Go to Table of Contents</a>]</div>
+<div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>

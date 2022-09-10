@@ -1,5 +1,7 @@
+<div id="readme"></div>
+
 <!-- omit in toc -->
-# 30 Days of React: Day 12 | Forms
+# [30 Days of React](../README.md#readme): Day 12 | [Forms](https://github.com/Asabeneh/30-Days-Of-React/blob/master/12_Day_Forms/12_forms.md)
 
 <!-- omit in toc -->
 ## Table of Contents
@@ -72,7 +74,7 @@
     * notifications (checkbox)
     * passwords
 
-<div align="right">[<a href="#table-of-contents">Go to Table of Contents</a>]</div>
+<div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
 
 ### Learnings
 * `noValidate` on **form** element removes the effect of `required` attribute in enclosed input elements `onSubmit`.
@@ -102,7 +104,7 @@
   #### Look-back Learnings
   * `required` attribute in at least one `input[type=radio]` will apply to the entire radio group (under same name)
 
-<div align="right">[<a href="#table-of-contents">Go to Table of Contents</a>]</div>
+<div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
 
 ### Trying Something New
 * Folder structure and file naming for better location/depth awareness of file or folder being worked on.
@@ -130,7 +132,7 @@ src/
 :-  reset.css
 ```
 
-<div align="right">[<a href="#table-of-contents">Go to Table of Contents</a>]</div>
+<div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
 
 ### Third Party Resources
 * [validator](https://github.com/validatorjs/validator.js#validators) -  advised by source material to validate form input values
@@ -140,4 +142,4 @@ npm i validator
 * [fakefiller](https://fakefiller.com/) - browser extension that fills form inputs automatically; making form testing faster
 * Rest Countries API: https://[restcountries.com](https://restcountries.com)/v3.1/all
 
-<div align="right">[<a href="#table-of-contents">Go to Table of Contents</a>]</div>
+<div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
