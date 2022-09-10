@@ -45,5 +45,6 @@ const loadingStyle = {
 ### Third Party Resources
 * [loader.io](https://loader.io) - used for [loader](./src/assets/bean_eater_animated.svg)
 * [fakefiller](https://fakefiller.com/) - browser extension that fills form inputs automatically; making form testing faster
+* Rest Countries API: https://[restcountries.com](https://restcountries.com)/v3.1/all
 
 <div align="right">[<a href="#table-of-contents">Go to Table of Contents</a>]</div>
