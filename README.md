@@ -31,6 +31,7 @@ Solutions to exercises from [30 Days of React](https://github.com/Asabeneh/30-Da
 |    [Day 12](./day12/README.md#readme)    | Forms                   |
 |    [Day 13](./day13/README.md#readme)    | Uncontrolled Components |
 |    [Day 14](./day14/README.md#readme)    | Component Life Cycle    |
+|    [Day 15](./day15/README.md#readme)    | Third Party Packages    |
 
 <div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
 
