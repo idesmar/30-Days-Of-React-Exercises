@@ -1,0 +1,87 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+#root {
+  background-color: #222;
+  color: cyan;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+input,
+select {
+  background-color: inherit;
+  color: inherit;
+  border: none;
+  outline: 1px solid;
+}
+
+select option {
+  /* ? inherit doesn't work
+  background-color: inherit;
+  color: inherit; */
+  background-color: #222;
+  color: cyan;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  appearance: unset;
+  height: 0.8em;
+  width: 0.8em;
+}
+
+input[type="radio"] {
+  border-radius: 100%;
+}
+input[type="radio"]:checked,
+input[type="checkbox"]:checked {
+  background-color: cyan;
+}
+
+h1,
+h2 {
+  text-align: center;
+  padding: 0.4em 0;
+}
+
+details + details {
+  margin-top: 0.4rem;
+}
+
+details > *:not(summary) {
+  padding-inline: 1em;
+}
+
+summary {
+  list-style: none;
+  padding: 0.4em 1em;
+  border-radius: 0.4em;
+  cursor: pointer;
+}
+
+button {
+  all: unset;
+}
+
+
+fieldset {
+  all: unset;
+  display: revert;
+  outline: 1px solid;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+fieldset > legend {
+  all: unset;
+  position: revert;
+  display: revert;
+}
+
+section {
+  max-width: 600px;
+  margin-inline: auto;
+}

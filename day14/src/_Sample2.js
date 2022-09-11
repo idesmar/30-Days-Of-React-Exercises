@@ -1,4 +1,13 @@
 import { Component } from 'react'
+import { themeColor } from './App'
+import { Button } from './_shared/Button'
+
+/* //* DEV NOTES
+  amendments on sample
+  - Button component used
+  - console.log additional text
+  - repositioned elements
+*/
 
 
 class Sample2 extends Component {
@@ -15,6 +24,7 @@ class Sample2 extends Component {
     console.log(nextProps, nextState, 'nextProps, nextState | shouldComponentUpdate')
     console.log(nextState.day, 'nextState.day | shouldComponentUpdate')
 
+    /* dev refactored code */
     return !(nextState.day > 4)
 
     /* //* code block from source material
@@ -45,9 +55,16 @@ class Sample2 extends Component {
     return (
       <div>
         <h2>3 Day Challenge</h2>
-        <button onClick={this.doChallenge}>Do Challenge</button>
-        <p>Challenge: Day {this.state.day}</p>
         {this.state.congratulate && <h2>{this.state.congratulate}</h2>}
+        <Button
+          innerText={'Do Challenge'}
+          handleClick={this.doChallenge}
+          style={{ backgroundColor: themeColor }}
+        />
+        {/* <button onClick={this.doChallenge}>Do Challenge</button> */}
+        <span style={{ paddingLeft: '1rem' }}>
+          Challenge: Day {this.state.day}
+        </span>
       </div>
     )
   }

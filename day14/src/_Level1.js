@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { userServices } from './_services/services'
 import hasCode from './_utils/hasCode'
+import { themeColor } from './App'
 
 
 const List = ({
@@ -28,8 +29,10 @@ const QnaDetails = ({
 }) => {
   return (
     <details>
-      <summary>{question}</summary>
-      <div>
+      <summary style={{ backgroundColor: themeColor }}>
+        {question}
+      </summary>
+      <div style={{paddingBlock: '0.5em 0.8em'}}>
         <p>{hasCode(answer)}</p>
         {list && <List list={list} _id={_id} />}
       </div>
@@ -78,5 +81,6 @@ const Level1 = () => {
     </section>
   )
 }
+
 
 export { Level1 }

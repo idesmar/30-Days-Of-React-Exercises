@@ -65,6 +65,9 @@
   {
     "_id": "q10",
     "question": "What is the unmounting life cycle method?",
-    "answer": "`componentWillUnmount`()"
+    "answer": "Unmounting Method",
+    "list": [
+      "`componentWillUnmount`()"
+    ]
   }
 ]

@@ -82,7 +82,7 @@ class Sample1 extends Component {
   render() {
     console.log('render')
     return (
-      <div className='App'>
+      <div>
         {console.log('return')}
         <h2>Calling Rest Counties API</h2>
         <div>
