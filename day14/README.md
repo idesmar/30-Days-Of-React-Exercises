@@ -11,6 +11,8 @@
 - [Other References](#other-references)
 
 ### Dev Notes
+* styling done with mostly .css; styles copied from previous day (Day 13) with minor changes
+* folders not containing primary components renamed by inserting trailing `_` (experimental)
 * Component Life Cycle in table form with links to [official documentation](https://reactjs.org)
 
 | Mounting | Updating | Unmounting |
