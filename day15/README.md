@@ -15,7 +15,7 @@
   * [ ] moment
   * [ ] react-icons
   * [ ] reactstrap
-  * [x] scss <sup><small>node-sass deprecated</small></sup>
+  * [x] sass [ scss ] <sub><small>node-sass deprecated</small></sub>
   * [ ] styled-components
   * [ ] uuid
 
