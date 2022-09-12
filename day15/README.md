@@ -46,6 +46,6 @@
 <div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
 
 ### Other References
-*
+* [npmjs.com](https://www.npmjs.com/)
 
 <div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
