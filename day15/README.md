@@ -1,5 +1,3 @@
-<div id="readme"></div>
-
 <!-- omit in toc -->
 # [30 Days of React](../README.md#readme): Day 15 | [Third Party Packages](https://github.com/Asabeneh/30-Days-Of-React/blob/master/15_Third_Party_Packages/15_third_party_packages.md)
 
@@ -11,7 +9,15 @@
 - [Other References](#other-references)
 
 ### Dev Notes
-*
+* Packages used prior to Challenge
+  * [x] scss (node-sass deprecated)
+  * [ ] moment
+  * [ ] axios
+  * [ ] react-icons
+  * [ ] styled-components
+  * [ ] reactstrap
+  * [ ] lodash
+  * [ ] uuid
 
 <div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
 

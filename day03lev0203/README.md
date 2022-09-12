@@ -1,5 +1,3 @@
-<div id="readme"></div>
-
 # [30 Days of React](../README.md#readme): Day 03 | [Setting Up](https://github.com/Asabeneh/30-Days-Of-React/blob/master/03_Day_Setting_Up/03_setting_up.md)
 
 ### Dev Notes

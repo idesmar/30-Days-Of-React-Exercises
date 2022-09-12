@@ -1,5 +1,3 @@
-<div id="readme"></div>
-
 # [30 Days of React](../README.md#readme): Day 09 | [Conditional Rendering](https://github.com/Asabeneh/30-Days-Of-React/blob/master/09_Day_Conditional_Rendering/09_conditional_rendering.md)
 
 ### Dev Notes

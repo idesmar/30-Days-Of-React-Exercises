@@ -1,5 +1,3 @@
-<div id="readme"></div>
-
 <!-- omit in toc -->
 # [30 Days of React](../README.md#readme): Day 14 | [Component Life Cycle](https://github.com/Asabeneh/30-Days-Of-React/blob/master/14_Day_Component_Life_Cycles/14_component_life_cycles.md)
 
@@ -16,7 +14,7 @@
 * Component Life Cycle in table form with links to [official documentation](https://reactjs.org)
 
 | Mounting | Updating | Unmounting |
-| :--: | :--: | :--: |
+| :------: | :------: | :--------: |
 | [constructor(props)](https://reactjs.org/docs/react-component.html#constructor) | | |
 | [static getDerivedStateFromProps (props, state)](https://reactjs.org/docs/react-component.html#static-getderivedstatefromprops) | [static getDerivedStateFromProps (props, state)](https://reactjs.org/docs/react-component.html#static-getderivedstatefromprops) | |
 | | [shouldComponentUpdate (nextProps, nextState)](https://reactjs.org/docs/react-component.html#shouldcomponentupdate) | |

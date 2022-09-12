@@ -1,5 +1,3 @@
-<div id="readme"></div>
-
 # [30 Days of React](../README.md#readme): Day 05 | [Props](https://github.com/Asabeneh/30-Days-Of-React/blob/master/05_Day_Props/05_props.md)
 
 ### Dev Notes

@@ -1,5 +1,3 @@
-<div id="readme"></div>
-
 <!-- omit in toc -->
 # [30 Days of React](../README.md#readme): Day 13 | [Uncontrolled Components](https://github.com/Asabeneh/30-Days-Of-React/blob/master/13_Day_Controlled_Versus_Uncontrolled_Input/13_uncontrolled_input.md)
 
