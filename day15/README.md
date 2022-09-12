@@ -24,7 +24,20 @@
 <div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
 
 ### Learnings
-*
+* css modules
+  * Naming
+  ```
+  moduleName.module.css
+  ```
+  * Importing
+  ```js
+  import moduleName from './moduleName.module.css'
+  // import altName from './moduleName.module.css'
+  ```
+  * Destructuring imported style to extract class name/s
+  ```js
+  const { className1, className2 } = moduleName
+  ```
 
 <div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
 
