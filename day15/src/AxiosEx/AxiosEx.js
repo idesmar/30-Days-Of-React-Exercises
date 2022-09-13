@@ -35,7 +35,7 @@ const CountryInfo = ({
 
 const Heading3 = () => <h3>axios</h3>
 
-const Dropdown = () => {
+const DropdownAxios = () => {
   const [countries, setCountries] = useState([])
   const [country, setCountry] = useState(
     {
@@ -116,4 +116,4 @@ const Dropdown = () => {
 }
 
 
-export { Dropdown }
+export { DropdownAxios }
