@@ -9,6 +9,7 @@
 - [Other References](#other-references)
 
 ### Dev Notes
+* [CSS reset - version 1.7.3](https://github.com/elad2412/the-new-css-reset) by [@elad2412](https://github.com/elad2412) used
 * Packages used prior to Challenge
   * [ ] axios
   * [ ] classnames
