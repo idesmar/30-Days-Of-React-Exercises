@@ -1,0 +1,21 @@
+.button {
+  padding: 0.3em 1em;
+  border: 0.8em;
+  background-color: green;
+  cursor: pointer;
+  border-radius: 0.3em;
+}
+
+/*
+used in CSSModuleEx > Test Button
+  <button className='button' style={{ display: 'block' }}>
+    Test Button
+  </button>
+*/
+.button:hover {
+  background-color: red;
+}
+
+.button-hover {
+  background-color: red;;
+}
