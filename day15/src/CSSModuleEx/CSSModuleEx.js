@@ -1,5 +1,11 @@
 import { useState } from 'react'
-import moduleStyle from './cssModuleEx.module.css'
+import moduleStyle from './cssModule.module.css'
+
+/**
+ * NOTE: Test button - The .button class takes effect when this module (CSSModuleEx) and ClassNamesEx Module are both active.
+ * > This happens because the css attached ClassNamesEx is NOT a css module
+ * this shows the possible conflict when not using css modules
+ */
 
 
 const { buttonDefault, buttonDefaultHover } = moduleStyle
@@ -26,5 +32,15 @@ const ButtonCSSModule = () => {
   )
 }
 
+const TestButton = () => {
 
-export { ButtonCSSModule }
+  return (
+    <div>
+      <button className='button'>
+        Test Button
+      </button>
+    </div>
+  )
+}
+
+export { ButtonCSSModule, TestButton }
