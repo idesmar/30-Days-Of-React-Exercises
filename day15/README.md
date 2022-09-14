@@ -5,6 +5,8 @@
 ## Table of Contents
 - [Dev Notes](#dev-notes)
 - [Learnings](#learnings)
+  - [CSS Modules](#css-modules)
+  - [Classnames w/ CSS Modules](#classnames-w-css-modules)
 - [Third Party Resources](#third-party-resources)
 - [Other References](#other-references)
 
@@ -25,20 +27,41 @@
 <div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
 
 ### Learnings
-* css modules
-  * Naming
-  ```
-  moduleName.module.css
-  ```
-  * Importing
-  ```js
-  import moduleName from './moduleName.module.css'
-  // import altName from './moduleName.module.css'
-  ```
-  * Destructuring imported style to extract class name/s
-  ```js
-  const { className1, className2 } = moduleName
-  ```
+#### CSS Modules
+* Naming
+```
+moduleName.module.css
+```
+* Importing
+```js
+import moduleName from './moduleName.module.css'
+// import altName from './moduleName.module.css'
+```
+* Destructuring imported style to extract class name/s
+```js
+const { className1, className2 } = moduleName
+```
+#### Classnames w/ CSS Modules
+to prevent conflict in possible duplicate class names from other css files
+> This Button example should be used for ***practicing only*** since it can be easily solved with pure css (ie. `.button:hover`).
+```js
+import cn from 'classnames'
+import cnModule from './cn.module.css'
+
+const Button = () => {
+  /*  ... states and eventHandles here */
+  const { cnButton, cnButtonHover } = cnModule
+  const buttonClasses = cn({
+    [cnButton]: true,
+    [cnButtonHover]: isHovered,
+  })
+  return (
+    <button className={buttonClasses}>
+      Click Me!
+    </button>
+  )
+}
+```
 
 <div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
 
