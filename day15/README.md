@@ -15,6 +15,19 @@
 * Packages used prior to Challenge
   * [ ] axios
   * [ ] classnames
+  * [ ] css modules <sub><small>react built-in</small></sub>
+  * [ ] lodash
+  * [ ] moment
+  * [ ] react-icons
+  * [ ] reactstrap
+  * [x] sass [ scss ] <sub><small>node-sass deprecated</small></sub>
+  * [ ] styled-components
+  * [ ] uuid
+  * [x] validator <sub><small>minimal use in [day12](../day12/README.md#readme)</small></sub>
+* After Challenge
+  * [x] axios
+  * [x] classnames
+  * [x] css modules <sub><small>react built-in</small></sub>
   * [ ] lodash
   * [ ] moment
   * [ ] react-icons
@@ -42,8 +55,10 @@ import moduleName from './moduleName.module.css'
 const { className1, className2 } = moduleName
 ```
 #### Classnames w/ CSS Modules
-to prevent conflict in possible duplicate class names from other css files
-> This Button example should be used for ***practicing only*** since it can be easily solved with pure css (ie. `.button:hover`).
+To prevent conflict in possible duplicate class names from other css files
+> Button example should be used for ***practicing only*** because it can be easily solved with pure css (ie. `.button:hover`).
+>
+> Example can be found in [ClassNamesModuleEx](./src/ClassNamesModuleEx/CnModuleEx.js)
 ```js
 import cn from 'classnames'
 import cnModule from './cn.module.css'
