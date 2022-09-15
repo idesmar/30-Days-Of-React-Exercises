@@ -2,6 +2,7 @@ import { DropdownAxios } from "./AxiosEx/AxiosEx"
 import { ButtonCSSModule, TestButton } from "./CSSModuleEx/CSSModuleEx"
 import { ButtonClassNames } from "./ClassNamesEx/ClassNamesEx"
 import { ButtonClassNamesModule } from "./ClassNamesModuleEx/CnModuleEx"
+import { Moment } from "./MomentEx/MomentEx"
 
 /* //> DEV NOTES
   Note that the Buttons are only examples.
@@ -27,6 +28,7 @@ const App = () => {
       <TestButton />
       <ButtonClassNames />
       <ButtonClassNamesModule />
+      <Moment />
     </>
   )
 }

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 // import axios from 'axios'
 import { userServices } from '../services/userServices'
+import './axiosEx.module.css'
 
 /** Public API source
  * https://github.com/public-apis/public-apis#readme
@@ -70,7 +71,7 @@ const DropdownAxios = () => {
       setCountries(prev => sortedData)
     }
     getCountries()
-    /* //> standalone; consolidating requests in userServices is preferable
+    /* //> standalone; consolidating requests in userServices is preferable, though
       const URL = 'https://restcountries.com/v3.1/all'
       const getCountries = async () => {
         const res = await axios.get(URL)
@@ -94,7 +95,10 @@ const DropdownAxios = () => {
     <div>
       <Heading3 />
 
-      <select defaultValue={defaultOption} onChange={handleSelectCountry}>
+      <select
+        defaultValue={defaultOption}
+        onChange={handleSelectCountry}
+      >
         <option value={defaultOption} disabled>
           {defaultOption}
         </option>

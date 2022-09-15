@@ -17,7 +17,7 @@ const userServices = {
     const res = await axios.get(COUNTRIES_URL) /*
     > { config, data, headers, request, status, statusText } */
     return res.data /*
-    > axios data is already in js form; hence.json() omitted
+    > axios data is already in js form hence .json() omitted
     * alternative?
     return await axios.get(URL).data */
   }
