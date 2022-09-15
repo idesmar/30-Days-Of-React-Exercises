@@ -3,7 +3,7 @@ import {
   useState,
 } from 'react'
 import moment from 'moment'
-import momentStyle from './momentEx.module.css'
+import momentStyle from './moment.module.css'
 
 
 const { momentRes } = momentStyle
@@ -18,15 +18,13 @@ const Moment = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target
-    console.dir(e.target)
-    console.log(name, value)
     setData(prev => ({ ...prev, [name]: value }))
   }
 
   return (
     <div>
       <div>
-        <label htmlFor="date">Select Date: </label>
+        <label htmlFor="date">Select Moment Date: </label>
         <input
           type="date"
           name="date"
@@ -37,14 +35,14 @@ const Moment = () => {
       {
         date && (
           <div>
-            <p>date: {date}</p>
+            <p>input[type="date"] &amp;&amp; data.date: {date}</p>
             <p className={momentRes}>moment(date).format(): <span>{moment(date).format()}</span></p>
             <p className={momentRes}>moment(date).format('MMM DD, YYYY'): <span>{moment(date).format('MMM DD, YYYY')}</span></p>
           </div>
         )
       }
       <div>
-        <label htmlFor="time">Select Time: </label>
+        <label htmlFor="time">Select Moment Time: </label>
         <input
           type="datetime-local"
           name="time"
@@ -52,11 +50,10 @@ const Moment = () => {
           onChange={handleChange}
         />
       </div>
-      {console.log(time)}
       {
         time && (
           <div>
-            <p>Datetime-Local: {time}</p>
+            <p>input[type="datetime-Local"] &amp;&amp; data.time: {time}</p>
             <p className={momentRes}>moment(time).format(): <span>{moment(time).format()}</span></p>
             <p className={momentRes}>moment(time).format('hh:mm A'): <span>{moment(time).format('hh:mm A')}</span></p>
           </div>

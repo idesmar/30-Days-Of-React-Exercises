@@ -24,7 +24,7 @@
 | ❌ | ✔️ | css modules <sub><small>react built-in</small></sub> |
 | ❌ | ❌ | lodash |
 | ❌ | ✔️ | moment |
-| ❌ | ❌ | react-icons |
+| ❌ | ✔️ | react-icons |
 | ❌ | ❌ | reactstrap |
 | ✔️ | ✔️ | sass [ scss ] <sub><small>node-sass deprecated</small></sub> |
 | ❌ | ❌ | styled-components |

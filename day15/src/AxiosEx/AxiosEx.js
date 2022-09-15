@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 // import axios from 'axios'
 import { userServices } from '../services/userServices'
-import './axiosEx.module.css'
+import './axios.module.css'
 
 /** Public API source
  * https://github.com/public-apis/public-apis#readme
