@@ -1,0 +1,38 @@
+/*
+  > CLASS NAME REQUIREMENTS:
+    follow js naming convention
+    * no hyphens
+    - alphanumeric chars only w/ exception of _ and $
+    - must not start with a number
+    - should not be a reserved keyword
+  > EFFECT IN className
+    - the cascade takes precedence over the result of styling
+      Scenario:
+        *.js
+        className(`buttonDefault buttonDefaultHover`)
+        *.module.css
+        .buttonDefaultHover { background-color: red; }
+        .buttonDefault { background-color: green; }
+      Result:
+        * the button will not change background even if hovered
+          because buttonDefault has precedence over the other as decided by the cascade
+  > OTHER SELECTORS
+    - other element selectors still have the same effect as a normal css rule
+*/
+
+
+.fooHover {
+  scale: 2; /* transform: scale(2) */
+}
+
+.buttonDefault {
+  padding: 0.3em 1em;
+  border: 0.8em;
+  background-color: green;
+  cursor: pointer;
+  border-radius: 0.3em;
+}
+
+.buttonDefaultHover {
+  background-color: red;
+}
