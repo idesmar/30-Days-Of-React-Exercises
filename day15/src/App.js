@@ -4,6 +4,7 @@ import { ButtonClassNames } from "./ClassNamesEx/ClassNamesEx"
 import { ButtonClassNamesModule } from "./ClassNamesModuleEx/CnModuleEx"
 import { Moment } from "./MomentEx/MomentEx"
 import { ReactIcons } from './ReactIconsEx/ReactIconsEx'
+import { Level1 } from "./Level1/Level1"
 
 /* //> DEV NOTES
   Note that the Buttons are only examples.
@@ -24,6 +25,7 @@ const App = () => {
   return (
     <>
       <Heading1 />
+      <Level1 />
       <DropdownAxios />
       <ButtonCSSModule />
       <TestButton />
