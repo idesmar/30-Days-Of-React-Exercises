@@ -87,10 +87,10 @@ const Button = () => {
 | classnames | 1.2k | `npm i classnames` | none | [JedWatson/classnames](https://github.com/JedWatson/classnames#readme) |
 | lodash | --- | `npm i lodash` | [lodash.com](https://lodash.com/) | [lodash](https://github.com/lodash/lodash#readme) |
 | moment <sup>[[2]](#2)</sup> | 61.0k | `npm i moment` | [momentjs.com](https://momentjs.com/) | [moment](https://github.com/moment/moment#readme) |
-| react-icons | --- | `npm i react-icons` | [react-icons.github.io](https://react-icons.github.io/react-icons) | [react-icons](https://github.com/react-icons/react-icons#readme) |
+| react-icons | ??? | `npm i react-icons` | [react-icons.github.io](https://react-icons.github.io/react-icons) | [react-icons](https://github.com/react-icons/react-icons#readme) |
 | reactstrap | --- | `npm i reactstrap` | [reactstrap.github.io](https://reactstrap.github.io) | [reactstrap](https://github.com/reactstrap/reactstrap#readme) |
 | sass | --- | `npm i sass` | [sass-lang.com](https://sass-lang.com/) | [sass](https://github.com/sass/sass#readme) |
-| styled-components | --- | `npm i styled-components` | [styled-components.com](https://styled-components.com/) | [styled-components](https://github.com/styled-components/styled-components#readme) |
+| styled-components | 33.0k | `npm i styled-components` | [styled-components.com](https://styled-components.com/) | [styled-components](https://github.com/styled-components/styled-components#readme) |
 | uuid | --- | `npm i uuid` | [uuidgenerator.net](https://www.uuidgenerator.net/dev-corner/javascript) | [uuidjs](https://github.com/uuidjs/uuid#readme) |
 | validator | --- | `npm i validator` | none | [validatorjs](https://github.com/validatorjs/validator.js#readme) |
 
