@@ -1,10 +1,12 @@
-import { DropdownAxios } from "./AxiosEx/AxiosEx"
-import { ButtonCSSModule, TestButton } from "./CSSModuleEx/CSSModuleEx"
-import { ButtonClassNames } from "./ClassNamesEx/ClassNamesEx"
-import { ButtonClassNamesModule } from "./ClassNamesModuleEx/CnModuleEx"
-import { Moment } from "./MomentEx/MomentEx"
-import { ReactIcons } from './ReactIconsEx/ReactIconsEx'
-import { Level1 } from "./Level1/Level1"
+// import { DropdownAxios } from "./AxiosEx/AxiosEx"
+// import { ButtonCSSModule, TestButton } from "./CSSModuleEx/CSSModuleEx"
+// import { ButtonClassNames } from "./ClassNamesEx/ClassNamesEx"
+// import { ButtonClassNamesModule } from "./ClassNamesModuleEx/CnModuleEx"
+// import { Moment } from "./MomentEx/MomentEx"
+// import { ReactIcons } from './ReactIconsEx/ReactIconsEx'
+// import { Level1 } from "./Level1/Level1"
+import { NameForm } from "./StyledComponentsEx/StyledComponentsEx"
+import { createGlobalStyle } from 'styled-components'
 
 /* //> DEV NOTES
   Note that the Buttons are only examples.
@@ -18,6 +20,11 @@ import { Level1 } from "./Level1/Level1"
   * Processing - submit button blinking; inputs being validated by backend (which may take longer than frontend validation)
 */
 
+const GlobalStyle = createGlobalStyle`
+  body {
+    padding: 1rem;
+  }
+`
 
 const Heading1 = () => <h1>30 Days of React: Day 15 | Third Party Packages</h1>
 
@@ -25,14 +32,17 @@ const App = () => {
   return (
     <>
       <Heading1 />
-      <Level1 />
+      {/* <Level1 />
       <DropdownAxios />
       <ButtonCSSModule />
       <TestButton />
       <ButtonClassNames />
       <ButtonClassNamesModule />
       <Moment />
-      <ReactIcons />
+      <ReactIcons /> */}
+      <NameForm />
+
+      <GlobalStyle />
     </>
   )
 }

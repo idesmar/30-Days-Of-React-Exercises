@@ -17,7 +17,7 @@
   {
     "_id": "q4",
     "question": "How do you know the popularity and stability of a third party package?",
-    "answer": "A third party package's popularity and stability can be assessed on its [npmjs.com](https://www.npmjs.com/) page by reviewing it's Weekly Downloads, Issues, Last Publish, etc. and/or going through its repository."
+    "answer": "A third party package's popularity and stability can be assessed on its [npmjs.com](https://www.npmjs.com/) page by reviewing its Weekly Downloads, Issues, Last Publish, etc. and/or going through its repository."
   },
   {
     "_id": "q5",

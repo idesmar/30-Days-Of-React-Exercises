@@ -1,6 +1,25 @@
 import { useState, useEffect } from 'react'
 import { userServices } from '../services/userServices'
 import hasLink from '../utils/hasLink'
+import styled from 'styled-components'
+import { rem4, em } from '../utils/unitConvert'
+
+/* //> DEV NOTES: styled-components
+  styled-components encapsulates the css rule into a class
+  - these class names are auto generated at each page reload
+*/
+
+
+const Summary = styled.summary`
+  padding: ${rem4(4, 12)};
+  border-radius: ${em(4)};
+  cursor: pointer;
+  background-color: blue;
+
+  &:hover {
+    background-color: yellow;
+  }
+`
 
 
 const List = ({ li }) => {
@@ -19,14 +38,18 @@ const QnaDetails = ({
 }) => {
   return (
     <details>
-      <summary>{question}</summary>
+      <Summary>{question}</Summary>
       <p>{hasLink(answer)}</p>
       {
-        list && list.map((li, liIdx) => (
+        list && (
           <ul>
-            <List key={_id + 'list' + liIdx} li={li} />
+            {
+              list.map((li, liIdx) => (
+                <List key={_id + 'list' + liIdx} li={li} />
+              ))
+            }
           </ul>
-        ))
+        )
       }
     </details>
   )
