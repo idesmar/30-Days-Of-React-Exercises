@@ -74,7 +74,8 @@ const NameForm = () => {
   const handleChange = (e) => {
     if (isStart) setInputName(prev => ({ ...prev, isStart: !isStart }))
     const { name, value } = e.target
-    console.log(inputName) // ! TESTING
+    // console.log(inputName) // TESTING:
+    console.dir(e.target)
     const isNameValid = isNameFormatValid(value)
     setInputName(prev => ({ ...prev, [name]: value, isValid: isNameValid }))
   }
