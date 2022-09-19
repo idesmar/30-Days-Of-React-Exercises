@@ -58,11 +58,10 @@ const VerifyButton = styled.button.attrs(({
   isValid,
   isTouched,
 }) => ({
-  disabled: (+isValid + +isTouched) < 2, // * working
-  // disabled: (!isTouched && !isValid) ? true : false, // ! logic is incorrect
-
+  disabled: !isTouched || !isValid, /* isTouched === false || isTouched === false */
+  // disabled: (+isValid + +isTouched) < 2, /* //* working alternative */
   /* //* debugging in styled-components */
-  // log: (...args) => console.log(args),
+  log: (...args) => console.log(args),
 }))`
   cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
   padding: ${rem4(4, 12)};
@@ -72,8 +71,10 @@ const VerifyButton = styled.button.attrs(({
   display: block;
   margin-top: 1rem;
 
-  /* //* debugging in styled-components */
-  // ${({ log, isTouched, isValid, disabled }) => log(isTouched, isValid, disabled)}
+  /* debugging in styled-components
+    remove bling ($) to remove effects of debugging/logs
+  */
+  ${({ log, isTouched, isValid, disabled }) => log(isTouched, isValid, disabled)}
 
   &:hover {
     opacity: ${({ disabled }) => !disabled && 0.8};
