@@ -2,21 +2,18 @@ import { useState } from 'react'
 import styled from 'styled-components'
 import { rem, rem4, em } from '../utils/unitConvert'
 import { isNameFormatValid } from '../utils/customValidation'
+import { toProperCaseDelimited } from '../utils/misc'
 
-/* //> DEV NOTES
-
-*/
 
 /*
 name: input[type='text']
 pattern: isNameValid
 - change input styling if input value becomes invalid
   - red border
-  - yellow background-color
 
 button:
 - grayed out, not clickable on initial
-- light up and turn green if at least 2 valid character is inputted
+- make available if at least 2 valid characters entered
 - if name input becomes invalid, go back to being greyed out
 */
 
@@ -33,26 +30,24 @@ const Label = styled.label`
 const InputName = styled.input.attrs(({
   value,
   name,
-  // handleChange,
   isValid,
+  isTouched,
 }) => ({
   type: 'text',
   value: value,
   name: name,
-  // onChange: handleChange,
-  isValid: isValid,
+  isError: isTouched === true && isValid === false,
 }))`
-  border: ${isValid => isValid ? '1px solid' : '1px solid red'};
-  background-color: ${isValid => !isValid && 'yellow'};
-  color: ${isValid => !isValid && 'red'};
-`
+  // important is needed to override focus-visible border color
+  border-radius: 0.2em;
+  border: ${({ isError }) => isError ? '2px solid red !important' : '2px solid black'};
+  color: ${({ isError }) => isError && 'red'};
+  padding: 0.25ch 1ch;
 
-/*
-const VerifyButton = styled.button.attrs(({
-  isValid,
-  isTouched,
-}) => ({
-*/
+  &:focus-visible {
+    border: 2px solid blue;
+  }
+`
 
 const VerifyButton = styled.button.attrs(({
   isValid,
@@ -60,7 +55,7 @@ const VerifyButton = styled.button.attrs(({
 }) => ({
   disabled: !isTouched || !isValid, /* isTouched === false || isTouched === false */
   // disabled: (+isValid + +isTouched) < 2, /* //* working alternative */
-  /* //* debugging in styled-components */
+  /* //> debugging in styled-components */
   log: (...args) => console.log(args),
 }))`
   cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
@@ -69,16 +64,41 @@ const VerifyButton = styled.button.attrs(({
   border-radius: ${em(6)};
   color: #ffffff;
   display: block;
-  margin-top: 1rem;
 
-  /* debugging in styled-components
-    remove bling ($) to remove effects of debugging/logs
-  */
-  ${({ log, isTouched, isValid, disabled }) => log(isTouched, isValid, disabled)}
+  /* //> debugging in styled-components
+    add/remove bling ($) to add/remove effects of debugging */
+  {({ log, isTouched, isValid, disabled }) => log(isTouched, isValid, disabled)}
 
   &:hover {
     opacity: ${({ disabled }) => !disabled && 0.8};
   }
+`
+
+const NameError = styled.p`
+  padding-bottom: ${rem(4)};
+  color: red;
+  font-style: italic;
+  line-height: 1;
+  font-size: smaller;
+`
+/*
+const NewHeader4 = styled(Header).withConfig({
+  shouldForwardProp: (prop, defaultValidatorFn) => !['customColor'].includes(prop),
+})<{ customColor: string }>`
+  color: ${(props) => props.customColor};
+`;
+*/
+const NameErrorSpace = styled(NameError)`
+  height: calc(1em + ${rem(4)});
+  visibility: hidden;
+`
+
+const HelloBack = styled.div`
+  padding: 1rem;
+  background-color: green;
+  color: white;
+  font-weight: 700;
+  margin-top: 1rem;
 `
 
 const NameVerifier = () => {
@@ -86,43 +106,69 @@ const NameVerifier = () => {
     firstName: '',
     isTouched: false,
     isValid: false,
+    sayHiBack: false,
   })
 
   const {
     firstName,
     isValid,
     isTouched,
+    sayHiBack,
   } = nameData
 
   const handleChange = (e) => {
     const { value, name } = e.target
+    if (sayHiBack) setNameData(prev => ({...prev, sayHiBack: !sayHiBack}))
     if (!isTouched) setNameData(prev => ({ ...prev, isTouched: !isTouched }))
     const isNameValid = isNameFormatValid(value)
     setNameData(prev => ({ ...prev, isValid: isNameValid, [name]: value }))
   }
 
   const handleClick = () => {
-    console.log(nameData)
+    setNameData(prev => ({ ...prev, sayHiBack: true }))
   }
 
   return (
     <Container>
-      <Label htmlFor='firstName'>Name:</Label>
-      <InputName
-        id='firstName'
-        name='firstName'
-        value={firstName}
-        onChange={handleChange}
-        isValid={isValid}
-      />
-      { console.log(nameData) }
+      <Label htmlFor='firstName'>First Name:</Label>
+
+      <div>
+        <InputName
+          id='firstName'
+          name='firstName'
+          value={firstName}
+          isValid={isValid}
+          isTouched={isTouched}
+          onChange={handleChange}
+        />
+
+        {
+          (isTouched === true && isValid === false) ? (
+            <NameError>
+              At least 2 valid characters needed
+            </NameError>
+          ) : (
+            <NameErrorSpace as='div' aria-hidden>
+            </NameErrorSpace>
+          )
+        }
+      </div>
+
+      {/* { console.log(nameData) } */}
+
       <VerifyButton
         isValid={isValid}
         isTouched={isTouched}
         onClick={handleClick}
       >
-        Verify Name
+        Say Hi!
       </VerifyButton>
+
+      {
+        sayHiBack && (<HelloBack>
+          Hello, {toProperCaseDelimited(firstName)}!
+        </HelloBack>)
+      }
     </Container>
   )
 }

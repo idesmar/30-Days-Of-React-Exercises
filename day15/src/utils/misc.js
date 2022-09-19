@@ -51,9 +51,17 @@ const toTitleCase = (str = '') => {
 
 const toProperCase = (str = '') => str[0].toUpperCase() + str.slice(1).toLowerCase()
 
+const toProperCaseDelimited = (str = '') => {
+  const arr = str.split(' ')
+  const ret = []
+  for (const subStr of arr) {
+    ret.push(toProperCase(subStr))
+  }
+  return ret.join(' ')
+}
 
 export {
   seqNumsArr,
   isPrime, isPrime0, isEven, isOdd,
-  toTitleCase, toProperCase,
+  toTitleCase, toProperCase, toProperCaseDelimited,
 }
