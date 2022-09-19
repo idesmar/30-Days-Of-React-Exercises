@@ -5,9 +5,8 @@
 // import { Moment } from "./MomentEx/MomentEx"
 // import { ReactIcons } from './ReactIconsEx/ReactIconsEx'
 // import { Level1 } from "./Level1/Level1"
-// import { NameForm } from "./StyledComponentsEx/StyledComponentsEx"
+import { SayHiStyled } from './StyledComponentsEx/StyledComponentsEx'
 import { createGlobalStyle } from 'styled-components'
-import { NameVerifier } from './StyledComponentsEx/VerifyName'
 
 
 /* //> DEV NOTES
@@ -34,6 +33,7 @@ const App = () => {
   return (
     <>
       <Heading1 />
+
       {/* <Level1 />
       <DropdownAxios />
       <ButtonCSSModule />
@@ -43,9 +43,8 @@ const App = () => {
       <Moment />
       <ReactIcons /> */}
 
-      {/* <NameForm /> */}
+      <SayHiStyled />
 
-      <NameVerifier />
       <GlobalStyle />
     </>
   )
