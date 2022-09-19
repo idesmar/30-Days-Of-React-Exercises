@@ -5,8 +5,9 @@
 // import { Moment } from "./MomentEx/MomentEx"
 // import { ReactIcons } from './ReactIconsEx/ReactIconsEx'
 // import { Level1 } from "./Level1/Level1"
-import { SayHiStyled } from './StyledComponentsEx/StyledComponentsEx'
+// import { SayHiStyled } from './StyledComponentsEx/StyledComponentsEx'
 import { createGlobalStyle } from 'styled-components'
+import { UUIDEx } from './UUIDEx/UUIDEx'
 
 
 /* //> DEV NOTES
@@ -41,9 +42,10 @@ const App = () => {
       <ButtonClassNames />
       <ButtonClassNamesModule />
       <Moment />
-      <ReactIcons /> */}
+      <ReactIcons />
+      <SayHiStyled /> */}
 
-      <SayHiStyled />
+      <UUIDEx />
 
       <GlobalStyle />
     </>
