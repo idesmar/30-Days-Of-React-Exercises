@@ -1,52 +1,56 @@
 [
   {
     "_id": "q1",
-    "question": "What is component life cycle?",
-    "answer": ""
+    "question": "What is a package?",
+    "answer": "A package is a library/module that helps with specific tasks."
   },
   {
     "_id": "q2",
-    "question": "What is the purpose of life cycles?",
-    "answer": ""
+    "question": "What is a third party package?",
+    "answer": "A third party package is a package not made by the project developer and is usually installed from the npm registry."
   },
   {
     "_id": "q3",
-    "question": "What are the three stages of a component life cycle?",
-    "answer": ""
+    "question": "Do you have to use third party packages?",
+    "answer": "Using third party packages is optional. These packages can lessen the project complexity and development time since the needed utilities do not need to be built from scratch; however, it may come along with libraries/modules that is not needed resulting to bloatware."
   },
   {
     "_id": "q4",
-    "question": "What does mounting mean?",
-    "answer": ""
+    "question": "How do you know the popularity and stability of a third party package?",
+    "answer": "A third party package's popularity and stability can be assessed on its [npmjs.com](https://www.npmjs.com/) page by reviewing its Weekly Downloads, Issues, Last Publish, etc. and/or going through its repository."
   },
   {
     "_id": "q5",
-    "question": "What does updating mean?",
-    "answer": ""
+    "question": "How many JavaScript packages are there on the npm registry?",
+    "answer": "As of writing, September 2022, there are over 2.1M packages in the npm registry."
   },
   {
     "_id": "q6",
-    "question": "What does unmounting mean?",
-    "answer": ""
+    "question": "How do you install a third party package?",
+    "answer": "Third party package installation:",
+    "list": [
+      "npm: `npm install [package_name}`",
+      "yarn: `yarn add [package_name]`"
+    ]
   },
   {
     "_id": "q7",
-    "question": "What is the most common built-in mounting life cycle method?",
-    "answer": ""
+    "question": "What packages do you use most frequently?",
+    "answer": "Previously, the most frequently used package is sass."
   },
   {
     "_id": "q8",
-    "question": "What are the mounting life cycle methods?",
-    "answer": ""
+    "question": "What package do you use to fetch data?",
+    "answer": "Previously, the built-in fetch API is used to fetch data. Moving forward, axios may be a good alternative especially on a full stack app."
   },
   {
     "_id": "q9",
-    "question": "What are the updating life cycle methods?",
-    "answer": ""
+    "question": "What is the purpose of classnames package?",
+    "answer": "Classnames is a light-weight package that can be used to dynamically update the className of an element/component. This is best used if an element/component will require multiple possible classNames and/or a complex logic is needed to change className/s."
   },
   {
     "_id": "q10",
-    "question": "What is the unmounting life cycle method?",
-    "answer": ""
+    "question": "What is the purpose of validator package?",
+    "answer": "The validator package contains a number of utilities to validate input values coming from the user. This package ensures the data being gathered from the user is what the developer is expecting."
   }
 ]

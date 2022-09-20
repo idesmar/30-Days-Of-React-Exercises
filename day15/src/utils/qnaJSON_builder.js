@@ -17,21 +17,20 @@
 'What package do you use to fetch data?',
 'What is the purpose of classnames package?',
 'What is the purpose of validator package?',
-
 */
 
 
 const questionsArr = [
-  "What is component life cycle?",
-  "What is the purpose of life cycles?",
-  "What are the three stages of a component life cycle?",
-  "What does mounting mean?",
-  "What does updating mean?",
-  "What does unmounting mean?",
-  "What is the most common built-in mounting life cycle method?",
-  "What are the mounting life cycle methods?",
-  "What are the updating life cycle methods?",
-  "What is the unmounting life cycle method?",
+  'What is a package?',
+  'What is a third party package?',
+  'Do you have to use third party packages?',
+  'How do you know the popularity and stability of a third party package?',
+  'How many JavaScript packages are there on the npm registry?',
+  'How do you install a third party package?',
+  'What packages do you use most frequently?',
+  'What package do you use to fetch data?',
+  'What is the purpose of classnames package?',
+  'What is the purpose of validator package?',
 ]
 /* //> making use of thisArg object in array.prototype.map */
 const buildQNA2 = (arr = []) => {
