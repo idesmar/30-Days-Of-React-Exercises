@@ -113,3 +113,19 @@ const Button = () => {
   > also, majority are relatively small
 
 <div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
+
+<!-- cspell:disable -->
+| Before | After | Package | Size <sup><a href="#1">[1]</a></sup> | npm | Website | Github |
+|:------:|:-----:|:--------|-------------------------------------:|:----|:--------|:-------|
+| ❌ | ✔️ | axios | 38.7k | `npm i axios` | [axios-http.com](https://axios-http.com/docs/intro) | [axios](https://github.com/axios/axios#readme) |
+| ❌ | ✔️ | classnames | 1.2k | `npm i classnames` | none | [JedWatson/classnames](https://github.com/JedWatson/classnames#readme) |
+| ❌ | ✔️ | css modules <sub><small>react built-in</small></sub> | | | | |
+| ❌ | ❌ | lodash | --- | `npm i lodash` | [lodash.com](https://lodash.com/) | [lodash](https://github.com/lodash/lodash#readme) |
+| ❌ | ✔️ | moment | 61.0k | `npm i moment` | [momentjs.com](https://momentjs.com/) | [moment](https://github.com/moment/moment#readme) |
+| ❌ | ✔️ | react-icons | ??? <sup>[[3]](#3)</sup> | `npm i react-icons` | [react-icons.github.io](https://react-icons.github.io/react-icons) | [react-icons](https://github.com/react-icons/react-icons#readme) |
+| ❌ | ❌ | reactstrap | --- | `npm i reactstrap` | [reactstrap.github.io](https://reactstrap.github.io) | [reactstrap](https://github.com/reactstrap/reactstrap#readme) |
+| ✔️ | ✔️ | sass [ scss ] <sub><small>node-sass deprecated</small></sub> | --- | `npm i sass` | [sass-lang.com](https://sass-lang.com/) | [sass](https://github.com/sass/sass#readme) |
+| ❌ | ✔️ | styled-components | 33.0k | `npm i styled-components` | [styled-components.com](https://styled-components.com/) | [styled-components](https://github.com/styled-components/styled-components#readme) |
+| ❌ | ❌ | uuid | ??? <sup>[[3]](#3)</sup> | `npm i uuid` | [uuidgenerator.net](https://www.uuidgenerator.net/dev-corner/javascript) | [uuidjs](https://github.com/uuidjs/uuid#readme) |
+| ✔️ | ✔️ | validator <sub><small>minimal use in [day12](../day12/README.md#readme)</small></sub> | ??? <sup>[[3]](#3)</sup> | `npm i validator` | none | [validatorjs](https://github.com/validatorjs/validator.js#readme) |
+<!-- cspell:enable -->
