@@ -12,6 +12,7 @@
     - [Importing](#importing)
     - [Extracting Class Names](#extracting-class-names)
   - [Classnames w/ CSS Modules](#classnames-w-css-modules)
+  - [MomentJS Alternatives](#momentjs-alternatives)
 - [Third Party Resources](#third-party-resources)
 - [Other References](#other-references)
 - [Footnote](#footnote)
@@ -20,8 +21,8 @@
 * [CSS reset - version 1.7.3](https://github.com/elad2412/the-new-css-reset) by [@elad2412](https://github.com/elad2412) used
 * Package Knowledge Progress
 
-| Before | After | Package |
-|:------:|:-----:|:--------|
+| Before | After | Package <sup>[[resources]](#third-party-resources)</sup> |
+|:------:|:-----:|:-----------------------------------------------------------|
 | ❌ | ✔️ | axios |
 | ❌ | ✔️ | classnames |
 | ❌ | ✔️ | css modules <sub><small>react built-in</small></sub> |
@@ -81,22 +82,32 @@ const Button = () => {
 }
 ```
 
+#### MomentJS Alternatives
+<!-- cspell:disable -->
+| Package <sup>[[read]](#3)</sup> | Size <sup>[[1]](#1)</sup> | npm | Website | Github |
+|:------------------------------|------------------------:|:----|:--------|:-------|
+| date-fns <sup>🌟</sup>| --- | `npm i date-fns` | [date-fns.org](https://date-fns.org/) | [date-fns](https://github.com/date-fns/date-fns#readme) |
+| dayjs <sup>🌟</sup>| --- | `npm i dayjs` | [dayjs.org](https://day.js.org/) | [iamkun/dayjs](https://github.com/iamkun/dayjs#readme) |
+| luxon | --- | `npm i luxon` | [moment.github.io/luxon](https://moment.github.io/luxon/#/) | [moment/luxon](https://github.com/moment/luxon/#readme) |
+
+> 🌟<small>Preferred! Try applying on succeeding projects!</small>
+
 <div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
 
 ### Third Party Resources
-<!-- cspell:disable -->
-| Package | Size <sup><a href="#1">[1]</a></sup> | npm | Website | Github |
-|:--------|-------------------------------------:|:----|:--------|:-------|
+
+| Package | Size <sup>[[1]](#1)</sup> | npm | Website | Github |
+|:--------|--------------------------:|:----|:--------|:-------|
 | axios | 38.7k | `npm i axios` | [axios-http.com](https://axios-http.com/docs/intro) | [axios](https://github.com/axios/axios#readme) |
 | classnames | 1.2k | `npm i classnames` | none | [JedWatson/classnames](https://github.com/JedWatson/classnames#readme) |
 | lodash | --- | `npm i lodash` | [lodash.com](https://lodash.com/) | [lodash](https://github.com/lodash/lodash#readme) |
-| moment <sup>[[2]](#2)</sup> | 61.0k | `npm i moment` | [momentjs.com](https://momentjs.com/) | [moment](https://github.com/moment/moment#readme) |
-| react-icons | ??? <sup>[[3]](#3)</sup> | `npm i react-icons` | [react-icons.github.io](https://react-icons.github.io/react-icons) | [react-icons](https://github.com/react-icons/react-icons#readme) |
+| moment <sup>[[2]](#2)</sup> | 61.0k <sup>[[3]](#3)</sup> | `npm i moment` | [momentjs.com](https://momentjs.com/) | [moment](https://github.com/moment/moment#readme) |
+| react-icons | ??? <sup>[[4]](#4)</sup> | `npm i react-icons` | [react-icons.github.io](https://react-icons.github.io/react-icons) | [react-icons](https://github.com/react-icons/react-icons#readme) |
 | reactstrap | --- | `npm i reactstrap` | [reactstrap.github.io](https://reactstrap.github.io) | [reactstrap](https://github.com/reactstrap/reactstrap#readme) |
 | sass | --- | `npm i sass` | [sass-lang.com](https://sass-lang.com/) | [sass](https://github.com/sass/sass#readme) |
 | styled-components | 33.0k | `npm i styled-components` | [styled-components.com](https://styled-components.com/) | [styled-components](https://github.com/styled-components/styled-components#readme) |
-| uuid | ??? <sup>[[3]](#3)</sup> | `npm i uuid` | [uuidgenerator.net](https://www.uuidgenerator.net/dev-corner/javascript) | [uuidjs](https://github.com/uuidjs/uuid#readme) |
-| validator | ??? <sup>[[3]](#3)</sup> | `npm i validator` | none | [validatorjs](https://github.com/validatorjs/validator.js#readme) |
+| uuid | ??? <sup>[[4]](#4)</sup> | `npm i uuid` | [uuidgenerator.net](https://www.uuidgenerator.net/dev-corner/javascript) | [uuidjs](https://github.com/uuidjs/uuid#readme) |
+| validator | ??? <sup>[[4]](#4)</sup> | `npm i validator` | none | [validatorjs](https://github.com/validatorjs/validator.js#readme) |
 <!-- cspell:enable -->
 
 <div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
@@ -109,7 +120,10 @@ const Button = () => {
 <div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
 
 ### Footnote
-* import cost for some packages are dependent on the module/variable being imported; reason for ***???*** mark <sup id="3">[3]</sup>
+* use of momentjs is being discouraged due to its size -- [tree shaking](https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking) or removal of dead code is not supported. Read similar blogs: <sup id="3">[3]</sup>
+  * [Why you shouldn't use momentjs](https://inventi.studio/en/blog/why-you-shouldnt-use-moment-js)
+  * [Best momentjs alternatives](https://medium.com/swlh/best-moment-js-alternatives-5dfa6861a1eb)
+* import cost for some packages are dependent on the module/variable being imported; reason for ***???*** mark <sup id="4">[4]</sup>
   > also, majority are relatively small
 
 <div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
