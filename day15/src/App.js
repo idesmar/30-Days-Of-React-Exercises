@@ -1,11 +1,11 @@
-// import { DropdownAxios } from "./AxiosEx/AxiosEx"
-// import { ButtonCSSModule, TestButton } from "./CSSModuleEx/CSSModuleEx"
-// import { ButtonClassNames } from "./ClassNamesEx/ClassNamesEx"
-// import { ButtonClassNamesModule } from "./ClassNamesModuleEx/CnModuleEx"
-// import { Moment } from "./MomentEx/MomentEx"
-// import { ReactIcons } from './ReactIconsEx/ReactIconsEx'
-// import { Level1 } from "./Level1/Level1"
-// import { SayHiStyled } from './StyledComponentsEx/StyledComponentsEx'
+import { DropdownAxios } from "./AxiosEx/AxiosEx"
+import { ButtonCSSModule, TestButton } from "./CSSModuleEx/CSSModuleEx"
+import { ButtonClassNames } from "./ClassNamesEx/ClassNamesEx"
+import { ButtonClassNamesModule } from "./ClassNamesModuleEx/CnModuleEx"
+import { Moment } from "./MomentEx/MomentEx"
+import { ReactIcons } from './ReactIconsEx/ReactIconsEx'
+import { Level1 } from "./Level1/Level1"
+import { SayHiStyled } from './StyledComponentsEx/StyledComponentsEx'
 import { createGlobalStyle } from 'styled-components'
 import { UUIDEx } from './UUIDEx/UUIDEx'
 
@@ -35,16 +35,20 @@ const App = () => {
     <>
       <Heading1 />
 
-      {/* <Level1 />
+      <Level1 />
+
       <DropdownAxios />
-      <ButtonCSSModule />
-      <TestButton />
+
+      <div className="section">
+        <ButtonCSSModule />
+        <TestButton />
+      </div>
+
       <ButtonClassNames />
       <ButtonClassNamesModule />
       <Moment />
       <ReactIcons />
-      <SayHiStyled /> */}
-
+      <SayHiStyled />
       <UUIDEx />
 
       <GlobalStyle />

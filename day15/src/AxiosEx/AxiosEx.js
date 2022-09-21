@@ -92,7 +92,7 @@ const DropdownAxios = () => {
   const defaultOption = 'Choose a country'
 
   return (
-    <div>
+    <section className='section'>
       <Heading3 />
 
       <select
@@ -115,7 +115,7 @@ const DropdownAxios = () => {
       </select>
 
       {country.name.common && <CountryInfo country={country} />}
-    </div>
+    </section>
   )
 }
 

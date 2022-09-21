@@ -19,7 +19,7 @@ const ButtonClassNamesModule = () => {
   })
 
   return (
-    <div>
+    <div className='section'>
       <button
         onMouseEnter={handleHover}
         onMouseLeave={handleHover}

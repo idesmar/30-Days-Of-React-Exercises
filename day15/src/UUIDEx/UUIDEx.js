@@ -19,6 +19,8 @@ const GenerateUUIDButton = styled.button`
   background-color: #0000ff;
   border-radius: ${em(8)};
   height: fit-content;
+  cursor: pointer;
+  color: white;
 `
 
 const UUIDText = styled.textarea`
@@ -39,18 +41,21 @@ const UUIDEx = () => {
   }
 
   return (
-    <Wrapper>
-      <GenerateUUIDButton
-        onClick={handleGenerateUUID}
-      >
-        Generate UUID
-      </GenerateUUIDButton>
-      <UUIDText
-        name='uuid'
-        value={uuid}
-        onChange={handleChange}
-      />
-    </Wrapper>
+    <section className='section'>
+      <h3>UUID</h3>
+      <Wrapper>
+        <GenerateUUIDButton
+          onClick={handleGenerateUUID}
+        >
+          Generate UUID
+        </GenerateUUIDButton>
+        <UUIDText
+          name='uuid'
+          value={uuid}
+          onChange={handleChange}
+        />
+      </Wrapper>
+    </section>
   )
 }
 

@@ -19,7 +19,9 @@ import { IconContext } from "react-icons"
 const ReactIcons = () => {
 
   return (
-    <div>
+    <section className='section'>
+      <h3>React Icons</h3>
+
       <DownloadingIcon />
 
       <p>import &#123; IconContext &#125; from "react-icons"</p>
@@ -28,7 +30,7 @@ const ReactIcons = () => {
       >
         <DownloadingIcon />
       </IconContext.Provider>
-    </div>
+    </section>
   )
 }
 
