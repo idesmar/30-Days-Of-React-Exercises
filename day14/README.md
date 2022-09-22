@@ -1,5 +1,5 @@
 <!-- omit in toc -->
-# [30 Days of React](../README.md#readme): Day 14 | [Component Life Cycle](https://github.com/Asabeneh/30-Days-Of-React/blob/master/14_Day_Component_Life_Cycles/14_component_life_cycles.md)
+# [30 Days of React](../README.md#readme): Day 14 | [Component Life Cycle](https://github.com/Asabeneh/30-Days-Of-React/blob/master/14_Day_Component_Life_Cycles/14_component_life_cycles.md#readme)
 
 <!-- omit in toc -->
 ## Table of Contents

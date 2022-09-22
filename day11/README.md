@@ -1,4 +1,4 @@
-# [30 Days of React](../README.md#readme): Day 11 | [Events](https://github.com/Asabeneh/30-Days-Of-React/blob/master/11_Day_Events/11_events.md)
+# [30 Days of React](../README.md#readme): Day 11 | [Events](https://github.com/Asabeneh/30-Days-Of-React/blob/master/11_Day_Events/11_events.md#readme)
 
 ### Dev Notes
 * Simple css reset used
