@@ -1,0 +1,18 @@
+.spinnerLoad {
+  animation-name: spinning;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes spinning {
+  from { rotate: 0deg; }
+  to { rotate: 360deg; }
+}
+
+.loaderWrapper {
+  height: 11.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

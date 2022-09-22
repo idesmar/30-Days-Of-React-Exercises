@@ -7,30 +7,18 @@
  */
 
 /*
-'What is a package?',
-'What is a third party package?',
-'Do you have to use third party packages?',
-'How do you know the popularity and stability of a third party package?',
-'How many JavaScript packages are there on the npm registry?',
-'How do you install a third party package?',
-'What packages do you use most frequently?',
-'What package do you use to fetch data?',
-'What is the purpose of classnames package?',
-'What is the purpose of validator package?',
+'What is Higher Order Function?',
+'What is Higher Order Component?',
+'What is the difference between Higher Order Function and Higher Order Component?',
+'A Higher Order Component can allow us to enhance a component. (T or F)',
 */
 
 
 const questionsArr = [
-  'What is a package?',
-  'What is a third party package?',
-  'Do you have to use third party packages?',
-  'How do you know the popularity and stability of a third party package?',
-  'How many JavaScript packages are there on the npm registry?',
-  'How do you install a third party package?',
-  'What packages do you use most frequently?',
-  'What package do you use to fetch data?',
-  'What is the purpose of classnames package?',
-  'What is the purpose of validator package?',
+  'What is Higher Order Function?',
+  'What is Higher Order Component?',
+  'What is the difference between Higher Order Function and Higher Order Component?',
+  'A Higher Order Component can allow us to enhance a component. (T or F)',
 ]
 /* //> making use of thisArg object in array.prototype.map */
 const buildQNA2 = (arr = []) => {
