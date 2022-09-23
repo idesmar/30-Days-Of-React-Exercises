@@ -1,0 +1,17 @@
+[
+  {
+    "_id": "q1",
+    "question": "What package do you use to implement routing in react?",
+    "answer": ""
+  },
+  {
+    "_id": "q2",
+    "question": "What is the default export in react-router-dom?",
+    "answer": ""
+  },
+  {
+    "_id": "q3",
+    "question": "What is the use of the following Components(Route, NavLink, Switch, Redirect, Prompt)?",
+    "answer": ""
+  }
+]
