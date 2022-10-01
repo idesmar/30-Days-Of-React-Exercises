@@ -2,7 +2,7 @@
   {
     "_id": "q1",
     "question": "What package do you use to implement routing in react?",
-    "answer": ""
+    "answer": "The package to use on the web is `react-router-dom`"
   },
   {
     "_id": "q2",
@@ -12,6 +12,14 @@
   {
     "_id": "q3",
     "question": "What is the use of the following Components(Route, NavLink, Switch, Redirect, Prompt)?",
-    "answer": ""
+    "answer": "Some of these components are no longer available in React Router v6. What's listed below are either carried over to the new version, component equivalent or components the author find essential to know.",
+    "list": [
+      "Routes: ",
+      "Route: ",
+      "NavLink: ",
+      "Link: ",
+      "Outlet: ",
+      "Navigate: "
+    ]
   }
 ]

@@ -43,9 +43,11 @@ const isOdd = (num) => num % 2 === 1
 
 const toTitleCase = (str = '') => {
   return (
-    str.split(' ')
-      .map(subStr => (subStr[0].toUpperCase() + subStr.slice(1).toLowerCase()))
-      .join(' ')
+    str
+      ? str.split(' ')
+        .map(subStr => (subStr[0].toUpperCase() + subStr.slice(1).toLowerCase()))
+        .join(' ')
+      : str
   )
 }
 
