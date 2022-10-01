@@ -23,11 +23,25 @@ const HomeNavigation = () => {
   )
 }
 
+/* //> HOC practice
+  this will be useful if it is used by more than one component */
+const withContainer = (Comp) => {
+  const containerStyle = {
+    padding: '1rem',
+  }
+  return () => (
+    <div style={containerStyle}>
+      <Comp />
+    </div>
+  )
+}
+const PageContent = withContainer(NavRoutes)
+
 const App = () => {
   return (
     <>
       <HomeNavigation />
-      <NavRoutes />
+      <PageContent />
     </>
   )
 }
