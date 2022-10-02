@@ -1,0 +1,26 @@
+.outletContext {
+  background-color: #362140;
+
+  padding: 1rem;
+  margin: 0.5rem auto;
+  width: fit-content;
+
+  border: 1px solid cyan;
+  border-radius: 0.4em;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.outletContext input[type="text"] {
+  border: 1px solid gray;
+}
+
+.outletContext button {
+  border: 1px solid gray;
+  background-color: blueviolet;
+  padding: 0.5em;
+  border-radius: 0.4em;
+}

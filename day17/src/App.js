@@ -8,7 +8,7 @@ import appStyle from './App.module.css'
 */
 
 
-const { NavStyle } = appStyle
+const { NavStyle, pageContainer } = appStyle
 
 const HomeNavigation = () => {
   return (
@@ -26,11 +26,8 @@ const HomeNavigation = () => {
 /* //> HOC practice
   this will be useful if it is used by more than one component */
 const withContainer = (Comp) => {
-  const containerStyle = {
-    padding: '1rem',
-  }
   return () => (
-    <div style={containerStyle}>
+    <div className={pageContainer} >
       <Comp />
     </div>
   )

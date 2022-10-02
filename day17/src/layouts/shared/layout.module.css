@@ -1,0 +1,8 @@
+.layout {
+  padding: 1rem;
+  text-align: center;
+  width: fit-content;
+  margin: 0 auto;
+  border: 1px solid cyan;
+  border-radius: 0.4em;
+}

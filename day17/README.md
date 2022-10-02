@@ -8,6 +8,9 @@
   - [Routing](#routing)
   - [Not Found](#not-found)
   - [Outlet / Shared Layouts](#outlet--shared-layouts)
+    - [With Common Path](#with-common-path)
+    - [No Common Path](#no-common-path)
+    - [Outlet Context](#outlet-context)
   - [CSS Modules](#css-modules)
 - [Third Party Resources](#third-party-resources)
   - [Packages Used](#packages-used)
@@ -54,13 +57,44 @@
 * [ ] useRoutes Hook
 
 #### Not Found
-* [x] Not Found
-  ```js
-  {/* At the same level as path="/" or one level below if nested inside
-    Unless a different and more specific NotFound element is needed */}
-  <Route path="*" element={<NotFound />} />
-  ```
+Use `path="*"` for any routes/page that do not match the existing declared routes
+```js
+{/* At the same level as path="/" or one level below if nested inside
+  Unless a different and more specific NotFound element is needed */}
+<Route path="*" element={<NotFound />} />
+```
+
 #### Outlet / Shared Layouts
+##### With Common Path
+**Nested Routes** that have a **common path** can share a layout by passing the layout component to the *Parent* `Route`'s `element` attribute. Code snippet from [NavRoutes.js](./src/routes/NavRoutes.js)
+```js
+<Route path="challenges" element={<ChallengesLayout />}>
+  <Route index element={<Challenges />} />
+
+  {/* Routes below have more priority than Dynamic Route */}
+  <Route path="1" element={<Challenge1 />} />
+  <Route path="2" element={<Challenge2 />} />
+
+  {/* Dynamic Route */}
+  <Route path=":id" element={<OtherChallenges />} />
+</Route>
+```
+##### No Common Path
+Sharing a layout between Routes that have **NO common path** can be done by wrapping the Routes in a *Parent* `Route` that has ***NO PATH*** with the layout component as the `element` attribute.  Code snippet from [NavRoutes.js](./src/routes/NavRoutes.js)
+```js
+{/* Parent Route should not have path attribute */}
+<Route element={<SharedLayout />}>
+  <Route path="/about" element={<About />} />
+  <Route path="/contact">
+    <Route index element={<Contact />} />
+    <Route path=":contactId" element={<SomeContact />} />
+    {/* experimenting with :id */}
+    <Route path=":contactId/:contactId" element={<SomeOtherContact />} />
+  </Route>
+</Route>
+```
+##### Outlet Context
+`context` attribute allows data to be available on all pages where the `Outlet` is visible
 
 
 #### CSS Modules
