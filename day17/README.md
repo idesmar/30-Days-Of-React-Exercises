@@ -25,6 +25,7 @@
 
 ### Dev Notes
 * [CSS reset - version 1.7.3](https://github.com/elad2412/the-new-css-reset) by [@elad2412](https://github.com/elad2412) used
+* included ***experimental*** [chromiumAutofill.css](./src/styles/chromiumAutofill.css) <sup>[w/ notes & attribution]</sup> to somewhat "sanitize/reset" autofill style on chromium.
 
 <div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
 
@@ -63,6 +64,8 @@
 
 ##### useRoutes Hook
 
+<div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
+
 #### Not Found
 Use `path="*"` for any routes/page that do not match the existing declared routes
 ```js
@@ -70,6 +73,8 @@ Use `path="*"` for any routes/page that do not match the existing declared route
   Unless a different and more specific NotFound element is needed */}
 <Route path="*" element={<NotFound />} />
 ```
+
+<div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
 
 #### Outlet
 ##### Shared Layouts
@@ -122,6 +127,8 @@ const FromOutlet = () => {
   )
 }
 ```
+
+<div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
 
 #### CSS Modules
 Parent class (style) can be used to style child elements. Example can be found in [App.module.css](./src/App.module.css) and [App.js](./src/App.js)
