@@ -78,6 +78,21 @@ Use `path="*"` for any routes/page that do not match the existing declared route
 
 #### Outlet
 ##### Shared Layouts
+Layouts can be shared by using `Outlet` and including it in the Layout component. Code snippet from [layouts/ChallengesLayout.js](./src/layouts/ChallengesLayout.js)
+> Caveat of sharing layouts in ***nested routes*** by passing the layout component to the "parent" `Route`'s `element` attribute is that it's default position is at the top of the "page" component. This makes repositioning of the shared layout a bit tricky. Refer to [layouts/shared/layout.module.css](./src/layouts/shared/layout.module.css) on the attempts to reposition shared layout (`float`, `position: absolute;`)
+```js
+import { Outlet } from "react-router-dom"
+
+const ChallengesLayout = () => {
+  /* ... some code */
+  return (
+    <>
+      {/* ... some JSX elements and code */}
+      <Outlet />
+    </>
+  )
+}
+```
 ###### With Common Path
 **Nested Routes** that have a **common path** can share a layout by passing the layout component to the *Parent* `Route`'s `element` attribute. Code snippet from [NavRoutes.js](./src/routes/NavRoutes.js)
 ```js

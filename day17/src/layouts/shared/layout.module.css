@@ -5,4 +5,13 @@
   margin: 0 auto;
   border: 1px solid cyan;
   border-radius: 0.4em;
+
+  /* * styling using float (choose one) */
+  /* float: left; */
+  /* float: right; */
+
+  /* * styling using absolute position */
+  /* position: absolute;
+  top: 5rem;
+  right: 1rem; */
 }
