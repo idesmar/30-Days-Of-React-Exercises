@@ -1,9 +1,9 @@
-# progress not needed
+# Progress not needed
 boilerplate/
 unexpected-error/
 
 # Workspace Settings
 .vscode
 
-# secrets
+# Secrets
 .secrets/

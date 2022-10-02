@@ -119,8 +119,13 @@ const SayHiStyled = () => {
 
   const handleChange = (e) => {
     const { value, name } = e.target
-    if (sayHiBack) setNameData(prev => ({...prev, sayHiBack: !sayHiBack}))
+
+    /* change hiBack status, firstName is changed while a hiBack is present */
+    if (sayHiBack) setNameData(prev => ({ ...prev, sayHiBack: !sayHiBack }))
+
+    /* ensure no error status on first load */
     if (!isTouched) setNameData(prev => ({ ...prev, isTouched: !isTouched }))
+
     const isNameValid = isNameFormatValid(value)
     setNameData(prev => ({ ...prev, isValid: isNameValid, [name]: value }))
   }
@@ -131,6 +136,9 @@ const SayHiStyled = () => {
 
   return (
     <Container>
+
+      <h3>styled-components</h3>
+
       <Label htmlFor='firstName'>First Name:</Label>
 
       <div>

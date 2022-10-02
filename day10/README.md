@@ -1,5 +1,5 @@
 <!-- omit in TOC -->
-# [30 Days of React](../README.md#readme): Day 10 | [React Folder Structure](https://github.com/Asabeneh/30-Days-Of-React/blob/master/10_React_Project_Folder_Structure/10_react_project_folder_structure.md)
+# [30 Days of React](../README.md#readme): Day 10 | [React Folder Structure](https://github.com/Asabeneh/30-Days-Of-React/blob/master/10_React_Project_Folder_Structure/10_react_project_folder_structure.md#readme)
 
 <!-- omit in TOC -->
 ## Table of Contents

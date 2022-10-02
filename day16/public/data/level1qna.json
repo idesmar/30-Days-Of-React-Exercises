@@ -1,0 +1,22 @@
+[
+  {
+    "_id": "q1",
+    "question": "What is Higher Order Function?",
+    "answer": "A higher order function is a function that uses another function as an argument/parameter."
+  },
+  {
+    "_id": "q2",
+    "question": "What is Higher Order Component?",
+    "answer": "A higher order component is a react component that uses another component as props."
+  },
+  {
+    "_id": "q3",
+    "question": "What is the difference between Higher Order Function and Higher Order Component?",
+    "answer": "The basic concept is similar between higher order functions and higher order components."
+  },
+  {
+    "_id": "q4",
+    "question": "A Higher Order Component can allow us to enhance a component. (T or F)",
+    "answer": "True, a component that passes through a higher order component can be enhanced. An example is by adding styling from the higher order component to the component being passed through it."
+  }
+]

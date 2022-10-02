@@ -1,5 +1,5 @@
 <!-- omit in TOC -->
-# [30 Days of React](../README.md#readme): Day 08 | [States](https://github.com/Asabeneh/30-Days-Of-React/blob/master/08_Day_States/08_states.md)
+# [30 Days of React](../README.md#readme): Day 08 | [States](https://github.com/Asabeneh/30-Days-Of-React/blob/master/08_Day_States/08_states.md#readme)
 
 <!-- omit in TOC -->
 ## Table of Contents

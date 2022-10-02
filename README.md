@@ -1,5 +1,3 @@
-<div id="readme"></div>
-
 <!-- omit in toc -->
 # 30 Days of React Exercises
 
@@ -32,6 +30,8 @@ Solutions to exercises from [30 Days of React](https://github.com/Asabeneh/30-Da
 |    [Day 13](./day13/README.md#readme)    | Uncontrolled Components |
 |    [Day 14](./day14/README.md#readme)    | Component Life Cycle    |
 |    [Day 15](./day15/README.md#readme)    | Third Party Packages    |
+|    [Day 16](./day16/README.md#readme)    | Higher Order Component  |
+|    [Day 17](./day17/README.md#readme)    | React Router            |
 
 <div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
 

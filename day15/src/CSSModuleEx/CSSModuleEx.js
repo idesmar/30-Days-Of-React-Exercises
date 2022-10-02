@@ -35,7 +35,7 @@ const ButtonCSSModule = () => {
 const TestButton = () => {
 
   return (
-    <div>
+    <div style={{ marginTop: '1rem' }}>
       <button className='button'>
         Test Button
       </button>

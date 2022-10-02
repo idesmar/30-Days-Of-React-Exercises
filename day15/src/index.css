@@ -1,0 +1,17 @@
+@import './reset.css';
+
+h1 { text-align: center; }
+h1, h2, h3 {
+  font: revert;
+  padding-bottom: 0.5em;
+}
+
+.section {
+  max-width: 43.75rem;
+  width: 100%;
+  border: 1px solid;
+  padding: 1rem;
+  margin-top: 1rem;
+  margin-inline: auto;
+  border-radius: 0.5rem;
+}

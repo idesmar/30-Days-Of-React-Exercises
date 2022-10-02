@@ -22,7 +22,8 @@ const Moment = () => {
   }
 
   return (
-    <div>
+    <section className='section'>
+      <h3>MomentJs - for familiarity only, use alternatives in README.md</h3>
       <div>
         <label htmlFor="date">Select Moment Date: </label>
         <input
@@ -59,7 +60,7 @@ const Moment = () => {
           </div>
         )
       }
-    </div>
+    </section>
   )
 }
 
