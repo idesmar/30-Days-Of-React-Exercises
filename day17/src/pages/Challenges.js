@@ -9,8 +9,8 @@ const FromOutlet = () => {
   return (
     <div>
       <h6>From Context</h6>
-      <p>name: {name}</p>
-      <p>click: {click}</p>
+      <p>Name: {name}</p>
+      <p>Click: {click}</p>
     </div>
   )
 }
@@ -65,5 +65,4 @@ export {
   Challenge1,
   Challenge2,
   OtherChallenges,
-  FromOutlet,
 }

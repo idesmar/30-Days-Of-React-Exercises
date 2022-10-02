@@ -6,11 +6,17 @@
 - [Dev Notes](#dev-notes)
 - [Learnings](#learnings)
   - [Routing](#routing)
+    - [Nested Routes](#nested-routes)
+    - [Dynamic Routing](#dynamic-routing)
+    - [Routing Priority](#routing-priority)
+    - [Multiple Routes](#multiple-routes)
+    - [useRoutes Hook](#useroutes-hook)
   - [Not Found](#not-found)
-  - [Outlet / Shared Layouts](#outlet--shared-layouts)
-    - [With Common Path](#with-common-path)
-    - [No Common Path](#no-common-path)
-    - [Outlet Context](#outlet-context)
+  - [Outlet](#outlet)
+    - [Shared Layouts](#shared-layouts)
+      - [With Common Path](#with-common-path)
+      - [No Common Path](#no-common-path)
+    - [Context / useOutletContext Hook](#context--useoutletcontext-hook)
   - [CSS Modules](#css-modules)
 - [Third Party Resources](#third-party-resources)
   - [Packages Used](#packages-used)
@@ -25,19 +31,19 @@
 ### Learnings
 
 #### Routing
-* [x] Nested Routes
+##### Nested Routes
   ```js
   <Route path="/">
     <Route index element={<Home />} />
     <Route path="contact" element={<ContactMe />} />
   </Route>
   ```
-* [x] Dynamic Routing
+##### Dynamic Routing
   ```js
   const { id } = useParams()
   /* no argument required in useParams */
   ```
-* [x] Routing Priority
+##### Routing Priority
   ```js
   /* NavRoutes.js */
   <Routes>
@@ -53,8 +59,9 @@
 
   {/* ... rest of code */}
   ```
-* [ ] Multiple Routes
-* [ ] useRoutes Hook
+##### Multiple Routes
+
+##### useRoutes Hook
 
 #### Not Found
 Use `path="*"` for any routes/page that do not match the existing declared routes
@@ -64,8 +71,9 @@ Use `path="*"` for any routes/page that do not match the existing declared route
 <Route path="*" element={<NotFound />} />
 ```
 
-#### Outlet / Shared Layouts
-##### With Common Path
+#### Outlet
+##### Shared Layouts
+###### With Common Path
 **Nested Routes** that have a **common path** can share a layout by passing the layout component to the *Parent* `Route`'s `element` attribute. Code snippet from [NavRoutes.js](./src/routes/NavRoutes.js)
 ```js
 <Route path="challenges" element={<ChallengesLayout />}>
@@ -79,10 +87,10 @@ Use `path="*"` for any routes/page that do not match the existing declared route
   <Route path=":id" element={<OtherChallenges />} />
 </Route>
 ```
-##### No Common Path
-Sharing a layout between Routes that have **NO common path** can be done by wrapping the Routes in a *Parent* `Route` that has ***NO PATH*** with the layout component as the `element` attribute.  Code snippet from [NavRoutes.js](./src/routes/NavRoutes.js)
+###### No Common Path
+Sharing a layout between Routes that have **NO common path** can be done by wrapping the Routes in a *Parent* `Route` that has ***NO PATH*** with the layout component as the `element` attribute. Code snippet from [NavRoutes.js](./src/routes/NavRoutes.js)
 ```js
-{/* Parent Route should not have path attribute */}
+{/* Parent Route should not have path property */}
 <Route element={<SharedLayout />}>
   <Route path="/about" element={<About />} />
   <Route path="/contact">
@@ -93,9 +101,27 @@ Sharing a layout between Routes that have **NO common path** can be done by wrap
   </Route>
 </Route>
 ```
-##### Outlet Context
-`context` attribute allows data to be available on all pages where the `Outlet` is visible
+##### Context / useOutletContext Hook
+* `context` property allows data to be available on all pages where `Outlet` layout is visible. See code in [layouts/ChallengesLayout.js](./src/layouts/ChallengesLayout.js)
+* `useOutletContext` hook is used to extract the `context` object from `Outlet`. See code in [pages/Challenges.js](./src/pages/Challenges.js)
 
+```js
+/* layouts/ChallengesLayout.js */
+<Outlet context={{ name, click }} />
+```
+```js
+/* pages/Challenges.js */
+const FromOutlet = () => {
+  const { name, click } = useOutletContext()
+  return (
+    <div>
+      <h6>From Context</h6>
+      <p>Name: {name}</p>
+      <p>Click: {click}</p>
+    </div>
+  )
+}
+```
 
 #### CSS Modules
 Parent class (style) can be used to style child elements. Example can be found in [App.module.css](./src/App.module.css) and [App.js](./src/App.js)
