@@ -1,4 +1,25 @@
+:root {
+  --layout-border-color: #f1f193;
+}
+
 .layout {
+  border: 1px solid var(--layout-border-color);
+  border-radius: 0.4rem;
+  padding: 1rem;
+  position: relative;
+}
+
+.layout::after {
+  content: 'shared layout boundary';
+  font-size: 0.8em;
+  color: var(--layout-border-color);
+  position: absolute;
+  --side-distance: 0.5rem;
+  top: var(--side-distance);
+  right: var(--side-distance);
+}
+
+.outletSibling {
   padding: 1rem;
   text-align: center;
   width: fit-content;

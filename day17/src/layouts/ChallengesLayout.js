@@ -1,11 +1,11 @@
 import { useState } from "react"
 import { Link, Outlet } from "react-router-dom"
-import layoutStyle from './shared/layout.module.css'
-import contextStyle from './ChallengesLayout.module.css'
+import sharedLayoutStyle from './shared/layout.module.css'
+import challengesLayoutStyle from './ChallengesLayout.module.css'
 
 
-const { layout } = layoutStyle
-const { outletContext } = contextStyle
+const { layout, outletSibling } = sharedLayoutStyle
+const { outletContext } = challengesLayoutStyle
 
 const ChallengesLayout = () => {
   const [dataChallenge, setDataChallenge] = useState({
@@ -22,8 +22,8 @@ const ChallengesLayout = () => {
   }
 
   return (
-    <>
-      <aside className={layout}>
+    <div className={layout}>
+      <aside className={outletSibling}>
         <nav>
           <ul>
             <li><Link to="/challenges/1">Challenge 1</Link></li>
@@ -55,7 +55,7 @@ const ChallengesLayout = () => {
       {/* //> Outlet
         - allows the entire component to be always visible on selected Routes */}
       <Outlet context={{ name, click }} />
-    </>
+    </div>
   )
 }
 
