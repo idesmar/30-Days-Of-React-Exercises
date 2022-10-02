@@ -82,7 +82,7 @@ Use `path="*"` for any routes/page that do not match the existing declared route
 ##### No Common Path
 Sharing a layout between Routes that have **NO common path** can be done by wrapping the Routes in a *Parent* `Route` that has ***NO PATH*** with the layout component as the `element` attribute.  Code snippet from [NavRoutes.js](./src/routes/NavRoutes.js)
 ```js
-{/* Parent Route should not have path attribute */}
+{/* Parent Route should not have path property */}
 <Route element={<SharedLayout />}>
   <Route path="/about" element={<About />} />
   <Route path="/contact">
@@ -94,8 +94,30 @@ Sharing a layout between Routes that have **NO common path** can be done by wrap
 </Route>
 ```
 ##### Outlet Context
-`context` attribute allows data to be available on all pages where the `Outlet` is visible
+* `context` property allows data to be available on all pages where the `Outlet` is visible.
+* `useOutletContext` is used to extract the `context` object from `Outlet`
 
+
+```js
+/* layouts/ChallengesLayout.js */
+<Outlet context={{ name, click }} />
+```
+```js
+/* pages/Challenges.js */
+const FromOutlet = () => {
+  const { name, click } = useOutletContext()
+  return (
+    <div>
+      <h6>From Context</h6>
+      <p>Name: {name}</p>
+      <p>Click: {click}</p>
+    </div>
+  )
+}
+```
+> Go to source files
+> * [layouts/ChallengesLayout.js](./src/layouts/ChallengesLayout.js)
+> * [pages/Challenges.js](./src/pages/Challenges.js)
 
 #### CSS Modules
 Parent class (style) can be used to style child elements. Example can be found in [App.module.css](./src/App.module.css) and [App.js](./src/App.js)
