@@ -94,9 +94,8 @@ Sharing a layout between Routes that have **NO common path** can be done by wrap
 </Route>
 ```
 ##### Outlet Context
-* `context` property allows data to be available on all pages where the `Outlet` is visible.
+* `context` property allows data to be available on all pages where `Outlet` layout is visible.
 * `useOutletContext` is used to extract the `context` object from `Outlet`
-
 
 ```js
 /* layouts/ChallengesLayout.js */
@@ -115,9 +114,30 @@ const FromOutlet = () => {
   )
 }
 ```
-> Go to source files
-> * [layouts/ChallengesLayout.js](./src/layouts/ChallengesLayout.js)
-> * [pages/Challenges.js](./src/pages/Challenges.js)
+Go to source files
+* [layouts/ChallengesLayout.js](./src/layouts/ChallengesLayout.js)
+* [pages/Challenges.js](./src/pages/Challenges.js)
+
+```js
+/* layouts/ChallengesLayout.js */
+<Outlet context={{ name, click }} />
+```
+```js
+/* pages/Challenges.js */
+const FromOutlet = () => {
+  const { name, click } = useOutletContext()
+  return (
+    <div>
+      <h6>From Context</h6>
+      <p>Name: {name}</p>
+      <p>Click: {click}</p>
+    </div>
+  )
+}
+```
+Go to source files
+* [layouts/ChallengesLayout.js](./src/layouts/ChallengesLayout.js)
+* [pages/Challenges.js](./src/pages/Challenges.js)
 
 #### CSS Modules
 Parent class (style) can be used to style child elements. Example can be found in [App.module.css](./src/App.module.css) and [App.js](./src/App.js)
