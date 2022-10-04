@@ -1,10 +1,10 @@
-.nav {
+.mainNav {
   background-color: rgb(9, 64, 64);
   color: #00ffff;
   padding: 0.4rem 0;
 }
 
-.nav > ul {
+.mainNav > ul {
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -13,13 +13,13 @@
   margin: 0 auto;
 }
 
-.nav a {
+.mainNav a {
   padding: 0.5rem;
   display: inline-block;
   border-radius: 0.5em;
 }
 
-.nav a:hover {
+.mainNav a:hover {
   background-color: #3a8b8b;
   color: #000000;
 }

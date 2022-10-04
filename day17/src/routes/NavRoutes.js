@@ -16,6 +16,9 @@ import {
 } from "../pages/Challenges"
 import { ChallengesLayout } from "../layouts/ChallengesLayout"
 import { SharedLayout } from "../layouts/SharedLayout"
+import { UpdatesRoutes } from "./UpdatesRoutes"
+
+/* //> see code near bottom of module to view Routes without comments  */
 
 
 const NavRoutes = () => {
@@ -24,12 +27,28 @@ const NavRoutes = () => {
     <Routes>
       <Route path="/">
         <Route index element={<Home />} />
+
+        {/* Blog Routes without BlogNav;
+            BlogNav will display based on condition set in BlogRoutes */}
         <Route path="blog" >
           <Route index element={<Blog />} />
           <Route path="1" element={<Blog1 />} />
           <Route path="2" element={<Blog2 />} />
           <Route path="3" element={<Blog3 />} />
         </Route>
+
+        {/* //> Imported { UpdatesRoutes } from "./UpdatesRoutes" which contains
+            //* Done to make final code cleaner by separating similar routes to one file
+            <Routes>
+              <Route element={<UpdatesNav />} >
+                <Route index element={<Updates />} />
+                <Route path="1" element={<Updates1/>} />
+                <Route path="2" element={<Updates2/>} />
+              </Route>
+            </Routes>
+        */}
+        <Route path="updates/*" element={<UpdatesRoutes />} />
+
         {/* =============================================================
           //> Layout appears in all path within challenges
           //? done by passing layout component as an element in PARENT Route
@@ -82,6 +101,42 @@ const NavRoutes = () => {
     </Routes>
   )
 }
+
+/* //> code above with NO COMMENTS
+
+const NavRoutes = () => {
+  return (
+    <Routes>
+      <Route path="/">
+        <Route index element={<Home />} />
+        <Route path="blog" >
+          <Route index element={<Blog />} />
+          <Route path="1" element={<Blog1 />} />
+          <Route path="2" element={<Blog2 />} />
+          <Route path="3" element={<Blog3 />} />
+        </Route>
+        <Route path="updates/*" element={<UpdatesRoutes />} />
+        <Route path="challenges" element={<ChallengesLayout />}>
+          <Route index element={<Challenges />} />
+          <Route path="1" element={<Challenge1 />} />
+          <Route path="2" element={<Challenge2 />} />
+          <Route path=":id" element={<OtherChallenges />} />
+        </Route>
+        <Route element={<SharedLayout />}>
+          <Route path="/about" element={<About />} />
+          <Route path="/contact">
+            <Route index element={<Contact />} />
+            <Route path=":contactId" element={<SomeContact />} />
+            <Route path=":contactId/:contactId" element={<SomeOtherContact />} />
+          </Route>
+        </Route>
+      </Route>
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  )
+}
+
+*/
 
 
 export { NavRoutes }

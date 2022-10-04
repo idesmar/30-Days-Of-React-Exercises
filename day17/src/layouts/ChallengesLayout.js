@@ -1,10 +1,11 @@
 import { useState } from "react"
-import { Link, Outlet } from "react-router-dom"
+import { Outlet } from "react-router-dom"
+import { ChallengesNav } from "../navigation/ChallengesNav"
 import sharedLayoutStyle from './shared/layout.module.css'
 import challengesLayoutStyle from './ChallengesLayout.module.css'
 
 
-const { layout, outletSibling } = sharedLayoutStyle
+const { layout, layoutContent } = sharedLayoutStyle
 const { outletContext } = challengesLayoutStyle
 
 const ChallengesLayout = () => {
@@ -23,13 +24,8 @@ const ChallengesLayout = () => {
 
   return (
     <div className={layout}>
-      <aside className={outletSibling}>
-        <nav>
-          <ul>
-            <li><Link to="/challenges/1">Challenge 1</Link></li>
-            <li><Link to="/challenges/2">Challenge 2</Link></li>
-          </ul>
-        </nav>
+      <aside className={layoutContent}>
+        <ChallengesNav />
       </aside>
 
       <div className={outletContext}>

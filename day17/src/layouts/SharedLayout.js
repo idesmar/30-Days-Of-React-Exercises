@@ -1,7 +1,7 @@
 import { Outlet, Link } from "react-router-dom"
 import sharedLayoutStyle from './shared/layout.module.css'
 
-const { layout, outletSibling } = sharedLayoutStyle
+const { layout, layoutContent } = sharedLayoutStyle
 
 /* //> wrapping multiple routes, with different paths, to share a layout
   sample for shared layout inside About and Contact pages
@@ -13,7 +13,7 @@ const SharedLayout = () => {
   }
   return (
     <div className={layout}>
-      <div className={outletSibling}>
+      <div className={layoutContent}>
         <h4>Hello! I'm a shared layout with About and Contact!</h4>
         <p>Learn more <Link to='/about' style={LinkStyle}>about</Link> page?</p>
         <p>Want to <Link to='/contact' style={LinkStyle}>contact</Link> page?</p>

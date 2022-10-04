@@ -19,7 +19,7 @@
   right: var(--side-distance);
 }
 
-.outletSibling {
+.layoutContent {
   padding: 1rem;
   text-align: center;
   width: fit-content;
