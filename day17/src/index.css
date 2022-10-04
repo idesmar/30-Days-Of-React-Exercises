@@ -10,3 +10,8 @@ html, body, #root {
 button {
   cursor: pointer;
 }
+
+.home-content p,
+.blog-content p {
+  padding-top: 1rem;
+}

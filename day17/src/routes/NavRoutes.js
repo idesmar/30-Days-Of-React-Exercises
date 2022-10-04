@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom"
 import { About } from "../pages/About"
 import { Home } from "../pages/Home"
+import { Blog, Blog1, Blog2, Blog3 } from "../pages/Blog"
 import { NotFound } from "../pages/NotFound"
 import {
   Contact,
@@ -23,6 +24,12 @@ const NavRoutes = () => {
     <Routes>
       <Route path="/">
         <Route index element={<Home />} />
+        <Route path="blog" >
+          <Route index element={<Blog />} />
+          <Route path="1" element={<Blog1 />} />
+          <Route path="2" element={<Blog2 />} />
+          <Route path="3" element={<Blog3 />} />
+        </Route>
         {/* =============================================================
           //> Layout appears in all path within challenges
           //? done by passing layout component as an element in PARENT Route

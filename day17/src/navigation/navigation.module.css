@@ -1,0 +1,36 @@
+.nav {
+  background-color: rgb(9, 64, 64);
+  color: #00ffff;
+  padding: 0.4rem 0;
+}
+
+.nav > ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 25rem;
+  margin: 0 auto;
+}
+
+.nav a {
+  padding: 0.5rem;
+  display: inline-block;
+  border-radius: 0.5em;
+}
+
+.nav a:hover {
+  background-color: #3a8b8b;
+  color: #000000;
+}
+
+
+.sideNav {
+  float: right;
+  border: 1px solid cyan;
+  padding: 1rem;
+}
+
+.sideNav + * {
+  clear: left;
+}

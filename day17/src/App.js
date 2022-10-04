@@ -1,5 +1,7 @@
-import { NavLink } from 'react-router-dom'
 import { NavRoutes } from './routes/NavRoutes'
+import { BlogRoutes } from './routes/BlogRoutes'
+import { MainNav } from './navigation/MainNav'
+import { BlogNav } from './navigation/BlogNav'
 import appStyle from './App.module.css'
 
 /* //> IMPORTANT: Resource Material samples are based from v4 and the current
@@ -8,22 +10,9 @@ import appStyle from './App.module.css'
 */
 
 
-const { NavStyle, pageContainer } = appStyle
+const { pageContainer } = appStyle
 
-const HomeNavigation = () => {
-  return (
-    <nav className={NavStyle} >
-      <ul>
-        <li><NavLink to='/' >Home</NavLink></li>
-        <li><NavLink to='/about' >About</NavLink></li>
-        <li><NavLink to='/challenges' >Challenges</NavLink></li>
-        <li><NavLink to='/contact' >Contact</NavLink></li>
-      </ul>
-    </nav>
-  )
-}
-
-/* //> HOC practice
+/* //> HOC practice ONLY
   this will be useful if it is used by more than one component */
 const withContainer = (Comp) => {
   return () => (
@@ -33,12 +22,16 @@ const withContainer = (Comp) => {
   )
 }
 const PageContent = withContainer(NavRoutes)
+const BlogContent = withContainer(BlogRoutes)
 
 const App = () => {
   return (
     <>
-      <HomeNavigation />
+      <MainNav />
+      <BlogRoutes />
+      {/* <BlogNav /> */}
       <PageContent />
+      {/* <BlogContent /> */}
     </>
   )
 }
