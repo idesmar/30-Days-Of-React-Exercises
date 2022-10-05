@@ -1,3 +1,8 @@
+/* NOTE: that this file is also being used by ../../useRoutes/URApp.js
+  it would be better to move this file to a higher directory for better accessibility
+  eg. src/shared or in src/styles */
+
+
 .mainNav {
   background-color: rgb(9, 64, 64);
   color: #00ffff;
@@ -29,6 +34,18 @@
   border: 1px solid cyan;
   padding: 1rem;
   margin-left: 1rem;
+}
+
+.specialLink {
+  background-color: #040434;
+  color: #dfcaca;
+}
+
+/* added .mainNav to increase specificity;
+  previously overruled by .manNav a:hover */
+.mainNav .specialLink:hover {
+  background-color: #dfcaca;
+  color: #040434;
 }
 
 /* > EXPERIMENTAL: used to apply display flow-root if it contains .sideNav */

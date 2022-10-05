@@ -1,7 +1,12 @@
 import { NavRoutes } from './routes/NavRoutes'
 import { MainNav } from './navigation/MainNav'
 // import { BlogRoutes } from './routes/BlogRoutes' /* //? Uncomment to see console warning */
-import appStyle from './App.module.css'
+// import appStyle from './App.module.css'
+import './App.module.css'
+import { useState } from 'react'
+import URApp from './useRoutes/URApp'
+import { withContainer } from './hoc/sharedWrapper'
+
 
 /* //> IMPORTANT: Resource Material samples are based from v4 and the current
   REACT-ROUTER-DOM IS CURRENTLY IN V6
@@ -13,34 +18,45 @@ import appStyle from './App.module.css'
 */
 
 
-const { pageWrapper } = appStyle
+// const { pageWrapper } = appStyle
 
-/* //> HOC practice ONLY
-  this will be useful if it is used by more than one component */
-const withContainer = (Comp) => {
-  return () => (
-    <div className={pageWrapper} >
-      <Comp />
-    </div>
-  )
-}
+// /* //> HOC practice ONLY
+//   this will be useful if it is used by more than one component */
+// const withContainer = (Comp) => {
+//   return () => (
+//     <div className={pageWrapper} >
+//       <Comp />
+//     </div>
+//   )
+// }
 const MainContent = withContainer(NavRoutes)
 
 const App = () => {
-  return (
-    <>
-      <MainNav />
+  const [isPrimary, setIsPrimary] = useState(true)
 
-      {/* //> BlogRoutes contains a separate <Routes>
-          generates a console warning whenever current location is not '/blog/*'
-          //* `No routes matched location "/${insert current pathName if not main dir}`
-          still appears to work though in the UI
-          //? Uncomment to see console warning */}
-      {/* <BlogRoutes /> */}
+  const handleUIChange = () => {
+    setIsPrimary(prev => !prev)
+  }
 
-      <MainContent />
-    </>
-  )
+  /* //> THIS ternary + state SETUP WILL PREVENT GOING TO `/useRoutes/*` via the URL;
+    because the initial isPrimary state is false (each page reload will reset state) */
+  return isPrimary
+    ? (
+      <>
+        <MainNav handleUIChange={handleUIChange} />
+
+        {/* //> BlogRoutes contains a separate <Routes>
+            generates a console warning whenever current location is not '/blog/*'
+            //* `No routes matched location "/${insert current pathName if not main dir}`
+            still appears to work though in the UI
+            //? Uncomment to see console warning */}
+        {/* <BlogRoutes /> */}
+
+        <MainContent />
+      </>
+    ) : (
+      <URApp handleUIChange={handleUIChange} />
+    )
 }
 
 

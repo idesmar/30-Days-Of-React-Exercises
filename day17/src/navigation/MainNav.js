@@ -1,9 +1,10 @@
 import { NavLink } from 'react-router-dom'
 import navigationStyles from './shared/navigation.module.css'
 
-const { mainNav } = navigationStyles
+const { mainNav, specialLink } = navigationStyles
 
-const MainNav = () => {
+const MainNav = ({ handleUIChange }) => {
+
   return (
     <nav className={mainNav} >
       <ul>
@@ -13,6 +14,16 @@ const MainNav = () => {
         <li><NavLink to='/contact' >Contact</NavLink></li>
         <li><NavLink to='/blog' >Blog</NavLink></li>
         <li><NavLink to='/updates' >Updates</NavLink></li>
+
+        <li>
+          <NavLink
+            to='useRoutes'
+            onClick={handleUIChange}
+            className={specialLink}
+          >
+            useRoutes
+          </NavLink>
+        </li>
       </ul>
     </nav>
   )

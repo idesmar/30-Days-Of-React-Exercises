@@ -232,6 +232,7 @@ const HomeNavigation = () => {
 
 #### React Router v6 Learning Material
   * [Ultimate React Router v6 Guide](https://blog.webdevsimplified.com/2022-07/react-router/) by [Web Dev Simplified](https://twitter.com/DevSimplified)
+    > Read on [Github](https://github.com/WebDevSimplified/Web-Dev-Simplified-Official-Blog/blob/master/src/pages/2022-07/react-router/index.md)
 
 <div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
 

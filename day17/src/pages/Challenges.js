@@ -17,6 +17,10 @@ const challengeContainerStyle = {
   borderRadius: '0.4em',
 }
 
+const noMarginPStyle = {
+  margin: '0',
+}
+
 /* Component receiving Outlet context
 to be displayed in other Challenges page */
 const FromOutlet = () => {
@@ -24,8 +28,8 @@ const FromOutlet = () => {
   return (
     <div style={fromOutletContainerStyle}>
       <h6>From Context</h6>
-      <p>Name: {name}</p>
-      <p>Click: {click}</p>
+      <p style={noMarginPStyle}>Name: {name}</p>
+      <p style={noMarginPStyle}>Click: {click}</p>
     </div>
   )
 }
