@@ -1,6 +1,6 @@
 const Home = () => {
   return (
-    <div className='home-content'>
+    <div>
       <h2>Welcome Home</h2>
 
       {/* cspell:disable */}

@@ -1,6 +1,6 @@
 const Blog = () => {
   return (
-    <div className="blog-content">
+    <div>
       <h2>Welcome to Blog</h2>
       {/* cspell:disable */}
       <p>Hi! This is blog. Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti aspernatur natus possimus magni, sed consequuntur.</p>
@@ -11,7 +11,7 @@ const Blog = () => {
 
 const Blog1 = () => {
   return (
-    <div className="blog-content">
+    <div>
       <h3>Blog 1</h3>
       {/* cspell:disable */}
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat officiis dolor reprehenderit, error sunt laboriosam officia inventore sapiente amet consequatur. Non facere blanditiis assumenda facilis officia veniam ipsam aut voluptates.</p>
@@ -25,7 +25,7 @@ const Blog1 = () => {
 }
 const Blog2 = () => {
   return (
-    <div className="blog-content">
+    <div>
       <h3>Blog 2</h3>
       {/* cspell:disable */}
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat officiis dolor reprehenderit, error sunt laboriosam officia inventore sapiente amet consequatur. Non facere blanditiis assumenda facilis officia veniam ipsam aut voluptates.</p>
@@ -39,7 +39,7 @@ const Blog2 = () => {
 }
 const Blog3 = () => {
   return (
-    <div className="blog-content">
+    <div>
       <h3>Blog 3</h3>
       {/* cspell:disable */}
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat officiis dolor reprehenderit, error sunt laboriosam officia inventore sapiente amet consequatur. Non facere blanditiis assumenda facilis officia veniam ipsam aut voluptates.</p>

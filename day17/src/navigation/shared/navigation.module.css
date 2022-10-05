@@ -24,13 +24,14 @@
   color: #000000;
 }
 
-
 .sideNav {
   float: right;
   border: 1px solid cyan;
   padding: 1rem;
+  margin-left: 1rem;
 }
 
-.sideNav + * {
-  clear: left;
+/* > EXPERIMENTAL: used to apply display flow-root if it contains .sideNav */
+div:has(.sideNav) {
+  display: flow-root;
 }

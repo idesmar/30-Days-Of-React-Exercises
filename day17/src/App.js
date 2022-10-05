@@ -1,6 +1,6 @@
 import { NavRoutes } from './routes/NavRoutes'
 import { MainNav } from './navigation/MainNav'
-import { BlogRoutes } from './routes/BlogRoutes'
+// import { BlogRoutes } from './routes/BlogRoutes' /* //? Uncomment to see console warning */
 import appStyle from './App.module.css'
 
 /* //> IMPORTANT: Resource Material samples are based from v4 and the current
@@ -13,13 +13,13 @@ import appStyle from './App.module.css'
 */
 
 
-const { pageContainer } = appStyle
+const { pageWrapper } = appStyle
 
 /* //> HOC practice ONLY
   this will be useful if it is used by more than one component */
 const withContainer = (Comp) => {
   return () => (
-    <div className={pageContainer} >
+    <div className={pageWrapper} >
       <Comp />
     </div>
   )
@@ -34,8 +34,9 @@ const App = () => {
       {/* //> BlogRoutes contains a separate <Routes>
           generates a console warning whenever current location is not '/blog/*'
           //* `No routes matched location "/${insert current pathName if not main dir}`
-          still appears to work though in the UI */}
-      <BlogRoutes />
+          still appears to work though in the UI
+          //? Uncomment to see console warning */}
+      {/* <BlogRoutes /> */}
 
       <MainContent />
     </>

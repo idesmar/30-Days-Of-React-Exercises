@@ -15,10 +15,10 @@ const BlogRoutes = () => {
       {/* Display BlogNav in all location with path starting (and including) with /blog
           eg. /blog, /blog/1, etc
           //? COMMENT OUT IF UNCOMMENTING ROUTE with path="/blog" */}
-      {/* <Route path="/blog/*" element={<BlogNav />} /> */}
+      <Route path="/blog/*" element={<BlogNav />} />
 
       {/* //? UNCOMMENT CODE BELOW to see result */}
-      <Route path="/blog" element={<BlogNav />} />
+      {/* <Route path="/blog" element={<BlogNav />} /> */}
     </Routes>
   )
 }

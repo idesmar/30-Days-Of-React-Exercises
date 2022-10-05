@@ -28,9 +28,9 @@ const NavRoutes = () => {
       <Route path="/">
         <Route index element={<Home />} />
 
-        {/* Blog Routes without BlogNav;
+        {/* //> Blog Routes without BlogNav;
             BlogNav will display based on condition set in BlogRoutes */}
-        <Route path="blog" >
+        <Route path="blog">
           <Route index element={<Blog />} />
           <Route path="1" element={<Blog1 />} />
           <Route path="2" element={<Blog2 />} />
@@ -45,8 +45,7 @@ const NavRoutes = () => {
                 <Route path="1" element={<Updates1/>} />
                 <Route path="2" element={<Updates2/>} />
               </Route>
-            </Routes>
-        */}
+            </Routes> */}
         <Route path="updates/*" element={<UpdatesRoutes />} />
 
         {/* =============================================================

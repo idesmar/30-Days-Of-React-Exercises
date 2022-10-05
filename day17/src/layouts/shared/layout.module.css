@@ -36,3 +36,9 @@
   top: 5rem;
   right: 1rem; */
 }
+
+/* specificity increased adding a .layoutContent class
+  to overshadow `p` style from from App.module.css */
+  .layoutContent p {
+    margin: 0;
+  }

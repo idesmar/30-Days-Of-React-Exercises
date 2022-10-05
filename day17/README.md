@@ -26,6 +26,14 @@
 ### Dev Notes
 * [CSS reset - version 1.7.3](https://github.com/elad2412/the-new-css-reset) by [@elad2412](https://github.com/elad2412) used
 * included ***experimental*** [chromiumAutofill.css](./src/styles/chromiumAutofill.css) <sup>[w/ notes & attribution]</sup> to somewhat "sanitize/reset" autofill style on chromium.
+* used EXPERIMENTAL :has() selector in [navigation.module.css](./src/navigation/shared/navigation.module.css)
+  ```css
+  /* apply declaration block to div if it contains a ".sideNav" element
+    (note: .sideNav has float: left; declaration) */
+  div:has(.sideNav) {
+    display: flow-root;
+  }
+  ```
 
 <div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
 
@@ -61,7 +69,52 @@
   {/* ... rest of code */}
   ```
 ##### Multiple Routes
+* Using multiple `<Routes>` where some will only be displayed in specific path/s.
+  * Other `<Route>`s pertaining to blog in ([NavRoutes.js](./src/routes/NavRoutes.js)
+  * Code snippets from [BlogRoutes.js](./src/routes/BlogRoutes.js))
+  * `Routes` can take a `location` property which allows the `Route` to be displayed anywhere bypassing the requirement set by `Route path="/blog/*"
+```js
+/* routes/BlogRoutes.js */
+{/* <Routes location="/blog"> to show in all pages */}
+<Routes>
 
+{/* display BlogNav only if in path /blog, /blog/1, /blog/2 etc */}
+  <Route path="/blog/*" element={<BlogNav />} />
+</Routes>
+```
+> The above code works, however, a console warning is displayed when current location does not match the specified path
+> ```
+> No routes matched location "/${insert current pathName if not root path}"
+> ```
+* Nested `<Routes>`
+  * To help clean up code, especially if there are many `<Route>`s, `<Route>`s that have a similar `path` can be placed in a different file and exported to the main `<Routes>`.
+  * Code snippet from [UpdatesRoutes.js](./src/routes/UpdatesRoutes.js) and [NavRoutes.js](./src/routes/NavRoutes.js)
+```js
+/* routes/UpdatesRoutes.js */
+<Routes>
+
+  {/* NOTICE that inner <Route>'s have path relative to updates
+      this is because the parent path should be declared in the main <Route>
+      ie. in NavRoutes.js */}
+  <Route element={<UpdatesLayout />}>
+    <Route index element={<Updates />} />
+    <Route path="1" element={<Updates1/>} />
+    <Route path="2" element={<Updates2/>} />
+  </Route>
+</Routes>
+```
+```js
+/* routes/NavRoutes.js */
+<Routes>
+  {/* ... other Routes */}
+
+  {/* NOTICE how path is written with trailing "/*"
+      this is to cover other paths contained in path "updates" */}
+  <Route path="updates/*" element={<UpdatesRoutes />} />
+
+  {/* ... other Routes */}
+</Routes>
+```
 ##### useRoutes Hook
 
 <div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
