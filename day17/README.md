@@ -1,3 +1,5 @@
+<!-- NOTE: Link to TOC after every end of h3 (###) and h4 (####) -->
+
 <!-- omit in toc -->
 # [30 Days of React](../README.md#readme): Day 17 | [React Router](https://github.com/Asabeneh/30-Days-Of-React/blob/master/17_React_Router/17_react_router.md#readme)
 
@@ -17,6 +19,14 @@
       - [With Common Path](#with-common-path)
       - [No Common Path](#no-common-path)
     - [Context / useOutletContext Hook](#context--useoutletcontext-hook)
+  - [Navigation](#navigation)
+    - [Link](#link)
+      - [to](#to)
+      - [replace](#replace)
+      - [reloadDocument](#reloaddocument)
+      - [state](#state)
+    - [NavLink](#navlink)
+    - [Navigate / useNavigation Hook](#navigate--usenavigation-hook)
   - [CSS Modules](#css-modules)
 - [Third Party Resources](#third-party-resources)
   - [Packages Used](#packages-used)
@@ -24,6 +34,7 @@
 - [Other References](#other-references)
 
 ### Dev Notes
+* Since the [original resource](https://github.com/Asabeneh/30-Days-Of-React/blob/master/17_React_Router/17_react_router.md#readme) material is outdated (react-router-dom@4) and the current version is at v6, an [external resource](#react-router-v6-learning-material) material is used for this sub-repo.
 * [CSS reset - version 1.7.3](https://github.com/elad2412/the-new-css-reset) by [@elad2412](https://github.com/elad2412) used
 * included ***experimental*** [chromiumAutofill.css](./src/styles/chromiumAutofill.css) <sup>[w/ notes & attribution]</sup> to somewhat "sanitize/reset" autofill style on chromium.
 * used EXPERIMENTAL :has() selector in [navigation.module.css](./src/navigation/shared/navigation.module.css)
@@ -218,6 +229,54 @@ const FromOutlet = () => {
   )
 }
 ```
+
+<div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
+
+#### Navigation
+##### Link
+`Link` is the simplest form of navigation. Underneath, this is a simple anchor tag. <br/>
+Below are the properties available in `<Link>`
+###### to
+Accepts the path where to redirect. The path can either be one of the ff:
+* absolute path
+* relative path
+  * appending the path to the current path displayed
+  * using directory-like navigation eg. `../` or `../../`
+Code snippet from [navigation/ChallengesNav.js](./src/navigation/ChallengesNav.js)
+```js
+/* navigation/ChallengesNav.js */
+
+{/* //> Link to absolute path */}
+<li><Link to="/challenges/1">Challenge 1</Link></li>
+
+{/* //> Link to relative path */}
+<li><Link to="2">Challenge 2</Link></li>
+
+{/* //> Link to relative path using directory-lik navigation */}
+<li><Link to='../../'>Back to home</Link></li>
+```
+###### replace
+`replace` is a boolean property that when present (default value is `true`) will replace the previous path -- ***after clicking `<Link>`*** -- in memory. See example below.
+```bash
+# history before clicking <Link>
+/ > /challenges > /challenges/1
+
+# history after clicking <Link> going to /challenges/2
+# <Link to='/challenges/2' replace>Challenge 2</Link>
+/ > /challenges > /challenges/2
+
+# notice that /challenges/2 replaced /challenges/1 in history
+# this means that clicking on the back button will direct the page to /challenges
+```
+###### reloadDocument
+`reloadDocument` is a boolean property that when present (default value is `true`) will reload the entire document.
+> Note that reload will reset `state`s not stored (eg. localStorage, sessionStorage, cache, etc.)
+###### state
+<!-- add a link to special section in page -->
+TBD
+##### NavLink
+`NavLink` is similar to `Link` with more customization
+##### Navigate / useNavigation Hook
 
 <div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
 

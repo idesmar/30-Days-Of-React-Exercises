@@ -45,7 +45,7 @@ const Challenge1 = () => {
 }
 
 const Challenge2 = () => {
-  const backgroundColor = '#2b262f'
+  const backgroundColor = '#481c6d'
   return (
     <div style={{ ...challengeContainerStyle, backgroundColor }}>
       <h2>Challenge 2</h2>
