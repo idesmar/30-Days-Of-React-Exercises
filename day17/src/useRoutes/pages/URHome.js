@@ -2,7 +2,7 @@ const URHome = () => {
   return (
     <div>
       <h1>
-        Hoorah! You reached here by means of <code>useRoutes()</code>!
+        Welcome! You are now in a section where all routing is defined by <code>useRoutes()</code>!
       </h1>
     </div>
   )

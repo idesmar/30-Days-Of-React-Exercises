@@ -14,7 +14,8 @@
   align-items: center;
   justify-content: space-around;
   width: 100%;
-  max-width: 25rem;
+  max-width: fit-content;
+  gap: 0.4rem;
   margin: 0 auto;
 }
 
@@ -27,6 +28,11 @@
 .mainNav a:hover {
   background-color: #3a8b8b;
   color: #000000;
+}
+
+.activeNavLink {
+  background-color: #7c7c44;
+  color: #00ffff;
 }
 
 .sideNav {

@@ -26,18 +26,19 @@
       - [reloadDocument](#reloaddocument)
       - [state](#state)
     - [NavLink](#navlink)
+      - [end](#end)
     - [Navigate / useNavigation Hook](#navigate--usenavigation-hook)
   - [CSS Modules](#css-modules)
 - [Third Party Resources](#third-party-resources)
   - [Packages Used](#packages-used)
   - [React Router v6 Learning Material](#react-router-v6-learning-material)
-- [Other References](#other-references)
 
 ### Dev Notes
 * Since the [original resource](https://github.com/Asabeneh/30-Days-Of-React/blob/master/17_React_Router/17_react_router.md#readme) material is outdated (react-router-dom@4) and the current version is at v6, an [external resource](#react-router-v6-learning-material) material is used for this sub-repo.
+* Created a [CustomNavLink](./src/navigation/shared/customNavLink.js) based on code snippet from [react-router official docs](https://reactrouter.com/en/main/components/nav-link).
 * [CSS reset - version 1.7.3](https://github.com/elad2412/the-new-css-reset) by [@elad2412](https://github.com/elad2412) used
 * included ***experimental*** [chromiumAutofill.css](./src/styles/chromiumAutofill.css) <sup>[w/ notes & attribution]</sup> to somewhat "sanitize/reset" autofill style on chromium.
-* used EXPERIMENTAL :has() selector in [navigation.module.css](./src/navigation/shared/navigation.module.css)
+* used ***experimental*** :has() selector in [navigation.module.css](./src/navigation/shared/navigation.module.css)
   ```css
   /* apply declaration block to div if it contains a ".sideNav" element
     (note: .sideNav has float: left; declaration) */
@@ -275,7 +276,17 @@ Code snippet from [navigation/ChallengesNav.js](./src/navigation/ChallengesNav.j
 <!-- add a link to special section in page -->
 TBD
 ##### NavLink
-`NavLink` is similar to `Link` with more customization
+`NavLink` is similar to `Link` with more customization.
+> All properties available in `<Link>` is available in `<NavLink>`
+###### end
+`end` is a boolean property that when present (default value is `true`) will only apply the 'active' className if the current path is ***exactly*** as what's specified in the `to` property.
+> Common use:
+> ```jsx
+> <NavLink to='/' end>
+>   Home
+> </NavLink>
+> ```
+> If above not used, navigating to any other path will not remove the `active` className in `Home` resulting to multiple `NavLink` appearing as 'active'
 ##### Navigate / useNavigation Hook
 
 <div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
@@ -315,10 +326,5 @@ const HomeNavigation = () => {
 #### React Router v6 Learning Material
   * [Ultimate React Router v6 Guide](https://blog.webdevsimplified.com/2022-07/react-router/) by [Web Dev Simplified](https://twitter.com/DevSimplified)
     > Read on [Github](https://github.com/WebDevSimplified/Web-Dev-Simplified-Official-Blog/blob/master/src/pages/2022-07/react-router/index.md)
-
-<div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
-
-### Other References
-*
 
 <div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
