@@ -70,9 +70,9 @@
   ```
 ##### Multiple Routes
 * Using multiple `<Routes>` where some will only be displayed in specific path/s.
-  * Other `<Route>`s pertaining to blog in ([NavRoutes.js](./src/routes/NavRoutes.js)
-  * Code snippets from [BlogRoutes.js](./src/routes/BlogRoutes.js))
-  * `Routes` can take a `location` property which allows the `Route` to be displayed anywhere bypassing the requirement set by `Route path="/blog/*"
+  * Other `<Route>`s pertaining to blog in [NavRoutes.js](./src/routes/NavRoutes.js)
+  * Code snippets from [BlogRoutes.js](./src/routes/BlogRoutes.js)
+  * `Routes` can take a `location` property which allows the `Route` to be displayed anywhere bypassing the requirement set by `Route path="/blog/*"`
 ```js
 /* routes/BlogRoutes.js */
 {/* <Routes location="/blog"> to show in all pages */}
@@ -116,6 +116,29 @@
 </Routes>
 ```
 ##### useRoutes Hook
+Instead of using JSX, a Javascript object representing the logic of what element to display/render can be used as an argument to `useRoutes()` hook. Using this method can remove ***repetition*** like writing the template for `Route` ie. `<Route />`
+Code snippet from [useRoutes/routes/URoutes.js](./src/useRoutes/routes/URoutes.js)
+```js
+/* URoutes.js */
+const URoutes = () => {
+  const element = useRoutes([
+    {
+      path: '/useRoutes',              /* <Route path='/useRoutes'> */
+      children: [
+        {
+          index: true,                      /* <Route index */
+          element: <URHome />,              /*   element={<URHome />} /> */
+        },
+        {
+          path: 'contact',                  /* <Route path='contact' */
+          element: <URContact />,           /*   element={<URContact/>} /> */
+        },
+      ]
+    }                                   /* </Route> */
+  ])
+  return element
+}
+```
 
 <div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
 
