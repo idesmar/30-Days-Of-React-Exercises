@@ -1,8 +1,53 @@
+:root {
+  --layout-border-color: #f1f193;
+  --layout-bgColor: #050526;
+}
+
 .layout {
+  border: 1px solid var(--layout-border-color);
+  border-radius: 0.4rem;
+  padding: 1rem;
+  position: relative;
+  background-color: var(--layout-bgColor);
+}
+
+.layout::after {
+  content: 'shared layout boundary';
+  font-size: 0.8em;
+  color: var(--layout-border-color);
+  position: absolute;
+  --side-distance: 0.5rem;
+  top: var(--side-distance);
+  right: var(--side-distance);
+}
+
+.layout_centerElement {
   padding: 1rem;
   text-align: center;
   width: fit-content;
   margin: 0 auto;
   border: 1px solid cyan;
   border-radius: 0.4em;
+
+  /* * styling using float (choose one) */
+  /* float: left; */
+  /* float: right; */
+
+  /* * styling using absolute position */
+  /* position: absolute;
+  top: 5rem;
+  right: 1rem; */
+}
+
+/* specificity increased adding a .layoutContent class
+  to overshadow `p` style from from App.module.css */
+.layout_centerElement p {
+  margin: 0;
+}
+.layout_centerElement h4 {
+  margin-bottom: 1rem;
+}
+
+.highlightText {
+  color: #61cc41;
 }

@@ -1,0 +1,60 @@
+/* NOTE: that this file is also being used by ../../useRoutes/URApp.js
+  it would be better to move this file to a higher directory for better accessibility
+  eg. src/shared or in src/styles */
+
+
+.mainNav {
+  background-color: rgb(9, 64, 64);
+  color: #00ffff;
+  padding: 0.4rem 0;
+}
+
+.mainNav > ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  max-width: fit-content;
+  gap: 0.4rem;
+  margin: 0 auto;
+}
+
+.mainNav a {
+  padding: 0.5rem;
+  display: inline-block;
+  border-radius: 0.5em;
+}
+
+.mainNav a:hover {
+  background-color: #3a8b8b;
+  color: #000000;
+}
+
+.activeNavLink {
+  background-color: #7c7c44;
+  color: #00ffff;
+}
+
+.sideNav {
+  float: right;
+  border: 1px solid cyan;
+  padding: 1rem;
+  margin-left: 1rem;
+}
+
+.specialLink {
+  background-color: #040434;
+  color: #dfcaca;
+}
+
+/* added .mainNav to increase specificity;
+  previously overruled by .manNav a:hover */
+.mainNav .specialLink:hover {
+  background-color: #dfcaca;
+  color: #040434;
+}
+
+/* > EXPERIMENTAL: used to apply display flow-root if it contains .sideNav */
+div:has(.sideNav) {
+  display: flow-root;
+}
