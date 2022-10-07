@@ -3,6 +3,9 @@
 <!-- omit in toc -->
 # [30 Days of React](../README.md#readme): Day 17 | [React Router](https://github.com/Asabeneh/30-Days-Of-React/blob/master/17_React_Router/17_react_router.md#readme)
 
+<details>
+  <summary style='cursor: pointer;' >Click for Table of Contents</summary>
+
 <!-- omit in toc -->
 ## Table of Contents
 - [Dev Notes](#dev-notes)
@@ -32,6 +35,8 @@
 - [Third Party Resources](#third-party-resources)
   - [Packages Used](#packages-used)
   - [React Router v6 Learning Material](#react-router-v6-learning-material)
+</details>
+<br />
 
 ### Dev Notes
 * Since the [original resource](https://github.com/Asabeneh/30-Days-Of-React/blob/master/17_React_Router/17_react_router.md#readme) material is outdated (react-router-dom@4) and the current version is at v6, an [external resource](#react-router-v6-learning-material) material is used for this sub-repo.
