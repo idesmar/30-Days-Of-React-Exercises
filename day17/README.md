@@ -3,7 +3,7 @@
 <!-- omit in toc -->
 # [30 Days of React](../README.md#readme): Day 17 | [React Router](https://github.com/Asabeneh/30-Days-Of-React/blob/master/17_React_Router/17_react_router.md#readme)
 
-<details id="toc" style='scroll-margin-top: 2ex;'>
+<details id="toc">
   <summary style='cursor: pointer;'>Click for Table of Contents</summary>
 
 <!-- omit in toc -->
