@@ -3,7 +3,7 @@
 <!-- omit in toc -->
 # [30 Days of React](../README.md#readme): Day 17 | [React Router](https://github.com/Asabeneh/30-Days-Of-React/blob/master/17_React_Router/17_react_router.md#readme)
 
-<details>
+<details id="toc">
   <summary style='cursor: pointer;' >Click for Table of Contents</summary>
 
 <!-- omit in toc -->
@@ -51,7 +51,7 @@
   }
   ```
 
-<div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
+<div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>
 
 ### Learnings
 
@@ -156,7 +156,7 @@ const URoutes = () => {
 }
 ```
 
-<div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
+<div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>
 
 #### Not Found
 Use `path="*"` for any routes/page that do not match the existing declared routes
@@ -166,7 +166,7 @@ Use `path="*"` for any routes/page that do not match the existing declared route
 <Route path="*" element={<NotFound />} />
 ```
 
-<div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
+<div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>
 
 #### Outlet
 ##### Outlet / Shared Layouts
@@ -251,7 +251,7 @@ const FromOutlet = () => {
 }
 ```
 
-<div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
+<div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>
 
 #### Navigation
 ##### Link
@@ -314,7 +314,7 @@ TBD
 
 
 
-<div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
+<div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>
 
 #### CSS Modules
 Parent class (style) can be used to style child elements. Example can be found in [App.module.css](./src/App.module.css) and [App.js](./src/App.js)
@@ -337,7 +337,7 @@ const HomeNavigation = () => {
   {/* ... rest of code */}
 ```
 
-<div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
+<div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>
 
 ### Third Party Resources
 
@@ -352,4 +352,4 @@ const HomeNavigation = () => {
   * [Ultimate React Router v6 Guide](https://blog.webdevsimplified.com/2022-07/react-router/) by [Web Dev Simplified](https://twitter.com/DevSimplified)
     > Read on [Github](https://github.com/WebDevSimplified/Web-Dev-Simplified-Official-Blog/blob/master/src/pages/2022-07/react-router/index.md)
 
-<div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
+<div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>
