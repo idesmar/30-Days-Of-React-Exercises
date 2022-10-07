@@ -1,3 +1,9 @@
+/* > DEV NOTES
+  For a cleaner file/folder structure,
+  it might be better to include this file in `./shared`
+*/
+
+
 .outletContext {
   background-color: #362140;
 

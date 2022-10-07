@@ -53,33 +53,33 @@
 
 #### Routing
 ##### Nested Routes
-  ```js
-  <Route path="/">
-    <Route index element={<Home />} />
-    <Route path="contact" element={<ContactMe />} />
-  </Route>
-  ```
+```js
+<Route path="/">
+  <Route index element={<Home />} />
+  <Route path="contact" element={<ContactMe />} />
+</Route>
+```
 ##### Dynamic Routing
-  ```js
-  const { id } = useParams()
-  /* no argument required in useParams */
-  ```
+```js
+const { id } = useParams()
+/* no argument required in useParams */
+```
 ##### Routing Priority
-  ```js
-  /* NavRoutes.js */
-  <Routes>
-    <Route path="/">
+```js
+/* NavRoutes.js */
+<Routes>
+  <Route path="/">
 
-      {/* Routes below (with absolute path)
-        have more priority than Dynamic Route */}
-      <Route path="1" element={<Challenge1 />} />
-      <Route path="2" element={<Challenge2 />} />
+    {/* Routes below (with absolute path)
+      have more priority than Dynamic Route */}
+    <Route path="1" element={<Challenge1 />} />
+    <Route path="2" element={<Challenge2 />} />
 
-      {/* Dynamic Route */}
-      <Route path=":id" element={<OtherChallenges />} />
+    {/* Dynamic Route */}
+    <Route path=":id" element={<OtherChallenges />} />
 
-  {/* ... rest of code */}
-  ```
+{/* ... rest of code */}
+```
 ##### Multiple Routes
 * Using multiple `<Routes>` where some will only be displayed in specific path/s.
   * Other `<Route>`s pertaining to blog in [NavRoutes.js](./src/routes/NavRoutes.js)
@@ -287,7 +287,12 @@ TBD
 > </NavLink>
 > ```
 > If above not used, navigating to any other path will not remove the `active` className in `Home` resulting to multiple `NavLink` appearing as 'active'
+
+> There are multiple ways of styling active `NavLink`s from **inline styles** to using **classNames** creatively, and even creating a [CustomNavLink](./src/navigation/shared/customNavLink.js)
+> Refer to [MainNav.js](./src/navigation/MainNav.js) for different styling used
 ##### Navigate / useNavigation Hook
+
+
 
 <div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
 
