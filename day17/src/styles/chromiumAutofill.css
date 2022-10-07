@@ -1,5 +1,7 @@
 /* //////////////////////////
   > EXPERIMENTAL - idesmar
+  ! BUGS: font color on auto-filled input not changing
+  Needs more testing
  ////////////////////////// */
 
 
@@ -57,6 +59,7 @@ select:-webkit-autofill:focus {
   /* border: 1px solid inherit; --- color dependent on parent? */
 
   -webkit-text-fill-color: inherit;
+  color: inherit;
 
   /* invalid property value on dev tools */
   /* -webkit-box-shadow: 0 0 0px 1000px inherit inset;  */
