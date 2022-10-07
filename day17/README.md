@@ -3,6 +3,9 @@
 <!-- omit in toc -->
 # [30 Days of React](../README.md#readme): Day 17 | [React Router](https://github.com/Asabeneh/30-Days-Of-React/blob/master/17_React_Router/17_react_router.md#readme)
 
+<details id="toc">
+  <summary style='cursor: pointer;'>Click for Table of Contents</summary>
+
 <!-- omit in toc -->
 ## Table of Contents
 - [Dev Notes](#dev-notes)
@@ -32,8 +35,10 @@
 - [Third Party Resources](#third-party-resources)
   - [Packages Used](#packages-used)
   - [React Router v6 Learning Material](#react-router-v6-learning-material)
+</details>
+<hr/>
 
-### Dev Notes
+## Dev Notes
 * Since the [original resource](https://github.com/Asabeneh/30-Days-Of-React/blob/master/17_React_Router/17_react_router.md#readme) material is outdated (react-router-dom@4) and the current version is at v6, an [external resource](#react-router-v6-learning-material) material is used for this sub-repo.
 * Created a [CustomNavLink](./src/navigation/shared/customNavLink.js) based on code snippet from [react-router official docs](https://reactrouter.com/en/main/components/nav-link).
 * [CSS reset - version 1.7.3](https://github.com/elad2412/the-new-css-reset) by [@elad2412](https://github.com/elad2412) used
@@ -47,24 +52,24 @@
   }
   ```
 
-<div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
+<div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>
 
-### Learnings
+## Learnings
 
-#### Routing
-##### Nested Routes
+### Routing
+#### Nested Routes
 ```js
 <Route path="/">
   <Route index element={<Home />} />
   <Route path="contact" element={<ContactMe />} />
 </Route>
 ```
-##### Dynamic Routing
+#### Dynamic Routing
 ```js
 const { id } = useParams()
 /* no argument required in useParams */
 ```
-##### Routing Priority
+#### Routing Priority
 ```js
 /* routes/NavRoutes.js */
 <Routes>
@@ -80,7 +85,7 @@ const { id } = useParams()
 
 {/* ... rest of code */}
 ```
-##### Multiple Routes
+#### Multiple Routes
 * Using multiple `<Routes>` where some will only be displayed in specific path/s.
   * Other `<Route>`s pertaining to blog in [NavRoutes.js](./src/routes/NavRoutes.js)
   * `Routes` can take a `location` property which allows the `Route` to be displayed anywhere bypassing the requirement set by `Route path="/blog/*"`
@@ -127,7 +132,7 @@ const { id } = useParams()
   {/* ... other Routes */}
 </Routes>
 ```
-##### useRoutes Hook
+#### useRoutes Hook
 Instead of using JSX, a Javascript object representing the logic of what element to display/render can be used as an argument to `useRoutes()` hook. Using this method can remove ***repetition*** like writing the template for `Route` ie. `<Route />`
 > Code snippet from [useRoutes/routes/URoutes.js](./src/useRoutes/routes/URoutes.js)
 ```js
@@ -152,9 +157,9 @@ const URoutes = () => {
 }
 ```
 
-<div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
+<div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>
 
-#### Not Found
+### Not Found
 Use `path="*"` for any routes/page that do not match the existing declared routes
 ```js
 {/* At the same level as path="/" or one level below if nested inside
@@ -162,10 +167,10 @@ Use `path="*"` for any routes/page that do not match the existing declared route
 <Route path="*" element={<NotFound />} />
 ```
 
-<div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
+<div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>
 
-#### Outlet
-##### Outlet / Shared Layouts
+### Outlet
+#### Outlet / Shared Layouts
 * Layouts can be shared by passing a ***layout component*** to ***parent*** `Route`'s `element`.
 * Ensure that the ***layout component*** has an `<Outlet>` inside that will serve as a ***placeholder*** for the `children` `<Route>`s.
 > Code snippet from [layouts/ChallengesLayout.js](./src/layouts/ChallengesLayout.js) and [routes/navRoutes.js](./src/routes/NavRoutes.js)
@@ -199,7 +204,7 @@ const ChallengesLayout = () => {
 
 {/* ... other `Route`s */}
 ```
-###### With Common Path
+##### With Common Path
 **Nested Routes** that have a **common path** can share a layout by passing the layout component to the *Parent* `Route`'s `element` attribute.
 > Code snippet from [routes/NavRoutes.js](./src/routes/NavRoutes.js)
 ```js
@@ -210,7 +215,7 @@ const ChallengesLayout = () => {
   <Route path=":id" element={<OtherChallenges />} />
 </Route>
 ```
-###### No Common Path
+##### No Common Path
 Sharing a layout between Routes that have **NO common path** can be done by wrapping the Routes in a *Parent* `Route` that has ***NO PATH*** with the ***layout component*** as the `element` value.
 > Code snippet from [routes/NavRoutes.js](./src/routes/NavRoutes.js)
 ```js
@@ -225,7 +230,7 @@ Sharing a layout between Routes that have **NO common path** can be done by wrap
   </Route>
 </Route>
 ```
-##### Context / useOutletContext Hook
+#### Context / useOutletContext Hook
 * `context` property allows data to be passed from ***layout component*** where `Outlet` is declared. See code in [layouts/ChallengesLayout.js](./src/layouts/ChallengesLayout.js)
 * `useOutletContext` hook is used to extract the `context` object from `Outlet`. See code in [pages/Challenges.js](./src/pages/Challenges.js) and displayed on the ***child*** `Route` element.
 
@@ -247,13 +252,13 @@ const FromOutlet = () => {
 }
 ```
 
-<div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
+<div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>
 
-#### Navigation
-##### Link
+### Navigation
+#### Link
 `Link` is the simplest form of navigation. Underneath, this is a simple anchor tag. <br/>
 Below are the properties available in `<Link>`
-###### to
+##### to
 Accepts the path where to redirect. The path can either be one of the ff:
 * absolute path
 * relative path
@@ -272,7 +277,7 @@ Accepts the path where to redirect. The path can either be one of the ff:
 {/* //> Link to relative path using directory-lik navigation */}
 <li><Link to='../../'>Back to home</Link></li>
 ```
-###### replace
+##### replace
 `replace` is a boolean property that when present (default value is `true`) will replace the previous path -- ***after clicking `<Link>`*** -- in memory. See example below.
 ```bash
 # history before clicking <Link>
@@ -285,16 +290,16 @@ Accepts the path where to redirect. The path can either be one of the ff:
 # notice that /challenges/2 replaced /challenges/1 in history
 # this means that clicking on the back button will direct the page to /challenges
 ```
-###### reloadDocument
+##### reloadDocument
 `reloadDocument` is a boolean property that when present (default value is `true`) will reload the entire document.
 > Note that reload will reset `state`s not stored (eg. localStorage, sessionStorage, cache, etc.)
-###### state
+##### state
 <!-- add a link to special section in page -->
 TBD
-##### NavLink
+#### NavLink
 `NavLink` is similar to `Link` with more customization.
 > All properties available in `<Link>` is available in `<NavLink>`
-###### end
+##### end
 `end` is a boolean property that when present (default value is `true`) will only apply the 'active' className if the current path is ***exactly*** as what's specified in the `to` property.
 > Common use:
 > ```jsx
@@ -306,13 +311,13 @@ TBD
 
 > There are multiple ways of styling active `NavLink`s from **inline styles** to using **classNames** creatively, and even creating a [CustomNavLink](./src/navigation/shared/customNavLink.js)
 > Refer to [MainNav.js](./src/navigation/MainNav.js) for different styling used
-##### Navigate / useNavigation Hook
+#### Navigate / useNavigation Hook
 
 
 
-<div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
+<div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>
 
-#### CSS Modules
+### CSS Modules
 Parent class (style) can be used to style child elements. Example can be found in [App.module.css](./src/App.module.css) and [App.js](./src/App.js)
 ```css
 /* App.module.css */
@@ -333,19 +338,19 @@ const HomeNavigation = () => {
   {/* ... rest of code */}
 ```
 
-<div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
+<div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>
 
-### Third Party Resources
+## Third Party Resources
 
-#### Packages Used
+### Packages Used
 <!-- cspell:disable -->
 | Package | Installation | Website | Github |
 |:--------|:-------------|:--------|:-------|
 | react router dom | `npm i react-router-dom` | [reactrouter.com](https://reactrouter.com/) | [remix-run/react-router](https://github.com/remix-run/react-router#readme)
 <!-- cspell:enable -->
 
-#### React Router v6 Learning Material
+### React Router v6 Learning Material
   * [Ultimate React Router v6 Guide](https://blog.webdevsimplified.com/2022-07/react-router/) by [Web Dev Simplified](https://twitter.com/DevSimplified)
     > Read on [Github](https://github.com/WebDevSimplified/Web-Dev-Simplified-Official-Blog/blob/master/src/pages/2022-07/react-router/index.md)
 
-<div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
+<div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>
