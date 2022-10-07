@@ -15,7 +15,7 @@
     - [useRoutes Hook](#useroutes-hook)
   - [Not Found](#not-found)
   - [Outlet](#outlet)
-    - [Shared Layouts](#shared-layouts)
+    - [Outlet / Shared Layouts](#outlet--shared-layouts)
       - [With Common Path](#with-common-path)
       - [No Common Path](#no-common-path)
     - [Context / useOutletContext Hook](#context--useoutletcontext-hook)
@@ -66,7 +66,7 @@ const { id } = useParams()
 ```
 ##### Routing Priority
 ```js
-/* NavRoutes.js */
+/* routes/NavRoutes.js */
 <Routes>
   <Route path="/">
 
@@ -83,8 +83,8 @@ const { id } = useParams()
 ##### Multiple Routes
 * Using multiple `<Routes>` where some will only be displayed in specific path/s.
   * Other `<Route>`s pertaining to blog in [NavRoutes.js](./src/routes/NavRoutes.js)
-  * Code snippets from [BlogRoutes.js](./src/routes/BlogRoutes.js)
   * `Routes` can take a `location` property which allows the `Route` to be displayed anywhere bypassing the requirement set by `Route path="/blog/*"`
+> Code snippet from [BlogRoutes.js](./src/routes/BlogRoutes.js)
 ```js
 /* routes/BlogRoutes.js */
 {/* <Routes location="/blog"> to show in all pages */}
@@ -100,7 +100,7 @@ const { id } = useParams()
 > ```
 * Nested `<Routes>`
   * To help clean up code, especially if there are many `<Route>`s, `<Route>`s that have a similar `path` can be placed in a different file and exported to the main `<Routes>`.
-  * Code snippet from [UpdatesRoutes.js](./src/routes/UpdatesRoutes.js) and [NavRoutes.js](./src/routes/NavRoutes.js)
+> Code snippets from [routes/UpdatesRoutes.js](./src/routes/UpdatesRoutes.js) and [routes/NavRoutes.js](./src/routes/NavRoutes.js)
 ```js
 /* routes/UpdatesRoutes.js */
 <Routes>
@@ -129,7 +129,7 @@ const { id } = useParams()
 ```
 ##### useRoutes Hook
 Instead of using JSX, a Javascript object representing the logic of what element to display/render can be used as an argument to `useRoutes()` hook. Using this method can remove ***repetition*** like writing the template for `Route` ie. `<Route />`
-Code snippet from [useRoutes/routes/URoutes.js](./src/useRoutes/routes/URoutes.js)
+> Code snippet from [useRoutes/routes/URoutes.js](./src/useRoutes/routes/URoutes.js)
 ```js
 /* URoutes.js */
 const URoutes = () => {
@@ -165,10 +165,13 @@ Use `path="*"` for any routes/page that do not match the existing declared route
 <div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
 
 #### Outlet
-##### Shared Layouts
-Layouts can be shared by using `Outlet` and including it in the Layout component. Code snippet from [layouts/ChallengesLayout.js](./src/layouts/ChallengesLayout.js)
-> Caveat of sharing layouts in ***nested routes*** by passing the layout component to the "parent" `Route`'s `element` attribute is that it's default position is at the top of the "page" component. This makes repositioning of the shared layout a bit tricky. Refer to [layouts/shared/layout.module.css](./src/layouts/shared/layout.module.css) on the attempts to reposition shared layout (`float`, `position: absolute;`)
+##### Outlet / Shared Layouts
+* Layouts can be shared by passing a ***layout component*** to ***parent*** `Route`'s `element`.
+* Ensure that the ***layout component*** has an `<Outlet>` inside that will serve as a ***placeholder*** for the `children` `<Route>`s.
+> Code snippet from [layouts/ChallengesLayout.js](./src/layouts/ChallengesLayout.js) and [routes/navRoutes.js](./src/routes/NavRoutes.js)
+
 ```js
+/* layouts/ChallengesLayout.js */
 import { Outlet } from "react-router-dom"
 
 const ChallengesLayout = () => {
@@ -177,28 +180,41 @@ const ChallengesLayout = () => {
     <>
       {/* ... some JSX elements and code */}
       <Outlet />
+      {/* ... some JSX elements and code */}
     </>
   )
 }
 ```
+```js
+/* routes/NavRoutes.js */
+{/* ... other `Route`s */}
+
+{/* ChallengesLayout passed as element on parent route to display layout */}
+<Route path="challenges" element={<ChallengesLayout />}>
+  <Route index element={<Challenges />} />
+  <Route path="1" element={<Challenge1 />} />
+  <Route path="2" element={<Challenge2 />} />
+  <Route path=":id" element={<OtherChallenges />} />
+</Route>
+
+{/* ... other `Route`s */}
+```
 ###### With Common Path
-**Nested Routes** that have a **common path** can share a layout by passing the layout component to the *Parent* `Route`'s `element` attribute. Code snippet from [NavRoutes.js](./src/routes/NavRoutes.js)
+**Nested Routes** that have a **common path** can share a layout by passing the layout component to the *Parent* `Route`'s `element` attribute.
+> Code snippet from [routes/NavRoutes.js](./src/routes/NavRoutes.js)
 ```js
 <Route path="challenges" element={<ChallengesLayout />}>
   <Route index element={<Challenges />} />
-
-  {/* Routes below have more priority than Dynamic Route */}
   <Route path="1" element={<Challenge1 />} />
   <Route path="2" element={<Challenge2 />} />
-
-  {/* Dynamic Route */}
   <Route path=":id" element={<OtherChallenges />} />
 </Route>
 ```
 ###### No Common Path
-Sharing a layout between Routes that have **NO common path** can be done by wrapping the Routes in a *Parent* `Route` that has ***NO PATH*** with the layout component as the `element` attribute. Code snippet from [NavRoutes.js](./src/routes/NavRoutes.js)
+Sharing a layout between Routes that have **NO common path** can be done by wrapping the Routes in a *Parent* `Route` that has ***NO PATH*** with the ***layout component*** as the `element` value.
+> Code snippet from [routes/NavRoutes.js](./src/routes/NavRoutes.js)
 ```js
-{/* Parent Route should not have path property */}
+{/* Parent Route should not have path property because they enclosed route do not share a common path */}
 <Route element={<SharedLayout />}>
   <Route path="/about" element={<About />} />
   <Route path="/contact">
@@ -210,8 +226,8 @@ Sharing a layout between Routes that have **NO common path** can be done by wrap
 </Route>
 ```
 ##### Context / useOutletContext Hook
-* `context` property allows data to be available on all pages where `Outlet` layout is visible. See code in [layouts/ChallengesLayout.js](./src/layouts/ChallengesLayout.js)
-* `useOutletContext` hook is used to extract the `context` object from `Outlet`. See code in [pages/Challenges.js](./src/pages/Challenges.js)
+* `context` property allows data to be passed from ***layout component*** where `Outlet` is declared. See code in [layouts/ChallengesLayout.js](./src/layouts/ChallengesLayout.js)
+* `useOutletContext` hook is used to extract the `context` object from `Outlet`. See code in [pages/Challenges.js](./src/pages/Challenges.js) and displayed on the ***child*** `Route` element.
 
 ```js
 /* layouts/ChallengesLayout.js */
@@ -243,7 +259,7 @@ Accepts the path where to redirect. The path can either be one of the ff:
 * relative path
   * appending the path to the current path displayed
   * using directory-like navigation eg. `../` or `../../`
-Code snippet from [navigation/ChallengesNav.js](./src/navigation/ChallengesNav.js)
+> Code snippet from [navigation/ChallengesNav.js](./src/navigation/ChallengesNav.js)
 ```js
 /* navigation/ChallengesNav.js */
 
@@ -314,7 +330,7 @@ const HomeNavigation = () => {
   return (
     <nav className={NavStyle}>
 
-/* ... rest of code */
+  {/* ... rest of code */}
 ```
 
 <div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>

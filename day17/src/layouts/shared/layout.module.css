@@ -1,5 +1,6 @@
 :root {
   --layout-border-color: #f1f193;
+  --layout-bgColor: #050526;
 }
 
 .layout {
@@ -7,6 +8,7 @@
   border-radius: 0.4rem;
   padding: 1rem;
   position: relative;
+  background-color: var(--layout-bgColor);
 }
 
 .layout::after {
@@ -19,7 +21,7 @@
   right: var(--side-distance);
 }
 
-.layoutContent {
+.layout_centerElement {
   padding: 1rem;
   text-align: center;
   width: fit-content;
@@ -39,6 +41,13 @@
 
 /* specificity increased adding a .layoutContent class
   to overshadow `p` style from from App.module.css */
-  .layoutContent p {
-    margin: 0;
-  }
+.layout_centerElement p {
+  margin: 0;
+}
+.layout_centerElement h4 {
+  margin-bottom: 1rem;
+}
+
+.highlightText {
+  color: #61cc41;
+}

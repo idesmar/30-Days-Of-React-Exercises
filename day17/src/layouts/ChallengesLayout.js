@@ -2,11 +2,11 @@ import { useState } from "react"
 import { Outlet } from "react-router-dom"
 import { ChallengesNav } from "../navigation/ChallengesNav"
 import sharedLayoutStyle from './shared/layout.module.css'
-import challengesLayoutStyle from './ChallengesLayout.module.css'
+import outletStyle from './shared/outlet.module.css'
 
 
-const { layout, layoutContent } = sharedLayoutStyle
-const { outletContext } = challengesLayoutStyle
+const { layout, layout_centerElement } = sharedLayoutStyle
+const { outletContext, outletContainer } = outletStyle
 
 const ChallengesLayout = () => {
   const [dataChallenge, setDataChallenge] = useState({
@@ -24,10 +24,18 @@ const ChallengesLayout = () => {
 
   return (
     <div className={layout}>
-      <aside className={layoutContent}>
+      <aside className={layout_centerElement}>
         <ChallengesNav />
       </aside>
 
+      {/* //? added an outlet container to visualize location of outlet in app */}
+      <div className={outletContainer} >
+        {/* //> Outlet
+          - allows the entire component to be always visible on selected Routes */}
+        <Outlet context={{ name, click }} />
+      </div>
+
+      {/* //> Code below collects input data from user and passes it to `Outlet`'s context value */}
       <div className={outletContext}>
         <div>
           <label htmlFor="inputName">Name: </label>
@@ -48,9 +56,6 @@ const ChallengesLayout = () => {
         </button>
       </div>
 
-      {/* //> Outlet
-        - allows the entire component to be always visible on selected Routes */}
-      <Outlet context={{ name, click }} />
     </div>
   )
 }

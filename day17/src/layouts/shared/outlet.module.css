@@ -1,8 +1,30 @@
 /* > DEV NOTES
   For a cleaner file/folder structure,
   it might be better to include this file in `./shared`
+  - this file was eventually moved to "shared" folder
 */
 
+:root {
+  --outlet-border-color: #c7c7df;
+  --outlet-bgColor: #071c0f;
+}
+
+.outletContainer {
+  border: 1px solid var(--outlet-border-color);
+  border-radius: 0.4rem;
+  padding: 1rem;
+  position: relative;
+  background-color: var(--outlet-bgColor);
+}
+.outletContainer::after {
+  content: 'outlet boundary';
+  font-size: 0.8em;
+  color: var(--outlet-border-color);
+  position: absolute;
+  --side-distance: 0.5rem;
+  top: var(--side-distance);
+  right: var(--side-distance);
+}
 
 .outletContext {
   background-color: #362140;
