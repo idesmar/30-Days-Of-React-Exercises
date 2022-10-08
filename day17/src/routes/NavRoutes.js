@@ -17,6 +17,7 @@ import {
 import { ChallengesLayout } from "../layouts/ChallengesLayout"
 import { SharedLayout } from "../layouts/SharedLayout"
 import { UpdatesRoutes } from "./UpdatesRoutes"
+import { NavigateSample } from "../pages/Navigate"
 
 /* //> see code near bottom of module to view Routes without comments  */
 
@@ -27,6 +28,7 @@ const NavRoutes = () => {
     <Routes>
       <Route path="/">
         <Route index element={<Home />} />
+        <Route path="navigate" element={<NavigateSample/>} />
 
         {/* //> Blog Routes without BlogNav;
             BlogNav will display based on condition set in BlogRoutes */}

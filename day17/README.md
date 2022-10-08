@@ -3,6 +3,7 @@
 <!-- omit in toc -->
 # [30 Days of React](../README.md#readme): Day 17 | [React Router](https://github.com/Asabeneh/30-Days-Of-React/blob/master/17_React_Router/17_react_router.md#readme)
 
+<hr/>
 <details id="toc">
   <summary style='cursor: pointer;'>Click for Table of Contents</summary>
 
@@ -312,7 +313,17 @@ TBD
 > There are multiple ways of styling active `NavLink`s from **inline styles** to using **classNames** creatively, and even creating a [CustomNavLink](./src/navigation/shared/customNavLink.js)
 > Refer to [MainNav.js](./src/navigation/MainNav.js) for different styling used
 #### Navigate / useNavigation Hook
+* `Navigate` is a component that when rendered will automatically redirect the page
+* `useNavigation` hook returns a function that can be used to redirect page
+  ```js
+  const navigate = useNavigate()
+  ```
 
+|              |  to   | replace | reloadDocument | state |  end  |
+| :----------- | :---: | :-----: | :------------: | :---: | :---: |
+| **Link**     | [`x`] |  [`x`]  |     [`x`]      | [`x`] | [` `] |
+| **NavLink**  | [`x`] |  [`x`]  |     [`x`]      | [`x`] | [`x`] |
+| **Navigate** | [`x`] |  [`x`]  |     [` `]      | [`x`] | [` `] |
 
 
 <div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>

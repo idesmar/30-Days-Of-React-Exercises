@@ -49,6 +49,7 @@ const MainNav = ({ handleUIChange }) => {
 
         {/* //> Using plain .css to style NavLink */}
         <li><NavLink className='cssNavLink' to='updates' >Updates</NavLink></li>
+        <li><NavLink className='cssNavLink' to='navigate' >Navigate</NavLink></li>
 
         <li>
           <NavLink
