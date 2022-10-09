@@ -7,14 +7,14 @@
 - [Daily READMEs](#daily-readmes)
 - [Missing Content](#missing-content)
 - [Sub Repo Name](#sub-repo-name)
-- [Start](#start)
+- [Start Dev Environment](#start-dev-environment)
 
-### Description
+## Description
 Solutions to exercises from [30 Days of React](https://github.com/Asabeneh/30-Days-Of-React) by [Asabeneh](https://github.com/Asabeneh) that require CRA (create-react-app)
 
 <div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
 
-### Daily READMEs
+## Daily READMEs
 |                   Day                    | Scope                   |
 | :--------------------------------------: | :---------------------- |
 | [Day 3](./day03lev0203/README.md#readme) | Setting Up              |
@@ -35,7 +35,7 @@ Solutions to exercises from [30 Days of React](https://github.com/Asabeneh/30-Da
 
 <div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
 
-### Missing Content
+## Missing Content
 Located in 30 Days of React [Solutions Branch](https://github.com/idesmar/30-Days-Of-React/tree/exercise-solutions/solutions)
 | Day | Scope |
 |:---:|:------|
@@ -46,7 +46,7 @@ Located in 30 Days of React [Solutions Branch](https://github.com/idesmar/30-Day
 
 <div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
 
-### Sub Repo Name
+## Sub Repo Name
 * day***DD***lev***LL***... - With missing Level Exercises
   * ***DD*** - day of *30 Days of React*
   * ***LL*** - exercise level (if shown more than once, then sub repo contains answers to more than one level)
@@ -54,10 +54,9 @@ Located in 30 Days of React [Solutions Branch](https://github.com/idesmar/30-Day
 
 <div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
 
-### Start
+## Start Dev Environment
 Each sub repository contains a single page application (SPA). To view desired exercise solution:
 ```bash
-cd sub-repo-name
-npm start
+cd sub-repo-name && npm start
 ```
 <div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
