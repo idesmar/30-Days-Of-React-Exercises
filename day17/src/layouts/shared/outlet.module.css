@@ -26,7 +26,7 @@
   right: var(--side-distance);
 }
 
-.outletContext {
+.contextCollectorContainer {
   background-color: #362140;
 
   padding: 1rem;
@@ -42,11 +42,11 @@
   align-items: center;
 }
 
-.outletContext input[type="text"] {
+.contextCollectorContainer input[type="text"] {
   border: 1px solid gray;
 }
 
-.outletContext button {
+.contextCollectorContainer button {
   border: 1px solid gray;
   background-color: blueviolet;
   padding: 0.5em;

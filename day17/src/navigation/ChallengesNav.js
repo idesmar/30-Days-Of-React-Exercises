@@ -33,9 +33,16 @@ const ChallengesNav = () => {
           Challenge 2
         </Link></li>
 
+
         {/* //> Link to relative path using directory-like navigation */}
         <li><Link
-          to='../../'
+          to='./'
+        >
+          Challenges main
+        </Link></li>
+
+        <li><Link
+          to='../'
           // replace
         >
           Back to home

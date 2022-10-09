@@ -262,10 +262,10 @@ const FromOutlet = () => {
 Below are the properties available in `<Link>`
 ##### to
 Accepts the path where to redirect. The path can either be one of the ff:
-* absolute path
-* relative path
+* **absolute path**
+* **relative path**
   * appending the path to the current path displayed
-  * using directory-like navigation eg. `../` or `../../`
+  * using directory-like navigation eg. `./` or `../`
 > Code snippet from [navigation/ChallengesNav.js](./src/navigation/ChallengesNav.js)
 ```js
 /* navigation/ChallengesNav.js */
@@ -277,7 +277,8 @@ Accepts the path where to redirect. The path can either be one of the ff:
 <li><Link to="2">Challenge 2</Link></li>
 
 {/* //> Link to relative path using directory-lik navigation */}
-<li><Link to='../../'>Back to home</Link></li>
+<li><Link to='./'>Challenges main</Link></li>
+<li><Link to='../'>Back to home</Link></li>
 ```
 ##### replace
 `replace` is a boolean property that when present (default value is `true`) will replace the previous path -- ***after clicking `<Link>`*** -- in memory. See example below.
