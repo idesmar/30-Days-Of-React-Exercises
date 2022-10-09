@@ -32,6 +32,7 @@
     - [NavLink](#navlink)
       - [end](#end)
     - [Navigate / useNavigation Hook](#navigate--usenavigation-hook)
+    - [Navigation Component props Comparison](#navigation-component-props-comparison)
   - [CSS Modules](#css-modules)
 - [Third Party Resources](#third-party-resources)
   - [Packages Used](#packages-used)
@@ -317,14 +318,24 @@ TBD
 * `useNavigation` hook returns a function that can be used to redirect page
   ```js
   const navigate = useNavigate()
+
+  /**
+    * @params to: To ("pathName") || delta: number
+    * @params options?: {replace: boolean, state: any} */
+  navigate('/pathName', {})
   ```
+  * function from `useNavigate()` accepts 2 parameters:
+    * `to` which is the path where to navigate to or `delta` which is a numerical representation of the location to go to based on history (eg. `-1` for going 1 location back)
+    * an object that stores `replace` : boolean and/or `state`
 
-|              |  to   | replace | reloadDocument | state |  end  |
-| :----------- | :---: | :-----: | :------------: | :---: | :---: |
-| **Link**     | [`x`] |  [`x`]  |     [`x`]      | [`x`] | [` `] |
-| **NavLink**  | [`x`] |  [`x`]  |     [`x`]      | [`x`] | [`x`] |
-| **Navigate** | [`x`] |  [`x`]  |     [` `]      | [`x`] | [` `] |
+#### Navigation Component props Comparison
+> |                   |  to   | replace | reloadDocument | state |  end  |
+> | :---------------- | :---: | :-----: | :------------: | :---: | :---: |
+> | **Link**          |  ✅   |   ✅   |       ✅       |  ✅  |   ◼️  |
+> | **NavLink**       |  ✅   |   ✅   |       ✅       |  ✅  |   ✅  |
+> | **Navigate** [^n] |  ✅   |   ✅   |       ◼️       |  ✅  |   ◼️  |
 
+[^n]: Function from `useNavigate` also shares this. ie `navigate` generated from `useNavigate`
 
 <div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>
 

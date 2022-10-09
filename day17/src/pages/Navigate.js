@@ -19,7 +19,6 @@ const NavigateSample = () => {
     // console.count('useEffect')
     if (countdown > 0) {
       // TODO: setInterval vs setTimeout
-      // !Testing
       const interval = setInterval(() => setCountdown(prev => --prev), 1000)
 
       /* //> return a cleanup function to ensure useEffect is only ran ONCE */
@@ -28,8 +27,8 @@ const NavigateSample = () => {
   }, [countdown])
 
   const handleBackButton = () => {
-    /* // @param {} is optional
-      and can (?) only accept `replace` and `state` properties */
+    /* // @param {} -- 2nd param of navigate() -- is optional
+      and can [only?] accept `replace` and `state` properties */
     navigate(-1, { replace: false, state: 'hello' })
   }
 
@@ -42,8 +41,9 @@ const NavigateSample = () => {
         style={backButtonStyle}
         onClick={handleBackButton}
       >
-        Go Back instead?
+        Back to previous page instead?
       </button>
+
       { /* //> Insert Navigate component once countdown reaches 0 */
         !countdown && <Navigate to='/' />
       }
