@@ -82,6 +82,7 @@ const inputSearchStyle = {
   borderRadius,
   marginBlock: '0.5rem',
   padding: '0.4em 0.9em',
+  width: '100%',
 }
 
 const goToButtonStyle = {
