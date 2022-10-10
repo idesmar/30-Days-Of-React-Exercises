@@ -51,6 +51,8 @@ const MainNav = ({ handleUIChange }) => {
         <li><NavLink className='cssNavLink' to='updates' >Updates</NavLink></li>
         <li><NavLink className='cssNavLink' to='navigate' >Navigate</NavLink></li>
 
+        <li><CustomNavLink to='search'>Live Search</CustomNavLink></li>
+
         <li>
           <NavLink
             to='useRoutes'

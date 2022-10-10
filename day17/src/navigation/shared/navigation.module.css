@@ -17,6 +17,7 @@
   max-width: fit-content;
   gap: 0.4rem;
   margin: 0 auto;
+  flex-wrap: wrap;
 }
 
 .mainNav a {

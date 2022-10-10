@@ -18,6 +18,8 @@ import { ChallengesLayout } from "../layouts/ChallengesLayout"
 import { SharedLayout } from "../layouts/SharedLayout"
 import { UpdatesRoutes } from "./UpdatesRoutes"
 import { NavigateSample } from "../pages/Navigate"
+import { LiveSearch } from "../pages/LiveSearch"
+import { LiveSearchLayout } from "../layouts/LiveSearchLayout"
 
 /* //> see code near bottom of module to view Routes without comments  */
 
@@ -97,6 +99,10 @@ const NavRoutes = () => {
           </Route>
         </Route>
         {/* ============================================================= */}
+
+        <Route path="search" element={<LiveSearchLayout />} >
+          <Route index element={<LiveSearch />} />
+        </Route>
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>
