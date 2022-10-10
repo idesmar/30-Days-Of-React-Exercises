@@ -1,4 +1,7 @@
-import { NavRoutes } from './routes/NavRoutes'
+import {
+  // NavRoutes, /* //? Uncomment to use JSX form of Routes and comment NavRoutesObject */
+  NavRoutesObject,
+} from './routes/NavRoutes'
 import { MainNav } from './navigation/MainNav'
 // import { BlogRoutes } from './routes/BlogRoutes' /* //? Uncomment to see console warning */
 // import appStyle from './App.module.css'
@@ -17,19 +20,22 @@ import { withContainer } from './hoc/sharedWrapper'
   above generates a warning `No routes matched location "/${insert current pathName if not main dir}"`
 */
 
+/* //* Transferred to ./hoc/sharedWrapper.js
+  const { pageWrapper } = appStyle
+  const withContainer = (Comp) => {
+    return () => (
+      <div className={pageWrapper} >
+        <Comp />
+      </div>
+    )
+  }
+*/
 
-// const { pageWrapper } = appStyle
+/* //? JSX way of creating Routes -- Uncomment this and comment out ALtMainContent if desired */
+// const MainContent = withContainer(NavRoutes)
 
-// /* //> HOC practice ONLY
-//   this will be useful if it is used by more than one component */
-// const withContainer = (Comp) => {
-//   return () => (
-//     <div className={pageWrapper} >
-//       <Comp />
-//     </div>
-//   )
-// }
-const MainContent = withContainer(NavRoutes)
+/* Routing with useRoutes */
+const AltMainContent = withContainer(NavRoutesObject)
 
 const App = () => {
   const [isPrimary, setIsPrimary] = useState(true)
@@ -52,7 +58,10 @@ const App = () => {
             //? Uncomment to see console warning */}
         {/* <BlogRoutes /> */}
 
-        <MainContent />
+        {/* //? Uncomment if JSX Routes desired and comment out AltMainContent */}
+        {/* <MainContent /> */}
+
+        <AltMainContent />
       </>
     ) : (
       <URApp handleUIChange={handleUIChange} />

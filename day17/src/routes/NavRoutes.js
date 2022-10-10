@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, useRoutes } from "react-router-dom"
 import { About } from "../pages/About"
 import { Home } from "../pages/Home"
 import { Blog, Blog1, Blog2, Blog3 } from "../pages/Blog"
@@ -20,6 +20,7 @@ import { UpdatesRoutes } from "./UpdatesRoutes"
 import { NavigateSample } from "../pages/Navigate"
 import { LiveSearch } from "../pages/LiveSearch"
 import { LiveSearchLayout } from "../layouts/LiveSearchLayout"
+import { Updates, Updates1, Updates2 } from "../pages/Updates"
 
 /* //> see code near bottom of module to view Routes without comments  */
 
@@ -30,7 +31,7 @@ const NavRoutes = () => {
     <Routes>
       <Route path="/">
         <Route index element={<Home />} />
-        <Route path="navigate" element={<NavigateSample/>} />
+        <Route path="navigate" element={<NavigateSample />} />
 
         {/* //> Blog Routes without BlogNav;
             BlogNav will display based on condition set in BlogRoutes */}
@@ -41,8 +42,8 @@ const NavRoutes = () => {
           <Route path="3" element={<Blog3 />} />
         </Route>
 
-        {/* //> Imported { UpdatesRoutes } from "./UpdatesRoutes" which contains
-            //* Done to make final code cleaner by separating similar routes to one file
+        {/* //* Separated Route with path="updates/*" as part Nested Routes
+          //> Imported { UpdatesRoutes } from "./UpdatesRoutes" which contains
             <Routes>
               <Route element={<UpdatesNav />} >
                 <Route index element={<Updates />} />
@@ -116,7 +117,8 @@ const NavRoutes = () => {
     <Routes>
       <Route path="/">
         <Route index element={<Home />} />
-        <Route path="blog" >
+        <Route path="navigate" element={<NavigateSample/>} />
+        <Route path="blog">
           <Route index element={<Blog />} />
           <Route path="1" element={<Blog1 />} />
           <Route path="2" element={<Blog2 />} />
@@ -137,6 +139,9 @@ const NavRoutes = () => {
             <Route path=":contactId/:contactId" element={<SomeOtherContact />} />
           </Route>
         </Route>
+        <Route path="search" element={<LiveSearchLayout />} >
+          <Route index element={<LiveSearch />} />
+        </Route>
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>
@@ -146,4 +151,112 @@ const NavRoutes = () => {
 */
 
 
-export { NavRoutes }
+const NavRoutesObject = () => {
+  const element = useRoutes([
+    {
+      path: '*',
+      element: <NotFound />
+    },
+    {
+      path: '/',
+      children: [
+        {
+          index: true,
+          element: <Home />
+        },
+        {
+          path: 'challenges',
+          element: <ChallengesLayout />,
+          children: [
+            {
+              index: true,
+              element: <Challenges />
+            },
+            {
+              path: '1',
+              element: <Challenge1 />
+            },
+            {
+              path: '2',
+              element: <Challenge2 />
+            },
+            {
+              path: ':id',
+              element: <OtherChallenges />
+            }
+          ]
+        },
+        {
+          path: '',
+          element: <SharedLayout />,
+          children: [
+            {
+              path: 'about',
+              element: <About />
+            },
+            {
+              path: 'contact',
+              element: <Contact />
+            }
+          ]
+        },
+        {
+          path: 'blog',
+          children: [
+            {
+              index: true,
+              element: <Blog />
+            },
+            {
+              path: '1',
+              element: <Blog1 />
+            },
+            {
+              path: '2',
+              element: <Blog2 />
+            },
+            {
+              path: '3',
+              element: <Blog3 />
+            }
+          ]
+        },
+        {
+          path: 'updates',
+          children: [
+            {
+              index: true,
+              element: <Updates />
+            },
+            {
+              path: '1',
+              element: <Updates1 />
+            },
+            {
+              path: '2',
+              element: <Updates2 />
+            }
+          ]
+        },
+        {
+          path: 'navigate',
+          element: <NavigateSample />
+        },
+        {
+          path: 'search',
+          element: <LiveSearchLayout />,
+          children: [
+            {
+              index: true,
+              element: <LiveSearch />
+            }
+          ]
+        },
+      ]
+    },
+  ])
+
+  return element
+}
+
+export { NavRoutes, NavRoutesObject }
