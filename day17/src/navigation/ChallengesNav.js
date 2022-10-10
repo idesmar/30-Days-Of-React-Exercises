@@ -28,7 +28,7 @@ const ChallengesNav = () => {
         <li><Link
           to="2"
           // replace
-          // reloadDocument /* //TEST: document reloaded resulting to state resetting -- ChallengesLayout has a dataChallenge state {name, click} */
+          // reloadDocument /* //> document reloaded resulting to state resetting -- ChallengesLayout has a dataChallenge state {name, click} */
         >
           Challenge 2
         </Link></li>
@@ -37,6 +37,8 @@ const ChallengesNav = () => {
         {/* //> Link to relative path using directory-like navigation */}
         <li><Link
           to='./'
+          //* state being passed to `/challenges` when `./` is used */
+          // state='from below' /*
         >
           Challenges main
         </Link></li>
@@ -44,6 +46,7 @@ const ChallengesNav = () => {
         <li><Link
           to='../'
           // replace
+          style={{ marginTop: '1rem', }}
         >
           Back to home
         </Link></li>

@@ -62,7 +62,8 @@ const OtherChallenges = () => {
     <div style={challengeContainerStyle}>
       <div style={{paddingBottom: '1rem'}}>
         <h1>Challenge with id: {id}</h1>
-        <p>You have been routed here using the magic of useRef() and useNavigate() </p>
+        <p>You have been routed here using the magic of useRef(), useNavigate(), and useParams() coded in
+          <em style={{fontWeight: '600', fontStyle: 'italic', color: 'yellow'}}> Challenges component</em>!</p>
       </div>
 
       {/* //NOTE: manually typing url will trigger the web app to re-render

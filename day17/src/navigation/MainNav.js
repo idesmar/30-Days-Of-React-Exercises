@@ -3,12 +3,13 @@ import { CustomNavLink } from './shared/customNavLink'
 import navigationStyles from './shared/navigation.module.css'
 import './shared/_navigation.css'
 
+
 const { mainNav, specialLink, activeNavLink } = navigationStyles
 
 /* only used for NavLink to='/' */
 const activeLink = {
   backgroundColor: '#a258bb',
-  backgroundImage: 'linear-gradient(90deg, #61762e 24%, #6e26a4 80%)',
+  backgroundImage: 'linear-gradient(40deg, #61762e 24%, #6e26a4 80%)',
 }
 
 const MainNav = ({ handleUIChange }) => {
@@ -66,5 +67,6 @@ const MainNav = ({ handleUIChange }) => {
     </nav>
   )
 }
+
 
 export { MainNav }
