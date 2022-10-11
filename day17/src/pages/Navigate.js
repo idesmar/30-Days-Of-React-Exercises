@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
 
+
 const COUNTDOWN_START = 10
 
 const backButtonStyle = {
@@ -28,8 +29,11 @@ const NavigateSample = () => {
 
   const handleBackButton = () => {
     /* // @param {} -- 2nd param of navigate() -- is optional
-      and can [only?] accept `replace` and `state` properties */
-    navigate(-1, { replace: false, state: 'hello' })
+      and can ONLY accept `replace` and `state` properties
+      // NOTE: state is tied up with location,
+      //! hence, if delta (-1, etc) value is used, the state will not be passed to other page
+    */
+    navigate('/', { replace: false, state: 'Can you see me?' })
   }
 
   return (

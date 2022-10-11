@@ -1,4 +1,4 @@
-<!-- NOTE: Link to TOC after every end of h3 (###) and h4 (####) -->
+<!-- NOTE: Link to TOC at the end of every h2 (##) and h4 (###) -->
 
 <!-- omit in toc -->
 # [30 Days of React](../README.md#readme): Day 17 | [React Router](https://github.com/Asabeneh/30-Days-Of-React/blob/master/17_React_Router/17_react_router.md#readme)
@@ -13,7 +13,7 @@
 - [Learnings](#learnings)
   - [Routing](#routing)
     - [Nested Routes](#nested-routes)
-    - [Dynamic Routing](#dynamic-routing)
+    - [Dynamic Routing / useParams Hook](#dynamic-routing--useparams-hook)
     - [Routing Priority](#routing-priority)
     - [Multiple Routes](#multiple-routes)
     - [useRoutes Hook](#useroutes-hook)
@@ -28,11 +28,12 @@
       - [to](#to)
       - [replace](#replace)
       - [reloadDocument](#reloaddocument)
-      - [state](#state)
+      - [state --> useLocation Hook](#state----uselocation-hook)
     - [NavLink](#navlink)
       - [end](#end)
-    - [Navigate / useNavigation Hook](#navigate--usenavigation-hook)
+    - [Navigate / useNavigate Hook](#navigate--usenavigate-hook)
     - [Navigation Component props Comparison](#navigation-component-props-comparison)
+  - [Data passing](#data-passing)
   - [CSS Modules](#css-modules)
 - [Third Party Resources](#third-party-resources)
   - [Packages Used](#packages-used)
@@ -41,10 +42,10 @@
 <hr/>
 
 ## Dev Notes
-* Since the [original resource](https://github.com/Asabeneh/30-Days-Of-React/blob/master/17_React_Router/17_react_router.md#readme) material is outdated (react-router-dom@4) and the current version is at v6, an [external resource](#react-router-v6-learning-material) material is used for this sub-repo.
+* Since the [original source](https://github.com/Asabeneh/30-Days-Of-React/blob/master/17_React_Router/17_react_router.md#readme) material is outdated (react-router-dom@4) and the current version is at v6, an [external source](#react-router-v6-learning-material) material is used for this sub-repo.
 * Created a [CustomNavLink](./src/navigation/shared/customNavLink.js) based on code snippet from [react-router official docs](https://reactrouter.com/en/main/components/nav-link).
 * [CSS reset - version 1.7.3](https://github.com/elad2412/the-new-css-reset) by [@elad2412](https://github.com/elad2412) used
-* included ***experimental*** [chromiumAutofill.css](./src/styles/chromiumAutofill.css) <sup>[w/ notes & attribution]</sup> to somewhat "sanitize/reset" autofill style on chromium.
+* included ***experimental*** [chromiumAutofill.css](./src/styles/chromiumAutofill.css) <sup>[w/ notes & attribution]</sup> to ***mask*** autofill style in chromium. <small>(Default style cannot be reset/sanitize and can only be masked or delay effect)</small>
 * used ***experimental*** :has() selector in [navigation.module.css](./src/navigation/shared/navigation.module.css)
   ```css
   /* apply declaration block to div if it contains a ".sideNav" element
@@ -59,6 +60,7 @@
 ## Learnings
 
 ### Routing
+
 #### Nested Routes
 ```js
 <Route path="/">
@@ -66,7 +68,10 @@
   <Route path="contact" element={<ContactMe />} />
 </Route>
 ```
-#### Dynamic Routing
+#### Dynamic Routing / useParams Hook
+Can be viewed by going to `{baseURL}/challenges/:id`
+
+> Code snippet from [OtherChallenges](./src/pages/Challenges.js) component
 ```js
 const { id } = useParams()
 /* no argument required in useParams */
@@ -106,15 +111,14 @@ const { id } = useParams()
 > No routes matched location "/${insert current pathName if not root path}"
 > ```
 * Nested `<Routes>`
-  * To help clean up code, especially if there are many `<Route>`s, `<Route>`s that have a similar `path` can be placed in a different file and exported to the main `<Routes>`.
-> Code snippets from [routes/UpdatesRoutes.js](./src/routes/UpdatesRoutes.js) and [routes/NavRoutes.js](./src/routes/NavRoutes.js)
+  * To help clean up code, especially if there are many `<Route>`s, `<Route>`s that have a similar `path` can be placed in a different file and imported in main `<Routes>`.
+> Code snippet from [routes/UpdatesRoutes.js](./src/routes/UpdatesRoutes.js)
 ```js
 /* routes/UpdatesRoutes.js */
-<Routes>
 
-  {/* NOTICE that inner <Route>'s have path relative to updates
-      this is because the parent path should be declared in the main <Route>
-      ie. in NavRoutes.js */}
+{/* NOTICE that innermost `<Route>`s have relative paths to "updates"
+  This is because the parent path is declared in the main <Route> in NavRoutes.js */}
+<Routes>
   <Route element={<UpdatesLayout />}>
     <Route index element={<Updates />} />
     <Route path="1" element={<Updates1/>} />
@@ -122,17 +126,14 @@ const { id } = useParams()
   </Route>
 </Routes>
 ```
+> Code snippet from [routes/NavRoutes.js](./src/routes/NavRoutes.js)
 ```js
 /* routes/NavRoutes.js */
-<Routes>
-  {/* ... other Routes */}
 
   {/* NOTICE how path is written with trailing "/*"
-      this is to cover other paths contained in path "updates" */}
+      this is to cover other paths contained in "updates"
+      that are being imported from routes/UpdatesRoutes.js */}
   <Route path="updates/*" element={<UpdatesRoutes />} />
-
-  {/* ... other Routes */}
-</Routes>
 ```
 #### useRoutes Hook
 Instead of using JSX, a Javascript object representing the logic of what element to display/render can be used as an argument to `useRoutes()` hook. Using this method can remove ***repetition*** like writing the template for `Route` ie. `<Route />`
@@ -172,11 +173,11 @@ Use `path="*"` for any routes/page that do not match the existing declared route
 <div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>
 
 ### Outlet
+
 #### Outlet / Shared Layouts
 * Layouts can be shared by passing a ***layout component*** to ***parent*** `Route`'s `element`.
 * Ensure that the ***layout component*** has an `<Outlet>` inside that will serve as a ***placeholder*** for the `children` `<Route>`s.
-> Code snippet from [layouts/ChallengesLayout.js](./src/layouts/ChallengesLayout.js) and [routes/navRoutes.js](./src/routes/NavRoutes.js)
-
+> Code snippet from [layouts/ChallengesLayout.js](./src/layouts/ChallengesLayout.js)
 ```js
 /* layouts/ChallengesLayout.js */
 import { Outlet } from "react-router-dom"
@@ -192,9 +193,9 @@ const ChallengesLayout = () => {
   )
 }
 ```
+> Code snippet from [routes/navRoutes.js](./src/routes/NavRoutes.js)
 ```js
 /* routes/NavRoutes.js */
-{/* ... other `Route`s */}
 
 {/* ChallengesLayout passed as element on parent route to display layout */}
 <Route path="challenges" element={<ChallengesLayout />}>
@@ -203,8 +204,6 @@ const ChallengesLayout = () => {
   <Route path="2" element={<Challenge2 />} />
   <Route path=":id" element={<OtherChallenges />} />
 </Route>
-
-{/* ... other `Route`s */}
 ```
 ##### With Common Path
 **Nested Routes** that have a **common path** can share a layout by passing the layout component to the *Parent* `Route`'s `element` attribute.
@@ -257,6 +256,7 @@ const FromOutlet = () => {
 <div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>
 
 ### Navigation
+
 #### Link
 `Link` is the simplest form of navigation. Underneath, this is a simple anchor tag. <br/>
 Below are the properties available in `<Link>`
@@ -296,9 +296,21 @@ Accepts the path where to redirect. The path can either be one of the ff:
 ##### reloadDocument
 `reloadDocument` is a boolean property that when present (default value is `true`) will reload the entire document.
 > Note that reload will reset `state`s not stored (eg. localStorage, sessionStorage, cache, etc.)
-##### state
-<!-- add a link to special section in page -->
-TBD
+##### state --> useLocation Hook
+* `state` can be passed from one path to another and can be accessed using `useLocation`
+```js
+const location = useLocation()
+```
+* `useLocation` hook returns a location object (based on the URL)
+```js
+{
+  hash: "",
+  key: "",
+  pathname: "/",
+  search: "",
+  state: null
+}
+```
 #### NavLink
 `NavLink` is similar to `Link` with more customization.
 > All properties available in `<Link>` is available in `<NavLink>`
@@ -314,15 +326,18 @@ TBD
 
 > There are multiple ways of styling active `NavLink`s from **inline styles** to using **classNames** creatively, and even creating a [CustomNavLink](./src/navigation/shared/customNavLink.js)
 > Refer to [MainNav.js](./src/navigation/MainNav.js) for different styling used
-#### Navigate / useNavigation Hook
+#### Navigate / useNavigate Hook
 * `Navigate` is a component that when rendered will automatically redirect the page
-* `useNavigation` hook returns a function that can be used to redirect page
+* `useNavigate` hook returns a function that can be used to redirect page
   ```js
   const navigate = useNavigate()
 
   /**
-    * @params to: To ("pathName") || delta: number
-    * @params options?: {replace: boolean, state: any} */
+    * @params to: To ("pathName"), options?: {replace: boolean, state: any}
+    * @params delta: number
+    * ! if delta param used, options?: {state: any} will not be passed
+      This is because state is tied in with `location`
+      TRY: `const location = useLocation()` and console.log for more visual */
   navigate('/pathName', {})
   ```
   * function from `useNavigate()` accepts 2 parameters:
@@ -332,11 +347,41 @@ TBD
 #### Navigation Component props Comparison
 > |                   |  to   | replace | reloadDocument | state |  end  |
 > | :---------------- | :---: | :-----: | :------------: | :---: | :---: |
-> | **Link**          |  ✅   |   ✅   |       ✅       |  ✅  |   ◼️  |
-> | **NavLink**       |  ✅   |   ✅   |       ✅       |  ✅  |   ✅  |
-> | **Navigate** [^n] |  ✅   |   ✅   |       ◼️       |  ✅  |   ◼️  |
+> | **Link**          |  ✅  |   ✅   |       ✅       |  ✅  |  ◼️  |
+> | **NavLink**       |  ✅  |   ✅   |       ✅       |  ✅  |  ✅  |
+> | **Navigate** [^n] |  ✅  |   ✅   |       ◼️       |  ✅  |  ◼️  |
 
 [^n]: Function from `useNavigate` also shares this. ie `navigate` generated from `useNavigate`
+
+<div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>
+
+### Data passing
+It is possible to pass data using `react-router-dom` as seen in previous sections. Here is a quick recap on how data can be passed.
+* `useParams` in [Dynamic Routing / useParams Hook](#dynamic-routing--useparams-hook) -- id/endpoint can be passed to Dynamic Component. eg `const { id } = useParams()`
+* `useOutletContext` in [Context / useOutletContext Hook](#context--useoutletcontext-hook) -- data from Layout can be passed to outlet by passing data *(type: any)* to `context` props of `Outlet`
+* `Link`, `NavLink` and `Navigate` / `useNavigate` in [Navigation](#navigation) -- data can be maid available to next location/route by passing data to component's `state` props or `options?` param of function generated from `useNavigate`. eg `navigate('/', { replace, state })`.
+  > `state` can be retrieved in new location by using `useLocation`. Look back in [state --> useLocation Hook](#state----uselocation-hook)
+* `useSearchParams` which looks similar to `useState` allows query to be displayed in the URL
+  > Code snippet from [layouts/LiveSearchLayout.js](./src/layouts/LiveSearchLayout.js)
+  ```js
+  const LiveSearchLayout = () => {
+    const [searchParams, setSearchParams] = useSearchParams({ q: '' })
+    const [resData, setResData] = useState({
+      prop1: '',
+      prop2: '',
+    })
+
+    const search = searchParams.get('q')
+    const handleSearchChange = (e) => {
+      const { value } = e.target
+      setSearchParams(prev => ({ ...prev, q: value }))
+
+      /* fake data fetching */
+      const resFromFakeReactQuery = fakeReactQuery(value)
+      setResData(prev => ({...prev, prop1: 'resFromFakeReactQuery', prop2: resFromFakeReactQuery }))
+    }
+  }
+  ```
 
 <div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>
 

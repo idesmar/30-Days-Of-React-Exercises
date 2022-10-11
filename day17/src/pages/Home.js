@@ -1,7 +1,39 @@
+import { useLocation } from "react-router-dom"
+
+const locationContainerStyle = {
+  padding: '0',
+}
+
+const locationWrapperStyle = {
+  fontSize: '1.1em',
+  padding: '0.2em 0.9em',
+  border: '2px solid #6a6e67',
+  color: '#11b64e',
+  borderRadius: '100vw',
+}
+
 const Home = () => {
+  const location = useLocation()
+
   return (
     <div>
-      <h2>Welcome Home</h2>
+      <h1>Welcome Home</h1>
+
+      <div>
+        {/* // TESTED: used code below to see if `state` from useNavigate is being passed
+            when delta or relative path is used as 1st param
+          //! RESULT: using delta WILL NOT store state in location */}
+        <p
+          style={locationContainerStyle}
+        >
+          State passed to this location: <span
+            style={locationWrapperStyle}
+          >{location.state}</span>
+        </p>
+        <small>
+          State is passed from Navigate &gt; Back Button. <em>If not registering, then code has been refactored</em>
+        </small>
+      </div>
 
       {/* cspell:disable */}
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt odit cum aperiam corporis nobis culpa reiciendis atque incidunt repellat, consequatur corrupti eaque debitis cumque sint itaque rem aut perspiciatis id qui explicabo natus tenetur autem dolorem? Enim ex, explicabo tempora laborum nesciunt dicta autem voluptas vel quos.</p>
