@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 
 const locationContainerStyle = {
   padding: '0',
@@ -12,12 +12,29 @@ const locationWrapperStyle = {
   borderRadius: '100vw',
 }
 
+const linkToExercises = {
+  padding: '0.4em 0.9em',
+  borderRadius: '0.6em',
+  backgroundColor: '#74333e',
+  display: 'block',
+  width: 'fit-content',
+}
+
 const Home = () => {
   const location = useLocation()
 
   return (
     <div>
       <h1>Welcome Home</h1>
+
+      <div>
+        <Link
+          to='/exercises'
+          style={linkToExercises}
+        >
+          Go to Answers for 30 Days of React Exercises
+        </Link>
+      </div>
 
       <div>
         {/* // TESTED: used code below to see if `state` from useNavigate is being passed

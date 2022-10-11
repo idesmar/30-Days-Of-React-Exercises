@@ -1,0 +1,27 @@
+.sideNavContainer {
+  position: relative;
+  top: -1rem;
+  background-color: #094040;
+  box-shadow: 0 -100px 0 100px #094040;
+}
+
+.sideNavContainer a {
+  display: block;
+  color: #ffffff;
+  padding: 0.4em 0.9em;
+  border-radius: 0.5em;
+}
+
+.sideNavContainer .activeSideNav {
+  background-color: #3a0648;
+}
+
+.sideNavContainer a:hover {
+  color: #d9d95c;
+}
+
+.sideNavContainer ul {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}

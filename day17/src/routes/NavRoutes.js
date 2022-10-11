@@ -20,7 +20,8 @@ import { UpdatesRoutes } from "./UpdatesRoutes"
 import { NavigateSample } from "../pages/Navigate"
 import { LiveSearch } from "../pages/LiveSearch"
 import { LiveSearchLayout } from "../layouts/LiveSearchLayout"
-import { Updates, Updates1, Updates2 } from "../pages/Updates"
+import { ExercisesRoutes } from "../pages/Exercises/ExercisesRoutes"
+// import { Updates, Updates1, Updates2 } from "../pages/Updates" /* Uncomment this and routes in NavRoutesObject */
 
 /* //> see code near bottom of module to view Routes without comments  */
 
@@ -221,22 +222,26 @@ const NavRoutesObject = () => {
             }
           ]
         },
+        // { /* all routes in /updates -- not importing routes from UpdatesRoutes.js */
+        //   path: 'updates',
+        //   children: [
+        //     {
+        //       index: true,
+        //       element: <Updates />
+        //     },
+        //     {
+        //       path: '1',
+        //       element: <Updates1 />
+        //     },
+        //     {
+        //       path: '2',
+        //       element: <Updates2 />
+        //     }
+        //   ]
+        // },
         {
-          path: 'updates',
-          children: [
-            {
-              index: true,
-              element: <Updates />
-            },
-            {
-              path: '1',
-              element: <Updates1 />
-            },
-            {
-              path: '2',
-              element: <Updates2 />
-            }
-          ]
+          path: 'updates/*',
+          element: <UpdatesRoutes />
         },
         {
           path: 'navigate',
@@ -251,6 +256,10 @@ const NavRoutesObject = () => {
               element: <LiveSearch />
             }
           ]
+        },
+        {
+          path: 'exercises/*',
+          element: <ExercisesRoutes />
         },
       ]
     },
