@@ -7,6 +7,11 @@
   background-color: rgb(9, 64, 64);
   color: #00ffff;
   padding: 0.4rem 0;
+
+  /* * Added css below to accommodate
+    * hacky design for Exercise Navigation */
+  position: relative;
+  z-index: 999;
 }
 
 .mainNav > ul {
