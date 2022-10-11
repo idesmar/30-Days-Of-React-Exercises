@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import { BlogNav } from "../navigation/BlogNav";
 
 /* //> Multiple <Routes> WARNING
+  ! This module is currently NOT BEING IMPORTED due to console warnings
   ! Using multiple <Routes> appear to work in the UI but it generates a warning on the console whenever the current location is not the path specified inside <Route>
   ie. <Route path="/blog/*" element={<BlogNav />} />
   above generates a warning:

@@ -34,8 +34,7 @@ const NavRoutes = () => {
         <Route index element={<Home />} />
         <Route path="navigate" element={<NavigateSample />} />
 
-        {/* //> Blog Routes without BlogNav;
-            BlogNav will display based on condition set in BlogRoutes */}
+        {/* //> Clean version; BlogRoutes was not imported due to console warning */}
         <Route path="blog">
           <Route index element={<Blog />} />
           <Route path="1" element={<Blog1 />} />

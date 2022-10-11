@@ -77,6 +77,7 @@ const { id } = useParams()
 /* no argument required in useParams */
 ```
 #### Routing Priority
+> Code snippet from [routes/NavRoutes.js](./src/routes/NavRoutes.js)
 ```js
 /* routes/NavRoutes.js */
 <Routes>
@@ -90,34 +91,37 @@ const { id } = useParams()
     {/* Dynamic Route */}
     <Route path=":id" element={<OtherChallenges />} />
 
-{/* ... rest of code */}
+  {/* ... rest of code */}
+  </Route>
+</Routes>
 ```
 #### Multiple Routes
-* Using multiple `<Routes>` where some will only be displayed in specific path/s.
-  * Other `<Route>`s pertaining to blog in [NavRoutes.js](./src/routes/NavRoutes.js)
+* Using multiple `Routes` where some will only be displayed in specific path/s.
+  * Separated `Routes` contain all `Route`s related to blog
   * `Routes` can take a `location` property which allows the `Route` to be displayed anywhere bypassing the requirement set by `Route path="/blog/*"`
-> Code snippet from [BlogRoutes.js](./src/routes/BlogRoutes.js)
+
+> **DISCLAIMER**: [routes/BlogRoutes.js](./src/routes/BlogRoutes.js) which is used as an example in this section is currently ***NOT being imported*** in the main navigation file: [routes/NavRoutes](.src/../src/routes/NavRoutes.js). <br>
+> The code sample works when navigating through the UI, however, a console warning is displayed when current location does not match the specified path
+> ```console
+> No routes matched location "/${insert current pathName if not root path}"
+> ```
 ```js
 /* routes/BlogRoutes.js */
-{/* <Routes location="/blog"> to show in all pages */}
+{/* Pass '/blog' to `location` props of `Routes` ie. `<Routes location="/blog">` to show `<BlogNav />` in all pages */}
 <Routes>
 
-{/* display BlogNav only if in path /blog, /blog/1, /blog/2 etc */}
+  {/* display BlogNav only if in path /blog, /blog/1, /blog/2 etc */}
   <Route path="/blog/*" element={<BlogNav />} />
 </Routes>
 ```
-> The above code works, however, a console warning is displayed when current location does not match the specified path
-> ```
-> No routes matched location "/${insert current pathName if not root path}"
-> ```
 * Nested `<Routes>`
   * To help clean up code, especially if there are many `<Route>`s, `<Route>`s that have a similar `path` can be placed in a different file and imported in main `<Routes>`.
 > Code snippet from [routes/UpdatesRoutes.js](./src/routes/UpdatesRoutes.js)
 ```js
 /* routes/UpdatesRoutes.js */
 
-{/* NOTICE that innermost `<Route>`s have relative paths to "updates"
-  This is because the parent path is declared in the main <Route> in NavRoutes.js */}
+{/* NOTICE that the child `<Route>`s have relative paths to "updates"
+  This is because the PARENT path is declared in the main <Route> in NavRoutes.js */}
 <Routes>
   <Route element={<UpdatesLayout />}>
     <Route index element={<Updates />} />
@@ -136,7 +140,7 @@ const { id } = useParams()
   <Route path="updates/*" element={<UpdatesRoutes />} />
 ```
 #### useRoutes Hook
-Instead of using JSX, a Javascript object representing the logic of what element to display/render can be used as an argument to `useRoutes()` hook. Using this method can remove ***repetition*** like writing the template for `Route` ie. `<Route />`
+Instead of using JSX, an array of Javascript Objects representing the logic of what element to display/render can be used as an argument to `useRoutes()` hook. Using this method can remove ***repetition*** like writing the template for `Route` ie. `<Route />`
 > Code snippet from [useRoutes/routes/URoutes.js](./src/useRoutes/routes/URoutes.js)
 ```js
 /* URoutes.js */
@@ -220,7 +224,7 @@ const ChallengesLayout = () => {
 Sharing a layout between Routes that have **NO common path** can be done by wrapping the Routes in a *Parent* `Route` that has ***NO PATH*** with the ***layout component*** as the `element` value.
 > Code snippet from [routes/NavRoutes.js](./src/routes/NavRoutes.js)
 ```js
-{/* Parent Route should not have path property because they enclosed route do not share a common path */}
+{/* PARENT `Route` should not have a path property because the enclosed `Route`s do not share a common path */}
 <Route element={<SharedLayout />}>
   <Route path="/about" element={<About />} />
   <Route path="/contact">
