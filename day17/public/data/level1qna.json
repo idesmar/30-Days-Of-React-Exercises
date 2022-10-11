@@ -7,19 +7,19 @@
   {
     "_id": "q2",
     "question": "What is the default export in react-router-dom?",
-    "answer": ""
+    "answer": "From the understanding of the author, the router to be used on the web is `BrowserRouter`"
   },
   {
     "_id": "q3",
     "question": "What is the use of the following Components(Route, NavLink, Switch, Redirect, Prompt)?",
     "answer": "Some of these components are no longer available in React Router v6. What's listed below are either carried over to the new version, component equivalent or components the author find essential to know.",
     "list": [
-      "Routes: ",
-      "Route: ",
-      "NavLink: ",
-      "Link: ",
-      "Outlet: ",
-      "Navigate: "
+      "Routes: `Routes` is a container for all the individual `Route`s",
+      "Route: `Route` contains a path to URL endpoints and the elements to display",
+      "Link: `Link` is an anchor tag underneath that redirects the user to a different path",
+      "NavLink: `NavLink` is like a more customizable `Link`. It allows easy styling because of its built-in active/isActive props",
+      "Outlet: `Outlet` allows pages to share a layout",
+      "Navigate: `Navigate` or `useNavigate` allows manual navigation to a page without the use of an anchor tag. ie. attaching function from `useNavigate` to a button that when clicked will direct page to previous page; or a `Navigate` element that will direct user to a different page if a certain requirement is not met"
     ]
   }
 ]
