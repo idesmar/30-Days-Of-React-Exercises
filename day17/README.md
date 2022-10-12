@@ -56,6 +56,42 @@
     display: flow-root;
   }
   ```
+* added `getTimestamp` function in [utils/misc.js](./src/utils/misc.js) to help with time-tracking
+* started returning a cleanup function to ensure that enclosed function in `useEffect` is ran only once
+> Based on observation:
+> * the returned cleanup function catches up with the operation from the 1st run of `useEffect`, then cancels that operation
+> * the operation from the 2nd run of `useEffect` persists and is used to update relevant data
+
+> Code snippet from [NavigateSample](./src/pages/Navigate.js) component
+```js
+/* pages/Navigate.js */
+  useEffect(() => {
+    const interval = setInterval(() => setCountdown(prev => --prev), 1000)
+    /* cleanup function */
+    return () => clearInterval(interval)
+  }, [])
+```
+> Code snippet from [Level1](./src/pages/Exercises/Level1.js) component
+```js
+/* pages/Exercises/Level1.js */
+  useEffect(() => {
+    const URL = '../data/level1qna.json'
+    const controller = new AbortController()
+    const fetchData = async () => {
+      try {
+        const res = await fetch(URL, { signal: controller.signal })
+        const data = await res.json()
+        setQna(prev => data)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    fetchData()
+
+    /* cleanup function */
+    return () => controller.abort('Run only once')
+  }, [])
+```
 
 <div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>
 
