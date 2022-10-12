@@ -14,19 +14,19 @@ const ExercisesLayout = () => {
               <NavLink
                 to='./'
                 // end /* //> Uncomment to stop bread-crumbing active style */
-                className={({ isActive }) => (isActive && activeSideNav)}
+                className={({ isActive }) => (isActive ? activeSideNav : undefined)}
               >Exercises Home</NavLink>
             </li>
             <li>
               <NavLink
                 to='level1'
-                className={({ isActive }) => (isActive && activeSideNav)}
+                className={({ isActive }) => (isActive ? activeSideNav : undefined)}
               >Level 1</NavLink>
             </li>
             <li>
               <NavLink
                 to='level2'
-                className={({ isActive }) => (isActive && activeSideNav)}
+                className={({ isActive }) => (isActive ? activeSideNav : undefined)}
               >Level 2</NavLink>
             </li>
           </ul>
