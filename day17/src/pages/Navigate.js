@@ -17,15 +17,14 @@ const NavigateSample = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    // console.count('useEffect')
-    if (countdown > 0) {
-      // TODO: setInterval vs setTimeout
-      const interval = setInterval(() => setCountdown(prev => --prev), 1000)
+    /* //> Removed if (countdown) condition and useEffect dependency [countdown] to run useEffect only twice instead of 12 times (previously) */
+    console.count('useEffect')
 
-      /* //> return a cleanup function to ensure useEffect is only ran ONCE */
-      return () => clearInterval(interval)
-    }
-  }, [countdown])
+    /* // TODO: setInterval vs setTimeout */
+    const interval = setInterval(() => setCountdown(prev => --prev), 1000)
+    /* //> return a cleanup function to prevent memory leak and proper synchronization of timer */
+    return () => clearInterval(interval)
+  }, [])
 
   const handleBackButton = () => {
     /* // @param {} -- 2nd param of navigate() -- is optional
