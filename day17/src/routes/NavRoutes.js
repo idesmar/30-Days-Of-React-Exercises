@@ -187,7 +187,7 @@ const NavRoutesObject = () => {
           ]
         },
         {
-          path: '',
+          // path: '', /* //* This property can be removed completely */
           element: <SharedLayout />,
           children: [
             {
@@ -221,7 +221,7 @@ const NavRoutesObject = () => {
             }
           ]
         },
-        // { /* all routes in /updates -- not importing routes from UpdatesRoutes.js */
+        // { /* //* all routes in /updates -- not importing routes from UpdatesRoutes.js */
         //   path: 'updates',
         //   children: [
         //     {

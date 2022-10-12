@@ -1,4 +1,4 @@
-<!-- NOTE: Link to TOC at the end of every h2 (##) and h4 (###) -->
+<!-- NOTE: Link to TOC at the end of every h2 (##) and h3 (###) -->
 
 <!-- omit in toc -->
 # [30 Days of React](../README.md#readme): Day 17 | [React Router](https://github.com/Asabeneh/30-Days-Of-React/blob/master/17_React_Router/17_react_router.md#readme)
@@ -12,10 +12,12 @@
 - [Dev Notes](#dev-notes)
 - [Learnings](#learnings)
   - [Routing](#routing)
-    - [Nested Routes](#nested-routes)
+    - [Nested `Route`'s](#nested-routes)
     - [Dynamic Routing / useParams Hook](#dynamic-routing--useparams-hook)
     - [Routing Priority](#routing-priority)
-    - [Multiple Routes](#multiple-routes)
+    - [Multiple `Routes`'s](#multiple-routess)
+      - [Separate `Routes`'s](#separate-routess)
+      - [Nested `Routes`'s](#nested-routess)
     - [useRoutes Hook](#useroutes-hook)
   - [Not Found](#not-found)
   - [Outlet](#outlet)
@@ -61,7 +63,7 @@
 
 ### Routing
 
-#### Nested Routes
+#### Nested `Route`'s
 ```js
 <Route path="/">
   <Route index element={<Home />} />
@@ -95,15 +97,16 @@ const { id } = useParams()
   </Route>
 </Routes>
 ```
-#### Multiple Routes
-* Using multiple `Routes` where some will only be displayed in specific path/s.
-  * Separated `Routes` contain all `Route`s related to blog
-  * `Routes` can take a `location` property which allows the `Route` to be displayed anywhere bypassing the requirement set by `Route path="/blog/*"`
-
-> **DISCLAIMER**: [routes/BlogRoutes.js](./src/routes/BlogRoutes.js) which is used as an example in this section is currently ***NOT being imported*** in the main navigation file: [routes/NavRoutes](.src/../src/routes/NavRoutes.js). <br>
-> The code sample works when navigating through the UI, however, a console warning is displayed when current location does not match the specified path
-> ```console
-> No routes matched location "/${insert current pathName if not root path}"
+#### Multiple `Routes`'s
+##### Separate `Routes`'s
+* Allow multiple `Routes` to be rendered at the same time
+> **WARNING**
+> * ***Try to avoid*** and use layout with `Context` instead
+> * [routes/BlogRoutes.js](./src/routes/BlogRoutes.js) which is used as an example in this section is currently ***NOT being imported*** in the main navigation file: [routes/NavRoutes](.src/../src/routes/NavRoutes.js).
+> * The code sample works when navigating through the UI, however, a console warning is displayed when current location does not match the specified path
+> ```bash
+> # Console Warning
+> No routes matched location "/[insert current pathName if not root path]"
 > ```
 ```js
 /* routes/BlogRoutes.js */
@@ -114,8 +117,8 @@ const { id } = useParams()
   <Route path="/blog/*" element={<BlogNav />} />
 </Routes>
 ```
-* Nested `<Routes>`
-  * To help clean up code, especially if there are many `<Route>`s, `<Route>`s that have a similar `path` can be placed in a different file and imported in main `<Routes>`.
+##### Nested `Routes`'s
+* To help clean up code, especially if there are many `Route`s, `Route`s that have a similar `path` can be placed in a different file and imported in main `<Routes>`.
 > Code snippet from [routes/UpdatesRoutes.js](./src/routes/UpdatesRoutes.js)
 ```js
 /* routes/UpdatesRoutes.js */
