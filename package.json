@@ -1,0 +1,34 @@
+{
+  "name": "30days",
+  "version": "1.0.0",
+  "description": "30 Days of React Exercises",
+  "main": "index.js",
+  "scripts": {
+    "day03lev0203": "cd day03lev0203 && npm start",
+    "day04lev0203": "cd day04lev0203 && npm start",
+    "day05": "cd day05 && npm start",
+    "day06": "cd day06 && npm start",
+    "day07": "cd day07 && npm start",
+    "day08": "cd day08 && npm start",
+    "day09": "cd day09 && npm start",
+    "day10": "cd day10 && npm start",
+    "day11": "cd day11 && npm start",
+    "day12": "cd day12 && npm start",
+    "day13": "cd day13 && npm start",
+    "day14": "cd day14 && npm start",
+    "day15": "cd day15 && npm start",
+    "day16": "cd day16 && npm start",
+    "day17": "cd day17 && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/idesmar/30-Days-Of-React-Exercises.git"
+  },
+  "keywords": [],
+  "author": "idesmar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/idesmar/30-Days-Of-React-Exercises/issues"
+  },
+  "homepage": "https://github.com/idesmar/30-Days-Of-React-Exercises#readme"
+}

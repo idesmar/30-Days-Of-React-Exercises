@@ -57,6 +57,6 @@ Located in 30 Days of React [Solutions Branch](https://github.com/idesmar/30-Day
 ## Start Dev Environment
 Each sub repository contains a single page application (SPA). To view desired exercise solution:
 ```bash
-cd sub-repo-name && npm start
+npm run sub-repo-name
 ```
 <div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
