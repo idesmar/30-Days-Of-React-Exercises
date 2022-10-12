@@ -62,7 +62,7 @@ const toProperCaseDelimited = (str = '') => {
   return ret.join(' ')
 }
 
-const getTimeStamp = (label = '') => {
+const getTimestamp = (label = '') => {
   const digit2 = (num) => {
     const str = num.toString()
     return str.length < 2 ? '0' + str : str
@@ -80,5 +80,5 @@ export {
   seqNumsArr,
   isPrime, isPrime0, isEven, isOdd,
   toTitleCase, toProperCase, toProperCaseDelimited,
-  getTimeStamp,
+  getTimestamp,
 }
