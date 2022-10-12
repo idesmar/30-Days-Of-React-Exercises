@@ -62,8 +62,23 @@ const toProperCaseDelimited = (str = '') => {
   return ret.join(' ')
 }
 
+const getTimeStamp = (label = '') => {
+  const digit2 = (num) => {
+    const str = num.toString()
+    return str.length < 2 ? '0' + str : str
+  }
+  const curr = new Date()
+  const hh = digit2(curr.getHours())
+  const mm = digit2(curr.getMinutes())
+  const ss = digit2(curr.getSeconds())
+  const ms = curr.getMilliseconds()
+  const extraMsg = label && ` [${label}]`
+  return `[${hh}:${mm}]-[${ss}.${ms}]${extraMsg}`
+}
+
 export {
   seqNumsArr,
   isPrime, isPrime0, isEven, isOdd,
   toTitleCase, toProperCase, toProperCaseDelimited,
+  getTimeStamp,
 }

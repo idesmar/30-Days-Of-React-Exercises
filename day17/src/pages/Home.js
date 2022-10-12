@@ -15,7 +15,7 @@ const locationWrapperStyle = {
 const linkToExercises = {
   padding: '0.4em 0.9em',
   borderRadius: '0.6em',
-  backgroundColor: '#74333e',
+  backgroundColor: '#3a0648',
   display: 'block',
   width: 'fit-content',
 }
