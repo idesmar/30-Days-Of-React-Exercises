@@ -1,4 +1,3 @@
-import makeID from './makeID'
 import { em } from './unitConvert'
 
 const Code = ({ content }) => {
@@ -32,7 +31,7 @@ const hasCode = (str = '') => {
         // all odd idx are to be coded
         arr.map((el, idx) => {
           return (idx % 2 === 1)
-            ? <Code key={'code' + makeID()} content={el} />
+            ? <Code key={'code' + idx} content={el} />
             : el
         })
       }
