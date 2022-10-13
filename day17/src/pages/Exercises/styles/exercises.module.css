@@ -1,8 +1,15 @@
+h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+}
+
 .sideNavContainer {
   position: relative;
   top: -1rem;
   background-color: #094040;
-  box-shadow: 0 -100px 0 100px #094040;
+  box-shadow: 0 -50vw 0 50vw #094040;
+  padding-bottom: 1rem;
 }
 
 .sideNavContainer a {

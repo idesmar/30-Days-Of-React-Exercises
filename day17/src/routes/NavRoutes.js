@@ -20,7 +20,7 @@ import { UpdatesRoutes } from "./UpdatesRoutes"
 import { NavigateSample } from "../pages/Navigate"
 import { LiveSearch } from "../pages/LiveSearch"
 import { LiveSearchLayout } from "../layouts/LiveSearchLayout"
-import { ExercisesRoutes } from "../pages/Exercises/ExercisesRoutes"
+import { ExercisesRoutes } from "../pages/Exercises/routes/ExercisesRoutes"
 // import { Updates, Updates1, Updates2 } from "../pages/Updates" /* Uncomment this and routes in NavRoutesObject */
 
 /* //> see code near bottom of module to view Routes without comments  */

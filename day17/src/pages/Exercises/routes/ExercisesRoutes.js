@@ -1,7 +1,7 @@
 import { useRoutes } from "react-router-dom"
-import { ExercisesHome, ExercisesLayout } from "./ExercisesHome"
-import { Level1 } from "./Level1"
-import { Level2 } from "./Level2"
+import { ExercisesHome, ExercisesLayout } from "../ExercisesHome"
+import { Level1 } from "../Level1"
+import { Level2 } from "../Level2"
 
 /* //> DEV NOTES
   Exercises Routes are imported to NavRoutes using code below:

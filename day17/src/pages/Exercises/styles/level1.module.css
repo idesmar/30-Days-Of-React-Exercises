@@ -1,0 +1,33 @@
+summary {
+  cursor: pointer;
+  padding: 0.4em 0.9em;
+  border-radius: 0.5em;
+}
+
+details {
+  margin-block: 0.5rem;
+}
+
+details > div {
+  padding: 0.3em 0.8em;
+}
+
+details ul {
+  padding: 0.3rem 1rem 1rem;
+}
+
+details ul li::marker {
+  content: '☑️';
+}
+
+.qnaFetching {
+  opacity: 0;
+  scale: 0;
+}
+
+.qnaContainer {
+  opacity: 1;
+  scale: 1;
+  transition: opacity 300ms ease-in,
+              scale 500ms cubic-bezier(1, 1.79, 1, 1);
+}

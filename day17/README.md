@@ -35,7 +35,7 @@
       - [end](#end)
     - [Navigate / useNavigate Hook](#navigate--usenavigate-hook)
     - [Navigation Component props Comparison](#navigation-component-props-comparison)
-  - [Data passing](#data-passing)
+  - [Data Passing](#data-passing)
   - [CSS Modules](#css-modules)
 - [Third Party Resources](#third-party-resources)
   - [Packages Used](#packages-used)
@@ -58,40 +58,40 @@
   ```
 * added `getTimestamp` function in [utils/misc.js](./src/utils/misc.js) to help with time-tracking
 * started returning a cleanup function to ensure that enclosed function in `useEffect` is ran only once
-> Based on observation:
-> * the returned cleanup function catches up with the operation from the 1st run of `useEffect`, then cancels that operation
-> * the operation from the 2nd run of `useEffect` persists and is used to update relevant data
+  > Based on observation:
+  > * the returned cleanup function catches up with the operation from the 1st run of `useEffect`, then cancels that operation
+  > * the operation from the 2nd run of `useEffect` persists and is used to update relevant data
 
-> Code snippet from [NavigateSample](./src/pages/Navigate.js) component
-```js
-/* pages/Navigate.js */
-  useEffect(() => {
-    const interval = setInterval(() => setCountdown(prev => --prev), 1000)
-    /* cleanup function */
-    return () => clearInterval(interval)
-  }, [])
-```
-> Code snippet from [Level1](./src/pages/Exercises/Level1.js) component
-```js
-/* pages/Exercises/Level1.js */
-  useEffect(() => {
-    const URL = '../data/level1qna.json'
-    const controller = new AbortController()
-    const fetchData = async () => {
-      try {
-        const res = await fetch(URL, { signal: controller.signal })
-        const data = await res.json()
-        setQna(prev => data)
-      } catch (err) {
-        console.log(err)
+  > Code snippet from [NavigateSample](./src/pages/Navigate.js) component
+  ```js
+  /* pages/Navigate.js */
+    useEffect(() => {
+      const interval = setInterval(() => setCountdown(prev => --prev), 1000)
+      /* cleanup function */
+      return () => clearInterval(interval)
+    }, [])
+  ```
+  > Code snippet from [Level1](./src/pages/Exercises/Level1.js) component
+  ```js
+  /* pages/Exercises/Level1.js */
+    useEffect(() => {
+      const URL = '../data/level1qna.json'
+      const controller = new AbortController()
+      const fetchData = async () => {
+        try {
+          const res = await fetch(URL, { signal: controller.signal })
+          const data = await res.json()
+          setQna(prev => data)
+        } catch (err) {
+          console.log(err)
+        }
       }
-    }
-    fetchData()
+      fetchData()
 
-    /* cleanup function */
-    return () => controller.abort('Run only once')
-  }, [])
-```
+      /* cleanup function */
+      return () => controller.abort('Run only once')
+    }, [])
+  ```
 
 <div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>
 
@@ -135,7 +135,7 @@ const { id } = useParams()
 ```
 #### Multiple `Routes`'s
 ##### Separate `Routes`'s
-* Allow multiple `Routes` to be rendered at the same time
+Allow multiple `Routes` to be rendered at the same time
 > **WARNING**
 > * ***Try to avoid*** and use layout with `Context` instead
 > * [routes/BlogRoutes.js](./src/routes/BlogRoutes.js) which is used as an example in this section is currently ***NOT being imported*** in the main navigation file: [routes/NavRoutes](.src/../src/routes/NavRoutes.js).
@@ -154,7 +154,7 @@ const { id } = useParams()
 </Routes>
 ```
 ##### Nested `Routes`'s
-* To help clean up code, especially if there are many `Route`s, `Route`s that have a similar `path` can be placed in a different file and imported in main `<Routes>`.
+To help clean up code, especially if there are many `Route`s, `Route`s that have a similar `path` can be placed in a different file and imported in main `<Routes>`.
 > Code snippet from [routes/UpdatesRoutes.js](./src/routes/UpdatesRoutes.js)
 ```js
 /* routes/UpdatesRoutes.js */
@@ -249,7 +249,7 @@ const ChallengesLayout = () => {
 </Route>
 ```
 ##### With Common Path
-**Nested Routes** that have a **common path** can share a layout by passing the layout component to the *Parent* `Route`'s `element` attribute.
+**Nested `Route`'s** that have a **common path** can share a layout by passing the layout component to the *Parent* `Route`'s `element` attribute.
 > Code snippet from [routes/NavRoutes.js](./src/routes/NavRoutes.js)
 ```js
 <Route path="challenges" element={<ChallengesLayout />}>
@@ -260,7 +260,7 @@ const ChallengesLayout = () => {
 </Route>
 ```
 ##### No Common Path
-Sharing a layout between Routes that have **NO common path** can be done by wrapping the Routes in a *Parent* `Route` that has ***NO PATH*** with the ***layout component*** as the `element` value.
+Sharing a layout between `Route`'s that have **NO common path** can be done by wrapping the Routes in a *Parent* `Route` that has ***NO PATH*** with the ***layout component*** as the `element` value.
 > Code snippet from [routes/NavRoutes.js](./src/routes/NavRoutes.js)
 ```js
 {/* PARENT `Route` should not have a path property because the enclosed `Route`s do not share a common path */}
@@ -275,26 +275,27 @@ Sharing a layout between Routes that have **NO common path** can be done by wrap
 </Route>
 ```
 #### Context / useOutletContext Hook
-* `context` property allows data to be passed from ***layout component*** where `Outlet` is declared. See code in [layouts/ChallengesLayout.js](./src/layouts/ChallengesLayout.js)
-* `useOutletContext` hook is used to extract the `context` object from `Outlet`. See code in [pages/Challenges.js](./src/pages/Challenges.js) and displayed on the ***child*** `Route` element.
-
-```js
-/* layouts/ChallengesLayout.js */
-<Outlet context={{ name, click }} />
-```
-```js
-/* pages/Challenges.js */
-const FromOutlet = () => {
-  const { name, click } = useOutletContext()
-  return (
-    <div>
-      <h6>From Context</h6>
-      <p>Name: {name}</p>
-      <p>Click: {click}</p>
-    </div>
-  )
-}
-```
+* `context` property allows data to be passed from ***layout component*** where `Outlet` is declared.
+  > Code snippet from [layouts/ChallengesLayout.js](./src/layouts/ChallengesLayout.js)
+  ```js
+  /* layouts/ChallengesLayout.js */
+  <Outlet context={{ name, click }} />
+  ```
+* `useOutletContext` hook is used to extract the `context` object from `Outlet`.
+  > Code snippet from [pages/Challenges.js](./src/pages/Challenges.js)
+  ```js
+  /* pages/Challenges.js */
+  const FromOutlet = () => {
+    const { name, click } = useOutletContext()
+    return (
+      <div>
+        <h6>From Context</h6>
+        <p>Name: {name}</p>
+        <p>Click: {click}</p>
+      </div>
+    )
+  }
+  ```
 
 <div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>
 
@@ -341,22 +342,22 @@ Accepts the path where to redirect. The path can either be one of the ff:
 > Note that reload will reset `state`s not stored (eg. localStorage, sessionStorage, cache, etc.)
 ##### state --> useLocation Hook
 * `state` can be passed from one path to another and can be accessed using `useLocation`
-```js
-const location = useLocation()
-```
+  ```js
+  const location = useLocation()
+  ```
 * `useLocation` hook returns a location object (based on the URL)
-```js
-{
-  hash: "",
-  key: "",
-  pathname: "/",
-  search: "",
-  state: null
-}
-```
+  ```js
+  {
+    hash: "",
+    key: "",
+    pathname: "/",
+    search: "",
+    state: null
+  }
+  ```
 #### NavLink
 `NavLink` is similar to `Link` with more customization.
-> All properties available in `<Link>` is available in `<NavLink>`
+> All properties available in `<Link>` is available in `<NavLink>` plus `end`
 ##### end
 `end` is a boolean property that when present (default value is `true`) will only apply the 'active' className if the current path is ***exactly*** as what's specified in the `to` property.
 > Common use:
@@ -368,7 +369,7 @@ const location = useLocation()
 > If above not used, navigating to any other path will not remove the `active` className in `Home` resulting to multiple `NavLink` appearing as 'active'
 
 > There are multiple ways of styling active `NavLink`s from **inline styles** to using **classNames** creatively, and even creating a [CustomNavLink](./src/navigation/shared/customNavLink.js)
-> Refer to [MainNav.js](./src/navigation/MainNav.js) for different styling used
+> Refer to [navigation/MainNav.js](./src/navigation/MainNav.js) for different styling used
 #### Navigate / useNavigate Hook
 * `Navigate` is a component that when rendered will automatically redirect the page
 * `useNavigate` hook returns a function that can be used to redirect page
@@ -398,7 +399,7 @@ const location = useLocation()
 
 <div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>
 
-### Data passing
+### Data Passing
 It is possible to pass data using `react-router-dom` as seen in previous sections. Here is a quick recap on how data can be passed.
 * `useParams` in [Dynamic Routing / useParams Hook](#dynamic-routing--useparams-hook) -- id/endpoint can be passed to Dynamic Component. eg `const { id } = useParams()`
 * `useOutletContext` in [Context / useOutletContext Hook](#context--useoutletcontext-hook) -- data from Layout can be passed to outlet by passing data *(type: any)* to `context` props of `Outlet`
@@ -429,25 +430,28 @@ It is possible to pass data using `react-router-dom` as seen in previous section
 <div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>
 
 ### CSS Modules
-Parent class (style) can be used to style child elements. Example can be found in [App.module.css](./src/App.module.css) and [App.js](./src/App.js)
-```css
-/* App.module.css */
-.NavStyle { /* ... */ }
-.NavStyle > ul { /* ... */ }
-.NavStyle a { /* ... */ }
-.NavStyle a:hover { /* ... */ }
-```
-```js
-/* App.js */
-import appStyle from './App.module.css'
+* Parent class (style) can be used to style child elements. Example can be found in [App.module.css](./src/App.module.css) and [App.js](./src/App.js)
+  ```css
+  /* App.module.css */
+  .NavStyle { /* ... */ }
+  .NavStyle > ul { /* ... */ }
+  .NavStyle a { /* ... */ }
+  .NavStyle a:hover { /* ... */ }
+  ```
+  ```js
+  /* App.js */
+  import appStyle from './App.module.css'
 
-const { NavStyle } = appStyle
-const HomeNavigation = () => {
-  return (
-    <nav className={NavStyle}>
+  const { NavStyle } = appStyle
+  const HomeNavigation = () => {
+    return (
+      <nav className={NavStyle}>
 
-  {/* ... rest of code */}
-```
+    {/* ... rest of code */}
+  ```
+* Top level ***element*** styles have precedence over lower level ***element** styles
+  > element selector in Parent module takes precedence over Child module
+  > `p { color: black; }` in `App.module.css` overrides `p { color: red; }` in `component.module.css`
 
 <div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>
 
@@ -461,7 +465,7 @@ const HomeNavigation = () => {
 <!-- cspell:enable -->
 
 ### React Router v6 Learning Material
-  * [Ultimate React Router v6 Guide](https://blog.webdevsimplified.com/2022-07/react-router/) by [Web Dev Simplified](https://twitter.com/DevSimplified)
-    > Read on [Github](https://github.com/WebDevSimplified/Web-Dev-Simplified-Official-Blog/blob/master/src/pages/2022-07/react-router/index.md)
+[Ultimate React Router v6 Guide](https://blog.webdevsimplified.com/2022-07/react-router/) by [Web Dev Simplified](https://twitter.com/DevSimplified)
+> Read on [Github](https://github.com/WebDevSimplified/Web-Dev-Simplified-Official-Blog/blob/master/src/pages/2022-07/react-router/index.md)
 
 <div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>

@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react"
+import { colorMe } from "../../utils/colorFunc"
+import hasCode from "../../utils/hasCode"
 import { getTimestamp } from "../../utils/misc"
+import level1Styles from './styles/level1.module.css' /* level1Styles from './styles/level1.module.css' */
 
 /* //> DEV NOTES
   * Tested use of AbortController to fetch data only ONCE
@@ -17,7 +20,39 @@ import { getTimestamp } from "../../utils/misc"
 */
 
 
+const { qnaFetching, qnaContainer } = level1Styles
+
+const QnaDetails = ({
+  q: {
+    _id,
+    question,
+    answer,
+    list,
+  },
+  backgroundColor
+}) => {
+
+  return (
+    <details>
+      <summary style={{ backgroundColor }}>{question}</summary>
+      <div>
+        <p style={{ margin: '0' }}>{hasCode(answer)}</p>
+        {
+          list && (
+            <ul>
+              {
+                list.map((li, liIdx) => <li key={_id + liIdx}>{hasCode(li)}</li>)
+              }
+            </ul>
+          )
+        }
+      </div>
+    </details>
+  )
+}
+
 const Level1 = () => {
+  const [loading, setLoading] = useState(true)
   const [qna, setQna] = useState([
     {
       _id: '',
@@ -58,6 +93,7 @@ const Level1 = () => {
         console.log(getTimestamp('--- FETCHED DATA ---'),'in async function')
         const data = await res.json()
         setQna(prev => data)
+        setLoading(prev => false)
       }
       catch (err) {
         /* aborted fetch */
@@ -69,7 +105,7 @@ const Level1 = () => {
     fetchData()
 
     return () => {
-      /* //> timestamp comparison to prove abort is applied to 1st useEffect
+      /* //> timestamp comparison to prove abort is applied at 1st useEffect
         timestamp below and the UPDATED controller.signal.reason (on FIRST useEffect) which contains a getTimestamp --- shows that the abort method was applied to it */
       console.log(getTimestamp('return cleanup function'))
 
@@ -80,10 +116,22 @@ const Level1 = () => {
     /* ========================================================================= */
   }, [])
 
+  const backgroundColor = colorMe('dark')
+
   return (
     <div>
       <h1>Level 1</h1>
-      {console.log(qna)}
+      <div className={loading ? qnaFetching : qnaContainer}>
+        {
+          qna.map(q =>
+            <QnaDetails
+              key={q._id}
+              q={q}
+              backgroundColor={backgroundColor}
+            />
+          )
+        }
+      </div>
     </div>
   )
 }
