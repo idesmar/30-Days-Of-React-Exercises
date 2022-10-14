@@ -15,25 +15,26 @@ const ContextCollector = ({
 }) => {
 
   return (
-      <div className={contextCollectorContainer}>
-        <div>
-          <label htmlFor="inputName">Name: </label>
-          <input
-            id="inputName"
-            type="text"
-            name="name"
-            value={name}
-            onChange={handleEvent}
-          />
-        </div>
-        <button
-          name="click"
-          value={click}
-          onClick={handleEvent}
-        >
-          Clicked {click} times
-        </button>
+    <div className={contextCollectorContainer}>
+      <h2>This section is a Context Collector in ChallengesLayout</h2>
+      <div>
+        <label htmlFor="inputName">Name: </label>
+        <input
+          id="inputName"
+          type="text"
+          name="name"
+          value={name}
+          onChange={handleEvent}
+        />
       </div>
+      <button
+        name="click"
+        value={click}
+        onClick={handleEvent}
+      >
+        Clicked {click} times
+      </button>
+    </div>
   )
 }
 

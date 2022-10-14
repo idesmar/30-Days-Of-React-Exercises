@@ -32,19 +32,19 @@ const NavigateSample = () => {
       // NOTE: state is tied up with location,
       //! hence, if delta (-1, etc) value is used, the state will not be passed to other page
     */
-    navigate('/', { replace: false, state: 'Can you see me?' })
+    navigate('/', { replace: false, state: 'I came here from Navigate page' })
   }
 
   return (
     <div>
-      <h3>Navigation Sample</h3>
+      <h1>Navigation Sample</h1>
       <p>You will be redirected to the Home page in {countdown}s</p>
 
       <button
         style={backButtonStyle}
         onClick={handleBackButton}
       >
-        Back to previous page instead?
+        Go Back to Home manually and send a state object with navigate()
       </button>
 
       { /* //> Insert Navigate component once countdown reaches 0 */

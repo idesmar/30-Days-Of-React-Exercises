@@ -1,7 +1,7 @@
 const Blog = () => {
   return (
     <div>
-      <h2>Welcome to Blog</h2>
+      <h1>Welcome to Blog</h1>
       {/* cspell:disable */}
       <p>Hi! This is blog. Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti aspernatur natus possimus magni, sed consequuntur.</p>
       {/* cspell:enable */}

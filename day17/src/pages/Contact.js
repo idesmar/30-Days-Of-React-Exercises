@@ -6,24 +6,24 @@ import { useParams } from 'react-router-dom'
 const SomeContact = () => {
   const { contactId } = useParams()
   return (
-    <div>
+    <h1>
       Contact with contactId: {contactId}
-    </div>
+    </h1>
   )
 }
 
 const SomeOtherContact = () => {
   const { contactId } = useParams()
   return (
-    <div>
+    <h1>
       Some other Contact with id: {contactId}
-    </div>
+    </h1>
   )
 }
 
 const Contact = () => {
   return (
-    <div>Contact</div>
+    <h1>Contact</h1>
   )
 }
 

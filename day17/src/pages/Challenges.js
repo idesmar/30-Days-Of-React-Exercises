@@ -26,11 +26,22 @@ const noMarginPStyle = {
 to be displayed in other Challenges page */
 const FromLayoutOutlet = () => {
   const { name, click } = useOutletContext()
+  const outletContextWrapper = {
+    padding: '0.5rem',
+    minWidth: '10rem',
+    width: 'fit-content',
+    marginTop: '1ex',
+    marginInline: 'auto',
+    border: '1px solid #b9c925',
+    borderRadius: '0.5em',
+  }
   return (
     <div style={fromLayoutOutletStyle}>
-      <h6>From Context passed in ChallengesLayout &lt;Outlet /&gt;</h6>
-      <p style={noMarginPStyle}>Name: {name}</p>
-      <p style={noMarginPStyle}>Click: {click}</p>
+      <h2>This section receives the context sent from &lt;Outlet /&gt;</h2>
+      <div style={outletContextWrapper}>
+        <p style={noMarginPStyle}>Name: {name}</p>
+        <p style={noMarginPStyle}>Click: {click}</p>
+      </div>
     </div>
   )
 }
@@ -39,7 +50,7 @@ const Challenge1 = () => {
   const backgroundColor = '#340756'
   return (
     <div style={{ ...challengeContainerStyle, backgroundColor }}>
-      <h2>Challenge 1</h2>
+      <h1>Challenge 1</h1>
       <FromLayoutOutlet />
     </div>
   )
@@ -49,7 +60,7 @@ const Challenge2 = () => {
   const backgroundColor = '#481c6d'
   return (
     <div style={{ ...challengeContainerStyle, backgroundColor }}>
-      <h2>Challenge 2</h2>
+      <h1>Challenge 2</h1>
       <FromLayoutOutlet />
     </div>
   )
@@ -60,10 +71,10 @@ const OtherChallenges = () => {
   const { id } = useParams()
   return (
     <div style={challengeContainerStyle}>
-      <div style={{paddingBottom: '1rem'}}>
+      <div style={{ paddingBottom: '1rem' }}>
         <h1>Challenge with id: {id}</h1>
         <p>You have been routed here using the magic of useRef(), useNavigate(), and useParams() coded in
-          <em style={{fontWeight: '600', fontStyle: 'italic', color: 'yellow'}}> Challenges component</em>!</p>
+          <em style={{ fontWeight: '600', fontStyle: 'italic', color: 'yellow' }}> Challenges component</em>!</p>
       </div>
 
       {/* //NOTE: manually typing url will trigger the web app to re-render
@@ -124,7 +135,7 @@ const Challenges = () => {
   const backgroundColor = ''  /* in case backgroundColor for this component is desired */
   return (
     <div style={{ ...challengeContainerStyle, backgroundColor }}>
-      <h2>Challenges</h2>
+      <h1>Challenges</h1>
 
       <div
         style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', }}
