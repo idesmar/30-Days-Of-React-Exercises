@@ -12,6 +12,7 @@
 - [Dev Notes](#dev-notes)
 - [Learnings](#learnings)
   - [Routing](#routing)
+    - [Basic Router Structure](#basic-router-structure)
     - [Nested `Route`'s](#nested-routes)
     - [Dynamic Routing / useParams Hook](#dynamic-routing--useparams-hook)
     - [Routing Priority](#routing-priority)
@@ -99,6 +100,46 @@
 
 ### Routing
 
+#### Basic Router Structure
+```js
+/* index.js */
+<BrowserRouter>
+  <App />
+</BrowserRouter>
+```
+```js
+/* App.js */
+<Container>
+  <NavigationComponent />
+  <RoutesLogic />
+</Container>
+```
+> Code structure in `App.js` can be replicated at lower levels (not root) but with the explicit rule of the **parent** `Route` `path` having ***trailing*** `/*` -- to connect/relate it with its **child** `Routes` (ie. `<RoutesLogic />`)
+>
+> Example:
+> ```js
+> /* parent `Route` */
+> {
+>   path: 'blog/*',    /* notice trailing marker */
+>   element: <BlogRoutesLogic />
+> }
+> ```
+> ```js
+> /* child `Routes` || `<RoutesLogic />` */
+> {
+>   path: '/',    /* this line can be removed */
+>   children: [
+>     {
+>       index: true,
+>       element: <Blog />
+>     },
+>     {
+>       path: '2022-10-13',
+>       element: <Blog20221013 />
+>     },
+>   ]
+> }
+> ```
 #### Nested `Route`'s
 ```js
 <Route path="/">
@@ -459,9 +500,9 @@ It is possible to pass data using `react-router-dom` as seen in previous section
 
 ### Packages Used
 <!-- cspell:disable -->
-| Package | Installation | Website | Github |
-|:--------|:-------------|:--------|:-------|
-| react router dom | `npm i react-router-dom` | [reactrouter.com](https://reactrouter.com/) | [remix-run/react-router](https://github.com/remix-run/react-router#readme)
+| Package          | Installation             | Website                                     | Github                                                                     |
+| :--------------- | :----------------------- | :------------------------------------------ | :------------------------------------------------------------------------- |
+| react router dom | `npm i react-router-dom` | [reactrouter.com](https://reactrouter.com/) | [remix-run/react-router](https://github.com/remix-run/react-router#readme) |
 <!-- cspell:enable -->
 
 ### React Router v6 Learning Material
