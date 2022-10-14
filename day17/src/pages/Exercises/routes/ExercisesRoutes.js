@@ -28,7 +28,7 @@ const ExercisesRoutes = () => {
           element: <Level1 />
         },
         {
-          path: 'level2',
+          path: 'level2/*',
           element: <Level2 />
         }
       ]
