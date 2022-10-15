@@ -1,9 +1,15 @@
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 
 
 const MPNotFound = () => {
+  const location = useLocation()
+
   return (
-    <div>You seem lost. Want to go back to <Link to='./'>Portfolio Home</Link>?</div>
+    <div>
+      <h2>You seem lost. Want to go back to <Link to={!location.state ? './' : -1}>
+        {!location.state ? 'Portfolio Home' : 'Projects'}
+      </Link>?</h2>
+    </div>
   )
 }
 
