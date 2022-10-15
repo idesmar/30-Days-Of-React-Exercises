@@ -6,7 +6,7 @@
 - [Description](#description)
 - [Daily READMEs](#daily-readmes)
 - [Missing Content](#missing-content)
-- [Sub Repo Name](#sub-repo-name)
+- [Sub Directory Name](#sub-directory-name)
 - [Start Dev Environment](#start-dev-environment)
 
 ## Description
@@ -32,31 +32,32 @@ Solutions to exercises from [30 Days of React](https://github.com/Asabeneh/30-Da
 |    [Day 15](./day15/README.md#readme)    | Third Party Packages    |
 |    [Day 16](./day16/README.md#readme)    | Higher Order Component  |
 |    [Day 17](./day17/README.md#readme)    | React Router            |
+|    [Day 18](./day18/README.md#readme)    | Fetch and Axios         |
 
 <div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
 
 ## Missing Content
 Located in 30 Days of React [Solutions Branch](https://github.com/idesmar/30-Days-Of-React/tree/exercise-solutions/solutions)
-| Day | Scope |
-|:---:|:------|
-| [Day 01](https://github.com/idesmar/30-Days-Of-React/tree/exercise-solutions/solutions/day-01) | Javascript Refresher |
-| [Day 02](https://github.com/idesmar/30-Days-Of-React/blob/exercise-solutions/solutions/day-02/exercise/answers.js) | Introduction to React |
-| [Day 03](https://github.com/idesmar/30-Days-Of-React/blob/exercise-solutions/solutions/day-03/level1.js) | Setting Up > Level1 (Q&A) |
-| [Day 04](https://github.com/idesmar/30-Days-Of-React/blob/exercise-solutions/solutions/day-04/level1.js) | Components > Level1 (Q&A) |
+|                                                        Day                                                         | Scope                     |
+| :----------------------------------------------------------------------------------------------------------------: | :------------------------ |
+|           [Day 01](https://github.com/idesmar/30-Days-Of-React/tree/exercise-solutions/solutions/day-01)           | Javascript Refresher      |
+| [Day 02](https://github.com/idesmar/30-Days-Of-React/blob/exercise-solutions/solutions/day-02/exercise/answers.js) | Introduction to React     |
+|      [Day 03](https://github.com/idesmar/30-Days-Of-React/blob/exercise-solutions/solutions/day-03/level1.js)      | Setting Up > Level1 (Q&A) |
+|      [Day 04](https://github.com/idesmar/30-Days-Of-React/blob/exercise-solutions/solutions/day-04/level1.js)      | Components > Level1 (Q&A) |
 
 <div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
 
-## Sub Repo Name
+## Sub Directory Name
 * day***DD***lev***LL***... - With missing Level Exercises
   * ***DD*** - day of *30 Days of React*
-  * ***LL*** - exercise level (if shown more than once, then sub repo contains answers to more than one level)
+  * ***LL*** - exercise level (if shown more than once, then sub directory contains answers to more than one level)
 * day***DD*** - Complete Exercises included
 
 <div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
 
 ## Start Dev Environment
-Each sub repository contains a single page application (SPA). To view desired exercise solution:
+Each sub directory contains a single page application (SPA). To view desired exercise solution:
 ```bash
-npm run sub-repo-name
+npm run sub-directory-name
 ```
 <div align="right"><sub><a href="#table-of-contents">[ Go to Table of Contents ]</a></sub></div>
