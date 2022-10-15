@@ -1,0 +1,32 @@
+[
+  {
+    "_id": "q1",
+    "question": "What is HTTP request?",
+    "answer": ""
+  },
+  {
+    "_id": "q2",
+    "question": "What are the most common HTTP requests?",
+    "answer": ""
+  },
+  {
+    "_id": "q3",
+    "question": "What is fetch?",
+    "answer": ""
+  },
+  {
+    "_id": "q4",
+    "question": "What is axios?",
+    "answer": ""
+  },
+  {
+    "_id": "q5",
+    "question": "What is the difference between fetch and axios?",
+    "answer": ""
+  },
+  {
+    "_id": "q6",
+    "question": "Do you prefer fetch to axios for making HTTP requests?",
+    "answer": ""
+  }
+]
