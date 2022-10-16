@@ -2,31 +2,42 @@
   {
     "_id": "q1",
     "question": "What is HTTP request?",
-    "answer": ""
+    "answer": "First, what does HTTP stand for? HTTP stands for Hypertext Transfer Protocol. HTTP request is the communication between client/browser and server over the web to receive information. This information is used to load the website."
   },
   {
     "_id": "q2",
     "question": "What are the most common HTTP requests?",
-    "answer": ""
+    "answer": "The most common HTTP requests are:",
+    "list": [
+      "GET: request to receive data from the server",
+      "POST: request to send and create a new entry on the server",
+      "PUT: request to update an entry on the server or add a new one if the entry does not exist",
+      "PATCH: request to update an entry on the server only; if the entry does not exist, it will not do anything",
+      "DELETE: request to delete an entry on the server"
+    ]
   },
   {
     "_id": "q3",
     "question": "What is fetch?",
-    "answer": ""
+    "answer": "Fetch is an API built-in in most browsers (as part of the windows object) and is used to make HTTP requests."
   },
   {
     "_id": "q4",
     "question": "What is axios?",
-    "answer": ""
+    "answer": "Axios is a third party package that works very similarly to fetch API but has more browser support."
   },
   {
     "_id": "q5",
     "question": "What is the difference between fetch and axios?",
-    "answer": ""
+    "answer": "Axios is more backwards compatible since it uses XMLHttpRequest (XHR) under the hood unlike with fetch that is a newer feature. The only caveat with axios is that it is a third party package, meaning it will contribute to the final size of the app. Unlike with fetch, which is built in, there's no added cost to using it. Other features available in axios only are listed below:",
+    "list": [
+      "It has a built-in timeout function",
+      "It uses the keyword `data` instead of `body` that usually contains the information the client needs"
+    ]
   },
   {
     "_id": "q6",
     "question": "Do you prefer fetch to axios for making HTTP requests?",
-    "answer": ""
+    "answer": "If the only HTTP request to be sent and the project is relatively small, using fetch would be ideal. However, if the app requires a ton of HTTP requests, then axios would be the best choice."
   }
 ]
