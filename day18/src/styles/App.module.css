@@ -1,0 +1,44 @@
+.appHeader {
+  padding: 1rem;
+  background-color: #6f1d1b;
+}
+
+.appHeader h1 {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.appHeader ul {
+  width: 100%;
+  max-width: 30rem;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1.3rem;
+}
+
+.appHeader ul a {
+  padding: 0.4em 1.3em;
+  border-radius: 100vw;
+  min-width: fit-content;
+  display: block;
+}
+
+.navLink {
+  background-color: #99582a;
+}
+
+.appHeader ul a:hover,
+.appHeader ul a:focus-visible,
+.activeNavLink {
+  background-color: #bb9457;
+  color: #6f1d1b;
+}
+
+.main {
+  padding: 1rem;
+}

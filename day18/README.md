@@ -16,6 +16,7 @@
 
 ## Dev Notes
 * [CSS reset - version 1.7.3](https://github.com/elad2412/the-new-css-reset) by [@elad2412](https://github.com/elad2412) used
+* React Router used for multi-page like SPA
 
 <div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>
 
@@ -24,9 +25,12 @@
 <div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>
 
 ## Third Party Resources
-| Package | Size [^size] | Installation  | Website                                             | Github                                         |
-| :------ | -----------: | :------------ | :-------------------------------------------------- | :--------------------------------------------- |
+<!-- cspell: disable -->
+| Package | Size [^size] | Installation  | Website | Github |
+| :------ | -----------: | :------------ | :------ | :----- |
 | axios   |        38.7k | `npm i axios` | [axios-http.com](https://axios-http.com/docs/intro) | [axios](https://github.com/axios/axios#readme) |
+| react router dom | `npm i react-router-dom` | [reactrouter.com](https://reactrouter.com/) | [remix-run/react-router](https://github.com/remix-run/react-router#readme) |
+<!-- cspell: enable -->
 
 [^size]: [import cost](https://github.com/wix/import-cost) to determine size of imported package
 
