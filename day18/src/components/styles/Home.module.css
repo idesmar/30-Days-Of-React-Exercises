@@ -1,0 +1,40 @@
+.home h2 {
+  font-size: 1.3rem;
+  margin-top: 1ex;
+}
+
+.home h3 {
+  margin-top: 1rem;
+}
+
+.home>small {
+  font-size: smaller;
+  font-style: italic;
+}
+
+.levels {
+  border: 1px solid #bb9457;
+  border-radius: 1rem;
+  padding: 0.4rem 1rem;
+  margin-top: 0.8rem;
+}
+
+.levels li:first-of-type {
+  margin-top: 1ex;
+}
+
+.levels li,
+.li {
+  margin-left: 0.5rem;
+}
+
+.levels li::before,
+.li::before {
+  content: '☑️';
+}
+
+.levels h4 {
+  padding: 0.3em;
+  border-bottom: 2px solid #bb9557;
+  box-shadow: 0 5px 5px -5px #bb9557;
+}

@@ -1,2 +1,12 @@
 @import './styles/reset.css';
 @import './styles/chromiumAutofill.css';
+@import url('https://fonts.googleapis.com/css2?family=Play&display=swap');
+
+html,
+body,
+#root {
+  background-color: #252422;
+  color: #ffe6a7;
+  height: 100%;
+  font-family: 'Play', sans-serif;
+}
