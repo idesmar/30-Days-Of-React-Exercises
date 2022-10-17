@@ -29,14 +29,18 @@
 }
 
 .navLink {
-  background-color: #99582a;
+  background-color: var(--navLinkBgClr);
+  border: 1px solid var(--navLinkBgClr);
+  box-shadow: var(--box-shadow-default);
 }
 
 .appHeader ul a:hover,
 .appHeader ul a:focus-visible,
 .activeNavLink {
   background-color: #bb9457;
+  border: 1px solid #00000050;
   color: #6f1d1b;
+  box-shadow: revert;
 }
 
 .main {

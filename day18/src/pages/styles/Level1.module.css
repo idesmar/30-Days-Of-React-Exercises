@@ -1,0 +1,42 @@
+.level1 small {
+  font-size: smaller;
+  font-style: italic;
+  display: block;
+  text-align: center;
+}
+
+.level1 summary {
+  cursor: pointer;
+  padding: 0.4em 1em;
+  border-radius: 100vw;
+  background-color: var(--summary-bgClr);
+  border: 1px solid var(--summary-bgClr);
+  box-shadow: var(--box-shadow-default);
+}
+
+.level1 details[open] summary {
+  box-shadow: revert;
+  border: 1px solid #00000050;
+}
+
+.level1 summary {
+  margin-top: 0.8rem;
+}
+
+.level1 details>div {
+  padding: 0.5rem 1rem 1rem;
+}
+
+.level1 li {
+  padding-left: 1rem;
+}
+
+.level1 li::before {
+  content: '▪️';
+  margin-right: 0.3rem;
+}
+
+.level1 p,
+.level1 li {
+  font-size: 0.96rem;
+}
