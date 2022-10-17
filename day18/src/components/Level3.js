@@ -1,6 +1,10 @@
+import sharedStyles from './styles/shared.module.css'
+
+
+const { middleHeading } = sharedStyles
 const Level3 = () => {
   return (
-    <div>Level3</div>
+    <h2 className={middleHeading}>Level 3</h2>
   )
 }
 
