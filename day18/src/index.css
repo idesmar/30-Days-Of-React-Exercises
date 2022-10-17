@@ -10,3 +10,9 @@ body,
   height: 100%;
   font-family: 'Play', sans-serif;
 }
+
+:root {
+  --box-shadow-default: 0 3px 5px #0000008f;
+  --navLinkBgClr: #99582a;
+  --summary-bgClr: #6b2222;
+}

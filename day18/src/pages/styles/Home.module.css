@@ -19,7 +19,8 @@
   margin-top: 0.8rem;
 }
 
-.levels li:first-of-type {
+.levels li:first-of-type,
+.li {
   margin-top: 1ex;
 }
 

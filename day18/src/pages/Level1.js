@@ -14,6 +14,12 @@ import sharedStyles from './styles/shared.module.css'
 
 const { level1 } = Level1Styles
 const { middleHeading } = sharedStyles
+const fetchingStyle = {
+  height: '30vh',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+}
 
 const Details = ({
   q: {
@@ -44,7 +50,7 @@ const Details = ({
     </details>
   )
 }
-
+const delay = 2000
 const Level1 = () => {
   let [loading, setLoading] = useState(true)
   const [qna, setQna] = useState([
@@ -58,7 +64,7 @@ const Level1 = () => {
     }
   ])
   useEffect(() => {
-    const delay = 3000
+    // const delay = 2000
     const refGenValue = refGen.next().value
     console.log(getTimestamp(`useEffect Start: ${refGenValue}`))
 
@@ -87,9 +93,10 @@ const Level1 = () => {
   return (
     <div className={level1}>
       <h2 className={middleHeading}>Level 1</h2>
+      <small>* Using fetch()</small>
       {
         loading
-          ? 'loading'
+          ? <p style={fetchingStyle}>Fetching Data with a set delay of {delay}ms</p>
           : qna.map(q => <Details key={q._id} q={q} />)
       }
     </div>
