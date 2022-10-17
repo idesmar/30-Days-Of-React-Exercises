@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom"
 import { MainRoutes } from "./routes/routes"
 import AppStyles from './styles/App.module.css'
 
+
 const {
 	appHeader, main,
 	navLink, activeNavLink,
