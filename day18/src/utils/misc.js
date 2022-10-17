@@ -62,23 +62,34 @@ const toProperCaseDelimited = (str = '') => {
   return ret.join(' ')
 }
 
+const strDigit = (num, len = 2) => {
+  const str = num.toString()
+  const length = str.length
+  return length < len ? '0'.repeat(len - length) + str : str
+}
+
 const getTimestamp = (label = '') => {
-  const digit2 = (num) => {
-    const str = num.toString()
-    return str.length < 2 ? '0' + str : str
-  }
   const curr = new Date()
-  const hh = digit2(curr.getHours())
-  const mm = digit2(curr.getMinutes())
-  const ss = digit2(curr.getSeconds())
-  const ms = curr.getMilliseconds()
+  const hh = strDigit(curr.getHours())
+  const mm = strDigit(curr.getMinutes())
+  const ss = strDigit(curr.getSeconds())
+  const ms = strDigit(curr.getMilliseconds(), 3)
   const extraMsg = label && ` [${label}]`
   return `[${hh}:${mm}]-[${ss}.${ms}]${extraMsg}`
 }
+
+function* generator() {
+  let idx = 0
+  while (true) {
+    yield `Ref-[${++idx}]`
+  }
+}
+
+const refGen = generator()
 
 export {
   seqNumsArr,
   isPrime, isPrime0, isEven, isOdd,
   toTitleCase, toProperCase, toProperCaseDelimited,
-  getTimestamp,
+  getTimestamp, refGen
 }
