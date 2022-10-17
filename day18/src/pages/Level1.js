@@ -13,7 +13,7 @@ import sharedStyles from './styles/shared.module.css'
 */
 
 const { level1 } = Level1Styles
-const { middleHeading } = sharedStyles
+const { middleHeading, small } = sharedStyles
 const fetchingStyle = {
   height: '30vh',
   display: 'flex',
@@ -50,9 +50,11 @@ const Details = ({
     </details>
   )
 }
+
 const delay = 2000
+
 const Level1 = () => {
-  let [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true)
   const [qna, setQna] = useState([
     {
       _id: '',
@@ -63,11 +65,10 @@ const Level1 = () => {
       ],
     }
   ])
-  useEffect(() => {
-    // const delay = 2000
-    const refGenValue = refGen.next().value
-    console.log(getTimestamp(`useEffect Start: ${refGenValue}`))
 
+  useEffect(() => {
+    const refGenValue = refGen.next().value
+    console.log(getTimestamp(`useEffect Start: L1-${refGenValue}`))
     const controller = new AbortController()
     console.log(controller)
     const getQna = async () => {
@@ -76,24 +77,25 @@ const Level1 = () => {
         const data = await userServices.fetchQna(signal)
         setQna(prev => data)
         setLoading(prev => false)
-        console.log(getTimestamp(`Set states complete: ${refGenValue}`))
+        console.log(getTimestamp(`Set states complete: L1-${refGenValue}`))
       } catch (err) {
-        err.idesmarTime = getTimestamp(`error on ${refGenValue}`)
+        err.idesmarTime = getTimestamp(`error on L1-${refGenValue}`)
         console.table(err)
       }
     }
     const timeout = setTimeout(getQna, delay)
-    console.log(getTimestamp(`useEffect End: ${refGenValue}`))
+    console.log(getTimestamp(`useEffect End: L1-${refGenValue}`))
     return () => {
-      controller.abort(getTimestamp(`Abort req for ${refGenValue}`))
+      controller.abort(getTimestamp(`Abort req for L1-${refGenValue}`))
       clearTimeout(timeout)
-      console.log(getTimestamp(`clearTimeout for ${refGenValue}`))
+      console.log(getTimestamp(`clearTimeout for L1-${refGenValue}`))
     }
   }, [])
+
   return (
     <div className={level1}>
       <h2 className={middleHeading}>Level 1</h2>
-      <small>* Using fetch()</small>
+      <small className={small}>* Using fetch()</small>
       {
         loading
           ? <p style={fetchingStyle}>Fetching Data with a set delay of {delay}ms</p>
