@@ -16,3 +16,7 @@ body,
   --navLinkBgClr: #99582a;
   --summary-bgClr: #6b2222;
 }
+
+button {
+  cursor: pointer;
+}

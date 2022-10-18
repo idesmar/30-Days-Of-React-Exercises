@@ -1,0 +1,48 @@
+.level2 h3 {
+  margin-top: 1rem;
+}
+
+.blankImgStyle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--summary-bgClr);
+}
+
+.blankImgStyle svg {
+  width: 80%;
+  height: 80%;
+}
+
+.catCardCollection {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.catCardStyle {
+  border: 1px solid #ffe6a7;
+  border-radius: 2.8rem;
+  padding: 1rem;
+  box-shadow: var(--box-shadow-default);
+}
+
+.catCardStyle img,
+.blankImgStyle {
+  border-radius: 2rem;
+}
+
+.catCardStyle h4 {
+  text-align: center;
+  padding: 0.3em 0 0.3em;
+  border-bottom: 2px solid #bb9557;
+  box-shadow: 0 5px 5px -5px #bb9557;
+  margin-bottom: 0.5rem;
+}
+
+.catCardDesc {
+  width: fit-content;
+  margin: 0.4rem auto auto;
+}
