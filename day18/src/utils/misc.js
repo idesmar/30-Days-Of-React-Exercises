@@ -78,18 +78,20 @@ const getTimestamp = (label = '') => {
   return `[${hh}:${mm}]-[${ss}.${ms}]${extraMsg}`
 }
 
-function* generator() {
+/* Creates a Reference to be used for logs and time tracking */
+function* refGenerator() {
   let idx = 0
   while (true) {
     yield `Ref-[${++idx}]`
   }
 }
 
-const refGen = generator()
+/* Creates a GLOBAL Reference for the app */
+const refGlobal = refGenerator()
 
 export {
   seqNumsArr,
   isPrime, isPrime0, isEven, isOdd,
   toTitleCase, toProperCase, toProperCaseDelimited,
-  getTimestamp, refGen
+  getTimestamp, refGlobal, refGenerator
 }
