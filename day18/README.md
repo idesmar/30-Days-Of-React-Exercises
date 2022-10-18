@@ -9,7 +9,7 @@
 ## Table of Contents
 - [Dev Notes](#dev-notes)
 - [Learnings](#learnings)
-- [Third Party Resources](#third-party-resources)
+- [Third Party Packages / Resources](#third-party-packages--resources)
 - [Other References and Good Reads](#other-references-and-good-reads)
 </details>
 <hr/>
@@ -17,7 +17,8 @@
 ## Dev Notes
 * [CSS reset - version 1.7.3](https://github.com/elad2412/the-new-css-reset) by [@elad2412](https://github.com/elad2412) used
 * React Router used for multi-page like SPA
-* Added [`refGen`](./src/utils/misc.js) in misc.js which is a reference generator to aid with tracking useEffect and fetch/axios. This is intended to be used along with `getTimestamp`.
+* Added `refGenerator` that creates a reference (`Ref-[n]`) and a ***global*** reference `refGlobal` in [misc.js](./src/utils/misc.js) to aid with tracking `useEffect` + `fetch`/`axios`. This is intended to be used along with `getTimestamp` --- which outputs `[hh:mm]-[ss.ms] [optionalMsg]` (also a custom function in the same module)
+* Used `react-icons` library for svg assets
 
 <div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>
 
@@ -25,12 +26,13 @@
 
 <div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>
 
-## Third Party Resources
+## Third Party Packages / Resources
 <!-- cspell: disable -->
 | Package | Installation  | Website | Github |
 | :------ | :------------ | :------ | :----- |
 | axios   | `npm i axios` | [axios-http.com](https://axios-http.com/docs/intro) | [axios](https://github.com/axios/axios#readme) |
 | react router dom | `npm i react-router-dom` | [reactrouter.com](https://reactrouter.com/) | [remix-run/react-router](https://github.com/remix-run/react-router#readme) |
+| react-icons | `npm i react-icons` | [react-icons.github.io](https://react-icons.github.io/react-icons) | [react-icons](https://github.com/react-icons/react-icons#readme) |
 <!-- cspell: enable -->
 
 [^size]: [import cost](https://github.com/wix/import-cost) to determine size of imported package
