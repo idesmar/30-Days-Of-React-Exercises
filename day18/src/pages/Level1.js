@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react"
-import { getTimestamp, refGen } from "../utils/misc"
+import { getTimestamp, refGenerator } from "../utils/misc"
 import { userServices } from "../services/services"
 import Level1Styles from './styles/Level1.module.css'
 import sharedStyles from './styles/shared.module.css'
+import { AiOutlineLoading3Quarters as Spinner } from "react-icons/ai"
 
 /* //> DEV NOTES
   AbortController - used to cancel initial fetch and allow only the 2nd
@@ -12,8 +13,13 @@ import sharedStyles from './styles/shared.module.css'
   As expected, using getTimestamp along with refGen, confirms that the first fetch is being cancelled
 */
 
+
+/* Creates a refGen specific to this page/module */
+const refGen = refGenerator()
+
 const { level1 } = Level1Styles
-const { middleHeading, small } = sharedStyles
+const { middleHeading, small, loadingDiv, spinner } = sharedStyles
+
 const fetchingStyle = {
   height: '30vh',
   display: 'flex',
@@ -51,7 +57,7 @@ const Details = ({
   )
 }
 
-const delay = 2000
+const delay = 5000
 
 const Level1 = () => {
   const [loading, setLoading] = useState(true)
@@ -98,7 +104,12 @@ const Level1 = () => {
       <small className={small}>* Using fetch()</small>
       {
         loading
-          ? <p style={fetchingStyle}>Fetching Data with a set delay of {delay}ms</p>
+          ? <div style={fetchingStyle}>
+            <div className={loadingDiv}>
+              <Spinner className={spinner} />
+              <p>Fetching Data with a set delay of {delay} ms</p>
+            </div>
+          </div>
           : qna.map(q => <Details key={q._id} q={q} />)
       }
     </div>
