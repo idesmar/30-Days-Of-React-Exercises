@@ -45,16 +45,36 @@ const MainNavigation = () => {
 						Level 3
 					</NavLink>
 				</li>
+				<li>
+					<NavLink
+						to='temp'
+						className={({ isActive }) => isActive ? activeNavLink : navLink}
+					>
+						Temporary Tab
+					</NavLink>
+				</li>
 			</ul>
 		</nav>
 	)
+}
+
+
+const smallStyle = {
+	display: 'block',
+	textAlign: 'center',
+	fontSize: '0.7em',
+	color: '#a10000',
+	backgroundColor: '#41c050',
 }
 
 const App = () => {
 	return (
 		<>
 			<header className={appHeader}>
-				<h1>30 Days of React: Day 18 | Fetch and Axios</h1>
+				<h1>
+					30 Days of React: Day 18 | Fetch and Axios
+					<small style={smallStyle}>TEMP BRANCH FOR LEARNING REACT-QUERY</small>
+				</h1>
 				<MainNavigation />
 			</header>
 			<main className={main}>

@@ -4,6 +4,7 @@ import { Level1 } from "../pages/Level1";
 import { Level2 } from "../pages/Level2";
 import { Level3 } from "../pages/Level3";
 import { NotFound } from "../pages/NotFound";
+import Temp from "../pages/_Temp";
 
 
 const MainRoutes = () => {
@@ -26,6 +27,10 @@ const MainRoutes = () => {
         {
           path: 'level3',
           element: <Level3 />
+        },
+        {
+          path: 'temp',
+          element: <Temp />
         },
       ]
     },
