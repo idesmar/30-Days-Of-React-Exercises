@@ -79,10 +79,11 @@ const getTimestamp = (label = '') => {
 }
 
 /* Creates a Reference to be used for logs and time tracking */
-function* refGenerator() {
+function* refGenerator(label = '') {
   let idx = 0
+  const prefix = label ? `${label}-` : ''
   while (true) {
-    yield `Ref-[${++idx}]`
+    yield `${prefix}Ref-[${++idx}]`
   }
 }
 
