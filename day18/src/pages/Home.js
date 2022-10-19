@@ -6,7 +6,7 @@ const { levels, li, home } = homeStyles
 const Home = () => {
   return (
     <div className={home}>
-      <h2>Welcome to Day 18 of 30 Days of React where we dig deep into Fetch and Axios.</h2>
+      <h2>Welcome to Day 18 of 30 Days of React PRACTICE BRANCH</h2>
       <small>* Use the navigation to switch between Exercise Levels and Home</small>
 
       <h3>Exercises:</h3>
