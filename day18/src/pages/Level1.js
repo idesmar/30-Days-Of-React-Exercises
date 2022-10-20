@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
 import { getTimestamp, refGenerator } from "../utils/misc"
-import { userServices } from "../services/services"
+import { qnaServices } from "../services/services"
 import Level1Styles from './styles/Level1.module.css'
 import sharedStyles from './styles/shared.module.css'
-import { AiOutlineLoading3Quarters as Spinner } from "react-icons/ai"
+import { LoadingDiv } from "./shared/Loading"
 
 /* //> DEV NOTES
   AbortController - used to cancel initial fetch and allow only the 2nd
@@ -15,10 +15,10 @@ import { AiOutlineLoading3Quarters as Spinner } from "react-icons/ai"
 
 
 /* Creates a refGen specific to this page/module */
-const refGen = refGenerator()
+const refGen = refGenerator('L1')
 
 const { level1 } = Level1Styles
-const { middleHeading, small, loadingDiv, spinner } = sharedStyles
+const { middleHeading, small } = sharedStyles
 
 const fetchingStyle = {
   height: '30vh',
@@ -74,27 +74,27 @@ const Level1 = () => {
 
   useEffect(() => {
     const refGenValue = refGen.next().value
-    console.log(getTimestamp(`useEffect Start: L1-${refGenValue}`))
+    console.log(getTimestamp(`useEffect Start: ${refGenValue}`))
     const controller = new AbortController()
     console.log(controller)
     const getQna = async () => {
       try {
         const signal = controller.signal
-        const data = await userServices.fetchQna(signal)
+        const data = await qnaServices.fetchQna(signal)
         setQna(prev => data)
         setLoading(prev => false)
-        console.log(getTimestamp(`Set states complete: L1-${refGenValue}`))
+        console.log(getTimestamp(`Set states complete: ${refGenValue}`))
       } catch (err) {
-        err.idesmarTime = getTimestamp(`error on L1-${refGenValue}`)
+        err.idesmarTime = getTimestamp(`error on ${refGenValue}`)
         console.table(err)
       }
     }
     const timeout = setTimeout(getQna, delay)
-    console.log(getTimestamp(`useEffect End: L1-${refGenValue}`))
+    console.log(getTimestamp(`useEffect End: ${refGenValue}`))
     return () => {
-      controller.abort(getTimestamp(`Abort req for L1-${refGenValue}`))
+      controller.abort(getTimestamp(`Abort req for ${refGenValue}`))
       clearTimeout(timeout)
-      console.log(getTimestamp(`clearTimeout for L1-${refGenValue}`))
+      console.log(getTimestamp(`clearTimeout for ${refGenValue}`))
     }
   }, [])
 
@@ -105,10 +105,7 @@ const Level1 = () => {
       {
         loading
           ? <div style={fetchingStyle}>
-            <div className={loadingDiv}>
-              <Spinner className={spinner} />
-              <p>Fetching Data with a set delay of {delay} ms</p>
-            </div>
+            <LoadingDiv message={`Fetching Data with a set delay of ${delay} ms`} />
           </div>
           : qna.map(q => <Details key={q._id} q={q} />)
       }

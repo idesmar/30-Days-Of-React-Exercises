@@ -1,10 +1,10 @@
 import sharedStyles from './styles/shared.module.css'
-import { userServices } from '../services/services'
+import { catServices } from '../services/services'
 import { useEffect, useState } from 'react'
 import { getTimestamp, refGenerator } from '../utils/misc'
 import level2Styles from './styles/Level2.module.css'
 import { FaCat } from 'react-icons/fa'
-import { AiOutlineLoading3Quarters as Spinner } from "react-icons/ai"
+import { LoadingDiv } from './shared/Loading'
 
 /* //> DEV NOTES
   * .toJSON() to get error in a more readable view.
@@ -14,10 +14,10 @@ import { AiOutlineLoading3Quarters as Spinner } from "react-icons/ai"
 
 
 /* Creates a refGen specific to this page/module */
-const refGen = refGenerator()
+const refGen = refGenerator('L2')
 
 const { level2, blankImgStyle, catCardStyle, catCardCollection, catCardDesc } = level2Styles
-const { middleHeading, small, spinner, loadingDiv, loadingDivContainer } = sharedStyles
+const { middleHeading, small, loadingDivContainer } = sharedStyles
 
 const idealImgWidth = '200px'
 
@@ -78,16 +78,16 @@ const Level2 = () => {
 
   useEffect(() => {
     const refGenValue = refGen.next().value
-    console.log(getTimestamp(`useEffect start: L2-${refGenValue}`))
+    console.log(getTimestamp(`useEffect start: ${refGenValue}`))
     const controller = new AbortController()
 
     const getCats = async () => {
       try {
-        const data = await userServices.axiosCats(controller.signal)
+        const data = await catServices.axiosCats(controller.signal)
         const computed = getCatsWithAverages(data)
         setComputedCats(prev => computed)
         setLoading(prev => false)
-        console.log(getTimestamp(`Set states complete: L2-${refGenValue}`))
+        console.log(getTimestamp(`Set states complete: ${refGenValue}`))
       }
       catch (err) {
         /* //> .toJSON() to get error in a more readable view. Only applies to axios
@@ -97,9 +97,9 @@ const Level2 = () => {
     }
     getCats()
 
-    console.log(getTimestamp(`useEffect end: L2-${refGenValue}`))
+    console.log(getTimestamp(`useEffect end: ${refGenValue}`))
     return () => {
-      controller.abort(getTimestamp(`Abort req for L2-${refGenValue}`))
+      controller.abort(getTimestamp(`Abort req for ${refGenValue}`))
     }
   }, [])
 
@@ -112,10 +112,7 @@ const Level2 = () => {
         {
           loading
             ? <div className={loadingDivContainer}>
-              <div className={loadingDiv}>
-                <Spinner className={spinner} />
-                <p>Fetching Data using Axios and computing average</p>
-              </div>
+              <LoadingDiv />
             </div>
             : <div className={catCardCollection}>{
               computedCats.map(cat => <CatCard key={cat.id} cat={cat} />)}</div>

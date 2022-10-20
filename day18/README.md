@@ -19,6 +19,7 @@
 * React Router used for multi-page like SPA
 * Added `refGenerator` that creates a reference (`Ref-[n]`) and a ***global*** reference `refGlobal` in [misc.js](./src/utils/misc.js) to aid with tracking `useEffect` + `fetch`/`axios`. This is intended to be used along with `getTimestamp` --- which outputs `[hh:mm]-[ss.ms] [optionalMsg]` (also a custom function in the same module)
 * Used `react-icons` library for svg assets
+* Used `loading="lazy"` on images fetched from [API](https://api.thecatapi.com/v1/breeds)
 
 <div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>
 
