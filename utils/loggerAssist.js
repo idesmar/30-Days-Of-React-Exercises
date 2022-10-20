@@ -27,24 +27,26 @@ const refGlobal = refGenerator()
 
 /**
  *
- * @param {label of logger} label
+ * @param {label of tracker} label
  * @param {reference: null | refGenerator} ref
- * @param {log or return string value} log
- * @returns returns either a console.log() or string value based on input
+ * @returns returns value to be logged
+ * initially has an option to immediately log based on the arguments
+ * but logs are reflecting as "called in logAssist"
+ * which can make it difficult to track
+ * if the supplied label is not descriptive
  */
-const logger = (label = '', ref = '', log = true) => {
+const tracker = (label = '', ref = '') => {
   const suffix = ref ? ` ${ref.next().value}` : ''
-  return log
-    ? console.log(`${getTimestamp(label + suffix)}`)
-    : getTimestamp(label + suffix)
+  return getTimestamp(label + suffix)
 }
 
-/* Uncomment to check what logger returns */
-// logger('Testing Global Reference', refGlobal)
+/* Uncomment to check what tracker returns */
+// console.log(tracker('Testing Global Reference', refGlobal))
+
 
 export {
   getTimestamp,
   refGenerator,
   refGlobal,
-  logger,
+  tracker,
 }
