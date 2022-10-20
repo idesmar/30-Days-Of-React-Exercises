@@ -1,7 +1,7 @@
 import { useQuery, QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import axios from 'axios'
-import { refGenerator, logger } from '../utils/loggerAssist'
+import { getTimestamp, refGenerator, tracker } from '../utils/loggerAssist'
 import { LoadingDiv } from './shared/Loading'
 import sharedStyles from './styles/shared.module.css'
 
@@ -14,17 +14,26 @@ const Cats = ({ data: cats }) => {
   return (
     <p>
       Cats acquired! Check console!
-      {console.log(cats)}
-      {logger('Mounted', refGen)}
+      {/* {console.log(cats)} */}
+      {console.log(tracker('Mounted'))}
     </p>
   )
 }
 
 const QueryCats = () => {
   const { isLoading, error, data: cats } = useQuery(['cats'], async () => {
+    console.count('useQuery first line')
+    const refGenValue = refGen.next().value
     const URL = 'https://api.thecatapi.com/v1/breeds'
     const res = await axios.get(URL)
-    logger('pre-return on fetch-axios', refGen)
+
+    /**
+     * ! useQuery is constantly fetching data from API with current setup when document loses focus
+     * * res is logging with 200 status
+     * * 'pre-return useQuery' is being logged as well
+     */
+    console.log(res)
+    console.log(getTimestamp(`pre-return useQuery ${refGenValue}`))
     return await res.data
   })
 
