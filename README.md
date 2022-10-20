@@ -79,9 +79,10 @@ npm run sub-directory-name
 | Package | Installation | Website | Github |
 | :------ | :----------- | :------ | :----- |
 | axios | `npm i axios` | [axios-http.com](https://axios-http.com/docs/intro) | [axios](https://github.com/axios/axios#readme) |
-| react router dom | `npm i react-router-dom` | [reactrouter.com](https://reactrouter.com/) | [remix-run/react-router](https://github.com/remix-run/react-router#readme) |
 | react-icons | `npm i react-icons` | [react-icons.github.io](https://react-icons.github.io/react-icons) | [react-icons](https://github.com/react-icons/react-icons#readme) |
 | react-query | `npm i @tanstack/react-query` | [tanstack.com](https://tanstack.com/query/v4/docs/overview) | [tanstack/query](https://github.com/tanstack/query#readme) |
+| react-query-devtools | `npm i @tanstack/react-query-devtools` | [tanstack.com](https://tanstack.com/query/v4/docs/devtools) | [tanstack/query](https://github.com/tanstack/query#readme) |
+| react-router-dom | `npm i react-router-dom` | [reactrouter.com](https://reactrouter.com/) | [remix-run/react-router](https://github.com/remix-run/react-router#readme) |
 <!-- cspell: enable -->
 
 ### Special Mention
