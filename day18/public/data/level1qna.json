@@ -9,11 +9,10 @@
     "question": "What are the most common HTTP requests?",
     "answer": "The most common HTTP requests are:",
     "list": [
-      "`GET` request to receive data from the server",
-      "`POST` request to send and create a new entry on the server",
-      "`PUT` request to update an entry on the server or add a new one if the entry does not exist",
-      "`PATCH` request to update an entry on the server only; if the entry does not exist, it will not do anything",
-      "`DELETE` request to delete an entry on the server"
+      "`GET` - request to receive data from the server",
+      "`POST` - request to send and create a new entry on the server",
+      "`PUT` - request to create or replace an entry on the server with the representation enclosed in the request body",
+      "`DELETE` - request to delete an entry on the server"
     ]
   },
   {

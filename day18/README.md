@@ -9,6 +9,11 @@
 ## Table of Contents
 - [Dev Notes](#dev-notes)
 - [Learnings](#learnings)
+  - [HTTP Requests](#http-requests)
+    - [`GET`](#get)
+    - [`POST`](#post)
+    - [`PUT`](#put)
+    - [`DELETE`](#delete)
 - [Third Party Packages / Resources](#third-party-packages--resources)
 - [Other References and Good Reads](#other-references-and-good-reads)
 </details>
@@ -27,6 +32,16 @@
 <div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>
 
 ## Learnings
+### HTTP Requests
+> **NOTE**: These are guidelines only and ***not all may follow it***. Ultimately, how the request will be handled depends on how the backend was set up.
+#### `GET`
+Request to receive data from the server
+#### `POST`
+Request to add a new entry on the server
+#### `PUT`
+Request to create or replace an entry on the server with the representation enclosed in the request body
+#### `DELETE`
+Request to delete an entry on the server
 
 <div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>
 
@@ -47,6 +62,7 @@
 
 ## Other References and Good Reads
 <!-- cspell: disable -->
+* [HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110) - Official Docs
 * [HTTP Overview](https://www.tutorialspoint.com/http/http_overview.htm) from tutorialspoint.com
 * [What is HTTP?](https://www.cloudflare.com/learning/ddos/glossary/hypertext-transfer-protocol-http/) from Cloudflare
 * [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP) from MDN
