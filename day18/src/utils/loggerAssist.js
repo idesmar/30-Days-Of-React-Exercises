@@ -36,7 +36,11 @@ const refGlobal = refGenerator()
  * if the supplied label is not descriptive
  */
 const tracker = (label = '', ref = '') => {
-  const suffix = ref ? ` ${ref.next().value}` : ''
+  const suffix = !ref
+    ? ''
+    : (typeof ref === 'object')
+      ? ` ${ref.next().value}`
+      : ` ${ref}`
   return getTimestamp(label + suffix)
 }
 
