@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { getTimestamp, refGenerator } from "../utils/loggerAssist"
 import { qnaServices } from "../services/services"
+import hasCode from '../utils/hasCode'
 import Level1Styles from './styles/Level1.module.css'
 import sharedStyles from './styles/shared.module.css'
 import { LoadingDiv } from "./shared/Loading"
@@ -40,13 +41,13 @@ const Details = ({
     <details>
       <summary>{question}</summary>
       <div>
-        <p>{answer}</p>
+        <p>{hasCode(answer)}</p>
         {
           list && (
             <ul>
               {
-                list.map((el, idx) =>
-                  <li key={_id + 'list' + idx}>{el}</li>
+                list.map((li, idx) =>
+                  <li key={_id + 'list' + idx}>{hasCode(li)}</li>
                 )
               }
             </ul>
