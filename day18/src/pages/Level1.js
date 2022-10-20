@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { getTimestamp, refGenerator } from "../utils/misc"
+import { getTimestamp, refGenerator } from "../utils/loggerAssist"
 import { qnaServices } from "../services/services"
 import Level1Styles from './styles/Level1.module.css'
 import sharedStyles from './styles/shared.module.css'

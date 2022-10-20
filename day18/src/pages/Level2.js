@@ -1,7 +1,7 @@
 import sharedStyles from './styles/shared.module.css'
 import { catServices } from '../services/services'
 import { useEffect, useState } from 'react'
-import { getTimestamp, refGenerator } from '../utils/misc'
+import { getTimestamp, refGenerator } from '../utils/loggerAssist'
 import level2Styles from './styles/Level2.module.css'
 import { FaCat } from 'react-icons/fa'
 import { LoadingDiv } from './shared/Loading'
