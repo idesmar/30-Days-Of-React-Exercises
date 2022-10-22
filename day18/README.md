@@ -14,6 +14,7 @@
     - [`POST`](#post)
     - [`PUT`](#put)
     - [`DELETE`](#delete)
+  - [React Query](#react-query)
 - [Third Party Packages / Resources](#third-party-packages--resources)
 - [Other References and Good Reads](#other-references-and-good-reads)
 </details>
@@ -32,8 +33,11 @@
 <div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>
 
 ## Learnings
+
 ### HTTP Requests
-> **NOTE**: These are guidelines only and ***not all may follow it***. Ultimately, how the request will be handled depends on how the backend was set up.
+> **NOTE**: <br>
+> * These are only guidelines and ***not everyone may follow it***
+> * Ultimately, request handling is dependent on the server's setup
 #### `GET`
 Request to receive data from the server
 #### `POST`
@@ -42,6 +46,33 @@ Request to add a new entry on the server
 Request to create or replace an entry on the server with the representation enclosed in the request body
 #### `DELETE`
 Request to delete an entry on the server
+
+### React Query
+* Fetching data from server/API without `useEffect` and `useState`; resulting to simpler code
+* Basic syntax for `useQuery`
+  ```
+  useQuery([queryKeys], queryFn, {...options})
+  ```
+  * [queryKeys](https://tanstack.com/query/v4/docs/guides/query-keys)
+  * [queryFn](https://tanstack.com/query/v4/docs/guides/query-functions)
+  * [{ ...options }](https://tanstack.com/query/v4/docs/reference/useQuery)
+* Some good to know about React Query as quoted from the [official docs](https://tanstack.com/query/v4/docs/guides/important-defaults):
+  <div style="font-style: italic;">
+
+  > Out of the box, React Query is configured with aggressive but sane defaults. Sometimes these defaults can catch new users off guard or make learning/debugging difficult if they are unknown by the user. Keep them in mind as you continue to learn and use React Query:
+  > * Query instances via `useQuery` or `useInfiniteQuery` by default consider cached data as stale
+  > * Stale queries are refetched automatically in the background when:
+  >   - New instances of the query mount
+  >   - The window is refocused
+  >   - The network is reconnected.
+  >   - The query is optionally configured with a refetch interval.
+  </div>
+  <br>
+
+  > As a result, an optional property was used to limit data querying
+  > ```
+  > { refetchOnWindowFocus: false }
+  > ```
 
 <div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>
 

@@ -5,42 +5,99 @@ import { getTimestamp, refGenerator, tracker } from '../utils/loggerAssist'
 import { LoadingDiv } from './shared/Loading'
 import sharedStyles from './styles/shared.module.css'
 
+/* //> DEV NOTES
+  NOTE: React Query by default will refetch data when the window is "refocused"
+  Below is an explanation from the website docs "aggressive but sane refetching"
+  > Query instances via useQuery or useInfiniteQuery by default consider cached data as stale
+  > Stale queries are refetched automatically in the background when:
+  >   - New instances of the query mount
+  >   - The window is refocused
+  >   - The network is reconnected.
+  >   - The query is optionally configured with a refetch interval.
+*/
+
 
 const refGen = refGenerator('L3')
 
 const { middleHeading, small } = sharedStyles
 
-const Cats = ({ data: cats }) => {
+const CountriesFromCats = ({ countries }) => {
   return (
-    <p>
-      Cats acquired! Check console!
-      {/* {console.log(cats)} */}
+    <div>
+      {/* {console.log(countries)} */}
       {console.log(tracker('Mounted'))}
-    </p>
+    </div>
   )
 }
 
-const QueryCats = () => {
-  const { isLoading, error, data: cats } = useQuery(['cats'], async () => {
-    console.count('useQuery first line')
-    const refGenValue = refGen.next().value
-    const URL = 'https://api.thecatapi.com/v1/breeds'
-    const res = await axios.get(URL)
 
-    /**
-     * ! useQuery is constantly fetching data from API with current setup when document loses focus
-     * * res is logging with 200 status
-     * * 'pre-return useQuery' is being logged as well
-     */
-    console.log(res)
-    console.log(getTimestamp(`pre-return useQuery ${refGenValue}`))
-    return await res.data
+const getCountriesFromCats = (cats) => {
+  const origins = cats.map(cat => cat.origin)
+  const countries = new Set(origins)
+  const res = [...countries].map(country => ({ name: country, count: 0 }))
+  return res.map(el => {
+    const count = origins.reduce((acc, origin) => {
+      return acc + (origin === el.name ? 1 : 0)
+    }, 0)
+    return { ...el, count }
   })
+}
+
+const QueryCats = () => {
+  const { isLoading, isError, error, data: countries } = useQuery(
+    ['countriesFromCats'],
+    async () => {
+      const refGenValue = refGen.next().value
+      /* // NOTE: React Query by default will refetch data based on certain conditions.
+        See DEV NOTES at module start */
+      console.log(getTimestamp(`useQuery is Fetching Data ${refGenValue}`))
+      const URL = 'https://api.thecatapi.com/v1/breeds'
+      const res = await axios.get(URL)
+      const cats = await res.data
+      const countries = getCountriesFromCats(cats)
+      return countries
+    },
+    { /*
+        Possible options to limit data query:
+        * IMPORTANT: options below may cause confusion when debugging after code refactor
+          therefore, only used `refetchOnWindowsFocus: false`
+          once in production, this "may" be replaced by either of the two below
+        > refetchOnMount: false,
+        > staleTime: Infinity,
+        */
+      refetchOnWindowFocus: false,
+    }
+  )
 
   if (isLoading) return <LoadingDiv message='Fetching using React-Query and Axios' />
-  if (error) return <div>{console.log(error.message)}</div>
-  return <Cats data={cats} />
+  if (isError) return <div>
+    Error: {error.message}
+    {console.log(`Back up log for error: ${error}`)}
+  </div>
+  return <CountriesFromCats countries={countries} />
 }
+
+
+/* //> Alternative Structure (sample taken from react-query docs)
+function Example() {
+  const query = useQuery(['todos'], fetchTodos)
+
+  return (
+    <div>
+      {
+        query.isLoading
+          ? 'Loading...'
+          : query.isError
+            ? 'Error!'
+            : query.data
+              ? query.data.map((todo) => <div key={todo.id}>{todo.title}</div>)
+              : null
+      }
+    </div>
+  )
+}
+*/
+
 
 const queryClient = new QueryClient()
 const Level3 = () => {
