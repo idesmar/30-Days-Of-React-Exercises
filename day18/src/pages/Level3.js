@@ -22,14 +22,16 @@ import level3Styles from './styles/Level3.module.css'
 const refGen = refGenerator('L3')
 
 const { middleHeading, small } = sharedStyles
-const { hiddenAnswer, showAnswer } = level3Styles
+const { hiddenAnswer, showAnswer, tdRight } = level3Styles
 
-const allCatsCount = (countries) => {
-  const count = countries.reduce((acc, curr) => acc + curr.count, 0)
-  return { 'Total Countries': count }
-}
 
-const AnswerTable = ({ answer }) => {
+/* Count validation for logging purposes  */
+// const allCatsCount = (countries) => {
+//   const count = countries.reduce((acc, curr) => acc + curr.count, 0)
+//   return { 'Total Countries': count }
+// }
+
+const AnswerTable = ({ answer: countries }) => {
   const [isShowing, setShowing] = useState(false)
   return (
     <div>
@@ -41,14 +43,37 @@ const AnswerTable = ({ answer }) => {
       </button>
       {
         isShowing
-        && <div>
-          {
-            answer.map(ans => <p key={ans.name + ' cat'}>{ans.name}: {ans.count}</p>)
-          }
-          { // cats meow count
+        && <table>
+          <thead>
+            <tr>
+              <th>Country</th>
+              <th>Cat Breed Count</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              countries.map((country, idx, arr) => {
+                /*
+                  if idx is arr.length - 1, true
+                  if idx + 1 < arr.length
+                */
+                const isNextLineNewCount = (idx + 1 < arr.length)
+                  ? arr[idx].count !== arr[idx + 1].count
+                  : true
+                return <tr
+                  key={country.name + ' cat'}
+                  style={isNextLineNewCount ? { borderBottomStyle: 'solid', borderColor: 'currentColor' } : {}}
+                >
+                  <td>{country.name}</td>
+                  <td className={tdRight}>{country.count}</td>
+                </tr>
+              })
+            }
+          </tbody>
+          {/* { // cats meow count
             console.table(allCatsCount(answer))
-          }
-        </div>
+          } */}
+        </table>
       }
     </div>
   )
@@ -140,10 +165,11 @@ const QueryCats = () => {
         * IMPORTANT: options below may cause confusion when debugging after code refactor
           therefore, only used `refetchOnWindowsFocus: false`
           once in production, this "may" be replaced by either of the two below
-        > refetchOnMount: false,
-        > staleTime: Infinity,
-        */
-      refetchOnWindowFocus: false,
+          refetchOnMount: false,
+          staleTime: Infinity,
+        > refetchOnWindowFocus: false,
+          */
+      staleTime: Infinity,
     }
   )
 
