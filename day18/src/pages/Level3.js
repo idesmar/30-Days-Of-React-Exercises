@@ -1,9 +1,11 @@
 import { useQuery, QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import axios from 'axios'
-import { getTimestamp, refGenerator, tracker } from '../utils/loggerAssist'
+import { useState } from 'react'
+import { getTimestamp, refGenerator } from '../utils/loggerAssist'
 import { LoadingDiv } from './shared/Loading'
 import sharedStyles from './styles/shared.module.css'
+import level3Styles from './styles/Level3.module.css'
 
 /* //> DEV NOTES
   NOTE: React Query by default will refetch data when the window is "refocused"
@@ -20,12 +22,91 @@ import sharedStyles from './styles/shared.module.css'
 const refGen = refGenerator('L3')
 
 const { middleHeading, small } = sharedStyles
+const { hiddenAnswer, showAnswer } = level3Styles
 
-const CountriesFromCats = ({ countries }) => {
+const allCatsCount = (countries) => {
+  const count = countries.reduce((acc, curr) => acc + curr.count, 0)
+  return { 'Total Countries': count }
+}
+
+const AnswerTable = ({ answer }) => {
+  const [isShowing, setShowing] = useState(false)
   return (
     <div>
-      {/* {console.log(countries)} */}
-      {console.log(tracker('Mounted'))}
+      <button
+        className={hiddenAnswer}
+        onClick={() => setShowing(prev => !prev)}
+      >
+        {isShowing ? 'Hide' : 'Show'} Answer
+      </button>
+      {
+        isShowing
+        && <div>
+          {
+            answer.map(ans => <p key={ans.name + ' cat'}>{ans.name}: {ans.count}</p>)
+          }
+          { // cats meow count
+            console.table(allCatsCount(answer))
+          }
+        </div>
+      }
+    </div>
+  )
+}
+
+
+const Answer = ({ answer }) => {
+  const [isShowing, setShowing] = useState(false)
+  return <span
+    onClick={() => setShowing(prev => !prev)}
+    className={!isShowing ? hiddenAnswer : showAnswer}
+  >
+    {!isShowing ? 'Show Answer' : answer}
+  </span>
+}
+
+const CountriesFromCats = ({ countries }) => {
+  const getSortedCountries = (countries) => {
+    return [...countries].sort((a, b) => {
+      if (a.count < b.count) return -1
+      if (a.count > b.count) return 1
+      if (a.count === b.count) {
+        if (a.name < b.name) return -1
+        if (a.name > b.name) return 1
+        return 0
+      }
+      return 0
+    })
+  }
+  const getCountriesWithMostCatBreeds = (countries) => {
+    const highestCount = [...countries].reduce((acc, curr) => {
+      if (acc < curr.count) return curr.count
+      return acc
+    }, 0)
+
+    /* filter array of obj that has count === highest count and return obj
+      then map through new array to extract country name,
+      then join array by ', ' --- in case more than one country in array */
+    return countries
+      .filter(country => country.count === highestCount)
+      .map(country => country.name)
+      .join(',')
+  }
+
+  return (
+    <div style={{ marginTop: '1rem' }}>
+      <p>
+        How many countries have cat breeds?&nbsp; {/* Non-Breaking SPace */}
+        <Answer answer={countries.length} />
+      </p>
+      <p>
+        Which country has the highest number of cat breeds?&nbsp; {/* Non-Breaking SPace */}
+        <Answer answer={getCountriesWithMostCatBreeds(countries)} />
+      </p>
+      <p>
+        Arrange countries in ascending order based on the number of cat breeds they have:
+      </p>
+      <AnswerTable answer={getSortedCountries(countries)} />
     </div>
   )
 }
@@ -34,12 +115,9 @@ const CountriesFromCats = ({ countries }) => {
 const getCountriesFromCats = (cats) => {
   const origins = cats.map(cat => cat.origin)
   const countries = new Set(origins)
-  const res = [...countries].map(country => ({ name: country, count: 0 }))
-  return res.map(el => {
-    const count = origins.reduce((acc, origin) => {
-      return acc + (origin === el.name ? 1 : 0)
-    }, 0)
-    return { ...el, count }
+  return [...countries].map(country => {
+    const count = origins.filter(origin => origin === country).length
+    return { name: country, count }
   })
 }
 
@@ -100,6 +178,7 @@ function Example() {
 
 
 const queryClient = new QueryClient()
+
 const Level3 = () => {
   return (
     <div>
