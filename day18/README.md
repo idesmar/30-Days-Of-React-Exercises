@@ -14,7 +14,7 @@
     - [`POST`](#post)
     - [`PUT`](#put)
     - [`DELETE`](#delete)
-  - [React Query](#react-query)
+  - [React Query - GET Request](#react-query---get-request)
 - [Third Party Packages / Resources](#third-party-packages--resources)
 - [Other References and Good Reads](#other-references-and-good-reads)
 </details>
@@ -47,7 +47,7 @@ Request to create or replace an entry on the server with the representation encl
 #### `DELETE`
 Request to delete an entry on the server
 
-### React Query
+### React Query - GET Request
 * Fetching data from server/API without `useEffect` and `useState`; resulting to simpler code
 * Basic syntax for `useQuery`
   ```
@@ -85,7 +85,9 @@ Request to delete an entry on the server
 | react-icons | `npm i react-icons` | [react-icons.github.io](https://react-icons.github.io/react-icons) | [react-icons](https://github.com/react-icons/react-icons#readme) |
 | react-query | `npm i @tanstack/react-query` | [tanstack.com](https://tanstack.com/query/v4/docs/overview) | [tanstack/query](https://github.com/tanstack/query#readme) |
 | react-query-devtools | `npm i @tanstack/react-query-devtools` | [tanstack.com](https://tanstack.com/query/v4/docs/devtools) | [tanstack/query](https://github.com/tanstack/query#readme) |
-<!-- cspell: enable -->
+
+* [thecatapi.com](https://api.thecatapi.com/v1/breeds) <!-- cspell: enable -->
+for getting cat data
 
 [^size]: [import cost](https://github.com/wix/import-cost) to determine size of imported package
 
