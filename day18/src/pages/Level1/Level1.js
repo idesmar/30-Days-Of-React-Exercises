@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
-import { getTimestamp, refGenerator } from "../utils/loggerAssist"
-import { qnaServices } from "../services/services"
-import hasCode from '../utils/hasCode'
-import level1Styles from './styles/Level1.module.css'
-import sharedStyles from './styles/shared.module.css'
-import { LoadingDiv } from "./shared/Loading"
+import { qnaServices } from "../../services/services"
+import { getTimestamp, refGenerator } from "../../utils/loggerAssist"
+import hasCode from "../../utils/hasCode"
+import { LoadingDiv } from "../shared/Loading"
+import level1Styles from "./Level1.module.css"
+import sharedStyles from "../shared/shared.module.css"
 
 /* //> DEV NOTES
   AbortController - used to cancel initial fetch and allow only the 2nd

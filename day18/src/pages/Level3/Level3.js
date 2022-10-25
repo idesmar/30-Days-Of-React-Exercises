@@ -1,11 +1,11 @@
+import { useState } from 'react'
+import axios from 'axios'
 import { useQuery, QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import axios from 'axios'
-import { useState } from 'react'
-import { getTimestamp, refGenerator } from '../utils/loggerAssist'
-import { LoadingDiv } from './shared/Loading'
-import sharedStyles from './styles/shared.module.css'
-import level3Styles from './styles/Level3.module.css'
+import { getTimestamp, refGenerator } from '../../utils/loggerAssist'
+import { LoadingDiv } from '../shared/Loading'
+import sharedStyles from '../shared/shared.module.css'
+import level3Styles from './Level3.module.css'
 
 /* //> DEV NOTES
   NOTE: React Query by default will refetch data when the window is "refocused"
@@ -25,7 +25,7 @@ const { middleHeading, small } = sharedStyles
 const { hiddenAnswer, showAnswer, tdRight } = level3Styles
 
 
-/* Count validation for logging purposes  */
+/* Count validation for logging purposes */
 // const allCatsCount = (countries) => {
 //   const count = countries.reduce((acc, curr) => acc + curr.count, 0)
 //   return { 'Total Countries': count }
@@ -53,16 +53,13 @@ const AnswerTable = ({ answer: countries }) => {
           <tbody>
             {
               countries.map((country, idx, arr) => {
-                /*
-                  if idx is arr.length - 1, true
-                  if idx + 1 < arr.length
-                */
+                /* if next idx is beyond last idx then return true */
                 const isNextLineNewCount = (idx + 1 < arr.length)
                   ? arr[idx].count !== arr[idx + 1].count
                   : true
                 return <tr
                   key={country.name + ' cat'}
-                  style={isNextLineNewCount ? { borderBottomStyle: 'solid', borderColor: 'currentColor' } : {}}
+                  style={isNextLineNewCount ? { borderColor: 'currentColor' } : {}}
                 >
                   <td>{country.name}</td>
                   <td className={tdRight}>{country.count}</td>

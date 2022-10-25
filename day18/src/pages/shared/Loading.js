@@ -1,5 +1,5 @@
 import { AiOutlineLoading3Quarters as Spinner } from "react-icons/ai"
-import sharedStyles from '../styles/shared.module.css'
+import sharedStyles from './shared.module.css'
 
 
 const { spinner, loadingDiv, loadingDivContainer } = sharedStyles

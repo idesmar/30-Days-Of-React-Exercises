@@ -1,4 +1,4 @@
-import homeStyles from './styles/Home.module.css'
+import homeStyles from './Home.module.css'
 
 
 const { levels, li, home } = homeStyles

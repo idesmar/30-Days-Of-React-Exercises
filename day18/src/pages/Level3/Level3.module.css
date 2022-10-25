@@ -20,7 +20,7 @@
 }
 
 table {
-  margin: 1rem;
+  margin: 0.4rem 1rem;
 }
 
 tr>* {
@@ -54,13 +54,8 @@ thead tr th:last-child {
   border-bottom-right-radius: inherit;
 }
 
-/* thead>tr,
-thead>tr>th {
-  border-radius: inherit;
-} */
-
 tbody tr {
-  border-bottom: 1px dotted #ffe6a74d;
+  border-bottom: 1px solid #ffe6a74d;
 }
 
 .tdRight {

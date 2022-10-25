@@ -1,9 +1,9 @@
 import { useRoutes } from "react-router-dom";
-import { Home } from "../pages/Home";
-import { Level1 } from "../pages/Level1";
-import { Level2 } from "../pages/Level2";
-import { Level3 } from "../pages/Level3";
-import { NotFound } from "../pages/NotFound";
+import { Home } from "../pages/Home/Home";
+import { Level1 } from "../pages/Level1/Level1";
+import { Level2 } from "../pages/Level2/Level2";
+import { Level3 } from "../pages/Level3/Level3";
+import { NotFound } from "../pages/NotFound/NotFound";
 
 
 const MainRoutes = () => {

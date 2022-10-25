@@ -1,4 +1,4 @@
-import sharedStyles from './styles/shared.module.css'
+import sharedStyles from '../shared/shared.module.css'
 
 
 const { middleHeading } = sharedStyles

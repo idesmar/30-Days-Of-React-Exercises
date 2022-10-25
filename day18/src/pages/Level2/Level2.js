@@ -1,10 +1,10 @@
-import sharedStyles from './styles/shared.module.css'
-import { catServices } from '../services/services'
 import { useEffect, useState } from 'react'
-import { getTimestamp, refGenerator } from '../utils/loggerAssist'
-import level2Styles from './styles/Level2.module.css'
+import { catServices } from '../../services/services'
+import { getTimestamp, refGenerator } from '../../utils/loggerAssist'
 import { FaCat } from 'react-icons/fa'
-import { LoadingDiv } from './shared/Loading'
+import { LoadingDiv } from '../shared/Loading'
+import level2Styles from './Level2.module.css'
+import sharedStyles from '../shared/shared.module.css'
 
 /* //> DEV NOTES
   * .toJSON() to get error in a more readable view.
@@ -49,6 +49,7 @@ const CatCard = ({
   )
 }
 
+/* Function */
 const getCatsWithAverages = (cats) => {
   /* get average based on string range (eg '3 - 5') */
   const getAverage = (strRange = '') => {
@@ -108,11 +109,11 @@ const Level2 = () => {
       <h2 className={middleHeading}>Level 2</h2>
       <small className={small}>* Using axios.get()</small>
       <div>
-        <h3>Getting Average metric weight and life span of cats</h3>
+        <h3>Average metric weight and life span of cats</h3>
         {
           loading
             ? <div className={loadingDivContainer}>
-              <LoadingDiv />
+              <LoadingDiv message='Getting cat data using axios and computing desired averages' />
             </div>
             : <div className={catCardCollection}>{
               computedCats.map(cat => <CatCard key={cat.id} cat={cat} />)}</div>
