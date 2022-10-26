@@ -19,7 +19,8 @@
     "day15": "cd day15 && npm start",
     "day16": "cd day16 && npm start",
     "day17": "cd day17 && npm start",
-    "day18": "cd day18 && npm start"
+    "day18": "cd day18 && npm start",
+    "day19-20": "cd day19-20 && npm start"
   },
   "repository": {
     "type": "git",

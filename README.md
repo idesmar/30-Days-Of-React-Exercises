@@ -43,6 +43,7 @@ Solutions to exercises from [30 Days of React](https://github.com/Asabeneh/30-Da
 |    [Day 16](./day16/README.md#readme)    | Higher Order Component  |
 |    [Day 17](./day17/README.md#readme)    | React Router            |
 |    [Day 18](./day18/README.md#readme)    | Fetch and Axios         |
+| [Day 19-20](./day19-20/README.md#readme) | Projects                |
 
 <div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>
 
