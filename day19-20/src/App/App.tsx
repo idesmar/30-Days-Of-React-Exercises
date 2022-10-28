@@ -1,3 +1,4 @@
+import React from "react"
 import { MainRoutes } from "../routes/routes"
 import { Footer } from "./components/Footer"
 import { Navigation } from "./components/Navigation"

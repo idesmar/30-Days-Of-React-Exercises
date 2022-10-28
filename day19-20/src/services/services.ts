@@ -6,7 +6,7 @@ const catServices = {
     return await res.json()
   },
 
-  fetchCatImage: async (id) => {
+  fetchCatImage: async (id: string) => {
     /** returns an array of object
       * sample query: https://api.thecatapi.com/v1/images/search?breed_id=abys
       * response sample below with only the important data listed

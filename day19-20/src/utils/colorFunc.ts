@@ -1,3 +1,5 @@
+import { FixMeLater } from "../interface/utils"
+
 
 // * hexColor from 30Days of React
 const hexColor = () => {
@@ -11,8 +13,9 @@ const hexColor = () => {
 }
 
 // * modified version of https://awik.io/determine-color-bright-dark-using-javascript/
-const isDark = (clr, percentCloseToBlack = 50) => {
+const isDark = (clr: string, percentCloseToBlack = 50) => {
   /* hex to RGB Conversion http://gist.github.com/983661 */
+  /* @ts-ignore */
   const comp = +("0x" + clr.slice(1).replace(clr.length < 5 && /./g, '$&$&'))
 
   /* // [Read more]
@@ -27,9 +30,9 @@ const isDark = (clr, percentCloseToBlack = 50) => {
   /* HSP (Highly Sensitive Poo 💩) equation from http://alienryderflex.com/hsp.html
     https://www.nbdtech.com/Blog/archive/2008/04/27/Calculating-the-Perceived-Brightness-of-a-Color.aspx  */
   const hsp = Math.sqrt(
-    0.299 * r**2 +
-    0.587 * g**2 +
-    0.114 * b**2
+    0.299 * r ** 2 +
+    0.587 * g ** 2 +
+    0.114 * b ** 2
   )
 
   /*    [DARK]     black     =  0
@@ -43,24 +46,28 @@ const isDark = (clr, percentCloseToBlack = 50) => {
 
 
 // source: modified from https://dev.to/alvaromontoro/building-your-own-color-contrast-checker-4j7o
-const isContrastPassing = (fColor, bgColor, AAA_Level = false, Large_18ptAbove = false) => {
+const isContrastPassing = (fColor: string, bgColor: string, AAA_Level = false, Large_18ptAbove = false) => {
   // this is similar to conversion in isDark() --- // TODO: refactor to keep it DRY
-  const hexToRGB = (clr) => {
-    const comp = +( '0x' + clr.slice(1).replace(clr.length < 5 && /./g, '$&$&'))
+  const hexToRGB = (clr: string): FixMeLater => {
+    /* @ts-ignore */
+    const comp = +('0x' + clr.slice(1).replace(clr.length < 5 && /./g, '$&$&'))
     const r = comp >> 16,
-          g = (comp >> 8) & 255,
-          b = comp & 255
+      g = (comp >> 8) & 255,
+      b = comp & 255
+
+    /* @ts-ignore */
     return { r, g, b }
   }
 
-  const luminance = ({ r, g, b }) => {
-    const a = [r, g, b].map(v => {
+
+  const luminance = ({ r, g, b }: any) => {
+    const a = [r, g, b].map((v: FixMeLater) => {
       v /= 255
 
       return (
         v <= 0.03928
           ? v / 12.92
-          : ((v + 0.055) / 1.055)**2.4
+          : ((v + 0.055) / 1.055) ** 2.4
       )
     })
     // returns value 0-1 inclusive
@@ -91,7 +98,7 @@ const isContrastPassing = (fColor, bgColor, AAA_Level = false, Large_18ptAbove =
   */
   const minRatio = ratioRef[+Large_18ptAbove][+AAA_Level]
   const fLum = luminance(hexToRGB(fColor)),
-        bgLum = luminance(hexToRGB(bgColor))
+    bgLum = luminance(hexToRGB(bgColor))
 
   const compRatio = (
     fLum < bgLum
@@ -107,8 +114,8 @@ const colorMe = (theme = 'light') => {
   const _fColor = theme === 'light' ? '#000000' : theme === 'dark' ? '#ffffff' : theme
   // TODO: checker if color is in hex
 
-  const colorArr = []
-  const getColor = () => {
+  const colorArr: string[] = []
+  const getColor = (clr: string) => {
     const bgColor = hexColor()
     // * used AAALevel true to ensure high contrast requirement of 7
     if (!isContrastPassing(_fColor, bgColor, true)) getColor(_fColor)

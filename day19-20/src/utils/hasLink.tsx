@@ -1,7 +1,10 @@
+import React from 'react'
 import makeID from './makeID'
 import { rem, em } from './unitConvert'
+import { LinkProps } from '../interface/utils'
 
-const Link = ({ text, href }) => {
+
+const Link = ({ text, href }: LinkProps) => {
   const defaultLinkStyle = {
     textDecoration: 'none',
     color: '#ffffff',

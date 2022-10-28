@@ -1,6 +1,9 @@
+import React from 'react'
+import { CodeProps } from '../interface/utils'
 import { em } from './unitConvert'
 
-const Code = ({ content }) => {
+
+const Code = ({ content }:CodeProps) => {
   const defaultCodeStyle = {
     fontStyle: 'italic',
   }

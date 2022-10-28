@@ -1,5 +1,5 @@
 const getTimestamp = (label = '') => {
-  const strDigit = (num, len = 2) => {
+  const strDigit = (num: number, len: number = 2) => {
     const str = num.toString()
     const length = str.length
     return length < len ? '0'.repeat(len - length) + str : str
@@ -39,6 +39,7 @@ const tracker = (label = '', ref = '') => {
   const suffix = !ref
     ? ''
     : (typeof ref === 'object')
+      /* @ts-ignore */
       ? ` ${ref.next().value}`
       : ` ${ref}`
   return getTimestamp(label + suffix)

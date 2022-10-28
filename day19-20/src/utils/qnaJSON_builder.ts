@@ -25,9 +25,10 @@ const questionsArr = [
   'Do you prefer fetch to axios for making HTTP requests?',
 ]
 /* //> making use of thisArg object in array.prototype.map */
-const buildQNA2 = (arr = []) => {
+const buildQNA2 = (arr: string[] = []) => {
 
   return arr.map(function (q, qIdx) {
+    /* @ts-ignore */
     const temp = { ...this }
     temp._id = 'q' + ++qIdx
     temp.question = q

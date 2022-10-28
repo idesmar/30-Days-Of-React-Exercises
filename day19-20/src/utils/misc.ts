@@ -2,13 +2,13 @@
 // source: https://tobiasljungstrom.net/blog/2019-07-26-array-of-sequential-numbers-in-js/
 /* // * replacement for using the format below where idx is used because all elements are undefined
         Array(len).fill().< Array method >((el, idx) => idx)    */
-const seqNumsArr = (len) => {
+const seqNumsArr = (len: number) => {
   return [...Array(len).keys()]
 }
 
 /* Maybe a bit complicated but it looks cool to me */
-const isPrime = (num) => {
-  const isExemption = (x) => [0, 1].includes(x)
+const isPrime = (num: number) => {
+  const isExemption = (x: number) => [0, 1].includes(x)
 
   if (isExemption(num)) return false
   /* if (num === 2) return true // could make things slower if it needs to be checked every time */
@@ -18,7 +18,7 @@ const isPrime = (num) => {
       [0:'', 1:'',2:'',3:'',4:'']
       hence num/2 + 1                       */
   return !seqNumsArr(Math.floor(num / 2 + 1))
-    .some((el) => isExemption(el) ? false : num % (el) === 0)
+    .some(el => isExemption(el) ? false : num % (el) === 0)
 
   // return !Array(Math.floor(num / 2 + 1)).fill()
   //     .some((el, idx) => isExemption(idx) ? false : num % (idx) === 0)
@@ -26,7 +26,7 @@ const isPrime = (num) => {
 
 
 /* Simpler way of checking prime */
-const isPrime0 = (num) => {
+const isPrime0 = (num: number) => {
   if ([0, 1].includes(num)) return false
   if (num === 2) return true
 
@@ -37,11 +37,11 @@ const isPrime0 = (num) => {
 }
 
 
-const isEven = (num) => num % 2 === 0
-const isOdd = (num) => num % 2 === 1
+const isEven = (num: number) => num % 2 === 0
+const isOdd = (num: number) => num % 2 === 1
 
 
-const toTitleCase = (str = '') => {
+const toTitleCase = (str: string = '') => {
   return (
     str
       ? str.split(' ')
@@ -51,9 +51,9 @@ const toTitleCase = (str = '') => {
   )
 }
 
-const toProperCase = (str = '') => str[0].toUpperCase() + str.slice(1).toLowerCase()
+const toProperCase = (str: string = '') => str[0].toUpperCase() + str.slice(1).toLowerCase()
 
-const toProperCaseDelimited = (str = '') => {
+const toProperCaseDelimited = (str: string = '') => {
   const arr = str.split(' ')
   const ret = []
   for (const subStr of arr) {

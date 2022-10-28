@@ -1,10 +1,10 @@
-const getPatterFromRegEx = (regex = RegExp()) => (
+const getPatterFromRegEx = (regex: RegExp) => (
   regex.toString().slice(1, regex.toString().length - 1)
 )
 
 /* https://stackoverflow.com/questions/2385701/regular-expression-for-first-and-last-name */
 const nameRegEx = /^[^0-9_!¡?÷?¿/\\+=@#$%^&*(){}|~<>;:[\]]{2,}$/ // ? more testing
-const isNameFormatValid = (name) => {
+const isNameFormatValid = (name: string) => {
   return nameRegEx.test(name)
 }
 const namePattern = getPatterFromRegEx(nameRegEx)
@@ -20,12 +20,12 @@ const isEmailValid = (email = '') => {
 const emailPattern = getPatterFromRegEx(emailRegEx)
 
 const usernameRegEx = /\w+/
-const isUsernameValid = (username = '') => {
+const isUsernameValid = (username: string = '') => {
   return usernameRegEx.test(username) && username.length >= 6
 }
 const usernamePattern = getPatterFromRegEx(usernameRegEx)
 
-const isPasswordMatching = (password = '', password2 = '') => {
+const isPasswordMatching = (password: string = '', password2: string = '') => {
   return password && password2 && password === password2
 }
 
