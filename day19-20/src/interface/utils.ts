@@ -1,11 +1,10 @@
-type FixMeLater = any
+export type FixMeLater = any
 
-interface CodeProps { content: string }
+export interface CodeProps {
+  content: string
+}
 
-interface LinkProps {
+export interface LinkProps {
   text: string
   href: string
 }
-
-
-export { CodeProps, FixMeLater, LinkProps }

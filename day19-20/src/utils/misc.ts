@@ -1,9 +1,10 @@
 
 // source: https://tobiasljungstrom.net/blog/2019-07-26-array-of-sequential-numbers-in-js/
 /* // * replacement for using the format below where idx is used because all elements are undefined
-        Array(len).fill().< Array method >((el, idx) => idx)    */
+        Array(len).fill('').< Array method >((el, idx) => idx)    */
 const seqNumsArr = (len: number) => {
-  return [...Array(len).keys()]
+  // return [...(Array(len)).keys()] /* not applicable for typescript target of es5 */
+  return Array(len).fill('').map((el, idx) => idx)
 }
 
 /* Maybe a bit complicated but it looks cool to me */

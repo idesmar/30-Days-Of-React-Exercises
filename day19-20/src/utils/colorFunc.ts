@@ -48,6 +48,7 @@ const isDark = (clr: string, percentCloseToBlack = 50) => {
 // source: modified from https://dev.to/alvaromontoro/building-your-own-color-contrast-checker-4j7o
 const isContrastPassing = (fColor: string, bgColor: string, AAA_Level = false, Large_18ptAbove = false) => {
   // this is similar to conversion in isDark() --- // TODO: refactor to keep it DRY
+  /* FIXME */
   const hexToRGB = (clr: string): FixMeLater => {
     /* @ts-ignore */
     const comp = +('0x' + clr.slice(1).replace(clr.length < 5 && /./g, '$&$&'))
@@ -61,6 +62,7 @@ const isContrastPassing = (fColor: string, bgColor: string, AAA_Level = false, L
 
 
   const luminance = ({ r, g, b }: any) => {
+    /* FIXME */
     const a = [r, g, b].map((v: FixMeLater) => {
       v /= 255
 
