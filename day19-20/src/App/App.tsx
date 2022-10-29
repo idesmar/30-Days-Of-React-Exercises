@@ -1,19 +1,22 @@
 import React from "react"
 import { MainRoutes } from "../routes/routes"
-import { Footer } from "./components/Footer"
-import { Navigation } from "./components/Navigation"
+import { Footer } from "./Footer/Footer"
+import { Navigation } from "./Navigation/Navigation"
+import styles from './app.module.css'
 
+
+const { header, main, footer } = styles
 
 const App = () => {
 	return (
 		<>
-			<header>
+			<header className={header}>
 				<Navigation />
 			</header>
-			<main>
+			<main className={main}>
 				<MainRoutes />
 			</main>
-			<footer>
+			<footer className={footer}>
 				<Footer />
 			</footer>
 		</>

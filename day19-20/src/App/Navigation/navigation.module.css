@@ -1,0 +1,40 @@
+.nav {
+  font-weight: 400;
+}
+
+.nav>ul {
+  display: flex;
+  max-width: calc(var(--max-width) - 20rem);
+  width: 100%;
+  padding: var(--global-padding);
+  margin: 0 auto;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.nav li {
+  padding: 0.4rem;
+}
+
+.nav a {
+  text-align: center;
+  display: block;
+  /* width: 7rem; */
+  padding: 0.6em 1.6em;
+  border-radius: 100vw;
+  /* border: 2px solid var(--nav-link) */
+}
+
+.navLink {
+  background-color: var(--nav-link);
+  box-shadow:
+    var(--navLink-inner-shadow),
+    var(--global-box-shadow);
+}
+
+.nav a:hover,
+.nav a:focus-visible,
+.activeNavLink {
+  box-shadow: var(--navLink-inner-shadow);
+  background-color: var(--nav-link-action);
+}

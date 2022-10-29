@@ -1,0 +1,18 @@
+.header {
+  background-color: var(--header-bg);
+  box-shadow: var(--global-box-shadow);
+}
+
+.main {
+  padding: var(--global-padding)
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--global-padding);
+  background-color: var(--footer-bg);
+  box-shadow: var(--footer-negative-box-shadow);
+}
