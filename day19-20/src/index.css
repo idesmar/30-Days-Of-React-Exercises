@@ -1,27 +1,34 @@
-@import './styles/reset.css';
-@import './styles/reset-extended.css';
-@import './styles/chromiumAutofill.css';
+@import './css-reset/reset-extended.css';
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap');
+
+/*
+  > Maintain index.css name for this file to properly target #root
+  Classes and id's compile to something like <moduleName_hashCode><className|id>
+*/
+
 
 :root {
   --dark-bg: #243e36;
   --nav-link: #243e36;
+  --demo-header: #283618;
   --nav-link-action: #e43f6f;
   /* --font-clr: #dfbbb1; */
   --font-clr: #f1faee;
   --header-bg: hsl(327, 17%, 28%);
   --footer-bg: hsl(327, 17%, 20%);
-  --max-width: 60rem;
+  --max-width: 50rem;
   --global-padding: 1rem;
   --global-box-shadow: 0 3px 5px #0000008f;
   --footer-negative-box-shadow: 0 -3px 5px #0000008f;
   --navLink-inner-shadow: inset 0 0 3px 2px var(--nav-link);
+  --global-href-clr: #c2d212;
 }
 
 body,
 #root {
   font-family: 'Poppins', sans-serif;
   font-weight: 300;
+  font-size: 0.9rem;
   line-height: 1.2;
   background-color: var(--dark-bg);
   color: var(--font-clr);

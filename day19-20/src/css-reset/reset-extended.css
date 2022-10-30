@@ -1,0 +1,22 @@
+@import './chromiumAutofill.css';
+@import './reset.css';
+
+/*
+  Combination of all css reset
+  NOTE: Make sure that all styles in this folder is in *.css
+  Using *.module.css will invalidate classes and id's set in plain HTML
+  classes and id's compiles to something like <moduleName_hashCode><className|id>
+*/
+
+
+html,
+body,
+/* #root will not be targeted properly if using *.module.css */
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+button {
+  cursor: pointer;
+}
