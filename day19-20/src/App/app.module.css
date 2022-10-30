@@ -4,11 +4,14 @@
 }
 
 .main {
-  padding: var(--global-padding)
+  padding: var(--global-padding);
+  max-width: var(--max-width);
+  margin: 0 auto;
 }
 
-.footer {
-  position: absolute;
+.footer>[data-fixed-inner-footer] {
+  position: fixed;
+  z-index: 999;
   bottom: 0;
   left: 0;
   right: 0;

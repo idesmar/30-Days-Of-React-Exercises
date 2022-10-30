@@ -1,0 +1,43 @@
+.dayDemos {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.dayDemo {
+  width: 100%;
+  border: 1px solid var(--global-href-clr);
+  border-radius: 1rem;
+  padding: var(--global-padding);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.dayDemo h2 {
+  font-size: 1rem;
+  border-bottom: 2px dashed;
+  margin-bottom: 0.5rem;
+  clear: both;
+  /* background-color: yellow; */
+}
+
+.dayDemo h2::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2.7rem;
+  background-color: var(--demo-header);
+  z-index: -1;
+}
+
+.dayDemo ul {
+  padding-left: 1.1rem;
+  list-style: square;
+}
+
+.dayDemo>div {
+  padding-top: 0.7rem;
+}

@@ -1,0 +1,19 @@
+h1 {
+  display: inline;
+  font-size: 1.2rem;
+  font-weight: 500;
+  border-bottom: 2px dashed;
+  line-height: 1.5;
+}
+
+.h1Wrapper {
+  margin-bottom: 1.2rem;
+}
+
+main a,
+footer a {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--global-href-clr);
+  border-bottom: 1px dashed;
+}

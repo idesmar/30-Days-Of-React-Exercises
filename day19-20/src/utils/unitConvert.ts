@@ -1,6 +1,6 @@
 
 const rem = (px = 0) => {
-  if (isNaN(px)) return px
+  if (isNaN(px)) return px.toString()
   return +px / 16 + 'rem'
 }
 
