@@ -1,6 +1,3 @@
-import { FixMeLater } from "../interface/utils"
-
-
 // * hexColor from 30Days of React
 const hexColor = () => {
   let str = '0123456789abcdef'

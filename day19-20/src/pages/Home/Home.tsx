@@ -11,6 +11,9 @@ const Home = () => {
     <>
       <div className={h1Wrapper}>
         <h1>Welcome to Day 19-20 of 30 Days of React | Projects</h1>
+        <button>
+          TEST BUTTON
+        </button>
       </div>
 
       <p>In this project we will try to somewhat recreate the intended project in this <a href="https://www.30daysofreact.com/day-19/cats">demo</a> by the author of 30 Days of React, <a href="https://github.com/Asabeneh">Asabeneh S. Yetayeh</a> </p>
