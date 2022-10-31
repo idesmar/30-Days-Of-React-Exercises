@@ -17,6 +17,19 @@ body,
   margin: 0;
 }
 
+/* included head from exception
+-- removal of display: revert; in DevTools exposes head content such as title, style and script
+  > Make sure to comment out the original in reset.css to prevent confusion with which one to use
+*/
+*:where(:not(html, head, iframe, canvas, img, svg, video, audio):not(svg *, symbol *)) {
+  all: unset;
+  display: revert;
+}
+
 button {
   cursor: pointer;
+}
+
+summary {
+  list-style: none;
 }
