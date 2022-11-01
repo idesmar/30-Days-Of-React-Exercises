@@ -4,6 +4,7 @@ import { Countries } from '../pages/Countries/Countries'
 import { Breeds } from '../pages/Breeds/Breeds'
 import { Home } from '../pages/Home/Home'
 import { NotFound } from '../pages/NotFound/NotFound'
+import { GeneralLayout } from '../layouts/GeneralLayout'
 
 
 const MainRoutes = () => {
@@ -15,12 +16,17 @@ const MainRoutes = () => {
           element: <Home />
         },
         {
-          path: 'countries',
-          element: <Countries />
-        },
-        {
-          path: 'breeds',
-          element: <Breeds />
+          element: <GeneralLayout />,
+          children: [
+            {
+              path: 'countries',
+              element: <Countries />
+            },
+            {
+              path: 'breeds',
+              element: <Breeds />
+            }
+          ]
         }
       ]
     },

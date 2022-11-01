@@ -39,33 +39,33 @@ Below are the steps taken to migrate this project to React with Typescript
   > ```bash
   > npx create-react-app app_name --template typescript
   > ```
-4. Create a [`types`](./types) folder in **root** which will contain all ***type declaration*** files (`*.d.ts`). These `*.d.ts` files are preferred compared to modules since the latter requires **import**. Name the type declaration files based on personal preference.
-  * Since `types` is located in **root** (outside src/), this folder must be included in `tsconfig.json`
-    ```json
-    {
-      ...
-      "include": [
-        "src",
-        "types"
-      ]
-    }
-    ```
-  * ***Previous step 4***. Though replaced, this still hold some good information
-    > Add file [`types.d.ts`](./src/types.d.ts)[^naming] in `src` as advised in [stackoverflow answer](https://stackoverflow.com/a/71093050) declaring a type for css modules to remove ts error: `Cannot find module '*.modules.css' or its corresponding type declaration`. File contains the code below:
-    > ```ts
-    > declare module "*.module.css";
-    > ```
-    > Run CLI code below in `src/` folder to create file in an instant
-    > ```bash
-    > echo 'declare module "*.module.css";' >> types.d.ts
-    > ```
-  [^naming]: Stackoverflow answer advised using `Globals.d.ts` but using a different name with suffix `*.d.ts` seems to work fine.
+4. Create a [`types`](./types) folder in **src** which will contain all ***type declaration*** files (`*.d.ts`). These `*.d.ts` files are preferred compared to modules since the latter requires **import**. Name the type declaration files based on personal preference.
+     * If `types` is stored in **root** (outside src/), this folder must be included in `tsconfig.json`
+       ```json
+       {
+         ...
+         "include": [
+           "src",
+           "types"
+         ]
+       }
+       ```
+     * ***Previous step 4***. Though replaced, this still hold some good information
+       > Add file [`types.d.ts`](./src/types.d.ts)[^naming] in `src` as advised in [stackoverflow answer](https://stackoverflow.com/a/71093050) declaring a type for css modules to remove ts error: `Cannot find module '*.modules.css' or its corresponding type declaration`. File contains the code below:
+       > ```ts
+       > declare module "*.module.css";
+       > ```
+       > Run CLI code below in `src/` folder to create file in an instant
+       > ```bash
+       > echo 'declare module "*.module.css";' >> types.d.ts
+       > ```
+     [^naming]: Stackoverflow answer advised using `Globals.d.ts` but using a different name with suffix `*.d.ts` seems to work fine.
 ### Functional Component Syntax and Typescript
-* If using ***arrow functions***, typescript will require React to be imported
+If using ***arrow functions***, typescript will require React to be imported
   ```ts
   import React from 'react'
   ```
-* However, if ***regular function*** syntax is used, the above will not be required by typescript
+However, if ***regular function*** syntax is used, the above will not be required by typescript
 
 
 <div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>

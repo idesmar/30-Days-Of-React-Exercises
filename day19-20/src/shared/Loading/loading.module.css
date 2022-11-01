@@ -1,0 +1,33 @@
+.loadingDivContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loadingDiv {
+  text-align: center;
+  margin-top: 3rem;
+  width: 15rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  width: 10rem;
+  height: 10rem;
+  display: block;
+  padding: 1rem;
+  animation: road-rage 2s cubic-bezier(0.77, -0.18, 0, 2.05) infinite;
+}
+
+@keyframes road-rage {
+  0% {
+    rotate: 0deg;
+  }
+
+  100% {
+    rotate: 360deg;
+  }
+}
