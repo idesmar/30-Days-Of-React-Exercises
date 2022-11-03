@@ -1,5 +1,3 @@
-/* FIXME */
-
 /* cspell: disable */
 interface Cat {
   weight: {
@@ -11,7 +9,7 @@ interface Cat {
   // cfa_url: "http://cfa.org/Breeds/BreedsAB/Abyssinian.aspx"
   // vetstreet_url: "http://www.vetstreet.com/cats/abyssinian"
   // vcahospitals_url: "https://vcahospitals.com/know-your-pet/cat-breeds/abyssinian"
-  // temperament: "Active Energetic Independent Intelligent Gentle"
+  temperament: string
   origin: string
   // country_codes: "EG"
   // country_code: "EG"
@@ -50,9 +48,6 @@ interface Cat {
   }
 }
 /* cspell: enable */
-
-/* FIXME */
-interface CatsProps { [] }
 
 
 interface CatsGenInfo {
