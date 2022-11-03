@@ -1,0 +1,54 @@
+.catCardCollection {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.catCard {
+  --border-radius: 2.8rem;
+  border: 1px solid #ffe6a7;
+  border-radius: var(--border-radius);
+  padding: 1rem 1rem calc(var(--border-radius) * 0.7);
+  box-shadow: var(--global-box-shadow);
+  max-width: 20rem;
+  width: 100%;
+}
+
+.catCard img,
+.blankImg {
+  border-radius: 2rem;
+}
+
+.blankImg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.blankImg svg {
+  width: 80%;
+  height: 80%;
+}
+
+.catCard h4 {
+  font-size: 1.1rem;
+  text-align: center;
+  padding: 0.3em 0 0.3em;
+  border-bottom: 2px solid #bb9557;
+  box-shadow: 0 5px 5px -5px #bb9557;
+  margin-bottom: 0.5rem;
+}
+
+.catCardDesc {
+  margin: 0.4rem auto auto;
+  font-style: italic;
+  font-weight: 200;
+}
+
+.label {
+  font-style: initial;
+  font-weight: 400;
+  color: #ffffff;
+}
