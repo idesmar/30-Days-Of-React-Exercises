@@ -3,7 +3,7 @@ import { fetchCats } from '../services/services'
 
 
 function useCatsQuery() {
-  return useQuery(['allCats'], fetchCats, { staleTime: Infinity })
+  return useQuery(['cats'], fetchCats, { staleTime: Infinity })
 }
 
 

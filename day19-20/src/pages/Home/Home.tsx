@@ -46,7 +46,7 @@ const Home = () => {
             <ul>
               <li>get all the breeds with the main URL</li>
               <li>get a user-input of cat to be searched</li>
-              <li>--- try react router useParams</li>
+              <li>--- try react router useSearchParams</li>
               <li>display countries (origin) that have this cat breed</li>
             </ul>
           </div>
