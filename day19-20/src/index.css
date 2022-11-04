@@ -19,6 +19,7 @@
   --max-width: 50rem;
   --global-padding: 1rem;
   --global-box-shadow: 0 3px 5px #0000008f;
+  --bigger-box-shadow: 0 6px 10px #0000008f;
   --footer-negative-box-shadow: 0 -3px 5px #0000008f;
   --navLink-inner-shadow: inset 0 0 3px 2px var(--nav-link);
   --global-href-clr: #c2d212;
@@ -36,3 +37,32 @@ body,
   color: var(--font-clr);
   position: relative;
 }
+
+/* Scrollbar width */
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+/* Scrollbar track */
+::-webkit-scrollbar-track {
+  /* background-image: linear-gradient(violet, blue); */
+  background-color: #202020;
+}
+
+/* Scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  border-radius: 100vw;
+  background-color: #e43f6f;
+  box-shadow: inset 0 0 0 1px #202020;
+  cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #243e36;
+}
+
+/*
+  Scrollbar Reads:
+    https://css-tricks.com/almanac/properties/s/scrollbar/
+    https://css-tricks.com/the-current-state-of-styling-scrollbars-in-css/
+*/
