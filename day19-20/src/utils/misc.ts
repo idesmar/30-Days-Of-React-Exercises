@@ -54,13 +54,22 @@ const toTitleCase = (str: string = '') => {
 
 const toProperCase = (str: string = '') => str[0].toUpperCase() + str.slice(1).toLowerCase()
 
-const toProperCaseDelimited = (str: string = '') => {
+const toProperCaseDelimited = (str: string = '', trim: (boolean | undefined) = false): string => {
   const arr = str.split(' ')
   const ret = []
   for (const subStr of arr) {
-    ret.push(toProperCase(subStr))
+    (subStr)
+      ? ret.push(toProperCase(subStr))
+      : ret.push(subStr)
   }
-  return ret.join(' ')
+  if (!trim) return ret.join(' ')
+
+  const trimmed = []
+  for (let i = 0; i < ret.length; i++) {
+    if (!ret[i]) continue
+    trimmed.push(ret[i])
+  }
+  return trimmed.join(' ')
 }
 
 export {
