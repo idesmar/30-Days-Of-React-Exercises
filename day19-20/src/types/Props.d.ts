@@ -1,4 +1,10 @@
 interface SearchResultProps {
   cats: Cat[],
-  query: string | null
+  query: string
+}
+
+interface LoadingProps {
+  message?: string
+  timer?: number
+  timerOutMessage?: string
 }

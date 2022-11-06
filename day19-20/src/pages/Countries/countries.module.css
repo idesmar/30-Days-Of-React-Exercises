@@ -1,0 +1,27 @@
+.queryContainer {
+  --negative-margin: calc(var(--global-padding) * -1);
+  margin-inline: var(--negative-margin);
+  margin-top: var(--global-padding);
+  padding: var(--global-padding);
+  background-color: brown;
+  border-radius: 1rem;
+  box-shadow: var(--global-box-shadow);
+
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.queryContainer * {
+  line-height: 1;
+}
+
+.queryContainer label {
+  font-size: 1.1rem;
+  width: fit-content;
+  /* font-family: monospace; */
+}
+
+/* .queryContainer input {
+  outline: 2px solid yellow;
+} */
