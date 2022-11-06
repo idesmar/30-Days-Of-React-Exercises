@@ -1,11 +1,10 @@
-.catsGenInfo {
+.catsGenInfoContainer {
   --transition-duration: 200ms;
-
   background-color: var(--footer-bg);
   border-radius: 1rem;
   box-shadow: var(--global-box-shadow);
   padding: var(--global-padding);
-  margin-inline: calc(var(--global-padding) * -1);
+  margin-inline: var(--negative-margin);
   /* position: relative; */
   transition:
     transform var(--transition-duration) ease-out,
@@ -17,13 +16,13 @@
   flex-direction: column;
 }
 
-@media (min-width: 600px) {
-  .catsGenInfo {
+@media (min-width: 37.5em) {
+  .catsGenInfoContainer {
     flex-direction: row;
   }
 }
 
-.catsGenInfo:hover {
+.catsGenInfoContainer:hover {
   transform: translateY(-0.25rem);
   box-shadow: var(--bigger-box-shadow);
   transition:
@@ -50,12 +49,12 @@
   font-size: 1rem;
 }
 
-div:has(.largeText) {
+.catsGenInfo:has(.largeText) {
   text-align: center;
 }
 
-@media (min-width: 600px) {
-  div:has(.largeText) {
+@media (min-width: 37.5em) {
+  .catsGenInfo:has(.largeText) {
     text-align: initial;
   }
 

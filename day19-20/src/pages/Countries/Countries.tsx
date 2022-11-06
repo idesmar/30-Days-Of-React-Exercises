@@ -12,21 +12,68 @@ import styles from './countries.module.css'
  */
 
 
-const { queryContainer } = styles
+const { queryContainer, searchResultCont } = styles
 
 const TIMER_TO_SHOW_RESULT = 2000
+
+
+// function SearchResult({ cats, query }: SearchResultProps) {
+
+//     const getResult = () => {
+//         const [filterResult]: Cat[] = cats.filter(cat =>
+//           cat.name.toLowerCase() === query?.trim())
+//         return filterResult
+//       }
+
+
+//     const { name, origin, description } = getResult()
+//     return <div className={searchResult}>
+//       <p>Cat Breed: {name}</p>
+//       <p>Country: {origin}</p>
+//       <p>Description: {description}</p>
+//     </div>
+
+//   return <LoadingDiv />
+//   /* if query has more than one string and no result found */
+//   // if (query?.length && !filterResult.length) {
+//   //
+//   // }
+
+// }
+
+interface SearchResultProps2 {
+  result: Cat
+}
+
+function SearchResult({ result }: SearchResultProps2) {
+  const { name, origin, description } = result
+
+  return <div className={searchResultCont}>
+    <p>Cat Breed: {name}</p>
+    <p>Country: {origin}</p>
+    <p>Description: {description}</p>
+  </div>
+
+}
 
 /* Possible improvement: Prevent consecutive spaces */
 function Countries() {
   const cats = useOutletContext<Cat[]>()
+
   const [searchParams, setSearchParams] = useSearchParams({ q: '' })
   const query = searchParams.get('q')?.toLowerCase() ?? ''
-  const [searchString, setSearchString] = useState<string>(toProperCaseDelimited(query))
+
+  const [searchString, setSearchString] = useState<string>(toProperCaseDelimited(query)) // and probably trim
+  const [searchResult, setSearchResult] = useState<Cat | null>(null)
 
   const handleSearchChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     const { value: searchValue } = e.target
     setSearchParams(prev => ({ ...prev, q: searchValue.toLowerCase() }))
     setSearchString(prev => toProperCaseDelimited(searchValue))
+    const [filteredResult]: Cat[] = cats.filter(cat =>
+      cat.name.toLowerCase() === searchValue.toLowerCase().trim())
+    console.log([filteredResult].length, filteredResult)
+    if (![filteredResult].length) setSearchResult(prev => filteredResult)
   }
 
   const handleBlur = () => {
@@ -38,30 +85,6 @@ function Countries() {
     setSearchParams(prev => ({ ...prev, q: searchValue.toLowerCase() }))
   }
 
-  /* Component has to be inside so it will re-render on any changes in the search string */
-  function SearchResult() {
-    const filterResult: Cat[] = cats.filter(cat =>
-      cat.name.toLowerCase() === query?.trim())
-
-    if (filterResult.length) {
-      const [{ name, origin, description }] = filterResult
-      return <>
-        <p>Cat Breed: {name}</p>
-        <p>Country: {origin}</p>
-        <p>Description: {description}</p>
-      </>
-    }
-
-    /* if query has more than one string and no result found */
-    if (query?.length && !filterResult.length) {
-      return <LoadingDiv
-        timer={TIMER_TO_SHOW_RESULT}
-        timerOutMessage={`No results found for ${toProperCaseDelimited(query)}`}
-      />
-    }
-
-    return null
-  }
 
   return <>
     <form
@@ -71,16 +94,18 @@ function Countries() {
       <label htmlFor="cat-input">Search Cat Breed: </label>
       <input
         id='cat-input'
-        type="text"
+        type="search"
         onChange={handleSearchChange}
         onBlur={handleBlur}
         value={searchString}
       />
     </form>
     {
-      query
-        ? <SearchResult />
-        : null
+      (searchResult != null)
+        ? <SearchResult result={searchResult} />
+        : query
+          ? <LoadingDiv />
+          : null
     }
   </>
 }

@@ -24,7 +24,14 @@
   --navLink-inner-shadow: inset 0 0 3px 2px var(--nav-link);
   --global-href-clr: #c2d212;
   /* !This doesn't work on CSS... Probably should go back to SCSS at this point */
-  --breakpoint-s: min-width: 600px;
+  /* min-width: 600px -> min-width: 37.5em */
+  --breakpoint-s: 37.5em;
+}
+
+@media (min-width: calc(50em + 4em)) {
+  :root {
+    --negative-margin: calc(var(--global-padding) * -1);
+  }
 }
 
 body,

@@ -6,7 +6,7 @@
 }
 
 /* ! Can't use var on @media query --- might go back to SCSS  */
-@media (min-width: 600px) {
+@media (min-width: 37.5em) {
   .dayDemos {
     flex-direction: row;
   }
@@ -22,7 +22,7 @@
 }
 
 /* ! Can't use var on @media query --- might go back to SCSS  */
-@media (min-width: 600px) {
+@media (min-width: 37.5em) {
   .dayDemo {
     width: 100%;
   }
