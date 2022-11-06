@@ -1,6 +1,5 @@
 /* //////////////////////////
   > EXPERIMENTAL - idesmar
-  ! BUGS: font color on auto-filled input not changing
   Needs more testing
  ////////////////////////// */
 
@@ -57,24 +56,9 @@ select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
   /* TEST: how to properly use */
-  /* border: 1px solid; --- css tricks [color dependent on font color] */
-  /* border: 1px solid inherit; --- color dependent on parent? */
 
-  --border-clr: #008000;
-  --font-clr: #008000;
-  --bg-clr: #000000;
-
-  border: 1px solid var(--border-clr);
-  -webkit-text-fill-color: var(--font-clr);
-  -webkit-box-shadow: 0 0 0px 1000px var(--bg-clr) inset;
-  box-shadow: 0 0 0px 1000px var(--bg-clr) inset;
-  transition: background-color 5000s ease-in-out 0s;
-
-  /* invalid property value on dev tools */
-  /* -webkit-box-shadow: 0 0 0px 1000px inherit inset;  */
-
-  /* invalid property value on dev tools */
-  /* box-shadow: 0 0 0px 1000px inherit inset; */
+  transition: background-color 5000s ease-in-out 0s,
+    color 5000s ease-in-out 0s;
 
   /* * could not override/unset background-color in input:-internal-autofill-selected
     css tricks workaround     : longer transition-duration (5000s)
