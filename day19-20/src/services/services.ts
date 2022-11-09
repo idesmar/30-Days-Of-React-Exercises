@@ -16,7 +16,7 @@ const fetchCatImage = async (id: string) => {
     */
   const URL = `https://api.thecatapi.com/v1/images/search?breed_id=${id}`
   const res = await fetch(URL)
-  return await res.json()
+  return await res.json() as CatImg[]
 }
 
 

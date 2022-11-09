@@ -55,3 +55,9 @@ interface CatsGenInfo {
   aveWeight: string
   aveLifeSpan: string
 }
+
+
+interface CatImg {
+  id: string
+  url: string
+}
