@@ -1,6 +1,6 @@
 interface SearchResultProps {
-  cats: Cat[],
   query: string
+  result: Cat | null
 }
 
 interface LoadingProps {
