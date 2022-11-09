@@ -1,4 +1,3 @@
-// const catServices = {
 const fetchCats = async () => {
   /* returns an array of objects */
   const URL = 'https://api.thecatapi.com/v1/breeds'
@@ -19,7 +18,6 @@ const fetchCatImage = async (id: string) => {
   const res = await fetch(URL)
   return await res.json()
 }
-// }
 
 
 export { fetchCats, fetchCatImage }

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useOutletContext, useSearchParams } from "react-router-dom"
 import { LoadingDiv } from '../../shared/Loading/Loading'
+import { getCatSearchResult } from '../../helpers/catSearchHelper'
 import { toProperCaseDelimited } from '../../utils/misc'
 import '../pages.module.css'
 import styles from './countries.module.css'
@@ -12,75 +13,74 @@ import styles from './countries.module.css'
  */
 
 
+const TIMER_TO_SHOW_RESULT = 1000
+
 const { queryContainer } = styles
 
-const TIMER_TO_SHOW_RESULT = 2000
+function SearchResult({ query, result }: SearchResultProps) {
 
-/* Possible improvement: Prevent consecutive spaces */
+  if (!result) return <LoadingDiv
+    timer={TIMER_TO_SHOW_RESULT}
+    timerOutMessage={`No results found for ${toProperCaseDelimited(query)}`}
+  />
+
+  const { name, origin, description } = result
+  return <div>
+    <p>Cat Breed: {name}</p>
+    <p>Country: {origin}</p>
+    <p>Description: {description}</p>
+  </div>
+}
+
+
 function Countries() {
   const cats = useOutletContext<Cat[]>()
+
   const [searchParams, setSearchParams] = useSearchParams({ q: '' })
-  const query = searchParams.get('q')?.toLowerCase() ?? ''
-  const [searchString, setSearchString] = useState<string>(toProperCaseDelimited(query))
+  const query = searchParams.get('q')
+
+  const [result, setResult] = useState(query ? getCatSearchResult(cats, query) : null)
+
+  const [searchString, setSearchString] = useState<string>(query ? toProperCaseDelimited(query, true) : '')
 
   const handleSearchChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    const { value: searchValue } = e.target
-    setSearchParams(prev => ({ ...prev, q: searchValue.toLowerCase() }))
-    setSearchString(prev => toProperCaseDelimited(searchValue))
+    const { value: inputValue } = e.target
+    setSearchString(prev => toProperCaseDelimited(inputValue))
   }
 
-  const handleBlur = () => {
-    /* guard clause if searchString does not require trimming */
+  const trimSearchStringOnBlur = () => {
     if (searchString === searchString.trim()) return
-
-    const searchValue = searchString.trim()
-    setSearchString(prev => searchValue)
-    setSearchParams(prev => ({ ...prev, q: searchValue.toLowerCase() }))
+    setSearchString(prev => toProperCaseDelimited(prev, true))
   }
 
-  /* Component has to be inside so it will re-render on any changes in the search string */
-  function SearchResult() {
-    const filterResult: Cat[] = cats.filter(cat =>
-      cat.name.toLowerCase() === query?.trim())
-
-    if (filterResult.length) {
-      const [{ name, origin, description }] = filterResult
-      return <>
-        <p>Cat Breed: {name}</p>
-        <p>Country: {origin}</p>
-        <p>Description: {description}</p>
-      </>
+  const handleSearchSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault()
+    if (searchString !== searchString.trim()) {
+      setSearchString(prev => searchString.trim())
     }
-
-    /* if query has more than one string and no result found */
-    if (query?.length && !filterResult.length) {
-      return <LoadingDiv
-        timer={TIMER_TO_SHOW_RESULT}
-        timerOutMessage={`No results found for ${toProperCaseDelimited(query)}`}
-      />
-    }
-
-    return null
+    const query = searchString.toLowerCase()
+    setSearchParams(prev => ({ ...prev, q: query }))
+    setResult(prev => getCatSearchResult(cats, query))
   }
 
   return <>
     <form
+      onSubmit={handleSearchSubmit}
       className={queryContainer}
-      onSubmit={e => e.preventDefault()}
     >
-      <label htmlFor="cat-input">Search Cat Breed: </label>
       <input
         id='cat-input'
         type="text"
         onChange={handleSearchChange}
-        onBlur={handleBlur}
+        onBlur={trimSearchStringOnBlur}
         value={searchString}
       />
+      <button>Search Cat Breed</button>
     </form>
     {
-      query
-        ? <SearchResult />
-        : null
+      !query
+        ? null
+        : <SearchResult query={query} result={result} />
     }
   </>
 }
