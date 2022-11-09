@@ -1,5 +1,5 @@
 import { useRoutes } from 'react-router-dom'
-import { Countries } from '../pages/Countries/Countries'
+import { Countries } from '../pages/Countries/_Countries'
 import { Breeds } from '../pages/Breeds/Breeds'
 import { Home } from '../pages/Home/Home'
 import { NotFound } from '../pages/NotFound/NotFound'
