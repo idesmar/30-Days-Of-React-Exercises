@@ -22,10 +22,10 @@
 * Started learning and using Typescript in this project
   > Read more on the process taken by going to [Learning > Migrating Project to React with Typescript](#migrating-project-to-react-with-typescript)
 
-
 <div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>
 
 ## Learnings
+
 ### Migrating Project to React with Typescript
 Below are the steps taken to migrate this project to React with Typescript
 1. Install Typescript packages based on [Create-React-App](https://create-react-app.dev/docs/adding-typescript/) docs
@@ -59,7 +59,9 @@ Below are the steps taken to migrate this project to React with Typescript
        > ```bash
        > echo 'declare module "*.module.css";' >> types.d.ts
        > ```
-     [^naming]: Stackoverflow answer advised using `Globals.d.ts` but using a different name with suffix `*.d.ts` seems to work fine.
+
+      [^naming]: Stackoverflow answer advised using `Globals.d.ts` but using a different name with suffix `*.d.ts` seems to work fine.
+
 ### Functional Component Syntax and Typescript
 If using ***arrow functions***, typescript will require React to be imported
   ```ts
@@ -67,15 +69,28 @@ If using ***arrow functions***, typescript will require React to be imported
   ```
 However, if ***regular function*** syntax is used, the above will not be required by typescript
 
-
 <div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>
 
 ## Third Party Resources
-*
+<!-- cspell: disable -->
+| Package | Installation  | Website | Github |
+| :------ | :------------ | :------ | :----- |
+| react router dom | `npm i react-router-dom` | [reactrouter.com](https://reactrouter.com/) | [remix-run/react-router](https://github.com/remix-run/react-router#readme) |
+| react-icons | `npm i react-icons` | [react-icons.github.io](https://react-icons.github.io/react-icons) | [react-icons](https://github.com/react-icons/react-icons#readme) |
+| react-query | `npm i @tanstack/react-query` | [tanstack.com](https://tanstack.com/query/v4/docs/overview) | [tanstack/query](https://github.com/tanstack/query#readme) |
+
+* [thecatapi.com](https://thecatapi.com/) <!-- cspell: enable -->
+  * [`https://api.thecatapi.com/v1/breeds`](https://api.thecatapi.com/v1/breeds) for getting cat data
+  * `https://api.thecatapi.com/v1/images/search?breed_id=${id}` for cat images
+
+[^size]: [import cost](https://github.com/wix/import-cost) to determine size of imported package
 
 <div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>
 
 ## Other References
-*
+* create-react-app.dev [Adding Typescript to CRA](https://create-react-app.dev/docs/adding-typescript/)
+* [Typescript Official Docs](https://www.typescriptlang.org/)
+* [Typescript Cheat sheets](https://github.com/typescript-cheatsheets)
+* TkDodo blog on [React Query and Typescript](https://tkdodo.eu/blog/react-query-and-type-script)
 
 <div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>
