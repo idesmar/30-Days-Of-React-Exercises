@@ -5,8 +5,7 @@ import { getCatSearchResult } from '../../helpers/catSearchHelper'
 import { toProperCaseDelimited } from '../../utils/misc'
 import '../pages.module.css'
 import styles from './countries.module.css'
-import { useCatImgQuery } from '../../hooks/useCatImgQuery'
-import { FaCat as CatIcon } from 'react-icons/fa'
+import { SearchResult } from './SearchResult/SearchResult'
 
 /**
  * search query should display on the url via useParams
@@ -18,36 +17,6 @@ import { FaCat as CatIcon } from 'react-icons/fa'
 const TIMER_TO_SHOW_RESULT = 1000
 
 const { queryContainer } = styles
-
-function SearchResult({ result }: SearchResultProps) {
-
-  const { name, origin, description, id } = result
-  const { isError, error, data: catImage } = useCatImgQuery(id)
-
-  const [showImage, setShowImage] = useState(false)
-  if (isError) console.log(error)
-
-  return <div>
-    <div>
-      {
-        !showImage
-          ? <button onClick={e => setShowImage(prev => true)}>
-            Show Cat Image
-          </button>
-          : !catImage
-            ? <CatIcon width='300px' />
-            : <img
-              width='300px'
-              src={catImage[0].url}
-              alt="" />
-      }
-    </div>
-    <p>Cat Breed: {name}</p>
-    <p>Country: {origin}</p>
-    <p>Description: {description}</p>
-
-  </div>
-}
 
 
 function Countries() {
@@ -98,10 +67,12 @@ function Countries() {
       !query
         ? null
         : !result
-          ? <LoadingDiv
-            timer={TIMER_TO_SHOW_RESULT}
-            timerOutMessage={`No results found for ${toProperCaseDelimited(query)}`}
-          />
+          ? <div style={{ padding: '1rem' }}>
+            <LoadingDiv
+              timer={TIMER_TO_SHOW_RESULT}
+              timerOutMessage={`No results found for ${toProperCaseDelimited(query)}`}
+            />
+          </div>
           : <SearchResult result={result} />
     }
   </>
