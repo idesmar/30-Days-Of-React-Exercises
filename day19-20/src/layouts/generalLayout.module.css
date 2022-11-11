@@ -1,13 +1,13 @@
 .catsGenInfo {
-  --transition-duration: 200ms;
 
   background-color: var(--footer-bg);
   border-radius: 1rem;
   box-shadow: var(--global-box-shadow);
   padding: var(--global-padding);
-  margin-inline: calc(var(--global-padding) * -1);
+  margin-inline: var(--negative-margin);
   /* position: relative; */
   transition:
+    margin var(--transition-duration) ease-out,
     transform var(--transition-duration) ease-out,
     box-shadow var(--transition-duration) ease-out;
 
@@ -17,7 +17,7 @@
   flex-direction: column;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 37.5em) {
   .catsGenInfo {
     flex-direction: row;
   }
@@ -54,7 +54,7 @@ div:has(.largeText) {
   text-align: center;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 37.5em) {
   div:has(.largeText) {
     text-align: initial;
   }

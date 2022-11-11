@@ -1,5 +1,4 @@
 .queryContainer {
-  --negative-margin: calc(var(--global-padding) * -1);
   margin-inline: var(--negative-margin);
   margin-top: var(--global-padding);
   padding: var(--global-padding);
@@ -9,7 +8,25 @@
 
   display: flex;
   gap: 1rem;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
+  flex-direction: column;
+
+  transition: margin var(--transition-duration) ease-out;
+}
+
+@media (min-width: 37.5em) {
+
+  .queryContainer {
+    flex-direction: row;
+  }
+
+  .queryContainer> :first-child {
+    width: 30%;
+  }
+
+  /* .queryContainer> :last-child {
+    width: 70%;
+  } */
 }
 
 .queryContainer * {
@@ -19,9 +36,28 @@
 .queryContainer label {
   font-size: 1.1rem;
   width: fit-content;
-  /* font-family: monospace; */
 }
 
-/* .queryContainer input {
-  outline: 2px solid yellow;
-} */
+.queryContainer input {
+  padding-inline: 1rem;
+  border-radius: 0.5em;
+  border-bottom: 1px solid;
+}
+
+.queryContainer button {
+  padding: 0.5em 1.2em;
+  border-radius: 100vw;
+  background-color: var(--nav-link-action);
+}
+
+.queryContainer button:hover,
+.queryContainer button:focus-visible {
+
+  --transition-btn: 500ms;
+
+  background-color: var(--global-href-clr);
+  color: #000;
+  transition:
+    background-color var(--transition-btn) ease-in-out,
+    color var(--transition-btn) ease-in-out;
+}
