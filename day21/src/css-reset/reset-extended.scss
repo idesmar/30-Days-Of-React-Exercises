@@ -1,0 +1,37 @@
+@forward './_chromiumAutofill.scss';
+@forward './_reset.scss';
+
+/*
+  Combination of all css reset
+  NOTE: Make sure that all styles in this folder is in *.css
+  Using *.module.css will invalidate classes and id's set in plain HTML
+  classes and id's compiles to something like <moduleName_hashCode><className|id>
+*/
+
+
+html,
+body,
+/* #root will not be targeted properly if using *.module.css */
+#root {
+  /* min-height: 100%; */
+  /* height: 100%; */
+  min-height: 100vh;
+  margin: 0;
+}
+
+/* included head from exception
+-- removal of display: revert; in DevTools exposes head content such as title, style and script
+  > Make sure to comment out the original in reset.css to prevent confusion with which one to use
+*/
+*:where(:not(html, head, iframe, canvas, img, svg, video, audio):not(svg *, symbol *)) {
+  all: unset;
+  display: revert;
+}
+
+button {
+  cursor: pointer;
+}
+
+summary {
+  list-style: none;
+}
