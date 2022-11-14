@@ -16,11 +16,11 @@ function MainRoutes() {
             element: <Home />
           },
           {
-            path: 'ctx-ust-1',
+            path: 'useContext1',
             element: <CtxUst1 />
           },
           {
-            path: 'ctx-ust-2',
+            path: 'useContext2',
             element: <CtxUst2 />
           }
         ]

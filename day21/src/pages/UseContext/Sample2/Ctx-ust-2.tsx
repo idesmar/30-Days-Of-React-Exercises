@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { places } from "../../../db/places";
 import { getImageUrl } from "./utils";
 import { ImageContextProvider, ImageContext } from "./ImageContextProvider";
-import styles from './sample2.module.scss'
+import styles from '../sample.module.scss'
 
 
 const { body } = styles
@@ -29,7 +29,6 @@ export function InnerApp() {
         />
         Use large images
       </label>
-      );
       <hr />
       <List />
     </div>
