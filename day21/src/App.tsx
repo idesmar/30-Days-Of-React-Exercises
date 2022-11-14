@@ -1,11 +1,12 @@
-import React from 'react';
-import './App.css';
+import './App.scss';
+import { MainRoutes } from './routes/routes';
 
 
 function App() {
   return (
-    <div>
-    </div>
+    <>
+      <MainRoutes />
+    </>
   );
 }
 

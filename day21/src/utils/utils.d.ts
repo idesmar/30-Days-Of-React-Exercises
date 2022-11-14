@@ -6,3 +6,5 @@ interface LinkProps {
   text: string
   href: string
 }
+
+type FixMeLater = any

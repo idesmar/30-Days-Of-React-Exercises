@@ -9,6 +9,7 @@
 ## Table of Contents
 - [Dev Notes](#dev-notes)
 - [Learnings](#learnings)
+  - [useContext / createContext](#usecontext--createcontext)
 - [Third Party Packages / Resources](#third-party-packages--resources)
 - [References and Good Reads](#references-and-good-reads)
 </details>
@@ -26,7 +27,8 @@
 <div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>
 
 ## Learnings
-*
+### useContext / createContext
+
 
 <div align="right"><sub><a href="#toc">[ Go to Table of Contents ]</a></sub></div>
 
